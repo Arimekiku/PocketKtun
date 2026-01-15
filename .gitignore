@@ -1,0 +1,9 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+
+# Rider specific ignores
+.idea/
+
+# VSCode specific ignores
+.vscode/
