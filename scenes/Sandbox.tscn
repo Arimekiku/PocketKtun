@@ -1,0 +1,99 @@
+[gd_scene load_steps=13 format=3 uid="uid://d0bdje052hqbl"]
+
+[ext_resource type="Texture2D" uid="uid://bw1kbvj657y41" path="res://Icon.svg" id="2_n4mgf"]
+[ext_resource type="Texture2D" uid="uid://dqh8onjfkhju3" path="res://resources/images/apollo-1x.png" id="2_vn80e"]
+[ext_resource type="Shader" uid="uid://ch4nd7axd0c2s" path="res://resources/shaders/Quantizator.gdshader" id="3_w2k4y"]
+[ext_resource type="PackedScene" uid="uid://dnaox0sypl1pp" path="res://resources/lowpolewo.blend" id="5_3mq1s"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n4mgf"]
+shader = ExtResource("3_w2k4y")
+shader_parameter/shader_enabled = true
+shader_parameter/palette = ExtResource("2_vn80e")
+shader_parameter/dithering = true
+shader_parameter/dithering_size = 2
+shader_parameter/resolution_scale = 1
+shader_parameter/quantization_level = 16
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_kefog"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_unugr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w2k4y"]
+albedo_texture = ExtResource("2_n4mgf")
+uv1_triplanar = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vn80e"]
+size = Vector2(20, 20)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_unugr"]
+
+[sub_resource type="Sky" id="Sky_n4mgf"]
+sky_material = SubResource("ProceduralSkyMaterial_unugr")
+
+[sub_resource type="Environment" id="Environment_w2k4y"]
+background_mode = 2
+sky = SubResource("Sky_n4mgf")
+
+[node name="Sandbox" type="Node"]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_n4mgf")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(160, 90)
+render_target_update_mode = 4
+
+[node name="lowpolewo" parent="SubViewportContainer/SubViewport" instance=ExtResource("5_3mq1s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.32381952, 0.29227924, 1.327374)
+
+[node name="Circle" type="StaticBody3D" parent="SubViewportContainer/SubViewport"]
+
+[node name="Collision" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Circle"]
+shape = SubResource("SphereShape3D_kefog")
+
+[node name="Mesh" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Circle"]
+mesh = SubResource("SphereMesh_unugr")
+
+[node name="Floor" type="StaticBody3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="Collision" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
+shape = SubResource("SphereShape3D_kefog")
+
+[node name="Mesh" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor"]
+material_override = SubResource("StandardMaterial3D_w2k4y")
+mesh = SubResource("PlaneMesh_vn80e")
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(0.641704, 0, -0.76695246, 0, 1, 0, 0.76695246, 0, 0.641704, -1.57337, -1.1920929e-07, 2.935902)
+current = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport"]
+environment = SubResource("Environment_w2k4y")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 10, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
