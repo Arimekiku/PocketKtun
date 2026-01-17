@@ -1,9 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://d0bdje052hqbl"]
+[gd_scene load_steps=35 format=3 uid="uid://d0bdje052hqbl"]
 
-[ext_resource type="Texture2D" uid="uid://bw1kbvj657y41" path="res://Icon.svg" id="2_n4mgf"]
 [ext_resource type="Texture2D" uid="uid://dqh8onjfkhju3" path="res://resources/images/apollo-1x.png" id="2_vn80e"]
 [ext_resource type="Shader" uid="uid://ch4nd7axd0c2s" path="res://resources/shaders/Quantizator.gdshader" id="3_w2k4y"]
+[ext_resource type="Texture2D" uid="uid://26aa5hllg60s" path="res://resources/Texturelabs_Wood_227S.jpg" id="4_vn80e"]
 [ext_resource type="PackedScene" uid="uid://dnaox0sypl1pp" path="res://resources/lowpolewo.blend" id="5_3mq1s"]
+[ext_resource type="PackedScene" uid="uid://dnu877iyx6p6f" path="res://scenes/Player.tscn" id="5_jm2hm"]
+[ext_resource type="PackedScene" uid="uid://4ishcf45fhvp" path="res://scenes/SillyDancing.tscn" id="6_jm2hm"]
+[ext_resource type="PackedScene" uid="uid://cavy2ks47xb4b" path="res://resources/cabinet.blend" id="7_a0ubh"]
+[ext_resource type="PackedScene" uid="uid://qey0cml03fqp" path="res://resources/models/ceiling_fan/classic_ceiling_fan.glb" id="7_w8s17"]
+[ext_resource type="Script" uid="uid://ct0n25uqp0vix" path="res://scripts/NodeRotator.cs" id="8_3mprh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n4mgf"]
 shader = ExtResource("3_w2k4y")
@@ -14,16 +19,49 @@ shader_parameter/dithering_size = 2
 shader_parameter/resolution_scale = 1
 shader_parameter/quantization_level = 16
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_w8s17"]
+size = Vector3(15, 1, 15)
+
+[sub_resource type="Gradient" id="Gradient_3mq1s"]
+colors = PackedColorArray(0.28235295, 0.23529412, 0.19607843, 1, 0.28235295, 0.23529412, 0.19607843, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jm2hm"]
+gradient = SubResource("Gradient_3mq1s")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_jm2hm"]
+noise_type = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_a0ubh"]
+noise = SubResource("FastNoiseLite_jm2hm")
+seamless = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3mq1s"]
+albedo_texture = ExtResource("4_vn80e")
+detail_enabled = true
+detail_mask = SubResource("NoiseTexture2D_a0ubh")
+detail_albedo = SubResource("GradientTexture1D_jm2hm")
+uv1_scale = Vector3(0.25, 0.25, 0.25)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 0.3
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vn80e"]
+size = Vector2(15, 15)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_48n3s"]
+size = Vector3(15, 1, 15)
+
+[sub_resource type="BoxMesh" id="BoxMesh_a0ubh"]
+size = Vector3(15, 1, 15)
+
+[sub_resource type="BoxOccluder3D" id="BoxOccluder3D_w8s17"]
+size = Vector3(15, 1, 15)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3mprh"]
+size = Vector3(15, 1, 15)
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_kefog"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_unugr"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w2k4y"]
-albedo_texture = ExtResource("2_n4mgf")
-uv1_triplanar = true
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_vn80e"]
-size = Vector2(20, 20)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_unugr"]
 
@@ -33,6 +71,51 @@ sky_material = SubResource("ProceduralSkyMaterial_unugr")
 [sub_resource type="Environment" id="Environment_w2k4y"]
 background_mode = 2
 sky = SubResource("Sky_n4mgf")
+tonemap_mode = 4
+ssao_enabled = true
+glow_enabled = true
+volumetric_fog_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a0ubh"]
+
+[sub_resource type="Curve" id="Curve_w8s17"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7969925, 0.88684726), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_3mprh"]
+curve = SubResource("Curve_w8s17")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w8s17"]
+emission_shape = 2
+emission_sphere_radius = 1.0
+gravity = Vector3(0, -0.098, 0)
+radial_accel_min = -0.25000224
+radial_accel_max = 0.24999776
+tangential_accel_min = -0.25000224
+tangential_accel_max = 0.24999776
+damping_max = 0.1
+scale_min = 0.01
+scale_max = 0.099999994
+scale_curve = SubResource("CurveTexture_3mprh")
+
+[sub_resource type="Gradient" id="Gradient_3mprh"]
+offsets = PackedFloat32Array(0, 0.5272727, 1)
+colors = PackedColorArray(0.9749939, 0.7560429, 0.37832138, 1, 0.9749939, 0.7560429, 0.37832138, 1, 0.76862746, 0.4862745, 0.1254902, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_48n3s"]
+gradient = SubResource("Gradient_3mprh")
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fhxv8"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+shading_mode = 0
+albedo_texture = SubResource("GradientTexture2D_48n3s")
+
+[sub_resource type="QuadMesh" id="QuadMesh_w8s17"]
+material = SubResource("StandardMaterial3D_fhxv8")
 
 [node name="Sandbox" type="Node"]
 
@@ -48,13 +131,89 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(160, 90)
+size = Vector2i(480, 320)
 render_target_update_mode = 4
 
+[node name="cabinet" parent="SubViewportContainer/SubViewport" instance=ExtResource("7_a0ubh")]
+transform = Transform3D(-0.25477073, 0, -0.9670015, 0, 1, 0, 0.9670015, 0, -0.25477073, 2.8283582, 0.016892137, -4.2261944)
+
 [node name="lowpolewo" parent="SubViewportContainer/SubViewport" instance=ExtResource("5_3mq1s")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.32381952, 0.29227924, 1.327374)
+transform = Transform3D(-0.9589534, 0, -0.28356346, 0, 1, 0, 0.28356346, 0, -0.9589534, 4.240757, 1.3239303, 5.1095157)
+
+[node name="Building" type="Node3D" parent="SubViewportContainer/SubViewport"]
+metadata/_edit_lock_ = true
+
+[node name="Floor" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Building"]
+
+[node name="Collision" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Building/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_w8s17")
+
+[node name="Mesh" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Building/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004899502, 0, 0.0040555)
+material_override = SubResource("StandardMaterial3D_3mq1s")
+mesh = SubResource("PlaneMesh_vn80e")
+
+[node name="Ceiling" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Building"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 4, 0)
+
+[node name="Collision" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Building/Ceiling"]
+shape = SubResource("BoxShape3D_48n3s")
+
+[node name="Mesh" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Building/Ceiling"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004899502, 0, 0.0040555)
+material_override = SubResource("StandardMaterial3D_3mq1s")
+mesh = SubResource("BoxMesh_a0ubh")
+
+[node name="OccluderInstance3D" type="OccluderInstance3D" parent="SubViewportContainer/SubViewport/Building/Ceiling"]
+occluder = SubResource("BoxOccluder3D_w8s17")
+
+[node name="Wall" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Building"]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, 2, 6.999)
+
+[node name="Collision" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Building/Wall"]
+shape = SubResource("BoxShape3D_3mprh")
+
+[node name="Mesh" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Building/Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004899502, 0, 0.0040555)
+material_override = SubResource("StandardMaterial3D_3mq1s")
+mesh = SubResource("BoxMesh_a0ubh")
+
+[node name="Wall2" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Building"]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, 2, -8.000999)
+
+[node name="Collision" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Building/Wall2"]
+shape = SubResource("BoxShape3D_3mprh")
+
+[node name="Mesh" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Building/Wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004899502, 0, 0.0040555)
+material_override = SubResource("StandardMaterial3D_3mq1s")
+mesh = SubResource("BoxMesh_a0ubh")
+
+[node name="Wall3" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Building"]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 6.943809, 2, -0.5221834)
+
+[node name="Collision" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Building/Wall3"]
+shape = SubResource("BoxShape3D_3mprh")
+
+[node name="Mesh" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Building/Wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004899502, 0, 0.0040555)
+material_override = SubResource("StandardMaterial3D_3mq1s")
+mesh = SubResource("BoxMesh_a0ubh")
+
+[node name="Wall4" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Building"]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -7.2097144, 2, -0.5221834)
+
+[node name="Collision" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Building/Wall4"]
+shape = SubResource("BoxShape3D_3mprh")
+
+[node name="Mesh" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Building/Wall4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0048993826, -0.21519089, 0.0040555)
+material_override = SubResource("StandardMaterial3D_3mq1s")
+mesh = SubResource("BoxMesh_a0ubh")
 
 [node name="Circle" type="StaticBody3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5453465, 1.0265023, -3.2253487)
 
 [node name="Collision" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Circle"]
 shape = SubResource("SphereShape3D_kefog")
@@ -62,25 +221,41 @@ shape = SubResource("SphereShape3D_kefog")
 [node name="Mesh" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Circle"]
 mesh = SubResource("SphereMesh_unugr")
 
-[node name="Floor" type="StaticBody3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-
-[node name="Collision" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Floor"]
-shape = SubResource("SphereShape3D_kefog")
-
-[node name="Mesh" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Floor"]
-material_override = SubResource("StandardMaterial3D_w2k4y")
-mesh = SubResource("PlaneMesh_vn80e")
-
-[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(0.641704, 0, -0.76695246, 0, 1, 0, 0.76695246, 0, 0.641704, -1.57337, -1.1920929e-07, 2.935902)
-current = true
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport"]
 environment = SubResource("Environment_w2k4y")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 10, 0)
+shadow_enabled = true
+
+[node name="Player" parent="SubViewportContainer/SubViewport" instance=ExtResource("5_jm2hm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8905344, 0, 0.2539239)
+
+[node name="DancingDude" type="StaticBody3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(0.99924207, 0, -0.03892845, 0, 1, 0, 0.03892845, 0, 0.99924207, 4.164607, 0, -3.6972957)
+
+[node name="SillyDancing" parent="SubViewportContainer/SubViewport/DancingDude" instance=ExtResource("6_jm2hm")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/DancingDude"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_a0ubh")
+
+[node name="Sketchfab_Scene" parent="SubViewportContainer/SubViewport" instance=ExtResource("7_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17986691, 3.1236653, -0.57412535)
+script = ExtResource("8_3mprh")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/Sketchfab_Scene"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4468701, 0)
+shadow_enabled = true
+
+[node name="Light" type="GPUParticles3D" parent="SubViewportContainer/SubViewport/Sketchfab_Scene"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7127111, 0)
+amount = 22
+lifetime = 10.0
+randomness = 1.0
+transform_align = 1
+process_material = SubResource("ParticleProcessMaterial_w8s17")
+draw_pass_1 = SubResource("QuadMesh_w8s17")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 visible = false

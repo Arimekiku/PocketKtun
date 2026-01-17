@@ -17,8 +17,8 @@ config/icon="res://Icon.svg"
 
 [display]
 
-window/size/viewport_width=1600
-window/size/viewport_height=900
+window/size/viewport_width=480
+window/size/viewport_height=320
 window/size/window_width_override=1600
 window/size/window_height_override=900
 window/stretch/mode="viewport"
@@ -38,5 +38,11 @@ enabled=PackedStringArray("res://addons/interface_export/plugin.cfg")
 [file_customization]
 
 folder_colors={
-"res://scenes/": "pink"
+"res://resources/": "orange",
+"res://scenes/": "pink",
+"res://scripts/": "purple"
 }
+
+[rendering]
+
+occlusion_culling/use_occlusion_culling=true

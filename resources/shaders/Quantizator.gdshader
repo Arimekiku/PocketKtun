@@ -15,6 +15,7 @@ int dithering_pattern(ivec2 fragcoord) {
 		-3, +1, -4, +0,
 		+3, -1, +2, -2
 	};
+	
 	int x = fragcoord.x % 4;
 	int y = fragcoord.y % 4;
 	return pattern[y * 4 + x] * dithering_size;
@@ -31,31 +32,40 @@ vec3 quantize_color(vec3 color, int levels) {
 	return round(color / step) * step;
 }
 
+vec3 yuv_to_rgb(vec3 yuv) {
+	const mat3 YUV_TO_RGB = mat3(
+		vec3(1.0, 0.0, 1.13983),
+		vec3(1.0, -0.39465, -0.58060),
+		vec3(1.0, 2.03211, 0.0)
+		);
+	return clamp(yuv * YUV_TO_RGB, vec3(0.0), vec3(1.0));
+}
+
 void fragment() {
 	vec4 final_color;
-
+	
 	if (!shader_enabled) {
 		final_color = texture(TEXTURE, UV);
 	} else {
 		vec2 tex_size = vec2(textureSize(TEXTURE, 0));
-
+		
 		if (tex_size.x <= 0.0 || tex_size.y <= 0.0) {
 			final_color = vec4(0.0);
 		} else {
 			ivec2 texel_coord = ivec2(floor(UV * tex_size / float(resolution_scale)));
 			vec3 color = texelFetch(TEXTURE, texel_coord * resolution_scale, 0).rgb;
-
+			
 			if (dithering) {
 				int dither = dithering_pattern(texel_coord);
 				color += vec3(float(dither) / 255.0);
 			}
 			color = clamp(color, 0.0, 1.0);
 			color = quantize_color(color, quantization_level);
-
+			
 			int palette_size = 16;
 			float closest_distance = 9999.0;
 			vec4 closest_color = vec4(0.0);
-
+			
 			for (int i = 0; i < palette_size; i++) {
 				float u = float(i) / float(palette_size - 1);
 				vec3 palette_color = texture(palette, vec2(u, 0.0)).rgb;
@@ -65,10 +75,10 @@ void fragment() {
 					closest_color = vec4(palette_color, 1.0);
 				}
 			}
-
+			
 			final_color = closest_color;
 		}
 	}
-
+	
 	COLOR = final_color;
 }
