@@ -1,15 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://bbkutbe5h183f"]
+[gd_scene load_steps=10 format=3 uid="uid://bbkutbe5h183f"]
 
-[ext_resource type="PackedScene" uid="uid://b60bohyvdyll6" path="res://resources/cabinet-col.blend" id="1_17a54"]
-[ext_resource type="Texture2D" uid="uid://26aa5hllg60s" path="res://resources/Texturelabs_Wood_227S.jpg" id="2_qud7g"]
+[ext_resource type="PackedScene" uid="uid://b60bohyvdyll6" path="res://resources/models/cabinet-col.blend" id="1_17a54"]
 [ext_resource type="Shader" uid="uid://dew3kcxwvaetu" path="res://resources/shaders/SelectionOutline.gdshader" id="3_8h13c"]
 [ext_resource type="Script" uid="uid://2tuid4d0ux5g" path="res://scripts/CollisionMeshHighlighter.cs" id="4_8h13c"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lifdc"]
-albedo_texture = ExtResource("2_qud7g")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6idqs"]
-albedo_texture = ExtResource("2_qud7g")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8h13c"]
 size = Vector3(1, 1, 2.006836)
@@ -40,11 +33,9 @@ size = Vector3(0.5761719, 1, 0.5917969)
 
 [node name="Plane" parent="." index="0"]
 visible = false
-material_override = SubResource("StandardMaterial3D_lifdc")
 
 [node name="Plane_002" parent="." index="1"]
 visible = false
-material_override = SubResource("StandardMaterial3D_6idqs")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="table" index="0"]
 

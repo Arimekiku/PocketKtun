@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://0tqj1xkcnh8i"
-path="res://.godot/imported/cabinet-col.blend-eef78f715f2199ec5b71b8180a15d50b.scn"
+uid="uid://b60bohyvdyll6"
+path="res://.godot/imported/cabinet-col.blend-96132c38138e44f71a00da35e3bae7a4.scn"
 
 [deps]
 
-source_file="res://cabinet-col.blend"
-dest_files=["res://.godot/imported/cabinet-col.blend-eef78f715f2199ec5b71b8180a15d50b.scn"]
+source_file="res://resources/models/cabinet-col.blend"
+dest_files=["res://.godot/imported/cabinet-col.blend-96132c38138e44f71a00da35e3bae7a4.scn"]
 
 [params]
 

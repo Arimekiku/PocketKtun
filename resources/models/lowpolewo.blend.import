@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dnaox0sypl1pp"
-path="res://.godot/imported/lowpolewo.blend-4ce541d8aa4aa901ddfad407bc9e367d.scn"
+path="res://.godot/imported/lowpolewo.blend-159efe24d5f827066cac21c20f33fc47.scn"
 
 [deps]
 
-source_file="res://resources/lowpolewo.blend"
-dest_files=["res://.godot/imported/lowpolewo.blend-4ce541d8aa4aa901ddfad407bc9e367d.scn"]
+source_file="res://resources/models/lowpolewo.blend"
+dest_files=["res://.godot/imported/lowpolewo.blend-159efe24d5f827066cac21c20f33fc47.scn"]
 
 [params]
 

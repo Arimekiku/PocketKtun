@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dqh8onjfkhju3" path="res://resources/images/apollo-1x.png" id="2_vn80e"]
 [ext_resource type="Shader" uid="uid://ch4nd7axd0c2s" path="res://resources/shaders/Quantizator.gdshader" id="3_w2k4y"]
 [ext_resource type="PackedScene" uid="uid://b5ueqyw4266if" path="res://resources/models/PSX Mega Pack/Models/Modular Structures/floor_ceiling_1.glb" id="4_w8s17"]
-[ext_resource type="PackedScene" uid="uid://dnaox0sypl1pp" path="res://resources/lowpolewo.blend" id="5_3mq1s"]
+[ext_resource type="PackedScene" uid="uid://dnaox0sypl1pp" path="res://resources/models/lowpolewo.blend" id="5_3mq1s"]
 [ext_resource type="PackedScene" uid="uid://by5xq0ijcab6j" path="res://resources/models/PSX Mega Pack/Models/Modular Structures/Walls/wall_1.glb" id="5_48n3s"]
 [ext_resource type="PackedScene" uid="uid://dnu877iyx6p6f" path="res://scenes/Player.tscn" id="5_jm2hm"]
 [ext_resource type="PackedScene" uid="uid://cvn7cxfdpld0v" path="res://resources/models/PSX Mega Pack/Models/Modular Structures/Walls/window_2_double.glb" id="6_fhxv8"]
