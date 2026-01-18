@@ -10,7 +10,7 @@ public partial class PlayerInteraction : Node3D
     
     public override void _UnhandledInput(InputEvent @event)
     {
-        if (@event.IsActionPressed("ui_accept"))
+        if (@event.IsActionPressed(Inputs.Interact))
         {
             if (_lastTarget == null)
                 return;

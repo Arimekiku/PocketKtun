@@ -32,15 +32,6 @@ vec3 quantize_color(vec3 color, int levels) {
 	return round(color / step) * step;
 }
 
-vec3 yuv_to_rgb(vec3 yuv) {
-	const mat3 YUV_TO_RGB = mat3(
-		vec3(1.0, 0.0, 1.13983),
-		vec3(1.0, -0.39465, -0.58060),
-		vec3(1.0, 2.03211, 0.0)
-		);
-	return clamp(yuv * YUV_TO_RGB, vec3(0.0), vec3(1.0));
-}
-
 void fragment() {
 	vec4 final_color;
 	

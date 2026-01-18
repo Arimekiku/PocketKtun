@@ -46,7 +46,10 @@ public partial class Player : CharacterBody3D
             velocity += GetGravity() * (float)delta;
 
         // Get movement direction based on Neck rotation
-        var inputDir = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
+        var inputDir = Input.GetVector(
+            Inputs.MoveLeft, Inputs.MoveRight,
+             Inputs.MoveUp, Inputs.ModeDown
+        );
         var direction = (_neck.Transform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();
 
         if (direction != Vector3.Zero)
