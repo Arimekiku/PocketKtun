@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://d0bdje052hqbl"]
+[gd_scene load_steps=39 format=3 uid="uid://d0bdje052hqbl"]
 
 [ext_resource type="Texture2D" uid="uid://dqh8onjfkhju3" path="res://resources/images/apollo-1x.png" id="2_vn80e"]
 [ext_resource type="Shader" uid="uid://ch4nd7axd0c2s" path="res://resources/shaders/Quantizator.gdshader" id="3_w2k4y"]
@@ -13,8 +13,16 @@
 [ext_resource type="Script" uid="uid://ct0n25uqp0vix" path="res://scripts/NodeRotator.cs" id="8_3mprh"]
 [ext_resource type="PackedScene" uid="uid://bexjifkn3jeu7" path="res://resources/models/PSX Mega Pack/Models/Lighting/lamp_2_on.glb" id="8_xw5yf"]
 [ext_resource type="PackedScene" uid="uid://bbkutbe5h183f" path="res://scenes/Cabinet.tscn" id="9_w8s17"]
+[ext_resource type="PackedScene" uid="uid://dxt53klx4k5tm" path="res://resources/models/PSX Mega Pack/Models/Small Props/ashtray_1.glb" id="11_63ay0"]
 [ext_resource type="PackedScene" uid="uid://cvwen2yg1vgxu" path="res://resources/models/PSX Mega Pack/Models/Large Props/metal_barrel_mp_3.glb" id="11_n6hjk"]
 [ext_resource type="PackedScene" uid="uid://b1t4fq0f80m4g" path="res://scenes/electronics/LightSwitch.tscn" id="11_vw0fq"]
+[ext_resource type="PackedScene" uid="uid://b8f3ghqas3ctb" path="res://resources/models/PSX Mega Pack/Models/Small Props/book_mp_1.glb" id="12_y5c0f"]
+[ext_resource type="PackedScene" uid="uid://biet0pykfa4v0" path="res://resources/models/PSX Mega Pack/Models/Small Props/cig_1.glb" id="13_l5e33"]
+[ext_resource type="PackedScene" uid="uid://lw13wu4eksvk" path="res://resources/models/PSX Mega Pack/Models/Small Props/cig_2.glb" id="14_ve8sh"]
+[ext_resource type="PackedScene" uid="uid://cfg0pbq5eca3y" path="res://scenes/electronics/Clock.tscn" id="15_63ay0"]
+[ext_resource type="PackedScene" uid="uid://bw38vjjyhl3vs" path="res://resources/models/PSX Mega Pack/Models/Small Props/pc_speaker_1_left.glb" id="21_ve8sh"]
+[ext_resource type="PackedScene" uid="uid://0a5mafl0cly0" path="res://resources/models/PSX Mega Pack/Models/Small Props/tv_remote_mp_1.glb" id="22_qgpyk"]
+[ext_resource type="PackedScene" uid="uid://80nyhrmrmd14" path="res://resources/models/PSX Mega Pack/Models/Small Props/vhs_tape_1.glb" id="23_dbld1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n4mgf"]
 shader = ExtResource("3_w2k4y")
@@ -390,6 +398,24 @@ transform = Transform3D(-0.31541717, 0, -0.94895315, 0, 1, 0, 0.94895315, 0, -0.
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_n6hjk")
 
+[node name="cabinet-col" parent="SubViewportContainer/SubViewport/Building/Decorations" instance=ExtResource("9_w8s17")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6.6730056, 0, -7.9647713)
+
+[node name="ashtray_12" parent="SubViewportContainer/SubViewport/Building/Decorations" instance=ExtResource("11_63ay0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.0247526, 0.9950222, -7.343393)
+
+[node name="book_mp_12" parent="SubViewportContainer/SubViewport/Building/Decorations" instance=ExtResource("12_y5c0f")]
+transform = Transform3D(0.8711881, 0, 0.4909494, 0, 1, 0, -0.4909494, 0, 0.8711881, -9.098391, 0.53514344, -8.681984)
+
+[node name="cig_12" parent="SubViewportContainer/SubViewport/Building/Decorations" instance=ExtResource("13_l5e33")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.983908, 0.9950222, -7.4555464)
+
+[node name="cig_22" parent="SubViewportContainer/SubViewport/Building/Decorations" instance=ExtResource("14_ve8sh")]
+transform = Transform3D(0.9880918, -0.15386541, 0, 0.15386541, 0.9880918, 0, 0, 0, 1, -5.098005, 1.0115087, -7.34499)
+
+[node name="Clock" parent="SubViewportContainer/SubViewport/Building/Decorations" instance=ExtResource("15_63ay0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8246493, 2.0756872, -9.879)
+
 [node name="Lighting" type="Node3D" parent="SubViewportContainer/SubViewport/Building"]
 
 [node name="AlarmLight" type="Node3D" parent="SubViewportContainer/SubViewport/Building/Lighting"]
@@ -418,7 +444,7 @@ _connectedLight = NodePath("../OmniLight3D")
 _connectedParticles = NodePath("../Light")
 
 [node name="Fan" parent="SubViewportContainer/SubViewport/Building/Lighting" instance=ExtResource("7_3mprh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2324133, 2.6236653, -3.118245)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.8559117, 2.6236653, -6.68987)
 script = ExtResource("8_3mprh")
 _degreesPerSecond = 30.0
 
@@ -461,5 +487,11 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="cabinet-col" parent="." instance=ExtResource("9_w8s17")]
-transform = Transform3D(0.4494749, 0, 0.89329296, 0, 1, 0, -0.89329296, 0, 0.4494749, 2.6491654, 0, -3.812478)
+[node name="pc_speaker_1_left2" parent="." instance=ExtResource("21_ve8sh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.768223, 0.9950221, -7.901576)
+
+[node name="tv_remote_mp_12" parent="." instance=ExtResource("22_qgpyk")]
+transform = Transform3D(0.39514473, 0, 0.91861886, 0, 1, 0, -0.91861886, 0, 0.39514473, -6.532014, 0.9950222, -7.5767303)
+
+[node name="vhs_tape_12" parent="." instance=ExtResource("23_dbld1")]
+transform = Transform3D(0.73495007, 0, -0.6781212, 0, 1, 0, 0.6781212, 0, 0.73495007, -6.0436416, 1.0128492, -7.7786994)

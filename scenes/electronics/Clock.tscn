@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfg0pbq5eca3y"]
+
+[ext_resource type="PackedScene" uid="uid://cmtue02h26qwk" path="res://resources/models/PSX Mega Pack/Models/Small Props/clock_2.glb" id="1_s2e4y"]
+[ext_resource type="Script" uid="uid://2umkc2srgyhm" path="res://scripts/Clock.cs" id="2_xtg1t"]
+
+[node name="Clock" node_paths=PackedStringArray("_hourHand", "_minuteHand") instance=ExtResource("1_s2e4y")]
+script = ExtResource("2_xtg1t")
+_hourHand = NodePath("clock_2/clock_2_arm_hours")
+_minuteHand = NodePath("clock_2/clock_2_arm_minutes")

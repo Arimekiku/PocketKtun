@@ -10,6 +10,6 @@ public partial class LightSwitcher : InteractableTarget
     public override void OnInteract()
     {
         _connectedLight.Visible = !_connectedLight.Visible;
-        _connectedParticles.Emitting = _connectedLight.Visible;
+        _connectedParticles.SetEmitting(_connectedLight.Visible);
     }
 }
