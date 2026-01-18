@@ -21,13 +21,9 @@ public partial class Player : CharacterBody3D
     public override void _UnhandledInput(InputEvent @event)
     {
         if (@event is InputEventMouseButton)
-        {
             Input.MouseMode = Input.MouseModeEnum.Captured;
-        }
         else if (@event.IsActionPressed("ui_cancel"))
-        {
             Input.MouseMode = Input.MouseModeEnum.Visible;
-        }
 
         if (Input.MouseMode == Input.MouseModeEnum.Captured && @event is InputEventMouseMotion mouseMotion)
         {
@@ -35,8 +31,7 @@ public partial class Player : CharacterBody3D
             _neck.RotateY(-mouseMotion.Relative.X * Sensitivity);
             _camera.RotateX(-mouseMotion.Relative.Y * Sensitivity);
 
-            // Clamp vertical rotation
-            Vector3 cameraRot = _camera.Rotation;
+            var cameraRot = _camera.Rotation;
             cameraRot.X = Mathf.Clamp(cameraRot.X, Mathf.DegToRad(-60), Mathf.DegToRad(60));
             _camera.Rotation = cameraRot;
         }
@@ -48,9 +43,7 @@ public partial class Player : CharacterBody3D
 
         // Add gravity
         if (!IsOnFloor())
-        {
             velocity += GetGravity() * (float)delta;
-        }
 
         // Get movement direction based on Neck rotation
         var inputDir = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");

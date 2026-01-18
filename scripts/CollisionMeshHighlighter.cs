@@ -1,5 +1,6 @@
 using Godot;
-using Scripts.Gameplay;
+
+namespace Scripts.Gameplay;
 
 public partial class CollisionMeshHighlighter : Node, IRaycastable
 {

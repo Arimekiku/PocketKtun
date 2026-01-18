@@ -1,5 +1,7 @@
 using Godot;
 
+namespace Scripts.Gameplay;
+
 public partial class NodeRotator : Node3D
 {
 	[Export] private float _degreesPerSecond = 15f;

@@ -1,5 +1,6 @@
 using Godot;
-using Scripts.Gameplay;
+
+namespace Scripts.Gameplay;
 
 public partial class PlayerInteraction : Node3D
 {
@@ -9,22 +10,20 @@ public partial class PlayerInteraction : Node3D
 
     public override void _Process(double delta)
     {
-        if (_rayCast.IsColliding())
+        if (!_rayCast.IsColliding())
         {
-            var collider = _rayCast.GetCollider();
-            if (collider is not IRaycastable hitNode)
-                return;
-            
-            GD.Print("Colliding");
-            
             _lastTarget?.OnRaycastOut();
-            hitNode.OnRaycastIn();
-            _lastTarget = hitNode;
-        }
-        else if (_lastTarget != null)
-        {
-            _lastTarget.OnRaycastOut();
             _lastTarget = null;
         }
+        
+        var collider = _rayCast.GetCollider();
+        if (collider is not IRaycastable target)
+            return;
+        
+        if (_lastTarget == target)
+            _lastTarget?.OnRaycastOut();
+        
+        target.OnRaycastIn();
+        _lastTarget = target;
     }
 }

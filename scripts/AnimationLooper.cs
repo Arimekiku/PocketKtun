@@ -1,5 +1,7 @@
 using Godot;
 
+namespace Scripts.Gameplay;
+
 public partial class AnimationLooper : AnimationPlayer
 {
 	public override void _Ready()
