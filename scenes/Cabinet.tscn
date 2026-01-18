@@ -1,0 +1,48 @@
+[gd_scene load_steps=10 format=3 uid="uid://bbkutbe5h183f"]
+
+[ext_resource type="PackedScene" uid="uid://b60bohyvdyll6" path="res://resources/cabinet-col.blend" id="1_17a54"]
+[ext_resource type="Texture2D" uid="uid://26aa5hllg60s" path="res://resources/Texturelabs_Wood_227S.jpg" id="2_qud7g"]
+[ext_resource type="Shader" uid="uid://dew3kcxwvaetu" path="res://resources/shaders/SelectionOutline.gdshader" id="3_8h13c"]
+[ext_resource type="Script" uid="uid://2tuid4d0ux5g" path="res://scripts/CollisionMeshHighlighter.cs" id="4_8h13c"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lifdc"]
+albedo_texture = ExtResource("2_qud7g")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6idqs"]
+albedo_texture = ExtResource("2_qud7g")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ly5nw"]
+render_priority = 0
+shader = ExtResource("3_8h13c")
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/outline_width = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uug6w"]
+resource_name = "Material.006"
+next_pass = SubResource("ShaderMaterial_ly5nw")
+cull_mode = 2
+albedo_color = Color(0.6910782, 0.69421047, 0.78480065, 1)
+roughness = 0.123076916
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ubmkl"]
+size = Vector3(0.32373047, 0.38885498, 0.4645996)
+
+[node name="cabinet-col" instance=ExtResource("1_17a54")]
+
+[node name="Plane" parent="." index="0"]
+material_override = SubResource("StandardMaterial3D_lifdc")
+
+[node name="Plane_002" parent="." index="1"]
+material_override = SubResource("StandardMaterial3D_6idqs")
+
+[node name="Cube" parent="." index="6"]
+transform = Transform3D(0.8815152, 0.08748284, -0.46398032, -0.09875631, 0.99511164, 1.8626451e-09, 0.46171224, 0.04582098, 0.8858455, -0.097821325, 1.0047638, 1.3372923)
+material_override = SubResource("StandardMaterial3D_uug6w")
+
+[node name="RaycastArea" type="Area3D" parent="Cube" index="0" node_paths=PackedStringArray("_mesh")]
+script = ExtResource("4_8h13c")
+_mesh = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube/RaycastArea" index="0"]
+transform = Transform3D(1, -7.0780516e-08, -5.9604645e-08, -1.322478e-07, 1, 0, -1.4901161e-07, -1.8626451e-08, 0.99999976, -0.008057296, 0.19131398, 0.0052496195)
+shape = SubResource("BoxShape3D_ubmkl")

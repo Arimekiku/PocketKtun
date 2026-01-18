@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://d0bdje052hqbl"]
+[gd_scene load_steps=36 format=3 uid="uid://d0bdje052hqbl"]
 
 [ext_resource type="Texture2D" uid="uid://dqh8onjfkhju3" path="res://resources/images/apollo-1x.png" id="2_vn80e"]
 [ext_resource type="Shader" uid="uid://ch4nd7axd0c2s" path="res://resources/shaders/Quantizator.gdshader" id="3_w2k4y"]
@@ -6,9 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://dnaox0sypl1pp" path="res://resources/lowpolewo.blend" id="5_3mq1s"]
 [ext_resource type="PackedScene" uid="uid://dnu877iyx6p6f" path="res://scenes/Player.tscn" id="5_jm2hm"]
 [ext_resource type="PackedScene" uid="uid://4ishcf45fhvp" path="res://scenes/SillyDancing.tscn" id="6_jm2hm"]
-[ext_resource type="PackedScene" uid="uid://cavy2ks47xb4b" path="res://resources/cabinet.blend" id="7_a0ubh"]
-[ext_resource type="PackedScene" uid="uid://qey0cml03fqp" path="res://resources/models/ceiling_fan/classic_ceiling_fan.glb" id="7_w8s17"]
+[ext_resource type="PackedScene" uid="uid://cycsy4dgk66n0" path="res://resources/models/ceilingfan.blend" id="7_3mprh"]
 [ext_resource type="Script" uid="uid://ct0n25uqp0vix" path="res://scripts/NodeRotator.cs" id="8_3mprh"]
+[ext_resource type="PackedScene" uid="uid://bbkutbe5h183f" path="res://scenes/Cabinet.tscn" id="9_w8s17"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n4mgf"]
 shader = ExtResource("3_w2k4y")
@@ -49,6 +49,9 @@ size = Vector2(15, 15)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_48n3s"]
 size = Vector3(15, 1, 15)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w8s17"]
+albedo_texture = ExtResource("4_vn80e")
 
 [sub_resource type="BoxMesh" id="BoxMesh_a0ubh"]
 size = Vector3(15, 1, 15)
@@ -134,9 +137,6 @@ handle_input_locally = false
 size = Vector2i(480, 320)
 render_target_update_mode = 4
 
-[node name="cabinet" parent="SubViewportContainer/SubViewport" instance=ExtResource("7_a0ubh")]
-transform = Transform3D(-0.25477073, 0, -0.9670015, 0, 1, 0, 0.9670015, 0, -0.25477073, 2.8283582, 0.016892137, -4.2261944)
-
 [node name="lowpolewo" parent="SubViewportContainer/SubViewport" instance=ExtResource("5_3mq1s")]
 transform = Transform3D(-0.9589534, 0, -0.28356346, 0, 1, 0, 0.28356346, 0, -0.9589534, 4.240757, 1.3239303, 5.1095157)
 
@@ -162,7 +162,7 @@ shape = SubResource("BoxShape3D_48n3s")
 
 [node name="Mesh" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Building/Ceiling"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004899502, 0, 0.0040555)
-material_override = SubResource("StandardMaterial3D_3mq1s")
+material_override = SubResource("StandardMaterial3D_w8s17")
 mesh = SubResource("BoxMesh_a0ubh")
 
 [node name="OccluderInstance3D" type="OccluderInstance3D" parent="SubViewportContainer/SubViewport/Building/Ceiling"]
@@ -240,15 +240,16 @@ transform = Transform3D(0.99924207, 0, -0.03892845, 0, 1, 0, 0.03892845, 0, 0.99
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_a0ubh")
 
-[node name="Sketchfab_Scene" parent="SubViewportContainer/SubViewport" instance=ExtResource("7_w8s17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17986691, 3.1236653, -0.57412535)
+[node name="ceilingfan" parent="SubViewportContainer/SubViewport" instance=ExtResource("7_3mprh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2324133, 2.6236653, -3.118245)
 script = ExtResource("8_3mprh")
+_degreesPerSecond = 30.0
 
-[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/Sketchfab_Scene"]
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/ceilingfan"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4468701, 0)
 shadow_enabled = true
 
-[node name="Light" type="GPUParticles3D" parent="SubViewportContainer/SubViewport/Sketchfab_Scene"]
+[node name="Light" type="GPUParticles3D" parent="SubViewportContainer/SubViewport/ceilingfan"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7127111, 0)
 amount = 22
 lifetime = 10.0
@@ -272,3 +273,6 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="cabinet-col" parent="." instance=ExtResource("9_w8s17")]
+transform = Transform3D(0.4494749, 0, 0.89329296, 0, 1, 0, -0.89329296, 0, 0.4494749, 2.6491654, 0, -3.812478)
