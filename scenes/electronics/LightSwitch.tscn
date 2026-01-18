@@ -1,0 +1,42 @@
+[gd_scene load_steps=10 format=3 uid="uid://b1t4fq0f80m4g"]
+
+[ext_resource type="PackedScene" uid="uid://x84w72yqxq71" path="res://resources/models/PSX Mega Pack/Models/Electronics & Misc/light_switch_1.glb" id="1_srpql"]
+[ext_resource type="Script" uid="uid://dff2bpg28vde2" path="res://scripts/LightSwitcher.cs" id="2_eybjf"]
+[ext_resource type="Script" uid="uid://2tuid4d0ux5g" path="res://scripts/CollisionMeshHighlighter.cs" id="3_2l2t6"]
+[ext_resource type="Script" uid="uid://ca2fe6n5mky3d" path="res://scripts/InteractableComponent.cs" id="3_eybjf"]
+[ext_resource type="Texture2D" uid="uid://yt7rptrlk8c5" path="res://resources/models/PSX Mega Pack/Models/Electronics & Misc/light_switch_1_light_switch_1.png" id="5_3rqgq"]
+[ext_resource type="Shader" uid="uid://dew3kcxwvaetu" path="res://resources/shaders/SelectionOutline.gdshader" id="6_cbu41"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2l2t6"]
+size = Vector3(0.15, 0.15, 0.1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7f6bs"]
+render_priority = 0
+shader = ExtResource("6_cbu41")
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/outline_width = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ed58o"]
+resource_name = "light_switch_1"
+next_pass = SubResource("ShaderMaterial_7f6bs")
+cull_mode = 2
+albedo_texture = ExtResource("5_3rqgq")
+texture_filter = 2
+
+[node name="LightSwitch" instance=ExtResource("1_srpql")]
+script = ExtResource("2_eybjf")
+
+[node name="InteractableComponent" type="Area3D" parent="." index="0" node_paths=PackedStringArray("_interactions", "_raycastTargets")]
+script = ExtResource("3_eybjf")
+_interactions = [NodePath("..")]
+_raycastTargets = [NodePath("../MeshHighlighterComponent")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractableComponent" index="0"]
+shape = SubResource("BoxShape3D_2l2t6")
+
+[node name="MeshHighlighterComponent" type="Node" parent="." index="1" node_paths=PackedStringArray("_mesh")]
+script = ExtResource("3_2l2t6")
+_mesh = NodePath("../light_switch_1")
+
+[node name="light_switch_1" parent="." index="2"]
+material_override = SubResource("StandardMaterial3D_ed58o")
