@@ -5,6 +5,7 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="GodotSharp.SourceGenerators" Version="2.7.0-251124-0938.Release" />
     <PackageReference Include="GodotInterfaceExport" Version="0.2.0" />
     <PackageReference Include="JetBrains.Annotations" Version="2025.2.4" />
   </ItemGroup>
