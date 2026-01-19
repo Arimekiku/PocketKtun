@@ -27,13 +27,15 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n4mgf"]
 shader = ExtResource("3_w2k4y")
-shader_parameter/shader_enabled = true
-shader_parameter/palette = ExtResource("2_vn80e")
-shader_parameter/dithering = true
-shader_parameter/quantizing = true
-shader_parameter/dithering_size = 4
+shader_parameter/enabled = true
 shader_parameter/resolution_scale = 1
+shader_parameter/dithering = true
+shader_parameter/dithering_size = 4
+shader_parameter/quantizing = true
+shader_parameter/palette = ExtResource("2_vn80e")
 shader_parameter/quantization_level = 16
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3mprh"]
 size = Vector3(20, 0.1, 20)
@@ -538,10 +540,10 @@ shadow_enabled = true
 [node name="Player" parent="SubViewportContainer/SubViewport" instance=ExtResource("5_jm2hm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8905344, 0, 0.2539239)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="."]
 visible = false
 
-[node name="Panel" type="Panel" parent="CanvasLayer"]
+[node name="Panel" type="Panel" parent="UI"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

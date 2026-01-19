@@ -1,13 +1,21 @@
 shader_type canvas_item;
 
-uniform bool shader_enabled = true;
-
-uniform sampler2D palette;
-uniform bool dithering = false;
-uniform bool quantizing = false;
-uniform int dithering_size : hint_range(1, 16) = 2;
+group_uniforms General;
+uniform bool enabled = true;
 uniform int resolution_scale : hint_range(1, 64) = 16;
+
+group_uniforms Dither;
+uniform bool dithering = false;
+uniform int dithering_size : hint_range(1, 16) = 2;
+
+group_uniforms Quantizer;
+uniform bool quantizing = false;
+uniform sampler2D palette;
 uniform int quantization_level : hint_range(2, 16) = 2;
+
+group_uniforms Vignette;
+uniform float vignette_intensity = 0.4;
+uniform float vignette_opacity : hint_range(0.0, 1.0) = 0.5;
 
 int dithering_pattern(ivec2 fragcoord) {
 	const int pattern[] = {
@@ -33,10 +41,16 @@ vec3 quantize_color(vec3 color, int levels) {
 	return round(color / step) * step;
 }
 
+float vignette(vec2 uv) {
+	uv *= 1.0 - uv.xy;
+	float vig = uv.x * uv.y * 15.0;
+	return pow(vig, vignette_intensity * vignette_opacity);
+}
+
 void fragment() {
 	vec4 final_color;
 	
-	if (!shader_enabled) {
+	if (!enabled) {
 		final_color = texture(TEXTURE, UV);
 	} else {
 		vec2 tex_size = vec2(textureSize(TEXTURE, 0));
@@ -71,8 +85,9 @@ void fragment() {
 			}
 			
 			final_color = vec4(color.rgb, 1.0);
+			final_color.rgb *= vignette(UV);
 		}
 	}
 	
-	COLOR = final_color;
+	COLOR = vec4(final_color.rgb, 1.0);
 }
