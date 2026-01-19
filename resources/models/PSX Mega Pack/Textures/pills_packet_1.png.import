@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cb5wxtj3y316g"
-path.s3tc="res://.godot/imported/pills_packet_1.png-3437ca3398ebada6eb6bd7a51ef2a100.s3tc.ctex"
+path.s3tc="res://.godot/imported/pills_packet_1.png-43a19201bd2665fc7d5a60696482164b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://resources/models/PSX Mega Pack/textures/pills_packet_1.png"
-dest_files=["res://.godot/imported/pills_packet_1.png-3437ca3398ebada6eb6bd7a51ef2a100.s3tc.ctex"]
+source_file="res://resources/models/PSX Mega Pack/Textures/pills_packet_1.png"
+dest_files=["res://.godot/imported/pills_packet_1.png-43a19201bd2665fc7d5a60696482164b.s3tc.ctex"]
 
 [params]
 

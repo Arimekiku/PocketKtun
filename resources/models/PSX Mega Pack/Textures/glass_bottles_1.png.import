@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://br4s8eroyweo2"
-path.s3tc="res://.godot/imported/glass_bottles_1.png-10473d80f2f800080c0a781434ca0ced.s3tc.ctex"
+path.s3tc="res://.godot/imported/glass_bottles_1.png-be5cf2c97064567b8509e14a8e1e4f0b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://resources/models/PSX Mega Pack/textures/glass_bottles_1.png"
-dest_files=["res://.godot/imported/glass_bottles_1.png-10473d80f2f800080c0a781434ca0ced.s3tc.ctex"]
+source_file="res://resources/models/PSX Mega Pack/Textures/glass_bottles_1.png"
+dest_files=["res://.godot/imported/glass_bottles_1.png-be5cf2c97064567b8509e14a8e1e4f0b.s3tc.ctex"]
 
 [params]
 

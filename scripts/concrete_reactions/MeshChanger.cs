@@ -1,17 +1,18 @@
 using Godot;
 using Godot.Collections;
+using Scripts.InteractSystem;
 
 namespace Scripts.Gameplay;
 
 [GlobalClass]
-public partial class MeshChanger : InteractableTarget
+public partial class MeshChanger : BaseInteractReaction
 {
     [Export] private Node3D _targetMesh;
     [Export] private Array<PackedScene> _meshes;
 
     private int _currentMeshIndex;
 
-    public override void OnInteract()
+    public override void InteractReaction()
     {
         _targetMesh?.QueueFree();
 

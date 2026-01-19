@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bvr484hfs804v"
-path.s3tc="res://.godot/imported/metal_mp_1.png-ee94ac9686c6b0764d0530924a919bfb.s3tc.ctex"
+path.s3tc="res://.godot/imported/metal_mp_1.png-3e08c8b81c15c9ba93a9997cdbf05a72.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://resources/models/PSX Mega Pack/textures/metal_mp_1.png"
-dest_files=["res://.godot/imported/metal_mp_1.png-ee94ac9686c6b0764d0530924a919bfb.s3tc.ctex"]
+source_file="res://resources/models/PSX Mega Pack/Textures/metal_mp_1.png"
+dest_files=["res://.godot/imported/metal_mp_1.png-3e08c8b81c15c9ba93a9997cdbf05a72.s3tc.ctex"]
 
 [params]
 

@@ -22,11 +22,10 @@ public partial class Interactable : Node, IInteractable
     private readonly Stopwatch _cooldownStopwatch = new Stopwatch();
     private readonly HashSet<IFocusTrigger> _activatedTriggers = new HashSet<IFocusTrigger>();
     
-    private ILogger _logger;
+    [Inject] private ILogger _logger;
     
-
     public bool IsInFocus => _needAllTriggers && _activatedTriggers.Count == _triggers.Length ||
-                             !_needAllTriggers &&  _activatedTriggers.Count != 0;
+                             !_needAllTriggers && _activatedTriggers.Count != 0;
     
     private bool IsCooldown => _cooldownStopwatch.ElapsedMilliseconds < _cooldownInterval * 1000f;
     

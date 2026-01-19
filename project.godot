@@ -15,6 +15,10 @@ run/main_scene="uid://d0bdje052hqbl"
 config/features=PackedStringArray("4.5", "C#", "Forward Plus")
 config/icon="res://resources/Icon.svg"
 
+[autoload]
+
+di_initializer="*res://scenes/di_initializer.tscn"
+
 [display]
 
 window/size/viewport_width=800
@@ -22,10 +26,6 @@ window/size/viewport_height=600
 window/size/window_width_override=3200
 window/size/window_height_override=1800
 window/stretch/mode="viewport"
-
-[autoload]
-
-di_initializer="*res://scenes/di_initializer.tscn"
 
 [dotnet]
 

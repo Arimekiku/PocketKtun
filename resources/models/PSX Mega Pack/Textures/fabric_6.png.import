@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://onn47ofqj3wu"
-path.s3tc="res://.godot/imported/fabric_6.png-c279b0259f2ecc27dd66b2a4a16811f2.s3tc.ctex"
+path.s3tc="res://.godot/imported/fabric_6.png-3f5eb532148308c7d292c0f19c5f7a4b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://resources/models/PSX Mega Pack/textures/fabric_6.png"
-dest_files=["res://.godot/imported/fabric_6.png-c279b0259f2ecc27dd66b2a4a16811f2.s3tc.ctex"]
+source_file="res://resources/models/PSX Mega Pack/Textures/fabric_6.png"
+dest_files=["res://.godot/imported/fabric_6.png-3f5eb532148308c7d292c0f19c5f7a4b.s3tc.ctex"]
 
 [params]
 

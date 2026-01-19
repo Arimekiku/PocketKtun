@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dbgxbjysl8v6"
-path.s3tc="res://.godot/imported/lighters_mp_1.png-7b077541f6859924118a2f256bf12e66.s3tc.ctex"
+path.s3tc="res://.godot/imported/lighters_mp_1.png-7201458566fc4d755e3804d8f9f86872.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://resources/models/PSX Mega Pack/textures/lighters_mp_1.png"
-dest_files=["res://.godot/imported/lighters_mp_1.png-7b077541f6859924118a2f256bf12e66.s3tc.ctex"]
+source_file="res://resources/models/PSX Mega Pack/Textures/lighters_mp_1.png"
+dest_files=["res://.godot/imported/lighters_mp_1.png-7201458566fc4d755e3804d8f9f86872.s3tc.ctex"]
 
 [params]
 

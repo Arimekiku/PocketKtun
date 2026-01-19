@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://qlx1u4xo45gt"
-path.s3tc="res://.godot/imported/pistols_mp_1.png-8e7d9c95da643697a28ab8d671296c03.s3tc.ctex"
+path.s3tc="res://.godot/imported/pistols_mp_1.png-41ae8fb7a23277288593cf13188b3760.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://resources/models/PSX Mega Pack/textures/pistols_mp_1.png"
-dest_files=["res://.godot/imported/pistols_mp_1.png-8e7d9c95da643697a28ab8d671296c03.s3tc.ctex"]
+source_file="res://resources/models/PSX Mega Pack/Textures/pistols_mp_1.png"
+dest_files=["res://.godot/imported/pistols_mp_1.png-41ae8fb7a23277288593cf13188b3760.s3tc.ctex"]
 
 [params]
 

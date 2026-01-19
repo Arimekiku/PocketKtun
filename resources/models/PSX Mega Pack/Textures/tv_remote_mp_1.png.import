@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b6cdx5am0r57k"
-path.s3tc="res://.godot/imported/tv_remote_mp_1.png-cacc4c76b56e9271018c81f693e30b02.s3tc.ctex"
+path.s3tc="res://.godot/imported/tv_remote_mp_1.png-d4d000db8904d749815ed81023c07971.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://resources/models/PSX Mega Pack/textures/tv_remote_mp_1.png"
-dest_files=["res://.godot/imported/tv_remote_mp_1.png-cacc4c76b56e9271018c81f693e30b02.s3tc.ctex"]
+source_file="res://resources/models/PSX Mega Pack/Textures/tv_remote_mp_1.png"
+dest_files=["res://.godot/imported/tv_remote_mp_1.png-d4d000db8904d749815ed81023c07971.s3tc.ctex"]
 
 [params]
 

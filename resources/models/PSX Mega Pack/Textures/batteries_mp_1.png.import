@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dh6nlkqlo7wgj"
-path.s3tc="res://.godot/imported/batteries_mp_1.png-df0fcb8222b9dde615e7e590b3c623dd.s3tc.ctex"
+path.s3tc="res://.godot/imported/batteries_mp_1.png-36aaaae3edee55ec9063aad7762057ed.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://resources/models/PSX Mega Pack/textures/batteries_mp_1.png"
-dest_files=["res://.godot/imported/batteries_mp_1.png-df0fcb8222b9dde615e7e590b3c623dd.s3tc.ctex"]
+source_file="res://resources/models/PSX Mega Pack/Textures/batteries_mp_1.png"
+dest_files=["res://.godot/imported/batteries_mp_1.png-36aaaae3edee55ec9063aad7762057ed.s3tc.ctex"]
 
 [params]
 
