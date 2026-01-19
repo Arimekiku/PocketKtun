@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://xqcuu7kvsmxh"]
+
+[ext_resource type="Script" uid="uid://cdfbxnomvtkur" path="res://scripts/di_container/DiInitializer.cs" id="1_8rjxi"]
+[ext_resource type="Script" uid="uid://bnpb22tv8ae7t" path="res://scripts/di_container/ContextInstallers/GlobalContextInstallers.cs" id="2_85ro4"]
+[ext_resource type="Script" uid="uid://bx4851e8nt0ju" path="res://scripts/installers/InitInstaller.cs" id="3_0ah4a"]
+
+[node name="DiInitializer" type="Node" node_paths=PackedStringArray("GlobalContextInstallersNode")]
+script = ExtResource("1_8rjxi")
+GlobalContextInstallersNode = NodePath("GlobalContextInstallers")
+metadata/_custom_type_script = "uid://cdfbxnomvtkur"
+
+[node name="GlobalContextInstallers" type="Node" parent="." node_paths=PackedStringArray("_contextInstallers")]
+script = ExtResource("2_85ro4")
+_contextInstallers = [NodePath("InitInstaller")]
+metadata/_custom_type_script = "uid://bnpb22tv8ae7t"
+
+[node name="InitInstaller" type="Node" parent="GlobalContextInstallers"]
+script = ExtResource("3_0ah4a")
+metadata/_custom_type_script = "uid://bx4851e8nt0ju"
