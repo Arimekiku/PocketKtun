@@ -4,7 +4,7 @@ namespace Scripts.Gameplay;
 
 public partial class Player : CharacterBody3D
 {
-    [Export] public float Speed = 5.0f;
+    [Export] public float Speed = 2.0f;
     [Export] public float Sensitivity = 0.003f;
 
     private Node3D _neck;
