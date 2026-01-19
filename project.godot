@@ -11,12 +11,20 @@ config_version=5
 [application]
 
 config/name="ktun"
-config/features=PackedStringArray("4.5", "Forward Plus")
+config/features=PackedStringArray("4.5", "C#", "Forward Plus")
 config/icon="res://Icon.svg"
+
+[autoload]
+
+di_initializer="*res://scenes/di_initializer.tscn"
 
 [dotnet]
 
 project/assembly_name="ktun"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/interface_export/plugin.cfg")
 
 [file_customization]
 
