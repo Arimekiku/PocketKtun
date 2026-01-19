@@ -123,7 +123,7 @@ adjustment_brightness = 1.1
 adjustment_saturation = 1.1
 adjustment_color_correction = SubResource("GradientTexture1D_qgpyk")
 
-[sub_resource type="Gradient" id="Gradient_gqeq6"]
+[sub_resource type="Gradient" id="Gradient_dbld1"]
 offsets = PackedFloat32Array(0, 0.2, 0.35, 0.45, 0.5, 0.75, 0.85, 1)
 colors = PackedColorArray(0.019607844, 0.019607844, 0.0627451, 1, 0.101960786, 0.16470589, 0.42352942, 1, 0.9490196, 0.44313726, 0.12941177, 1, 0.54509807, 0.7764706, 0.9254902, 1, 0.83137256, 0.9137255, 1, 1, 1, 0.61960787, 0.17254902, 1, 0.29411766, 0.07058824, 0.28235295, 1, 0.0627451, 0.09411765, 0.1254902, 1)
 
@@ -566,5 +566,4 @@ script = ExtResource("25_dbld1")
 _sun = NodePath("../SubViewportContainer/SubViewport/DirectionalLight3D")
 _environment = NodePath("../SubViewportContainer/SubViewport/WorldEnvironment")
 _lights = [NodePath("../SubViewportContainer/SubViewport/Building/Lighting/OmniLight3D"), NodePath("../SubViewportContainer/SubViewport/Building/Lighting/OmniLight3D2"), NodePath("../SubViewportContainer/SubViewport/Building/Lighting/OmniLight3D3"), NodePath("../SubViewportContainer/SubViewport/Building/Lighting/OmniLight3D4")]
-DayDurationSeconds = 30.0
-SkyColors = SubResource("Gradient_gqeq6")
+_skyColors = SubResource("Gradient_dbld1")
