@@ -27,9 +27,8 @@ internal class InjectMethod : GenericInjectMember<MethodInfo, ParameterInfo[]>
 
         for (var i = 0; i < methodParameters.Length; ++i)
         {
-            if (methodParameters[i].ParameterType != objects[i].GetType())
-                throw new
-                    ArgumentException($"Dependency type {objects[i].GetType().Name} dont match width method parameter {methodParameters[i].ParameterType.Name}");
+            if (!objects[i].GetType().IsAssignableTo(methodParameters[i].ParameterType))
+                throw new ArgumentException($"Dependency type {objects[i].GetType().Name} dont match width method parameter {methodParameters[i].ParameterType.Name}");
         }
 
         return true;

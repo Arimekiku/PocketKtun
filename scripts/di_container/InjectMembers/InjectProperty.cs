@@ -21,6 +21,6 @@ internal class InjectProperty : GenericInjectMember<PropertyInfo, Type>
         if (!TargetMemberInfo.CanWrite)
             throw new ArgumentException("Property cannot be written");
 
-        return TargetMemberInfo.PropertyType == dependency.GetType();
+        return dependency.GetType().IsAssignableTo(TargetMemberInfo.PropertyType);
     }
 }

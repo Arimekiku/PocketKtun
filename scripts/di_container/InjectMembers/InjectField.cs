@@ -17,5 +17,5 @@ internal class InjectField : GenericInjectMember<FieldInfo, Type>
     }
 
     protected override bool CheckArgumentMatching(object dependency) =>
-        TargetMemberInfo.FieldType == dependency.GetType();
+        dependency.GetType().IsAssignableTo(TargetMemberInfo.FieldType);
 }

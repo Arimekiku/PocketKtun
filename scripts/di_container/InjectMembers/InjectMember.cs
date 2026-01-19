@@ -14,9 +14,8 @@ internal abstract class InjectMember
 
     public void Inject(object injectTarget, object dependency)
     {
-        if (CheckArgumentMatching(dependency))
-            throw new
-                ArgumentException($"Dependency type {dependency.GetType().Name} is not matching width needed in member {_memberInfo.Name}");
+        if (!CheckArgumentMatching(dependency))
+            throw new ArgumentException($"Dependency type {dependency.GetType().Name} is not matching width needed in member {_memberInfo.Name}");
 
         DoInject(injectTarget, dependency);
     }
