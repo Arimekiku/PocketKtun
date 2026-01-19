@@ -7,19 +7,19 @@ namespace Scripts.Gameplay;
 
 public partial class CollisionMeshHighlighter : BaseInteractReaction
 {
-    [Inject] private IPlayerInteractorService _playerInteractor;
+	[Inject] private IPlayerInteractorService _playerInteractor;
+	
+	[Export] private MeshInstance3D _mesh;
 
-    [Export] private MeshInstance3D _mesh;
+	public override void FocusReaction()
+	{
+		var mat = _mesh.GetActiveMaterial(0).NextPass as ShaderMaterial;
+		mat?.SetShaderParameter("outline_width", 2.0f);
+	}
 
-    public override void FocusReaction()
-    {
-        var mat = _mesh.GetActiveMaterial(0).NextPass as ShaderMaterial;
-        mat?.SetShaderParameter("outline_width", 2.0f);
-    }
-
-    public override void UnfocusReaction()
-    {
-        var mat = _mesh.GetActiveMaterial(0).NextPass as ShaderMaterial;
-        mat?.SetShaderParameter("outline_width", 0.0f);
-    }
+	public override void UnfocusReaction()
+	{
+		var mat = _mesh.GetActiveMaterial(0).NextPass as ShaderMaterial;
+		mat?.SetShaderParameter("outline_width", 0.0f);
+	}
 }
