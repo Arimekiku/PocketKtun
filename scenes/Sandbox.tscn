@@ -105,7 +105,7 @@ background_mode = 2
 sky = SubResource("Sky_n4mgf")
 ambient_light_source = 2
 ambient_light_color = Color(1, 0.9764706, 0.8901961, 1)
-ambient_light_energy = 0.4
+ambient_light_energy = 0.6
 tonemap_mode = 4
 tonemap_exposure = 1.3
 ssao_enabled = true
@@ -125,7 +125,7 @@ adjustment_color_correction = SubResource("GradientTexture1D_qgpyk")
 
 [sub_resource type="Gradient" id="Gradient_dbld1"]
 offsets = PackedFloat32Array(0, 0.2, 0.35, 0.45, 0.5, 0.75, 0.85, 1)
-colors = PackedColorArray(0.019607844, 0.019607844, 0.0627451, 1, 0.101960786, 0.16470589, 0.42352942, 1, 0.9490196, 0.44313726, 0.12941177, 1, 0.54509807, 0.7764706, 0.9254902, 1, 0.83137256, 0.9137255, 1, 1, 1, 0.61960787, 0.17254902, 1, 0.29411766, 0.07058824, 0.28235295, 1, 0.0627451, 0.09411765, 0.1254902, 1)
+colors = PackedColorArray(0.31764957, 0.44437692, 0.87262076, 1, 0.46389598, 0.5836723, 0.9376905, 1, 0.9490196, 0.44313726, 0.12941177, 1, 0.54509807, 0.7764706, 0.9254902, 1, 0.83137256, 0.9137255, 1, 1, 1, 0.61960787, 0.17254902, 1, 0.645505, 0.2215834, 0.6215979, 1, 0.25757664, 0.3364154, 0.41539755, 1)
 
 [node name="Sandbox" type="Node"]
 

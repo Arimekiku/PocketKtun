@@ -40,6 +40,5 @@ public partial class DayNightCycle : Node
 
         var env = _environment.Environment;
         env.AmbientLightColor = color;
-        env.AmbientLightEnergy = intensity;
     }
 }
