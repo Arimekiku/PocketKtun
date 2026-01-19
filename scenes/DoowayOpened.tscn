@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://e5km65kuyfue"]
+
+[ext_resource type="PackedScene" uid="uid://dig8i58wefgcn" path="res://resources/models/PSX Mega Pack/Models/Modular Structures/Walls/doorway_1.glb" id="1_nepi3"]
+
+[node name="Doorway" instance=ExtResource("1_nepi3")]
+
+[node name="door_4" parent="doorway_1" index="0"]
+transform = Transform3D(-0.8660253, 0, -0.50000006, 0, 1, 0, 0.50000006, 0, -0.8660253, 0.5, 0, -0.03)

@@ -13,7 +13,7 @@ public partial class DayNightCycle : Node
 
     private float _currentTime;
 
-    public override void _Process(double delta)
+    public override void _PhysicsProcess(double delta)
     {
         _currentTime += (float)delta / _dayDurationSeconds;
         if (_currentTime > 1.0f)
