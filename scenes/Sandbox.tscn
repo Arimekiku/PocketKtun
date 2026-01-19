@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://d0bdje052hqbl"]
+[gd_scene load_steps=42 format=3 uid="uid://d0bdje052hqbl"]
 
 [ext_resource type="Texture2D" uid="uid://dqh8onjfkhju3" path="res://resources/images/apollo-1x.png" id="2_vn80e"]
 [ext_resource type="Shader" uid="uid://ch4nd7axd0c2s" path="res://resources/shaders/Quantizator.gdshader" id="3_w2k4y"]
@@ -10,8 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://4ishcf45fhvp" path="res://scenes/SillyDancing.tscn" id="6_jm2hm"]
 [ext_resource type="PackedScene" uid="uid://cycsy4dgk66n0" path="res://resources/models/ceilingfan.blend" id="7_3mprh"]
 [ext_resource type="PackedScene" uid="uid://73vtr20near4" path="res://resources/models/PSX Mega Pack/Models/Large Props/supply_crate_1.glb" id="7_n6hjk"]
+[ext_resource type="PackedScene" uid="uid://dw7crraky6u6h" path="res://resources/models/PSX Mega Pack/Models/Lighting/fake_light_window_2_double.glb" id="7_qgpyk"]
 [ext_resource type="Script" uid="uid://ct0n25uqp0vix" path="res://scripts/NodeRotator.cs" id="8_3mprh"]
-[ext_resource type="PackedScene" uid="uid://bexjifkn3jeu7" path="res://resources/models/PSX Mega Pack/Models/Lighting/lamp_2_on.glb" id="8_xw5yf"]
 [ext_resource type="PackedScene" uid="uid://bbkutbe5h183f" path="res://scenes/Cabinet.tscn" id="9_w8s17"]
 [ext_resource type="PackedScene" uid="uid://dxt53klx4k5tm" path="res://resources/models/PSX Mega Pack/Models/Small Props/ashtray_1.glb" id="11_63ay0"]
 [ext_resource type="PackedScene" uid="uid://cvwen2yg1vgxu" path="res://resources/models/PSX Mega Pack/Models/Large Props/metal_barrel_mp_3.glb" id="11_n6hjk"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://biet0pykfa4v0" path="res://resources/models/PSX Mega Pack/Models/Small Props/cig_1.glb" id="13_l5e33"]
 [ext_resource type="PackedScene" uid="uid://lw13wu4eksvk" path="res://resources/models/PSX Mega Pack/Models/Small Props/cig_2.glb" id="14_ve8sh"]
 [ext_resource type="PackedScene" uid="uid://cfg0pbq5eca3y" path="res://scenes/electronics/Clock.tscn" id="15_63ay0"]
+[ext_resource type="PackedScene" uid="uid://bq482rrunp8xv" path="res://scenes/electronics/Lamp.tscn" id="20_dbld1"]
 [ext_resource type="PackedScene" uid="uid://bw38vjjyhl3vs" path="res://resources/models/PSX Mega Pack/Models/Small Props/pc_speaker_1_left.glb" id="21_ve8sh"]
 [ext_resource type="PackedScene" uid="uid://0a5mafl0cly0" path="res://resources/models/PSX Mega Pack/Models/Small Props/tv_remote_mp_1.glb" id="22_qgpyk"]
 [ext_resource type="PackedScene" uid="uid://80nyhrmrmd14" path="res://resources/models/PSX Mega Pack/Models/Small Props/vhs_tape_1.glb" id="23_dbld1"]
@@ -29,7 +30,8 @@ shader = ExtResource("3_w2k4y")
 shader_parameter/shader_enabled = true
 shader_parameter/palette = ExtResource("2_vn80e")
 shader_parameter/dithering = true
-shader_parameter/dithering_size = 2
+shader_parameter/quantizing = true
+shader_parameter/dithering_size = 4
 shader_parameter/resolution_scale = 1
 shader_parameter/quantization_level = 16
 
@@ -48,7 +50,7 @@ size = Vector3(0.8, 1, 0.8)
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7969925, 0.88684726), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_3mprh"]
+[sub_resource type="CurveTexture" id="CurveTexture_gqeq6"]
 curve = SubResource("Curve_w8s17")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w8s17"]
@@ -62,18 +64,18 @@ tangential_accel_max = 0.24999776
 damping_max = 0.1
 scale_min = 0.01
 scale_max = 0.099999994
-scale_curve = SubResource("CurveTexture_3mprh")
+scale_curve = SubResource("CurveTexture_gqeq6")
 
-[sub_resource type="Gradient" id="Gradient_3mprh"]
+[sub_resource type="Gradient" id="Gradient_tji15"]
 offsets = PackedFloat32Array(0, 0.5272727, 1)
 colors = PackedColorArray(0.9749939, 0.7560429, 0.37832138, 1, 0.9749939, 0.7560429, 0.37832138, 1, 0.76862746, 0.4862745, 0.1254902, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_48n3s"]
-gradient = SubResource("Gradient_3mprh")
+gradient = SubResource("Gradient_tji15")
 fill = 2
 fill_from = Vector2(0.5, 0.5)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fhxv8"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p1xtl"]
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
@@ -81,7 +83,14 @@ shading_mode = 0
 albedo_texture = SubResource("GradientTexture2D_48n3s")
 
 [sub_resource type="QuadMesh" id="QuadMesh_w8s17"]
-material = SubResource("StandardMaterial3D_fhxv8")
+material = SubResource("StandardMaterial3D_p1xtl")
+
+[sub_resource type="Gradient" id="Gradient_ve8sh"]
+offsets = PackedFloat32Array(0, 0.37692308, 0.72307694, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.30323282, 0.30323285, 0.30323276, 1, 0.8367553, 0.8367553, 0.8367551, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qgpyk"]
+gradient = SubResource("Gradient_ve8sh")
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_unugr"]
 
@@ -91,10 +100,25 @@ sky_material = SubResource("ProceduralSkyMaterial_unugr")
 [sub_resource type="Environment" id="Environment_w2k4y"]
 background_mode = 2
 sky = SubResource("Sky_n4mgf")
+ambient_light_source = 2
+ambient_light_color = Color(0.17598593, 0.7477868, 0.84572756, 1)
+ambient_light_energy = 0.4
 tonemap_mode = 4
+tonemap_exposure = 1.3
 ssao_enabled = true
 glow_enabled = true
+glow_levels/2 = 1.0
+glow_levels/4 = 0.5
+glow_levels/5 = 0.2
+glow_intensity = 0.13
+glow_bloom = 0.2
+glow_blend_mode = 1
 volumetric_fog_enabled = true
+volumetric_fog_density = 0.03
+adjustment_enabled = true
+adjustment_brightness = 1.1
+adjustment_saturation = 1.1
+adjustment_color_correction = SubResource("GradientTexture1D_qgpyk")
 
 [node name="Sandbox" type="Node"]
 
@@ -110,7 +134,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(480, 320)
+size = Vector2i(800, 600)
 render_target_update_mode = 4
 
 [node name="lowpolewo" parent="SubViewportContainer/SubViewport" instance=ExtResource("5_3mq1s")]
@@ -203,7 +227,7 @@ shape = SubResource("BoxShape3D_3mprh")
 [node name="Walls" type="Node3D" parent="SubViewportContainer/SubViewport/Building"]
 
 [node name="First" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Building/Walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 10)
 
 [node name="Graphics" type="Node3D" parent="SubViewportContainer/SubViewport/Building/Walls/First"]
 
@@ -220,6 +244,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
 
 [node name="window_2_double2" parent="SubViewportContainer/SubViewport/Building/Walls/First/Graphics" instance=ExtResource("6_fhxv8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="fake_light_window_2_double2" parent="SubViewportContainer/SubViewport/Building/Walls/First/Graphics/window_2_double2" instance=ExtResource("7_qgpyk")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Building/Walls/First"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
@@ -244,12 +270,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
 [node name="window_2_double2" parent="SubViewportContainer/SubViewport/Building/Walls/Second/Graphics" instance=ExtResource("6_fhxv8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
 
+[node name="fake_light_window_2_double2" parent="SubViewportContainer/SubViewport/Building/Walls/Second/Graphics/window_2_double2" instance=ExtResource("7_qgpyk")]
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Building/Walls/Second"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 shape = SubResource("BoxShape3D_xw5yf")
 
 [node name="Third" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Building/Walls"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10, 0, 0)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 10, 0, 0)
 
 [node name="Graphics" type="Node3D" parent="SubViewportContainer/SubViewport/Building/Walls/Third"]
 
@@ -266,6 +294,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
 
 [node name="window_2_double2" parent="SubViewportContainer/SubViewport/Building/Walls/Third/Graphics" instance=ExtResource("6_fhxv8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="fake_light_window_2_double2" parent="SubViewportContainer/SubViewport/Building/Walls/Third/Graphics/window_2_double2" instance=ExtResource("7_qgpyk")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Building/Walls/Third"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
@@ -289,6 +319,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
 
 [node name="window_2_double2" parent="SubViewportContainer/SubViewport/Building/Walls/Fourth/Graphics" instance=ExtResource("6_fhxv8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="fake_light_window_2_double2" parent="SubViewportContainer/SubViewport/Building/Walls/Fourth/Graphics/window_2_double2" instance=ExtResource("7_qgpyk")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Building/Walls/Fourth"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
@@ -375,6 +407,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -8)
 
 [node name="Decorations" type="Node3D" parent="SubViewportContainer/SubViewport/Building"]
 
+[node name="pc_speaker_1_left2" parent="SubViewportContainer/SubViewport/Building/Decorations" instance=ExtResource("21_ve8sh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.768223, 0.9950221, -7.901576)
+
+[node name="tv_remote_mp_12" parent="SubViewportContainer/SubViewport/Building/Decorations" instance=ExtResource("22_qgpyk")]
+transform = Transform3D(0.39514473, 0, 0.91861886, 0, 1, 0, -0.91861886, 0, 0.39514473, -6.532014, 0.9950222, -7.5767303)
+
+[node name="vhs_tape_12" parent="SubViewportContainer/SubViewport/Building/Decorations" instance=ExtResource("23_dbld1")]
+transform = Transform3D(0.73495007, 0, -0.6781212, 0, 1, 0, 0.6781212, 0, 0.73495007, -6.0436416, 1.0128492, -7.7786994)
+
 [node name="DancingDude" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Building/Decorations"]
 transform = Transform3D(-0.52599126, 0, 0.8504901, 0, 1, 0, -0.8504901, 0, -0.52599126, -9.083317, 0, 8.0431)
 
@@ -418,19 +459,44 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8246493, 2.0756872, -9.879
 
 [node name="Lighting" type="Node3D" parent="SubViewportContainer/SubViewport/Building"]
 
-[node name="AlarmLight" type="Node3D" parent="SubViewportContainer/SubViewport/Building/Lighting"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.937021, 2.365872, 6.4168453)
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/Building/Lighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9538102, 1.564419, -9.481059)
+light_color = Color(0.1122295, 0.36334026, 0.7728157, 1)
+light_energy = 2.0
+light_volumetric_fog_energy = 2.0
+shadow_enabled = true
 
-[node name="lamp_2_on2" parent="SubViewportContainer/SubViewport/Building/Lighting/AlarmLight" instance=ExtResource("8_xw5yf")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+[node name="OmniLight3D2" type="OmniLight3D" parent="SubViewportContainer/SubViewport/Building/Lighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.071959, 1.564419, 3.8916903)
+light_color = Color(0.1122295, 0.36334026, 0.7728157, 1)
+light_energy = 2.0
+light_volumetric_fog_energy = 2.0
+shadow_enabled = true
 
-[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/Building/Lighting/AlarmLight"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.31912136, 0, 0)
+[node name="OmniLight3D3" type="OmniLight3D" parent="SubViewportContainer/SubViewport/Building/Lighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9859822, 1.564419, 8.7594795)
+light_color = Color(0.1122295, 0.36334026, 0.7728157, 1)
+light_energy = 2.0
+light_volumetric_fog_energy = 2.0
+shadow_enabled = true
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="SubViewportContainer/SubViewport/Building/Lighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.149793, 1.564419, -3.8602602)
+light_color = Color(0.1122295, 0.36334026, 0.7728157, 1)
+light_energy = 2.0
+light_volumetric_fog_energy = 2.0
+shadow_enabled = true
+
+[node name="Lamp" parent="SubViewportContainer/SubViewport/Building/Lighting" instance=ExtResource("20_dbld1")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.937021, 2.365872, 6.4168453)
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="SubViewportContainer/SubViewport/Building/Lighting/Lamp"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.31912136)
 shadow_enabled = true
 omni_range = 4.0
 
-[node name="Light" type="GPUParticles3D" parent="SubViewportContainer/SubViewport/Building/Lighting/AlarmLight"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4204712, -0.009779692, 0)
+[node name="Light2" type="GPUParticles3D" parent="SubViewportContainer/SubViewport/Building/Lighting/Lamp"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, -0.009779692, 0.4204712)
 amount = 22
 lifetime = 10.0
 randomness = 1.0
@@ -438,10 +504,11 @@ transform_align = 1
 process_material = SubResource("ParticleProcessMaterial_w8s17")
 draw_pass_1 = SubResource("QuadMesh_w8s17")
 
-[node name="LightSwitch" parent="SubViewportContainer/SubViewport/Building/Lighting/AlarmLight" node_paths=PackedStringArray("_connectedLight", "_connectedParticles") instance=ExtResource("11_vw0fq")]
-transform = Transform3D(-4.371138e-08, 0, 0.9999999, -0.13286185, 0.9911346, -5.807576e-09, -0.99113446, -0.13286185, -4.3323862e-08, -0.004781723, -0.8022586, -0.4300127)
-_connectedLight = NodePath("../OmniLight3D")
-_connectedParticles = NodePath("../Light")
+[node name="LightSwitch" parent="SubViewportContainer/SubViewport/Building/Lighting/Lamp" node_paths=PackedStringArray("_meshChanger", "_connectedLight", "_connectedParticles") instance=ExtResource("11_vw0fq")]
+transform = Transform3D(0.99113446, 0.13286185, -3.875229e-10, -0.13286185, 0.9911346, -5.807576e-09, -3.8751935e-10, 5.807576e-09, 0.9999999, 0.4300127, -0.8022586, -0.004781723)
+_meshChanger = NodePath("..")
+_connectedLight = NodePath("../OmniLight3D2")
+_connectedParticles = NodePath("../Light2")
 
 [node name="Fan" parent="SubViewportContainer/SubViewport/Building/Lighting" instance=ExtResource("7_3mprh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.8559117, 2.6236653, -6.68987)
@@ -486,12 +553,3 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="pc_speaker_1_left2" parent="." instance=ExtResource("21_ve8sh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.768223, 0.9950221, -7.901576)
-
-[node name="tv_remote_mp_12" parent="." instance=ExtResource("22_qgpyk")]
-transform = Transform3D(0.39514473, 0, 0.91861886, 0, 1, 0, -0.91861886, 0, 0.39514473, -6.532014, 0.9950222, -7.5767303)
-
-[node name="vhs_tape_12" parent="." instance=ExtResource("23_dbld1")]
-transform = Transform3D(0.73495007, 0, -0.6781212, 0, 1, 0, 0.6781212, 0, 0.73495007, -6.0436416, 1.0128492, -7.7786994)

@@ -8,6 +8,8 @@ uniform bool quantizing = false;
 uniform int dithering_size : hint_range(1, 16) = 2;
 uniform int resolution_scale : hint_range(1, 64) = 16;
 uniform int quantization_level : hint_range(2, 16) = 2;
+uniform float levels : hint_range(1, 100, 1) = 1;
+uniform vec2 gamma = vec2(0.1, 10);
 
 int dithering_pattern(ivec2 fragcoord) {
 	const int pattern[] = {
@@ -27,9 +29,9 @@ float color_distance(vec3 a, vec3 b) {
 	return dot(diff, diff);
 }
 
-vec3 quantize_color(vec3 color, int levels) {
-	if (levels <= 1) return vec3(0.0);
-	float step = 1.0 / float(levels - 1);
+vec3 quantize_color(vec3 color, int q_levels) {
+	if (q_levels <= 1) return vec3(0.0);
+	float step = 1.0 / float(q_levels - 1);
 	return round(color / step) * step;
 }
 
@@ -58,6 +60,7 @@ void fragment() {
 				int palette_size = 48;
 				float closest_distance = 9999.0;
 				vec3 cached_color = color;
+				color = vec3(0.0);
 				
 				for (int i = 0; i < palette_size; i++) {
 					float u = float(i) / float(palette_size - 1);
@@ -70,7 +73,20 @@ void fragment() {
 				}
 			}
 			
-			final_color = vec4(color.rgb, 1.0);
+			final_color = vec4(color, 1.0);
+			final_color.rgb = pow(final_color.rgb, vec3(gamma.x));
+			
+			float grayscale = max(final_color.r, max(final_color.g, final_color.b));
+			float lower = floor(grayscale * levels) / levels;
+			float higher = ceil(grayscale * levels) / levels;
+			
+			float lower_diff = abs(lower - grayscale);
+			float higher_diff = abs(higher - grayscale);
+			float level = lower_diff < higher_diff ? lower : higher;
+			float adj = level / grayscale;
+			
+			final_color.rgb *= adj;
+			final_color.rgb = pow(final_color.rgb, vec3(gamma.y));
 		}
 	}
 	

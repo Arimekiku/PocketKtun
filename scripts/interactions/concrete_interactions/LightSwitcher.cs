@@ -4,6 +4,7 @@ namespace Scripts.Gameplay;
 
 public partial class LightSwitcher : InteractableTarget
 {
+    [Export] private MeshChanger _meshChanger;
     [Export] private Light3D _connectedLight;
     [Export] private GpuParticles3D _connectedParticles;
     
@@ -11,5 +12,7 @@ public partial class LightSwitcher : InteractableTarget
     {
         _connectedLight.Visible = !_connectedLight.Visible;
         _connectedParticles.SetEmitting(_connectedLight.Visible);
+        
+        _meshChanger.OnInteract();
     }
 }
