@@ -3,12 +3,13 @@ using System;
 
 namespace Scripts.InteractSystem;
 
+[GlobalClass]
 public abstract partial class BaseFocusTrigger : Node, IFocusTrigger
 {
-    public event Action<IFocusTrigger> OnFocusEvent;
-    public event Action<IFocusTrigger> OnUnfocusEvent;
+    public abstract event Action<IFocusTrigger> OnFocusEvent;
+    public abstract event Action<IFocusTrigger> OnUnfocusEvent;
 
-    public bool IsFocused { get; }
+    public abstract bool IsFocused { get; }
 
     public abstract void FocusProcess();
 }

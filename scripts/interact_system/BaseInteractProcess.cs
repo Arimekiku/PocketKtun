@@ -3,9 +3,10 @@ using System;
 
 namespace Scripts.InteractSystem;
 
+[GlobalClass]
 public abstract partial class BaseInteractProcess : Node, IInteractProcess
 {
-    public event Action OnInteractProcessEvent;
+    public abstract event Action OnInteractProcessEvent;
 
     public abstract void InteractProcess();
 }
