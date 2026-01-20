@@ -28,6 +28,9 @@ public partial class PlayerInteractionUpdater : Node3D
         if (collider is not RaycastCheckTrigger target)
             return;
         
+        if (_lastTarget == target)
+            return;
+        
         _lastTarget = target;
         _playerInteractor.RaiseWithRaycast(target);
     }

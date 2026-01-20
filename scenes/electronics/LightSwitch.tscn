@@ -13,12 +13,14 @@
 size = Vector3(0.15, 0.15, 0.1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7f6bs"]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("6_cbu41")
 shader_parameter/outline_color = Color(1, 1, 1, 1)
 shader_parameter/outline_width = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ed58o"]
+resource_local_to_scene = true
 resource_name = "light_switch_1"
 next_pass = SubResource("ShaderMaterial_7f6bs")
 cull_mode = 2
@@ -41,10 +43,10 @@ _mesh = NodePath("../light_switch_1")
 [node name="InteractProcessComponent" type="Node" parent="." index="2"]
 script = ExtResource("5_7f6bs")
 
-[node name="InteractionComponent" type="Node" parent="." index="3" node_paths=PackedStringArray("_interactProcesses", "_reactions", "_triggers")]
+[node name="LightSwitchInteraction" type="Node" parent="." index="3" node_paths=PackedStringArray("_interactProcesses", "_reactions", "_triggers")]
 script = ExtResource("5_cbu41")
 _interactProcesses = [NodePath("../InteractProcessComponent")]
-_reactions = [NodePath("../MeshHighlighterComponent"), null]
+_reactions = [NodePath("../MeshHighlighterComponent"), NodePath("..")]
 _triggers = [NodePath("../InteractableComponent")]
 
 [node name="light_switch_1" parent="." index="4"]

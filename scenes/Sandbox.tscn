@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://d0bdje052hqbl"]
+[gd_scene load_steps=65 format=3 uid="uid://d0bdje052hqbl"]
 
 [ext_resource type="Texture2D" uid="uid://dqh8onjfkhju3" path="res://resources/images/apollo-1x.png" id="2_vn80e"]
 [ext_resource type="Shader" uid="uid://ch4nd7axd0c2s" path="res://resources/shaders/Quantizator.gdshader" id="3_w2k4y"]
@@ -23,11 +23,11 @@
 [ext_resource type="PackedScene" uid="uid://c3npd28chu7bv" path="res://resources/models/items/pills_bottle_1_1.glb" id="23_8v3jm"]
 [ext_resource type="PackedScene" uid="uid://80nyhrmrmd14" path="res://resources/models/small_props/vhs_tape_1.glb" id="23_dbld1"]
 [ext_resource type="Script" uid="uid://dqpnlwdtynkvb" path="res://scripts/DayNightCycle.cs" id="25_dbld1"]
-[ext_resource type="PackedScene" uid="uid://e5km65kuyfue" path="res://scenes/DoowayOpened.tscn" id="25_gqeq6"]
 [ext_resource type="PackedScene" uid="uid://d20bpo4bw8rgc" path="res://resources/models/bookshelf.blend" id="25_tji15"]
 [ext_resource type="PackedScene" uid="uid://fn0n17ai3tj6" path="res://resources/models/small_props/brick.glb" id="26_olo10"]
 [ext_resource type="PackedScene" uid="uid://byfgkwagg72hf" path="res://resources/models/small_props/book_mp_2.glb" id="27_p1xtl"]
 [ext_resource type="PackedScene" uid="uid://gaby635so0g0" path="res://resources/models/electronics/ceiling_fan_mp_2_1_light_on.glb" id="29_n3q1u"]
+[ext_resource type="PackedScene" uid="uid://dpu0jls4cf5bc" path="res://scenes/modular_building/Doorway.tscn" id="30_1ewh1"]
 [ext_resource type="PackedScene" uid="uid://crwoyn2l6l8e5" path="res://resources/models/modular_structures/walls/doorway_3_wide.glb" id="30_8v3jm"]
 [ext_resource type="PackedScene" uid="uid://bi2vj35vqg5kr" path="res://resources/models/car_placeholder.blend" id="31_1ewh1"]
 [ext_resource type="PackedScene" uid="uid://dmji7348fpj6q" path="res://resources/models/modular_structures/stairs_5_wood.glb" id="32_def21"]
@@ -85,10 +85,10 @@ adjustment_color_correction = SubResource("GradientTexture1D_qgpyk")
 size = Vector3(16, 0.1, 11.8)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xw5yf"]
-size = Vector3(9.4, 3, 0.2)
+size = Vector3(8, 3, 0.2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yfhit"]
-size = Vector3(5.2, 3, 0.2)
+size = Vector3(4, 3, 0.2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oef5p"]
 size = Vector3(16, 3, 0.2)
@@ -157,10 +157,10 @@ size = Vector3(6, 0.1, 4)
 size = Vector3(8, 0.1, 16)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8v3jm"]
-size = Vector3(9.4, 3, 0.2)
+size = Vector3(8, 3, 0.2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_06kjr"]
-size = Vector3(5.4, 3, 0.2)
+size = Vector3(4, 3, 0.2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6umgr"]
 size = Vector3(16, 3, 0.2)
@@ -169,10 +169,7 @@ size = Vector3(16, 3, 0.2)
 size = Vector3(8, 0.1, 16)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_utptk"]
-size = Vector3(5.4, 3, 0.2)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_yf3lb"]
-size = Vector3(1.4, 3, 0.2)
+size = Vector3(4, 3, 0.2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x6f5f"]
 size = Vector3(16, 3, 0.2)
@@ -331,15 +328,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
 [node name="wall_14" parent="SubViewportContainer/SubViewport/ChiefRoom/Layout/Walls/First/Graphics" instance=ExtResource("5_48n3s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
 
-[node name="doorway_13" parent="SubViewportContainer/SubViewport/ChiefRoom/Layout/Walls/First/Graphics" instance=ExtResource("25_gqeq6")]
+[node name="Doorway" parent="SubViewportContainer/SubViewport/ChiefRoom/Layout/Walls/First/Graphics" instance=ExtResource("30_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/ChiefRoom/Layout/Walls/First"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2000008, 1.5, 1.9073486e-06)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.200001, 1.5, 2.3841858e-06)
 shape = SubResource("BoxShape3D_xw5yf")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/ChiefRoom/Layout/Walls/First"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2000017, 1.5, 2.861023e-06)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2000027, 1.5, 2.861023e-06)
 shape = SubResource("BoxShape3D_yfhit")
 
 [node name="Second" type="StaticBody3D" parent="SubViewportContainer/SubViewport/ChiefRoom/Layout/Walls"]
@@ -999,7 +996,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4, 0
 
 [node name="wall_12" parent="SubViewportContainer/SubViewport/ChiefHallway/Layout/Walls/Third/Graphics" instance=ExtResource("5_48n3s")]
 
-[node name="doorway_13" parent="SubViewportContainer/SubViewport/ChiefHallway/Layout/Walls/Third/Graphics" instance=ExtResource("25_gqeq6")]
+[node name="Doorway" parent="SubViewportContainer/SubViewport/ChiefHallway/Layout/Walls/Third/Graphics" instance=ExtResource("30_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
 
 [node name="wall_13" parent="SubViewportContainer/SubViewport/ChiefHallway/Layout/Walls/Third/Graphics" instance=ExtResource("5_48n3s")]
@@ -1011,11 +1008,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.000001, 0, 0)
 [node name="fake_light_window_2_double2" parent="SubViewportContainer/SubViewport/ChiefHallway/Layout/Walls/Third/Graphics/window_2_double2" instance=ExtResource("7_qgpyk")]
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/ChiefHallway/Layout/Walls/Third"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2000008, 1.5, 1.9073486e-06)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2000008, 1.5, 1.9073486e-06)
 shape = SubResource("BoxShape3D_8v3jm")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/ChiefHallway/Layout/Walls/Third"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.2000017, 1.5, 3.8146973e-06)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.200002, 1.5, 3.8146973e-06)
 shape = SubResource("BoxShape3D_06kjr")
 
 [node name="Fourth" type="StaticBody3D" parent="SubViewportContainer/SubViewport/ChiefHallway/Layout/Walls"]
@@ -1090,16 +1087,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 
 [node name="wall_12" parent="SubViewportContainer/SubViewport/FirstFloorHallway/Layout/Walls/First/Graphics" instance=ExtResource("5_48n3s")]
 
-[node name="doorway_13" parent="SubViewportContainer/SubViewport/FirstFloorHallway/Layout/Walls/First/Graphics" instance=ExtResource("25_gqeq6")]
+[node name="Doorway" parent="SubViewportContainer/SubViewport/FirstFloorHallway/Layout/Walls/First/Graphics" instance=ExtResource("30_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/FirstFloorHallway/Layout/Walls/First"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1999989, 1.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1999989, 1.5, 0)
 shape = SubResource("BoxShape3D_utptk")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/FirstFloorHallway/Layout/Walls/First"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2000008, 1.5, 0)
-shape = SubResource("BoxShape3D_yf3lb")
 
 [node name="Second" type="StaticBody3D" parent="SubViewportContainer/SubViewport/FirstFloorHallway/Layout/Walls"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -6)

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://6jpdo2rllhyl"]
+
+[ext_resource type="PackedScene" uid="uid://b5ueqyw4266if" path="res://resources/models/modular_structures/floor_ceiling_1.glb" id="1_snbyk"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_60qb4"]
+points = PackedVector3Array(2.0520635, 0.02206349, 2.0520635, -2.0520635, -0.042063493, -2.0520635, -2.0520635, 0.02206349, -2.0520635, 2.0520635, -0.042063493, -2.0520635, -2.0520635, -0.042063493, 2.0520635, -2.0520635, 0.02206349, 2.0520635, 2.0520635, 0.02206349, -2.0520635, 2.0520635, -0.042063493, 2.0520635)
+
+[node name="FloorCeiling1" instance=ExtResource("1_snbyk")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_60qb4")
