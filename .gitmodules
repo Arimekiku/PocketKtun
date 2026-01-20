@@ -1,0 +1,3 @@
+[submodule "resources/models"]
+	path = resources/models
+	url = https://github.com/Arimekiku/PocketKtunModels
