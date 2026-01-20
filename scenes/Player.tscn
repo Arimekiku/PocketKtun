@@ -4,9 +4,11 @@
 [ext_resource type="Script" uid="uid://da00ejklbc0y7" path="res://scripts/PlayerInteractionUpdater.cs" id="2_v6fml"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vn80e"]
+radius = 0.4
 height = 1.8
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_vn80e"]
+radius = 0.4
 height = 1.8
 
 [node name="Player" type="CharacterBody3D"]
