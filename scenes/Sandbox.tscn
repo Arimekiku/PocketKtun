@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://d0bdje052hqbl"]
+[gd_scene load_steps=66 format=3 uid="uid://d0bdje052hqbl"]
 
 [ext_resource type="Texture2D" uid="uid://dqh8onjfkhju3" path="res://resources/images/apollo-1x.png" id="2_vn80e"]
 [ext_resource type="Shader" uid="uid://ch4nd7axd0c2s" path="res://resources/shaders/Quantizator.gdshader" id="3_w2k4y"]
@@ -28,6 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://fn0n17ai3tj6" path="res://resources/models/PSX Mega Pack/Models/Small Props/brick.glb" id="26_olo10"]
 [ext_resource type="PackedScene" uid="uid://byfgkwagg72hf" path="res://resources/models/PSX Mega Pack/Models/Small Props/book_mp_2.glb" id="27_p1xtl"]
 [ext_resource type="PackedScene" uid="uid://gaby635so0g0" path="res://resources/models/PSX Mega Pack/Models/Electronics & Misc/ceiling_fan_mp_2_1_light_on.glb" id="29_n3q1u"]
+[ext_resource type="PackedScene" uid="uid://crwoyn2l6l8e5" path="res://resources/models/PSX Mega Pack/Models/Modular Structures/Walls/doorway_3_wide.glb" id="30_8v3jm"]
 [ext_resource type="PackedScene" uid="uid://bi2vj35vqg5kr" path="res://resources/models/car_placeholder.blend" id="31_1ewh1"]
 [ext_resource type="PackedScene" uid="uid://dmji7348fpj6q" path="res://resources/models/PSX Mega Pack/Models/Modular Structures/stairs_5_wood.glb" id="32_def21"]
 
@@ -166,6 +167,12 @@ size = Vector3(16, 3, 0.2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5eba1"]
 size = Vector3(8, 0.1, 16)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_utptk"]
+size = Vector3(5.4, 3, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yf3lb"]
+size = Vector3(1.4, 3, 0.2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x6f5f"]
 size = Vector3(16, 3, 0.2)
@@ -1087,6 +1094,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/FirstFloorHallway/Layout/Walls/First"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1999989, 1.5, 0)
+shape = SubResource("BoxShape3D_utptk")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/FirstFloorHallway/Layout/Walls/First"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2000008, 1.5, 0)
+shape = SubResource("BoxShape3D_yf3lb")
+
+[node name="Second" type="StaticBody3D" parent="SubViewportContainer/SubViewport/FirstFloorHallway/Layout/Walls"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -6)
+
+[node name="Graphics" type="Node3D" parent="SubViewportContainer/SubViewport/FirstFloorHallway/Layout/Walls/Second"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="wall_12" parent="SubViewportContainer/SubViewport/FirstFloorHallway/Layout/Walls/Second/Graphics" instance=ExtResource("5_48n3s")]
+
+[node name="wall_13" parent="SubViewportContainer/SubViewport/FirstFloorHallway/Layout/Walls/Second/Graphics" instance=ExtResource("5_48n3s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/FirstFloorHallway/Layout/Walls/Second"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 shape = SubResource("BoxShape3D_xw5yf")
 
@@ -1134,26 +1160,354 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.5, 0)
 shape = SubResource("BoxShape3D_6umgr")
 
-[node name="Second" type="StaticBody3D" parent="SubViewportContainer/SubViewport/FirstFloorHallway/Layout"]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -6)
-
-[node name="Graphics" type="Node3D" parent="SubViewportContainer/SubViewport/FirstFloorHallway/Layout/Second"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
-
-[node name="wall_12" parent="SubViewportContainer/SubViewport/FirstFloorHallway/Layout/Second/Graphics" instance=ExtResource("5_48n3s")]
-
-[node name="wall_13" parent="SubViewportContainer/SubViewport/FirstFloorHallway/Layout/Second/Graphics" instance=ExtResource("5_48n3s")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/FirstFloorHallway/Layout/Second"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
-shape = SubResource("BoxShape3D_xw5yf")
-
 [node name="floor_ceiling_16" parent="SubViewportContainer/SubViewport/FirstFloorHallway" instance=ExtResource("4_w8s17")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3, 8)
 
 [node name="floor_ceiling_18" parent="SubViewportContainer/SubViewport/FirstFloorHallway" instance=ExtResource("4_w8s17")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 3, 8)
+
+[node name="ReceptionRoom" type="Node3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 16, -3, 32)
+
+[node name="DancingDude" type="StaticBody3D" parent="SubViewportContainer/SubViewport/ReceptionRoom"]
+transform = Transform3D(-0.6853737, 0, -0.7281915, 0, 1, 0, 0.7281915, 0, -0.6853737, -0.0833168, 0, 5.0431004)
+
+[node name="SillyDancing" parent="SubViewportContainer/SubViewport/ReceptionRoom/DancingDude" instance=ExtResource("6_jm2hm")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/ReceptionRoom/DancingDude"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_a0ubh")
+
+[node name="LightSwitch" parent="SubViewportContainer/SubViewport/ReceptionRoom" node_paths=PackedStringArray("_meshChanger", "_connectedLight", "_connectedParticles") instance=ExtResource("11_vw0fq")]
+transform = Transform3D(-0.9912154, -0.13225639, -8.742277e-08, -0.13225637, 0.9912155, 0, 8.665481e-08, 1.15622205e-08, -0.9999999, -2.9449997, 1.4725647, 5.94)
+_meshChanger = NodePath("../Lights/Lamp")
+_connectedLight = NodePath("../Lights/Lamp/OmniLight3D2")
+_connectedParticles = NodePath("../Lights/Lamp/Light2")
+
+[node name="Layout" type="Node3D" parent="SubViewportContainer/SubViewport/ReceptionRoom"]
+
+[node name="Floor" type="StaticBody3D" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout"]
+
+[node name="Graphics" type="Node3D" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="floor_ceiling_12" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Floor/Graphics" instance=ExtResource("4_w8s17")]
+
+[node name="floor_ceiling_13" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Floor/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+
+[node name="floor_ceiling_14" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Floor/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="floor_ceiling_15" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Floor/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+
+[node name="floor_ceiling_16" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Floor/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="floor_ceiling_17" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Floor/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 4)
+
+[node name="floor_ceiling_18" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Floor/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
+
+[node name="floor_ceiling_19" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Floor/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 4)
+
+[node name="floor_ceiling_20" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Floor/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="floor_ceiling_21" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Floor/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -4)
+
+[node name="floor_ceiling_22" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Floor/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -4)
+
+[node name="floor_ceiling_23" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Floor/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -4)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Floor"]
+shape = SubResource("BoxShape3D_dbld1")
+
+[node name="Ceiling" type="StaticBody3D" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+
+[node name="Graphics" type="Node3D" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Ceiling"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="floor_ceiling_12" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Ceiling/Graphics" instance=ExtResource("4_w8s17")]
+
+[node name="floor_ceiling_13" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Ceiling/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+
+[node name="floor_ceiling_14" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Ceiling/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="floor_ceiling_15" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Ceiling/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+
+[node name="floor_ceiling_16" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Ceiling/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="floor_ceiling_17" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Ceiling/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 4)
+
+[node name="floor_ceiling_18" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Ceiling/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
+
+[node name="floor_ceiling_19" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Ceiling/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 4)
+
+[node name="floor_ceiling_20" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Ceiling/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="floor_ceiling_21" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Ceiling/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -4)
+
+[node name="floor_ceiling_22" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Ceiling/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -4)
+
+[node name="floor_ceiling_23" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Ceiling/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -4)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Ceiling"]
+shape = SubResource("BoxShape3D_dbld1")
+
+[node name="Walls" type="Node3D" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout"]
+
+[node name="First" type="StaticBody3D" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Walls"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 6)
+
+[node name="Graphics" type="Node3D" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Walls/First"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="wall_13" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Walls/First/Graphics" instance=ExtResource("5_48n3s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+
+[node name="wall_14" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Walls/First/Graphics" instance=ExtResource("5_48n3s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Walls/First"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9000015, 1.5, -3.8146973e-06)
+shape = SubResource("BoxShape3D_n3q1u")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Walls/First"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0999985, 1.5, -3.8146973e-06)
+shape = SubResource("BoxShape3D_n3q1u")
+
+[node name="Second" type="StaticBody3D" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6)
+
+[node name="Graphics" type="Node3D" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Walls/Second"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="wall_12" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Walls/Second/Graphics" instance=ExtResource("5_48n3s")]
+
+[node name="wall_13" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Walls/Second/Graphics" instance=ExtResource("5_48n3s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+
+[node name="wall_14" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Walls/Second/Graphics" instance=ExtResource("5_48n3s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+
+[node name="window_2_double2" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Walls/Second/Graphics" instance=ExtResource("6_fhxv8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="fake_light_window_2_double2" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Walls/Second/Graphics/window_2_double2" instance=ExtResource("7_qgpyk")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Walls/Second"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_oef5p")
+
+[node name="Third" type="StaticBody3D" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Walls"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8, 0, 0)
+
+[node name="Graphics" type="Node3D" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Walls/Third"]
+
+[node name="wall_12" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Walls/Third/Graphics" instance=ExtResource("5_48n3s")]
+
+[node name="wall_13" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Walls/Third/Graphics" instance=ExtResource("5_48n3s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+
+[node name="window_2_double2" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Walls/Third/Graphics" instance=ExtResource("6_fhxv8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="fake_light_window_2_double2" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Walls/Third/Graphics/window_2_double2" instance=ExtResource("7_qgpyk")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Walls/Third"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_gqeq6")
+
+[node name="Fourth" type="StaticBody3D" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Walls"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, 0)
+
+[node name="Graphics" type="Node3D" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Walls/Fourth"]
+
+[node name="wall_12" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Walls/Fourth/Graphics" instance=ExtResource("5_48n3s")]
+
+[node name="wall_13" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Walls/Fourth/Graphics" instance=ExtResource("5_48n3s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+
+[node name="window_2_double2" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Walls/Fourth/Graphics" instance=ExtResource("6_fhxv8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="fake_light_window_2_double2" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Walls/Fourth/Graphics/window_2_double2" instance=ExtResource("7_qgpyk")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/ReceptionRoom/Layout/Walls/Fourth"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_gqeq6")
+
+[node name="Decorations" type="Node3D" parent="SubViewportContainer/SubViewport/ReceptionRoom"]
+
+[node name="cabinet-col" parent="SubViewportContainer/SubViewport/ReceptionRoom/Decorations" instance=ExtResource("9_w8s17")]
+transform = Transform3D(0.25881904, 0, -0.96592593, 0, 1, 0, 0.96592593, 0, 0.25881904, 4, 0, -3)
+
+[node name="pc_speaker_1_left2" parent="SubViewportContainer/SubViewport/ReceptionRoom/Decorations/cabinet-col" instance=ExtResource("21_ve8sh")]
+transform = Transform3D(1.4901161e-08, 0, -0.9999994, 0, 1, 0, 0.9999994, 0, 1.4901161e-08, -0.025384188, 0.9950221, 0.9587326)
+
+[node name="tv_remote_mp_12" parent="SubViewportContainer/SubViewport/ReceptionRoom/Decorations/cabinet-col" instance=ExtResource("22_qgpyk")]
+transform = Transform3D(0.91861826, 0, -0.39514467, 0, 1, 0, 0.39514467, 0, 0.91861826, -0.35022712, 0.9950222, 0.19493866)
+
+[node name="vhs_tape_12" parent="SubViewportContainer/SubViewport/ReceptionRoom/Decorations/cabinet-col" instance=ExtResource("23_dbld1")]
+transform = Transform3D(-0.678121, 0, -0.7349499, 0, 1, 0, 0.7349499, 0, -0.678121, -0.14825845, 1.0128492, 0.6833172)
+
+[node name="ashtray_12" parent="SubViewportContainer/SubViewport/ReceptionRoom/Decorations/cabinet-col" instance=ExtResource("11_63ay0")]
+transform = Transform3D(1.4901161e-08, 0, -0.9999994, 0, 1, 0, 0.9999994, 0, 1.4901161e-08, -0.58356357, 0.9950222, 1.7021999)
+
+[node name="book_mp_12" parent="SubViewportContainer/SubViewport/ReceptionRoom/Decorations/cabinet-col" instance=ExtResource("12_y5c0f")]
+transform = Transform3D(0.49094933, 0, -0.8711879, 0, 1, 0, 0.8711879, 0, 0.49094933, 0.7550235, 0.53514344, -2.3714314)
+
+[node name="cig_12" parent="SubViewportContainer/SubViewport/ReceptionRoom/Decorations/cabinet-col" instance=ExtResource("13_l5e33")]
+transform = Transform3D(1.4901161e-08, 0, -0.9999994, 0, 1, 0, 0.9999994, 0, 1.4901161e-08, -0.47141075, 0.9950222, 1.7430439)
+
+[node name="cig_22" parent="SubViewportContainer/SubViewport/ReceptionRoom/Decorations/cabinet-col" instance=ExtResource("14_ve8sh")]
+transform = Transform3D(-1.4901161e-08, -1.8626451e-08, -0.9999994, 0.15386544, 0.98809206, 1.974389e-09, 0.9880917, -0.15386541, 1.3411045e-07, -0.5819726, 1.0115087, 1.628952)
+
+[node name="pills_bottle_1_12" parent="SubViewportContainer/SubViewport/ReceptionRoom/Decorations/cabinet-col" instance=ExtResource("23_8v3jm")]
+transform = Transform3D(0.25881895, 0, 0.9659256, 0, 1, 0, -0.9659256, 0, 0.25881895, -0.053622007, 1, 1.7455978)
+
+[node name="Bookshelf" type="StaticBody3D" parent="SubViewportContainer/SubViewport/ReceptionRoom/Decorations"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7.7, 0, 3.7)
+
+[node name="Graphics" type="Node3D" parent="SubViewportContainer/SubViewport/ReceptionRoom/Decorations/Bookshelf"]
+
+[node name="brick2" parent="SubViewportContainer/SubViewport/ReceptionRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("26_olo10")]
+transform = Transform3D(-0.8660254, 0, 0.5000001, 0, 1, 0, -0.5000001, 0, -0.8660254, -0.29999924, 0, 0.19999981)
+
+[node name="bookshelf" parent="SubViewportContainer/SubViewport/ReceptionRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("25_tji15")]
+
+[node name="book_mp_12" parent="SubViewportContainer/SubViewport/ReceptionRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("12_y5c0f")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.003443718, 0.95328414, -0.010000229)
+
+[node name="book_mp_22" parent="SubViewportContainer/SubViewport/ReceptionRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("27_p1xtl")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.003, 1.003, -0.01)
+
+[node name="book_mp_13" parent="SubViewportContainer/SubViewport/ReceptionRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("12_y5c0f")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.003443718, 1.0532842, -0.010000229)
+
+[node name="ashtray_12" parent="SubViewportContainer/SubViewport/ReceptionRoom/Decorations/Bookshelf/Graphics/book_mp_13" instance=ExtResource("11_63ay0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.01, 0.05, 0.03)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/ReceptionRoom/Decorations/Bookshelf"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.7, 0)
+shape = SubResource("BoxShape3D_tji15")
+
+[node name="Barrel" type="StaticBody3D" parent="SubViewportContainer/SubViewport/ReceptionRoom/Decorations"]
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, -7.5, 0, 5.3)
+
+[node name="Graphics" type="Node3D" parent="SubViewportContainer/SubViewport/ReceptionRoom/Decorations/Barrel"]
+
+[node name="metal_barrel_mp_32" parent="SubViewportContainer/SubViewport/ReceptionRoom/Decorations/Barrel/Graphics" instance=ExtResource("11_n6hjk")]
+
+[node name="supply_crate_12" parent="SubViewportContainer/SubViewport/ReceptionRoom/Decorations/Barrel/Graphics" instance=ExtResource("7_n6hjk")]
+transform = Transform3D(-0.31541717, 0, -0.94895315, 0, 1, 0, 0.94895315, 0, -0.31541717, 0.046634674, 1.0824319, 0.033228397)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/ReceptionRoom/Decorations/Barrel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_n6hjk")
+
+[node name="Lights" type="Node3D" parent="SubViewportContainer/SubViewport/ReceptionRoom"]
+
+[node name="CeilingLamp" type="Node3D" parent="SubViewportContainer/SubViewport/ReceptionRoom/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 3, -1)
+
+[node name="Graphics" type="Node3D" parent="SubViewportContainer/SubViewport/ReceptionRoom/Lights/CeilingLamp"]
+
+[node name="ceiling_fan_mp_2_1_light_on2" parent="SubViewportContainer/SubViewport/ReceptionRoom/Lights/CeilingLamp/Graphics" instance=ExtResource("29_n3q1u")]
+script = ExtResource("8_3mprh")
+_degreesPerSecond = 45.0
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/ReceptionRoom/Lights/CeilingLamp"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8468702, 0)
+light_color = Color(1, 0.94509804, 0.75686276, 1)
+light_energy = 1.4
+shadow_enabled = true
+
+[node name="Light" type="GPUParticles3D" parent="SubViewportContainer/SubViewport/ReceptionRoom/Lights/CeilingLamp"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1127111, 0)
+amount = 22
+lifetime = 10.0
+randomness = 1.0
+transform_align = 1
+process_material = SubResource("ParticleProcessMaterial_w8s17")
+draw_pass_1 = SubResource("QuadMesh_w8s17")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/ReceptionRoom/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9538097, 1.564419, -5.081059)
+light_color = Color(1, 0.9764706, 0.8901961, 1)
+light_energy = 1.4
+light_volumetric_fog_energy = 2.0
+shadow_enabled = true
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="SubViewportContainer/SubViewport/ReceptionRoom/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.0719585, 1.564419, 3.8916903)
+light_color = Color(1, 0.9764706, 0.8901961, 1)
+light_energy = 1.4
+light_volumetric_fog_energy = 2.0
+shadow_enabled = true
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="SubViewportContainer/SubViewport/ReceptionRoom/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.985983, 1.564419, -3.9405205)
+light_color = Color(1, 0.9764706, 0.8901961, 1)
+light_energy = 1.4
+light_volumetric_fog_energy = 2.0
+shadow_enabled = true
+
+[node name="Lamp" parent="SubViewportContainer/SubViewport/ReceptionRoom/Lights" instance=ExtResource("20_dbld1")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7.9400005, 2, 4)
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="SubViewportContainer/SubViewport/ReceptionRoom/Lights/Lamp"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.31912136)
+shadow_enabled = true
+omni_range = 4.0
+
+[node name="Light2" type="GPUParticles3D" parent="SubViewportContainer/SubViewport/ReceptionRoom/Lights/Lamp"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, -0.009779692, 0.4204712)
+amount = 22
+lifetime = 10.0
+randomness = 1.0
+transform_align = 1
+process_material = SubResource("ParticleProcessMaterial_w8s17")
+draw_pass_1 = SubResource("QuadMesh_w8s17")
+
+[node name="Lamp2" parent="SubViewportContainer/SubViewport/ReceptionRoom/Lights" instance=ExtResource("20_dbld1")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 7.94, 2, -4)
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="SubViewportContainer/SubViewport/ReceptionRoom/Lights/Lamp2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.31912136)
+shadow_enabled = true
+omni_range = 4.0
+
+[node name="Light2" type="GPUParticles3D" parent="SubViewportContainer/SubViewport/ReceptionRoom/Lights/Lamp2"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, -0.009779692, 0.4204712)
+amount = 22
+lifetime = 10.0
+randomness = 1.0
+transform_align = 1
+process_material = SubResource("ParticleProcessMaterial_w8s17")
+draw_pass_1 = SubResource("QuadMesh_w8s17")
+
+[node name="car_placeholder" parent="SubViewportContainer/SubViewport/ReceptionRoom" instance=ExtResource("31_1ewh1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -3)
 
 [node name="BasementHallway" type="Node3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, -6, 16)
@@ -1267,6 +1621,458 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/BasementHallway/Layout/Walls/Fourth"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.5, 0)
 shape = SubResource("BoxShape3D_6umgr")
+
+[node name="JailRoom" type="Node3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 26, -6, 6)
+
+[node name="Layout" type="Node3D" parent="SubViewportContainer/SubViewport/JailRoom"]
+
+[node name="Floor" type="StaticBody3D" parent="SubViewportContainer/SubViewport/JailRoom/Layout"]
+
+[node name="Graphics" type="Node3D" parent="SubViewportContainer/SubViewport/JailRoom/Layout/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="floor_ceiling_12" parent="SubViewportContainer/SubViewport/JailRoom/Layout/Floor/Graphics" instance=ExtResource("4_w8s17")]
+
+[node name="floor_ceiling_14" parent="SubViewportContainer/SubViewport/JailRoom/Layout/Floor/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="floor_ceiling_16" parent="SubViewportContainer/SubViewport/JailRoom/Layout/Floor/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="floor_ceiling_18" parent="SubViewportContainer/SubViewport/JailRoom/Layout/Floor/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
+
+[node name="floor_ceiling_17" parent="SubViewportContainer/SubViewport/JailRoom/Layout/Floor/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+
+[node name="floor_ceiling_19" parent="SubViewportContainer/SubViewport/JailRoom/Layout/Floor/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 8)
+
+[node name="floor_ceiling_20" parent="SubViewportContainer/SubViewport/JailRoom/Layout/Floor/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="floor_ceiling_22" parent="SubViewportContainer/SubViewport/JailRoom/Layout/Floor/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -4)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/JailRoom/Layout/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+shape = SubResource("BoxShape3D_5eba1")
+
+[node name="Walls" type="Node3D" parent="SubViewportContainer/SubViewport/JailRoom/Layout"]
+
+[node name="First" type="StaticBody3D" parent="SubViewportContainer/SubViewport/JailRoom/Layout/Walls"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 10)
+
+[node name="Graphics" type="Node3D" parent="SubViewportContainer/SubViewport/JailRoom/Layout/Walls/First"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="wall_12" parent="SubViewportContainer/SubViewport/JailRoom/Layout/Walls/First/Graphics" instance=ExtResource("5_48n3s")]
+
+[node name="wall_13" parent="SubViewportContainer/SubViewport/JailRoom/Layout/Walls/First/Graphics" instance=ExtResource("5_48n3s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/JailRoom/Layout/Walls/First"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_xw5yf")
+
+[node name="Second" type="StaticBody3D" parent="SubViewportContainer/SubViewport/JailRoom/Layout/Walls"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -6)
+
+[node name="Graphics" type="Node3D" parent="SubViewportContainer/SubViewport/JailRoom/Layout/Walls/Second"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="wall_12" parent="SubViewportContainer/SubViewport/JailRoom/Layout/Walls/Second/Graphics" instance=ExtResource("5_48n3s")]
+
+[node name="wall_13" parent="SubViewportContainer/SubViewport/JailRoom/Layout/Walls/Second/Graphics" instance=ExtResource("5_48n3s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/JailRoom/Layout/Walls/Second"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_xw5yf")
+
+[node name="Third" type="StaticBody3D" parent="SubViewportContainer/SubViewport/JailRoom/Layout/Walls"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4, 0, 0)
+
+[node name="Graphics" type="Node3D" parent="SubViewportContainer/SubViewport/JailRoom/Layout/Walls/Third"]
+
+[node name="wall_12" parent="SubViewportContainer/SubViewport/JailRoom/Layout/Walls/Third/Graphics" instance=ExtResource("5_48n3s")]
+
+[node name="wall_14" parent="SubViewportContainer/SubViewport/JailRoom/Layout/Walls/Third/Graphics" instance=ExtResource("5_48n3s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="wall_13" parent="SubViewportContainer/SubViewport/JailRoom/Layout/Walls/Third/Graphics" instance=ExtResource("5_48n3s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+
+[node name="window_2_double2" parent="SubViewportContainer/SubViewport/JailRoom/Layout/Walls/Third/Graphics" instance=ExtResource("6_fhxv8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.000001, 0, 0)
+
+[node name="fake_light_window_2_double2" parent="SubViewportContainer/SubViewport/JailRoom/Layout/Walls/Third/Graphics/window_2_double2" instance=ExtResource("7_qgpyk")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/JailRoom/Layout/Walls/Third"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.5, 0)
+shape = SubResource("BoxShape3D_x6f5f")
+
+[node name="Fourth" type="StaticBody3D" parent="SubViewportContainer/SubViewport/JailRoom/Layout/Walls"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 0, 0)
+
+[node name="Graphics" type="Node3D" parent="SubViewportContainer/SubViewport/JailRoom/Layout/Walls/Fourth"]
+
+[node name="wall_12" parent="SubViewportContainer/SubViewport/JailRoom/Layout/Walls/Fourth/Graphics" instance=ExtResource("5_48n3s")]
+
+[node name="wall_13" parent="SubViewportContainer/SubViewport/JailRoom/Layout/Walls/Fourth/Graphics" instance=ExtResource("5_48n3s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+
+[node name="wall_14" parent="SubViewportContainer/SubViewport/JailRoom/Layout/Walls/Fourth/Graphics" instance=ExtResource("5_48n3s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.999999, 0, 0)
+
+[node name="window_2_double2" parent="SubViewportContainer/SubViewport/JailRoom/Layout/Walls/Fourth/Graphics" instance=ExtResource("6_fhxv8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="fake_light_window_2_double2" parent="SubViewportContainer/SubViewport/JailRoom/Layout/Walls/Fourth/Graphics/window_2_double2" instance=ExtResource("7_qgpyk")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/JailRoom/Layout/Walls/Fourth"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.5, 0)
+shape = SubResource("BoxShape3D_6umgr")
+
+[node name="ForensicsRoom" type="Node3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 26, -6, 21)
+
+[node name="DancingDude" type="StaticBody3D" parent="SubViewportContainer/SubViewport/ForensicsRoom"]
+transform = Transform3D(-0.6853737, 0, -0.7281915, 0, 1, 0, 0.7281915, 0, -0.6853737, -0.0833168, 0, 5.0431004)
+
+[node name="SillyDancing" parent="SubViewportContainer/SubViewport/ForensicsRoom/DancingDude" instance=ExtResource("6_jm2hm")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/ForensicsRoom/DancingDude"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_a0ubh")
+
+[node name="LightSwitch" parent="SubViewportContainer/SubViewport/ForensicsRoom" node_paths=PackedStringArray("_meshChanger", "_connectedLight", "_connectedParticles") instance=ExtResource("11_vw0fq")]
+transform = Transform3D(-0.9912154, -0.13225639, -8.742277e-08, -0.13225637, 0.9912155, 0, 8.665481e-08, 1.15622205e-08, -0.9999999, -2.9449997, 1.4725647, 5.94)
+_meshChanger = NodePath("../Lights/Lamp")
+_connectedLight = NodePath("../Lights/Lamp/OmniLight3D2")
+_connectedParticles = NodePath("../Lights/Lamp/Light2")
+
+[node name="Layout" type="Node3D" parent="SubViewportContainer/SubViewport/ForensicsRoom"]
+
+[node name="Floor" type="StaticBody3D" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout"]
+
+[node name="Graphics" type="Node3D" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="floor_ceiling_12" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Floor/Graphics" instance=ExtResource("4_w8s17")]
+
+[node name="floor_ceiling_13" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Floor/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+
+[node name="floor_ceiling_14" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Floor/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="floor_ceiling_15" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Floor/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+
+[node name="floor_ceiling_16" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Floor/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="floor_ceiling_17" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Floor/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 4)
+
+[node name="floor_ceiling_18" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Floor/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
+
+[node name="floor_ceiling_19" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Floor/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 4)
+
+[node name="floor_ceiling_20" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Floor/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="floor_ceiling_21" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Floor/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -4)
+
+[node name="floor_ceiling_22" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Floor/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -4)
+
+[node name="floor_ceiling_23" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Floor/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -4)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Floor"]
+shape = SubResource("BoxShape3D_dbld1")
+
+[node name="Ceiling" type="StaticBody3D" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+
+[node name="Graphics" type="Node3D" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Ceiling"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="floor_ceiling_12" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Ceiling/Graphics" instance=ExtResource("4_w8s17")]
+
+[node name="floor_ceiling_13" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Ceiling/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+
+[node name="floor_ceiling_14" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Ceiling/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="floor_ceiling_15" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Ceiling/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+
+[node name="floor_ceiling_16" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Ceiling/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="floor_ceiling_17" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Ceiling/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 4)
+
+[node name="floor_ceiling_18" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Ceiling/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
+
+[node name="floor_ceiling_19" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Ceiling/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 4)
+
+[node name="floor_ceiling_20" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Ceiling/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="floor_ceiling_21" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Ceiling/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -4)
+
+[node name="floor_ceiling_22" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Ceiling/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -4)
+
+[node name="floor_ceiling_23" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Ceiling/Graphics" instance=ExtResource("4_w8s17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -4)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Ceiling"]
+shape = SubResource("BoxShape3D_dbld1")
+
+[node name="Walls" type="Node3D" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout"]
+
+[node name="First" type="StaticBody3D" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Walls"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 6)
+
+[node name="Graphics" type="Node3D" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Walls/First"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="wall_13" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Walls/First/Graphics" instance=ExtResource("5_48n3s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Walls/First"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9000015, 1.5, -3.8146973e-06)
+shape = SubResource("BoxShape3D_n3q1u")
+
+[node name="Second" type="StaticBody3D" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6)
+
+[node name="Graphics" type="Node3D" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Walls/Second"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="wall_12" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Walls/Second/Graphics" instance=ExtResource("5_48n3s")]
+
+[node name="wall_13" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Walls/Second/Graphics" instance=ExtResource("5_48n3s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+
+[node name="wall_14" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Walls/Second/Graphics" instance=ExtResource("5_48n3s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+
+[node name="window_2_double2" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Walls/Second/Graphics" instance=ExtResource("6_fhxv8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="fake_light_window_2_double2" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Walls/Second/Graphics/window_2_double2" instance=ExtResource("7_qgpyk")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Walls/Second"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_oef5p")
+
+[node name="Third" type="StaticBody3D" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Walls"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8, 0, 0)
+
+[node name="Graphics" type="Node3D" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Walls/Third"]
+
+[node name="wall_12" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Walls/Third/Graphics" instance=ExtResource("5_48n3s")]
+
+[node name="wall_13" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Walls/Third/Graphics" instance=ExtResource("5_48n3s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+
+[node name="window_2_double2" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Walls/Third/Graphics" instance=ExtResource("6_fhxv8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="fake_light_window_2_double2" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Walls/Third/Graphics/window_2_double2" instance=ExtResource("7_qgpyk")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Walls/Third"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_gqeq6")
+
+[node name="Fourth" type="StaticBody3D" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Walls"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, 0)
+
+[node name="Graphics" type="Node3D" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Walls/Fourth"]
+
+[node name="wall_12" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Walls/Fourth/Graphics" instance=ExtResource("5_48n3s")]
+
+[node name="wall_13" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Walls/Fourth/Graphics" instance=ExtResource("5_48n3s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+
+[node name="window_2_double2" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Walls/Fourth/Graphics" instance=ExtResource("6_fhxv8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="fake_light_window_2_double2" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Walls/Fourth/Graphics/window_2_double2" instance=ExtResource("7_qgpyk")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/ForensicsRoom/Layout/Walls/Fourth"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_gqeq6")
+
+[node name="Decorations" type="Node3D" parent="SubViewportContainer/SubViewport/ForensicsRoom"]
+
+[node name="cabinet-col" parent="SubViewportContainer/SubViewport/ForensicsRoom/Decorations" instance=ExtResource("9_w8s17")]
+transform = Transform3D(0.25881904, 0, -0.96592593, 0, 1, 0, 0.96592593, 0, 0.25881904, 4, 0, -3)
+
+[node name="pc_speaker_1_left2" parent="SubViewportContainer/SubViewport/ForensicsRoom/Decorations/cabinet-col" instance=ExtResource("21_ve8sh")]
+transform = Transform3D(1.4901161e-08, 0, -0.9999994, 0, 1, 0, 0.9999994, 0, 1.4901161e-08, -0.025384188, 0.9950221, 0.9587326)
+
+[node name="tv_remote_mp_12" parent="SubViewportContainer/SubViewport/ForensicsRoom/Decorations/cabinet-col" instance=ExtResource("22_qgpyk")]
+transform = Transform3D(0.91861826, 0, -0.39514467, 0, 1, 0, 0.39514467, 0, 0.91861826, -0.35022712, 0.9950222, 0.19493866)
+
+[node name="vhs_tape_12" parent="SubViewportContainer/SubViewport/ForensicsRoom/Decorations/cabinet-col" instance=ExtResource("23_dbld1")]
+transform = Transform3D(-0.678121, 0, -0.7349499, 0, 1, 0, 0.7349499, 0, -0.678121, -0.14825845, 1.0128492, 0.6833172)
+
+[node name="ashtray_12" parent="SubViewportContainer/SubViewport/ForensicsRoom/Decorations/cabinet-col" instance=ExtResource("11_63ay0")]
+transform = Transform3D(1.4901161e-08, 0, -0.9999994, 0, 1, 0, 0.9999994, 0, 1.4901161e-08, -0.58356357, 0.9950222, 1.7021999)
+
+[node name="book_mp_12" parent="SubViewportContainer/SubViewport/ForensicsRoom/Decorations/cabinet-col" instance=ExtResource("12_y5c0f")]
+transform = Transform3D(0.49094933, 0, -0.8711879, 0, 1, 0, 0.8711879, 0, 0.49094933, 0.7550235, 0.53514344, -2.3714314)
+
+[node name="cig_12" parent="SubViewportContainer/SubViewport/ForensicsRoom/Decorations/cabinet-col" instance=ExtResource("13_l5e33")]
+transform = Transform3D(1.4901161e-08, 0, -0.9999994, 0, 1, 0, 0.9999994, 0, 1.4901161e-08, -0.47141075, 0.9950222, 1.7430439)
+
+[node name="cig_22" parent="SubViewportContainer/SubViewport/ForensicsRoom/Decorations/cabinet-col" instance=ExtResource("14_ve8sh")]
+transform = Transform3D(-1.4901161e-08, -1.8626451e-08, -0.9999994, 0.15386544, 0.98809206, 1.974389e-09, 0.9880917, -0.15386541, 1.3411045e-07, -0.5819726, 1.0115087, 1.628952)
+
+[node name="pills_bottle_1_12" parent="SubViewportContainer/SubViewport/ForensicsRoom/Decorations/cabinet-col" instance=ExtResource("23_8v3jm")]
+transform = Transform3D(0.25881895, 0, 0.9659256, 0, 1, 0, -0.9659256, 0, 0.25881895, -0.053622007, 1, 1.7455978)
+
+[node name="Bookshelf" type="StaticBody3D" parent="SubViewportContainer/SubViewport/ForensicsRoom/Decorations"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7.7, 0, 3.7)
+
+[node name="Graphics" type="Node3D" parent="SubViewportContainer/SubViewport/ForensicsRoom/Decorations/Bookshelf"]
+
+[node name="brick2" parent="SubViewportContainer/SubViewport/ForensicsRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("26_olo10")]
+transform = Transform3D(-0.8660254, 0, 0.5000001, 0, 1, 0, -0.5000001, 0, -0.8660254, -0.29999924, 0, 0.19999981)
+
+[node name="bookshelf" parent="SubViewportContainer/SubViewport/ForensicsRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("25_tji15")]
+
+[node name="book_mp_12" parent="SubViewportContainer/SubViewport/ForensicsRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("12_y5c0f")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.003443718, 0.95328414, -0.010000229)
+
+[node name="book_mp_22" parent="SubViewportContainer/SubViewport/ForensicsRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("27_p1xtl")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.003, 1.003, -0.01)
+
+[node name="book_mp_13" parent="SubViewportContainer/SubViewport/ForensicsRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("12_y5c0f")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.003443718, 1.0532842, -0.010000229)
+
+[node name="ashtray_12" parent="SubViewportContainer/SubViewport/ForensicsRoom/Decorations/Bookshelf/Graphics/book_mp_13" instance=ExtResource("11_63ay0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.01, 0.05, 0.03)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/ForensicsRoom/Decorations/Bookshelf"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.7, 0)
+shape = SubResource("BoxShape3D_tji15")
+
+[node name="Barrel" type="StaticBody3D" parent="SubViewportContainer/SubViewport/ForensicsRoom/Decorations"]
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, -7.5, 0, 5.3)
+
+[node name="Graphics" type="Node3D" parent="SubViewportContainer/SubViewport/ForensicsRoom/Decorations/Barrel"]
+
+[node name="metal_barrel_mp_32" parent="SubViewportContainer/SubViewport/ForensicsRoom/Decorations/Barrel/Graphics" instance=ExtResource("11_n6hjk")]
+
+[node name="supply_crate_12" parent="SubViewportContainer/SubViewport/ForensicsRoom/Decorations/Barrel/Graphics" instance=ExtResource("7_n6hjk")]
+transform = Transform3D(-0.31541717, 0, -0.94895315, 0, 1, 0, 0.94895315, 0, -0.31541717, 0.046634674, 1.0824319, 0.033228397)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/ForensicsRoom/Decorations/Barrel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_n6hjk")
+
+[node name="Lights" type="Node3D" parent="SubViewportContainer/SubViewport/ForensicsRoom"]
+
+[node name="CeilingLamp" type="Node3D" parent="SubViewportContainer/SubViewport/ForensicsRoom/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 3, -1)
+
+[node name="Graphics" type="Node3D" parent="SubViewportContainer/SubViewport/ForensicsRoom/Lights/CeilingLamp"]
+
+[node name="ceiling_fan_mp_2_1_light_on2" parent="SubViewportContainer/SubViewport/ForensicsRoom/Lights/CeilingLamp/Graphics" instance=ExtResource("29_n3q1u")]
+script = ExtResource("8_3mprh")
+_degreesPerSecond = 45.0
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/ForensicsRoom/Lights/CeilingLamp"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8468702, 0)
+light_color = Color(1, 0.94509804, 0.75686276, 1)
+light_energy = 1.4
+shadow_enabled = true
+
+[node name="Light" type="GPUParticles3D" parent="SubViewportContainer/SubViewport/ForensicsRoom/Lights/CeilingLamp"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1127111, 0)
+amount = 22
+lifetime = 10.0
+randomness = 1.0
+transform_align = 1
+process_material = SubResource("ParticleProcessMaterial_w8s17")
+draw_pass_1 = SubResource("QuadMesh_w8s17")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/ForensicsRoom/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9538097, 1.564419, -5.081059)
+light_color = Color(1, 0.9764706, 0.8901961, 1)
+light_energy = 1.4
+light_volumetric_fog_energy = 2.0
+shadow_enabled = true
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="SubViewportContainer/SubViewport/ForensicsRoom/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.0719585, 1.564419, 3.8916903)
+light_color = Color(1, 0.9764706, 0.8901961, 1)
+light_energy = 1.4
+light_volumetric_fog_energy = 2.0
+shadow_enabled = true
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="SubViewportContainer/SubViewport/ForensicsRoom/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.985983, 1.564419, -3.9405205)
+light_color = Color(1, 0.9764706, 0.8901961, 1)
+light_energy = 1.4
+light_volumetric_fog_energy = 2.0
+shadow_enabled = true
+
+[node name="Lamp" parent="SubViewportContainer/SubViewport/ForensicsRoom/Lights" instance=ExtResource("20_dbld1")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7.9400005, 2, 4)
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="SubViewportContainer/SubViewport/ForensicsRoom/Lights/Lamp"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.31912136)
+shadow_enabled = true
+omni_range = 4.0
+
+[node name="Light2" type="GPUParticles3D" parent="SubViewportContainer/SubViewport/ForensicsRoom/Lights/Lamp"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, -0.009779692, 0.4204712)
+amount = 22
+lifetime = 10.0
+randomness = 1.0
+transform_align = 1
+process_material = SubResource("ParticleProcessMaterial_w8s17")
+draw_pass_1 = SubResource("QuadMesh_w8s17")
+
+[node name="Lamp2" parent="SubViewportContainer/SubViewport/ForensicsRoom/Lights" instance=ExtResource("20_dbld1")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 7.94, 2, -4)
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="SubViewportContainer/SubViewport/ForensicsRoom/Lights/Lamp2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.31912136)
+shadow_enabled = true
+omni_range = 4.0
+
+[node name="Light2" type="GPUParticles3D" parent="SubViewportContainer/SubViewport/ForensicsRoom/Lights/Lamp2"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, -0.009779692, 0.4204712)
+amount = 22
+lifetime = 10.0
+randomness = 1.0
+transform_align = 1
+process_material = SubResource("ParticleProcessMaterial_w8s17")
+draw_pass_1 = SubResource("QuadMesh_w8s17")
+
+[node name="car_placeholder" parent="SubViewportContainer/SubViewport/ForensicsRoom" instance=ExtResource("31_1ewh1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -3)
+
+[node name="Entrance" parent="SubViewportContainer/SubViewport" instance=ExtResource("30_8v3jm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, -3, 42)
 
 [node name="UI" type="CanvasLayer" parent="."]
 visible = false
