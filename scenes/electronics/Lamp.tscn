@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://bq482rrunp8xv"]
 
-[ext_resource type="PackedScene" uid="uid://bexjifkn3jeu7" path="res://resources/models/PSX Mega Pack/Models/Lighting/lamp_2_on.glb" id="1_q0yr1"]
-[ext_resource type="Script" uid="uid://ch4m48jq5ipd" path="res://scripts/interactions/concrete_interactions/MeshChanger.cs" id="2_3ft04"]
-[ext_resource type="PackedScene" uid="uid://dbe58ol886prv" path="res://resources/models/PSX Mega Pack/Models/Lighting/lamp_2_off.glb" id="3_3ft04"]
+[ext_resource type="PackedScene" uid="uid://bexjifkn3jeu7" path="res://resources/models/lighting/lamp_2_on.glb" id="1_q0yr1"]
+[ext_resource type="Script" uid="uid://ch4m48jq5ipd" path="res://scripts/concrete_reactions/MeshChanger.cs" id="2_3ft04"]
+[ext_resource type="PackedScene" uid="uid://dbe58ol886prv" path="res://resources/models/lighting/lamp_2_off.glb" id="3_3ft04"]
 
 [node name="Lamp" type="Node3D" node_paths=PackedStringArray("_targetMesh")]
 script = ExtResource("2_3ft04")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://e5km65kuyfue"]
 
-[ext_resource type="PackedScene" uid="uid://dig8i58wefgcn" path="res://resources/models/PSX Mega Pack/Models/Modular Structures/Walls/doorway_1.glb" id="1_nepi3"]
+[ext_resource type="PackedScene" uid="uid://dig8i58wefgcn" path="res://resources/models/modular_structures/walls/doorway_1.glb" id="1_nepi3"]
 
 [node name="Doorway" instance=ExtResource("1_nepi3")]
 
