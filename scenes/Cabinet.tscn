@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b60bohyvdyll6" path="res://resources/models/cabinet-col.blend" id="1_17a54"]
 [ext_resource type="Shader" uid="uid://dew3kcxwvaetu" path="res://resources/shaders/SelectionOutline.gdshader" id="3_8h13c"]
-[ext_resource type="Script" uid="uid://2tuid4d0ux5g" path="res://scripts/interactions/concrete_interactions/CollisionMeshHighlighter.cs" id="4_8h13c"]
+[ext_resource type="Script" uid="uid://tfo74s22i4nd" path="res://scripts/concrete_reactions/CollisionMeshHighlighter.cs" id="4_8h13c"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8h13c"]
 size = Vector3(1, 1, 2.006836)
