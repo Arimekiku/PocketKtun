@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://d0bdje052hqbl"]
+[gd_scene load_steps=57 format=3 uid="uid://d0bdje052hqbl"]
 
 [ext_resource type="Texture2D" uid="uid://dqh8onjfkhju3" path="res://resources/images/apollo-1x.png" id="2_vn80e"]
 [ext_resource type="Shader" uid="uid://ch4nd7axd0c2s" path="res://resources/shaders/Quantizator.gdshader" id="3_w2k4y"]
@@ -33,6 +33,7 @@
 [ext_resource type="PackedScene" uid="uid://crwoyn2l6l8e5" path="res://resources/models/modular_structures/walls/doorway_3_wide.glb" id="30_8v3jm"]
 [ext_resource type="PackedScene" uid="uid://bi2vj35vqg5kr" path="res://resources/models/car_placeholder.blend" id="31_1ewh1"]
 [ext_resource type="PackedScene" uid="uid://dmji7348fpj6q" path="res://resources/models/modular_structures/stairs_5_wood.glb" id="32_def21"]
+[ext_resource type="ArrayOccluder3D" uid="uid://b5xu6wy1who7u" path="res://resources/department_occluder_map.occ" id="34_x6f5f"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n4mgf"]
 shader = ExtResource("3_w2k4y")
@@ -1144,7 +1145,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
 [node name="Decorations" type="Node3D" parent="SubViewportContainer/SubViewport/ReceptionRoom"]
 
 [node name="cabinet-col" parent="SubViewportContainer/SubViewport/ReceptionRoom/Decorations" instance=ExtResource("9_w8s17")]
-transform = Transform3D(0.25881904, 0, -0.96592593, 0, 1, 0, 0.96592593, 0, 0.25881904, 4, 0, -3)
+transform = Transform3D(0.25881904, 0, -0.96592593, 0, 1, 0, 0.96592593, 0, 0.25881904, 3.999999, 0, -3.000002)
 
 [node name="pc_speaker_1_left2" parent="SubViewportContainer/SubViewport/ReceptionRoom/Decorations/cabinet-col" instance=ExtResource("21_ve8sh")]
 transform = Transform3D(1.4901161e-08, 0, -0.9999994, 0, 1, 0, 0.9999994, 0, 1.4901161e-08, -0.025384188, 0.9950221, 0.9587326)
@@ -1815,3 +1816,6 @@ _sun = NodePath("../SubViewportContainer/SubViewport/DirectionalLight3D")
 _environment = NodePath("../SubViewportContainer/SubViewport/WorldEnvironment")
 _lights = [NodePath("../SubViewportContainer/SubViewport/ChiefRoom/Lights/OmniLight3D"), NodePath("../SubViewportContainer/SubViewport/ChiefRoom/Lights/OmniLight3D2"), NodePath("../SubViewportContainer/SubViewport/ChiefRoom/Lights/OmniLight3D3")]
 _skyColors = SubResource("Gradient_dbld1")
+
+[node name="OccluderInstance3D" type="OccluderInstance3D" parent="."]
+occluder = ExtResource("34_x6f5f")
