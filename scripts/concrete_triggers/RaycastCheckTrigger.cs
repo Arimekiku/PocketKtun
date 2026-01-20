@@ -14,6 +14,8 @@ public partial class RaycastCheckTrigger : BaseFocusTrigger
     
     public override bool IsFocused { get; }
 
+    private bool _isFocused;
+
     public override void _Ready()
     {
         _playerInteractor.OnFocusChangedEvent += CheckFocused;
@@ -31,10 +33,14 @@ public partial class RaycastCheckTrigger : BaseFocusTrigger
     {
         if (target != this)
         {
-            OnUnfocusEvent?.Invoke(this);
+            if (_isFocused)
+                OnUnfocusEvent!.Invoke(this);
+            
+            _isFocused = false;
             return;
         }
         
-        OnFocusEvent?.Invoke(this);
+        OnFocusEvent!.Invoke(this);
+        _isFocused = true;
     }
 }
