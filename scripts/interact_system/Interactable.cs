@@ -27,7 +27,8 @@ public partial class Interactable : Node, IInteractable
     public bool IsInFocus => _needAllTriggers && _activatedTriggers.Count == _triggers.Length ||
                              !_needAllTriggers && _activatedTriggers.Count != 0;
     
-    private bool IsCooldown => _cooldownStopwatch.ElapsedMilliseconds < _cooldownInterval * 1000f;
+    private bool IsCooldown => _cooldownStopwatch.ElapsedMilliseconds < _cooldownInterval * 1000f &&
+                               _cooldownStopwatch.IsRunning;
     
     [Inject]
     public void Constructor(ILogger logger)
