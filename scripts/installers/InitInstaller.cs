@@ -1,6 +1,7 @@
 using Godot;
 using Scripts.DIContainer;
 using Scripts.Gameplay.Services;
+using Scripts.MessageManager;
 using Scripts.Services;
 
 namespace Scripts.Installers;
@@ -12,5 +13,6 @@ public partial class InitInstaller : Installer
     {
         CreateBind<ILogger, BaseLogger>().AsSingle();
         CreateBind<IPlayerInteractorService, PlayerInteractorService>().AsSingle();
+        CreateBind<IMessageManager, MessageManager.MessageManager>().AsSingle();
     }
 }
