@@ -1,0 +1,22 @@
+{
+  "TurnOnLight": {
+    "Messages": [
+      {
+        "Type": "LightSwitchToggled",
+        "Bool": false,
+      },
+      {
+        "Type": "LightSwitchToggled",
+        "Bool": false,
+      },
+      {
+        "Type": "LightSwitchToggled",
+        "Bool": false,
+      },
+      {
+        "Type": "LightSwitchToggled",
+        "Bool": false,
+      }
+    ],
+  },
+}

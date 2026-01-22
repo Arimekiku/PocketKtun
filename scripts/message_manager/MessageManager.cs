@@ -14,11 +14,11 @@ public class MessageManager : IMessageManager
         
     private class GenericCallback<TMessage> : Callback where TMessage : Message
     {
-        public Action<TMessage> CallbackEvent;
+        public Action<TMessage> Callback;
 
         public override void Invoke(object message)
         {
-            CallbackEvent.Invoke(message as TMessage);
+            Callback.Invoke(message as TMessage);
         }
 
         public override bool Equals(object obj)
@@ -26,16 +26,22 @@ public class MessageManager : IMessageManager
             if (obj is not GenericCallback<TMessage> other)
                 return false;
                 
-            return CallbackEvent == other.CallbackEvent;
+            return Callback == other.Callback;
         }
 
-        public override int GetHashCode() => CallbackEvent.GetHashCode();
+        public override int GetHashCode() => Callback.GetHashCode();
     }
 
-    [Inject] private ILogger _logger;
+    private readonly ILogger _logger;
     
     private readonly Dictionary<Type, Dictionary<int, HashSet<Callback>>> _subscribedCallbacks = new();
 
+    [Inject]
+    public MessageManager(ILogger logger) 
+    {
+        _logger = logger;
+    }
+    
     public void Publish<TType>(BaseMessage<TType> messageData) where TType : Enum
     {
         var messageType = messageData.Message.GetType();
@@ -83,7 +89,7 @@ public class MessageManager : IMessageManager
             callbacksHashSet = callbacks[message];
         }
 
-        var genericCallback = new GenericCallback<TMessage> { CallbackEvent = callback };
+        var genericCallback = new GenericCallback<TMessage> { Callback = callback };
             
         if (callbacksHashSet.Contains(genericCallback))
         {
@@ -114,7 +120,7 @@ public class MessageManager : IMessageManager
         if (!callbacks.TryGetValue(message, out var callbacksList))
             return;
 
-        var genericCallback = new GenericCallback<TMessage> { CallbackEvent = callback };
+        var genericCallback = new GenericCallback<TMessage> { Callback = callback };
             
         if (!callbacksList.Contains(genericCallback))
             return;
