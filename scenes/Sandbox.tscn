@@ -1,16 +1,15 @@
-[gd_scene load_steps=52 format=3 uid="uid://d0bdje052hqbl"]
+[gd_scene load_steps=51 format=3 uid="uid://d0bdje052hqbl"]
 
 [ext_resource type="Texture2D" uid="uid://dqh8onjfkhju3" path="res://resources/images/apollo-1x.png" id="2_vn80e"]
 [ext_resource type="Shader" uid="uid://ch4nd7axd0c2s" path="res://resources/shaders/Quantizator.gdshader" id="3_w2k4y"]
 [ext_resource type="PackedScene" uid="uid://dnu877iyx6p6f" path="res://scenes/Player.tscn" id="5_jm2hm"]
 [ext_resource type="PackedScene" uid="uid://6jpdo2rllhyl" path="res://scenes/modular_building/FloorCeiling1.tscn" id="6_def21"]
-[ext_resource type="PackedScene" uid="uid://cvn7cxfdpld0v" path="res://resources/models/modular_structures/walls/window_2_double.glb" id="6_fhxv8"]
 [ext_resource type="PackedScene" uid="uid://4ishcf45fhvp" path="res://scenes/SillyDancing.tscn" id="6_jm2hm"]
 [ext_resource type="PackedScene" uid="uid://dqi6xgau323et" path="res://scenes/modular_building/Wall.tscn" id="7_1ewh1"]
 [ext_resource type="PackedScene" uid="uid://73vtr20near4" path="res://resources/models/large_props/supply_crate_1.glb" id="7_n6hjk"]
-[ext_resource type="PackedScene" uid="uid://dw7crraky6u6h" path="res://resources/models/lighting/fake_light_window_2_double.glb" id="7_qgpyk"]
 [ext_resource type="Script" uid="uid://ct0n25uqp0vix" path="res://scripts/NodeRotator.cs" id="8_3mprh"]
 [ext_resource type="PackedScene" uid="uid://bbkutbe5h183f" path="res://scenes/Cabinet.tscn" id="9_w8s17"]
+[ext_resource type="PackedScene" uid="uid://cswcw782w63l0" path="res://scenes/modular_building/WindowDouble.tscn" id="10_x6f5f"]
 [ext_resource type="PackedScene" uid="uid://dxt53klx4k5tm" path="res://resources/models/small_props/ashtray_1.glb" id="11_63ay0"]
 [ext_resource type="PackedScene" uid="uid://cvwen2yg1vgxu" path="res://resources/models/large_props/metal_barrel_mp_3.glb" id="11_n6hjk"]
 [ext_resource type="PackedScene" uid="uid://b1t4fq0f80m4g" path="res://scenes/electronics/LightSwitch.tscn" id="11_vw0fq"]
@@ -286,10 +285,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 [node name="Wall3" parent="World/ChiefRoom/Layout/Walls/Second" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
 
-[node name="window_2_double2" parent="World/ChiefRoom/Layout/Walls/Second" instance=ExtResource("6_fhxv8")]
+[node name="WindowDouble" parent="World/ChiefRoom/Layout/Walls/Second" instance=ExtResource("10_x6f5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
-
-[node name="fake_light_window_2_double2" parent="World/ChiefRoom/Layout/Walls/Second/window_2_double2" instance=ExtResource("7_qgpyk")]
 
 [node name="Third" type="Node3D" parent="World/ChiefRoom/Layout/Walls"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8, 0, 0)
@@ -299,18 +296,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
 
 [node name="Wall2" parent="World/ChiefRoom/Layout/Walls/Third" instance=ExtResource("7_1ewh1")]
 
-[node name="window_2_double2" parent="World/ChiefRoom/Layout/Walls/Third" instance=ExtResource("6_fhxv8")]
+[node name="WindowDouble" parent="World/ChiefRoom/Layout/Walls/Third" instance=ExtResource("10_x6f5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
-
-[node name="fake_light_window_2_double2" parent="World/ChiefRoom/Layout/Walls/Third/window_2_double2" instance=ExtResource("7_qgpyk")]
 
 [node name="Fourth" type="Node3D" parent="World/ChiefRoom/Layout/Walls"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, 0)
 
-[node name="window_2_double2" parent="World/ChiefRoom/Layout/Walls/Fourth" instance=ExtResource("6_fhxv8")]
+[node name="WindowDouble" parent="World/ChiefRoom/Layout/Walls/Fourth" instance=ExtResource("10_x6f5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
-
-[node name="fake_light_window_2_double2" parent="World/ChiefRoom/Layout/Walls/Fourth/window_2_double2" instance=ExtResource("7_qgpyk")]
 
 [node name="Wall" parent="World/ChiefRoom/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
@@ -411,27 +404,6 @@ randomness = 1.0
 transform_align = 1
 process_material = SubResource("ParticleProcessMaterial_w8s17")
 draw_pass_1 = SubResource("QuadMesh_w8s17")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="World/ChiefRoom/Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9538097, 1.564419, -5.081059)
-light_color = Color(1, 0.9764706, 0.8901961, 1)
-light_energy = 1.4
-light_volumetric_fog_energy = 2.0
-shadow_enabled = true
-
-[node name="OmniLight3D2" type="OmniLight3D" parent="World/ChiefRoom/Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.0719585, 1.564419, 3.8916903)
-light_color = Color(1, 0.9764706, 0.8901961, 1)
-light_energy = 1.4
-light_volumetric_fog_energy = 2.0
-shadow_enabled = true
-
-[node name="OmniLight3D3" type="OmniLight3D" parent="World/ChiefRoom/Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.985983, 1.564419, -3.9405205)
-light_color = Color(1, 0.9764706, 0.8901961, 1)
-light_energy = 1.4
-light_volumetric_fog_energy = 2.0
-shadow_enabled = true
 
 [node name="Lamp" parent="World/ChiefRoom/Lights" instance=ExtResource("20_dbld1")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7.9400005, 2, 4)
@@ -587,10 +559,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.999999, 0, 0)
 [node name="Wall3" parent="World/DispatchRoom/Layout/Walls/Second" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
 
-[node name="window_2_double2" parent="World/DispatchRoom/Layout/Walls/Second" instance=ExtResource("6_fhxv8")]
+[node name="WindowDouble" parent="World/DispatchRoom/Layout/Walls/Second" instance=ExtResource("10_x6f5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
-
-[node name="fake_light_window_2_double2" parent="World/DispatchRoom/Layout/Walls/Second/window_2_double2" instance=ExtResource("7_qgpyk")]
 
 [node name="Third" type="Node3D" parent="World/DispatchRoom/Layout/Walls"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8, 0, 0)
@@ -600,10 +570,8 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8, 0
 [node name="Wall2" parent="World/DispatchRoom/Layout/Walls/Third" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
 
-[node name="window_2_double2" parent="World/DispatchRoom/Layout/Walls/Third" instance=ExtResource("6_fhxv8")]
+[node name="WindowDouble" parent="World/DispatchRoom/Layout/Walls/Third" instance=ExtResource("10_x6f5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
-
-[node name="fake_light_window_2_double2" parent="World/DispatchRoom/Layout/Walls/Third/window_2_double2" instance=ExtResource("7_qgpyk")]
 
 [node name="Fourth" type="Node3D" parent="World/DispatchRoom/Layout/Walls"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, 0)
@@ -613,10 +581,8 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 
 [node name="Wall2" parent="World/DispatchRoom/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
 
-[node name="window_2_double2" parent="World/DispatchRoom/Layout/Walls/Fourth" instance=ExtResource("6_fhxv8")]
+[node name="WindowDouble" parent="World/DispatchRoom/Layout/Walls/Fourth" instance=ExtResource("10_x6f5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
-
-[node name="fake_light_window_2_double2" parent="World/DispatchRoom/Layout/Walls/Fourth/window_2_double2" instance=ExtResource("7_qgpyk")]
 
 [node name="Decorations" type="Node3D" parent="World/DispatchRoom"]
 
@@ -712,27 +678,6 @@ randomness = 1.0
 transform_align = 1
 process_material = SubResource("ParticleProcessMaterial_w8s17")
 draw_pass_1 = SubResource("QuadMesh_w8s17")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="World/DispatchRoom/Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9538097, 1.564419, -5.081059)
-light_color = Color(1, 0.9764706, 0.8901961, 1)
-light_energy = 1.4
-light_volumetric_fog_energy = 2.0
-shadow_enabled = true
-
-[node name="OmniLight3D2" type="OmniLight3D" parent="World/DispatchRoom/Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.0719585, 1.564419, 3.8916903)
-light_color = Color(1, 0.9764706, 0.8901961, 1)
-light_energy = 1.4
-light_volumetric_fog_energy = 2.0
-shadow_enabled = true
-
-[node name="OmniLight3D3" type="OmniLight3D" parent="World/DispatchRoom/Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.985983, 1.564419, -3.9405205)
-light_color = Color(1, 0.9764706, 0.8901961, 1)
-light_energy = 1.4
-light_volumetric_fog_energy = 2.0
-shadow_enabled = true
 
 [node name="Lamp" parent="World/DispatchRoom/Lights" instance=ExtResource("20_dbld1")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7.9400005, 2, 4)
@@ -860,10 +805,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
 [node name="Doorway" parent="World/ChiefHallway/Layout/Walls/Third" instance=ExtResource("30_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
 
-[node name="window_2_double2" parent="World/ChiefHallway/Layout/Walls/Third" instance=ExtResource("6_fhxv8")]
+[node name="WindowDouble" parent="World/ChiefHallway/Layout/Walls/Third" instance=ExtResource("10_x6f5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.000001, 0, 0)
-
-[node name="fake_light_window_2_double2" parent="World/ChiefHallway/Layout/Walls/Third/window_2_double2" instance=ExtResource("7_qgpyk")]
 
 [node name="Fourth" type="Node3D" parent="World/ChiefHallway/Layout/Walls"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 0, 0)
@@ -876,10 +819,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.999999, 0, 0)
 [node name="Wall3" parent="World/ChiefHallway/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.999999, 0, 0)
 
-[node name="window_2_double2" parent="World/ChiefHallway/Layout/Walls/Fourth" instance=ExtResource("6_fhxv8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 9.536743e-07)
-
-[node name="fake_light_window_2_double2" parent="World/ChiefHallway/Layout/Walls/Fourth/window_2_double2" instance=ExtResource("7_qgpyk")]
+[node name="WindowDouble" parent="World/ChiefHallway/Layout/Walls/Fourth" instance=ExtResource("10_x6f5f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 1.9073486e-06)
 
 [node name="FirstFloorHallway" type="Node3D" parent="World"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, -3, 16)
@@ -952,10 +893,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.000001, 0, 0)
 [node name="Wall3" parent="World/FirstFloorHallway/Layout/Walls/Third" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
 
-[node name="window_2_double2" parent="World/FirstFloorHallway/Layout/Walls/Third" instance=ExtResource("6_fhxv8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.000001, 0, -1.9073486e-06)
-
-[node name="fake_light_window_2_double2" parent="World/FirstFloorHallway/Layout/Walls/Third/window_2_double2" instance=ExtResource("7_qgpyk")]
+[node name="WindowDouble" parent="World/FirstFloorHallway/Layout/Walls/Third" instance=ExtResource("10_x6f5f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.000001, 0, -5.722046e-06)
 
 [node name="Fourth" type="Node3D" parent="World/FirstFloorHallway/Layout/Walls"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 0, 0)
@@ -968,10 +907,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
 [node name="Wall3" parent="World/FirstFloorHallway/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
 
-[node name="window_2_double2" parent="World/FirstFloorHallway/Layout/Walls/Fourth" instance=ExtResource("6_fhxv8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.999999, 0, 0)
-
-[node name="fake_light_window_2_double2" parent="World/FirstFloorHallway/Layout/Walls/Fourth/window_2_double2" instance=ExtResource("7_qgpyk")]
+[node name="WindowDouble" parent="World/FirstFloorHallway/Layout/Walls/Fourth" instance=ExtResource("10_x6f5f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.999998, 0, 0)
 
 [node name="FloorCeiling1" parent="World/FirstFloorHallway" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3, 8)
@@ -1096,10 +1033,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 [node name="Wall3" parent="World/ReceptionRoom/Layout/Walls/Second" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
 
-[node name="window_2_double2" parent="World/ReceptionRoom/Layout/Walls/Second" instance=ExtResource("6_fhxv8")]
+[node name="WindowDouble" parent="World/ReceptionRoom/Layout/Walls/Second" instance=ExtResource("10_x6f5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
-
-[node name="fake_light_window_2_double2" parent="World/ReceptionRoom/Layout/Walls/Second/window_2_double2" instance=ExtResource("7_qgpyk")]
 
 [node name="Third" type="Node3D" parent="World/ReceptionRoom/Layout/Walls"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8, 0, 0)
@@ -1109,18 +1044,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
 
 [node name="Wall2" parent="World/ReceptionRoom/Layout/Walls/Third" instance=ExtResource("7_1ewh1")]
 
-[node name="window_2_double2" parent="World/ReceptionRoom/Layout/Walls/Third" instance=ExtResource("6_fhxv8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
-
-[node name="fake_light_window_2_double2" parent="World/ReceptionRoom/Layout/Walls/Third/window_2_double2" instance=ExtResource("7_qgpyk")]
+[node name="WindowDouble" parent="World/ReceptionRoom/Layout/Walls/Third" instance=ExtResource("10_x6f5f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 9.536743e-07)
 
 [node name="Fourth" type="Node3D" parent="World/ReceptionRoom/Layout/Walls"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, 0)
 
-[node name="window_2_double2" parent="World/ReceptionRoom/Layout/Walls/Fourth" instance=ExtResource("6_fhxv8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
-
-[node name="fake_light_window_2_double2" parent="World/ReceptionRoom/Layout/Walls/Fourth/window_2_double2" instance=ExtResource("7_qgpyk")]
+[node name="WindowDouble" parent="World/ReceptionRoom/Layout/Walls/Fourth" instance=ExtResource("10_x6f5f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.000002, 0, 0)
 
 [node name="Wall" parent="World/ReceptionRoom/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
@@ -1221,27 +1152,6 @@ randomness = 1.0
 transform_align = 1
 process_material = SubResource("ParticleProcessMaterial_w8s17")
 draw_pass_1 = SubResource("QuadMesh_w8s17")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="World/ReceptionRoom/Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9538097, 1.564419, -5.081059)
-light_color = Color(1, 0.9764706, 0.8901961, 1)
-light_energy = 1.4
-light_volumetric_fog_energy = 2.0
-shadow_enabled = true
-
-[node name="OmniLight3D2" type="OmniLight3D" parent="World/ReceptionRoom/Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.0719585, 1.564419, 3.8916903)
-light_color = Color(1, 0.9764706, 0.8901961, 1)
-light_energy = 1.4
-light_volumetric_fog_energy = 2.0
-shadow_enabled = true
-
-[node name="OmniLight3D3" type="OmniLight3D" parent="World/ReceptionRoom/Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.985983, 1.564419, -3.9405205)
-light_color = Color(1, 0.9764706, 0.8901961, 1)
-light_energy = 1.4
-light_volumetric_fog_energy = 2.0
-shadow_enabled = true
 
 [node name="Lamp" parent="World/ReceptionRoom/Lights" instance=ExtResource("20_dbld1")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7.9400005, 2, 4)
@@ -1399,10 +1309,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
 [node name="Wall3" parent="World/BasementHallway/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
 
-[node name="window_2_double2" parent="World/BasementHallway/Layout/Walls/Fourth" instance=ExtResource("6_fhxv8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.999999, 0, 0)
-
-[node name="fake_light_window_2_double2" parent="World/BasementHallway/Layout/Walls/Fourth/window_2_double2" instance=ExtResource("7_qgpyk")]
+[node name="WindowDouble" parent="World/BasementHallway/Layout/Walls/Fourth" instance=ExtResource("10_x6f5f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.999998, 0, 0)
 
 [node name="JailRoom" type="Node3D" parent="World"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 26, -6, 6)
@@ -1476,11 +1384,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0000005, 0, 0)
 [node name="Second" type="Node3D" parent="World/JailRoom/Layout/Walls"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -6)
 
+[node name="Doorway" parent="World/JailRoom/Layout/Walls/Second" instance=ExtResource("30_1ewh1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9999995, 0, 1.9073486e-06)
+
 [node name="Wall" parent="World/JailRoom/Layout/Walls/Second" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
-
-[node name="Doorway" parent="World/JailRoom/Layout/Walls/Second/Wall" instance=ExtResource("30_1ewh1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
 
 [node name="Third" type="Node3D" parent="World/JailRoom/Layout/Walls"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4, 0, 0)
@@ -1493,10 +1401,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
 [node name="Wall3" parent="World/JailRoom/Layout/Walls/Third" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
 
-[node name="window_2_double2" parent="World/JailRoom/Layout/Walls/Third" instance=ExtResource("6_fhxv8")]
+[node name="WindowDouble" parent="World/JailRoom/Layout/Walls/Third" instance=ExtResource("10_x6f5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
-
-[node name="fake_light_window_2_double2" parent="World/JailRoom/Layout/Walls/Third/window_2_double2" instance=ExtResource("7_qgpyk")]
 
 [node name="Fourth" type="Node3D" parent="World/JailRoom/Layout/Walls"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 0, 0)
@@ -1509,10 +1415,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -9.536743e-07)
 [node name="Wall3" parent="World/JailRoom/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -1.9073486e-06)
 
-[node name="window_2_double2" parent="World/JailRoom/Layout/Walls/Fourth" instance=ExtResource("6_fhxv8")]
+[node name="WindowDouble" parent="World/JailRoom/Layout/Walls/Fourth" instance=ExtResource("10_x6f5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
-
-[node name="fake_light_window_2_double2" parent="World/JailRoom/Layout/Walls/Fourth/window_2_double2" instance=ExtResource("7_qgpyk")]
 
 [node name="ForensicsRoom" type="Node3D" parent="World"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 26, -6, 22)
@@ -1640,10 +1544,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 [node name="Wall3" parent="World/ForensicsRoom/Layout/Walls/Second" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
 
-[node name="window_2_double2" parent="World/ForensicsRoom/Layout/Walls/Second" instance=ExtResource("6_fhxv8")]
+[node name="WindowDouble" parent="World/ForensicsRoom/Layout/Walls/Second" instance=ExtResource("10_x6f5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
-
-[node name="fake_light_window_2_double2" parent="World/ForensicsRoom/Layout/Walls/Second/window_2_double2" instance=ExtResource("7_qgpyk")]
 
 [node name="Third" type="Node3D" parent="World/ForensicsRoom/Layout/Walls"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8, 0, 0)
@@ -1653,18 +1555,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
 
 [node name="Wall2" parent="World/ForensicsRoom/Layout/Walls/Third" instance=ExtResource("7_1ewh1")]
 
-[node name="window_2_double2" parent="World/ForensicsRoom/Layout/Walls/Third" instance=ExtResource("6_fhxv8")]
+[node name="WindowDouble" parent="World/ForensicsRoom/Layout/Walls/Third" instance=ExtResource("10_x6f5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
-
-[node name="fake_light_window_2_double2" parent="World/ForensicsRoom/Layout/Walls/Third/window_2_double2" instance=ExtResource("7_qgpyk")]
 
 [node name="Fourth" type="Node3D" parent="World/ForensicsRoom/Layout/Walls"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, 0)
 
-[node name="window_2_double2" parent="World/ForensicsRoom/Layout/Walls/Fourth" instance=ExtResource("6_fhxv8")]
+[node name="WindowDouble" parent="World/ForensicsRoom/Layout/Walls/Fourth" instance=ExtResource("10_x6f5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
-
-[node name="fake_light_window_2_double2" parent="World/ForensicsRoom/Layout/Walls/Fourth/window_2_double2" instance=ExtResource("7_qgpyk")]
 
 [node name="Wall" parent="World/ForensicsRoom/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
@@ -1766,27 +1664,6 @@ transform_align = 1
 process_material = SubResource("ParticleProcessMaterial_w8s17")
 draw_pass_1 = SubResource("QuadMesh_w8s17")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="World/ForensicsRoom/Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9538097, 1.564419, -5.081059)
-light_color = Color(1, 0.9764706, 0.8901961, 1)
-light_energy = 1.4
-light_volumetric_fog_energy = 2.0
-shadow_enabled = true
-
-[node name="OmniLight3D2" type="OmniLight3D" parent="World/ForensicsRoom/Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.0719585, 1.564419, 3.8916903)
-light_color = Color(1, 0.9764706, 0.8901961, 1)
-light_energy = 1.4
-light_volumetric_fog_energy = 2.0
-shadow_enabled = true
-
-[node name="OmniLight3D3" type="OmniLight3D" parent="World/ForensicsRoom/Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.985983, 1.564419, -3.9405205)
-light_color = Color(1, 0.9764706, 0.8901961, 1)
-light_energy = 1.4
-light_volumetric_fog_energy = 2.0
-shadow_enabled = true
-
 [node name="Lamp" parent="World/ForensicsRoom/Lights" instance=ExtResource("20_dbld1")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7.9400005, 2, 4)
 
@@ -1838,7 +1715,7 @@ shadow_enabled = true
 script = ExtResource("25_dbld1")
 _sun = NodePath("../DirectionalLight3D")
 _environment = NodePath("../WorldEnvironment")
-_lights = [NodePath("../World/ChiefRoom/Lights/OmniLight3D"), NodePath("../World/ChiefRoom/Lights/OmniLight3D2"), NodePath("../World/ChiefRoom/Lights/OmniLight3D3")]
+_lights = []
 _skyColors = SubResource("Gradient_dbld1")
 
 [node name="UI" type="CanvasLayer" parent="."]
