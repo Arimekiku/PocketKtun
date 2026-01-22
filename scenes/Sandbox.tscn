@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://d0bdje052hqbl"]
+[gd_scene load_steps=52 format=3 uid="uid://d0bdje052hqbl"]
 
 [ext_resource type="Texture2D" uid="uid://dqh8onjfkhju3" path="res://resources/images/apollo-1x.png" id="2_vn80e"]
 [ext_resource type="Shader" uid="uid://ch4nd7axd0c2s" path="res://resources/shaders/Quantizator.gdshader" id="3_w2k4y"]
@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://d20bpo4bw8rgc" path="res://resources/models/bookshelf.blend" id="25_tji15"]
 [ext_resource type="PackedScene" uid="uid://fn0n17ai3tj6" path="res://resources/models/small_props/brick.glb" id="26_olo10"]
 [ext_resource type="PackedScene" uid="uid://byfgkwagg72hf" path="res://resources/models/small_props/book_mp_2.glb" id="27_p1xtl"]
+[ext_resource type="PackedScene" uid="uid://sbxidhm0ee21" path="res://scenes/electronics/CeilingLamp.tscn" id="29_def21"]
 [ext_resource type="PackedScene" uid="uid://gaby635so0g0" path="res://resources/models/electronics/ceiling_fan_mp_2_1_light_on.glb" id="29_n3q1u"]
 [ext_resource type="PackedScene" uid="uid://dpu0jls4cf5bc" path="res://scenes/modular_building/Doorway.tscn" id="30_1ewh1"]
 [ext_resource type="PackedScene" uid="uid://crwoyn2l6l8e5" path="res://resources/models/modular_structures/walls/doorway_3_wide.glb" id="30_8v3jm"]
@@ -719,6 +720,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -3)
 [node name="ChiefHallway" type="Node3D" parent="World"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 12)
 
+[node name="CeilingLamp4" parent="World/ChiefHallway" instance=ExtResource("29_def21")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 3, -2)
+
+[node name="CeilingLamp5" parent="World/ChiefHallway" instance=ExtResource("29_def21")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 3, 6)
+
 [node name="Stairs" type="StaticBody3D" parent="World/ChiefHallway"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -3, 8)
 
@@ -1190,6 +1197,12 @@ draw_pass_1 = SubResource("QuadMesh_w8s17")
 [node name="car_placeholder" parent="World/ReceptionRoom" instance=ExtResource("31_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -3)
 
+[node name="CeilingLamp4" parent="World/ReceptionRoom" instance=ExtResource("29_def21")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 3, 18)
+
+[node name="CeilingLamp5" parent="World/ReceptionRoom" instance=ExtResource("29_def21")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3.8146973e-06, 3, 10)
+
 [node name="BasementHallway" type="Node3D" parent="World"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, -6, 16)
 
@@ -1312,6 +1325,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
 [node name="WindowDouble" parent="World/BasementHallway/Layout/Walls/Fourth" instance=ExtResource("10_x6f5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.999998, 0, 0)
 
+[node name="CeilingLamp4" parent="World/BasementHallway" instance=ExtResource("29_def21")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 3, -2)
+
+[node name="CeilingLamp5" parent="World/BasementHallway" instance=ExtResource("29_def21")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 3, -10)
+
 [node name="JailRoom" type="Node3D" parent="World"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 26, -6, 6)
 
@@ -1417,6 +1436,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -1.9073486e-06)
 
 [node name="WindowDouble" parent="World/JailRoom/Layout/Walls/Fourth" instance=ExtResource("10_x6f5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="CeilingLamp4" parent="World/JailRoom" instance=ExtResource("29_def21")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 3, -2)
+
+[node name="CeilingLamp5" parent="World/JailRoom" instance=ExtResource("29_def21")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9.536743e-07, 3, 6)
 
 [node name="ForensicsRoom" type="Node3D" parent="World"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 26, -6, 22)

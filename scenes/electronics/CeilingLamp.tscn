@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://sbxidhm0ee21"]
+
+[ext_resource type="PackedScene" uid="uid://da2qru3hsduln" path="res://resources/models/lighting/ceiling_lamp_4_1_b_on.glb" id="1_i884n"]
+[ext_resource type="PackedScene" uid="uid://yd30i6xbs7qs" path="res://resources/models/lighting/ceiling_lamp_2_fake_light_1.glb" id="2_c0vom"]
+
+[node name="CeilingLamp4" instance=ExtResource("1_i884n")]
+
+[node name="ceiling_lamp_2_fake_light_12" parent="ceiling_lamp_4_1_b_on/ceiling_lamp_4_1_b_on_protector" index="0" instance=ExtResource("2_c0vom")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+shadow_enabled = true
