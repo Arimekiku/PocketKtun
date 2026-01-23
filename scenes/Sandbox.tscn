@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://d0bdje052hqbl"]
+[gd_scene load_steps=58 format=3 uid="uid://d0bdje052hqbl"]
 
 [ext_resource type="Texture2D" uid="uid://dqh8onjfkhju3" path="res://resources/images/apollo-1x.png" id="2_vn80e"]
 [ext_resource type="Shader" uid="uid://ch4nd7axd0c2s" path="res://resources/shaders/Quantizator.gdshader" id="3_w2k4y"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://c3npd28chu7bv" path="res://resources/models/items/pills_bottle_1_1.glb" id="23_8v3jm"]
 [ext_resource type="PackedScene" uid="uid://80nyhrmrmd14" path="res://resources/models/small_props/vhs_tape_1.glb" id="23_dbld1"]
 [ext_resource type="Script" uid="uid://dqpnlwdtynkvb" path="res://scripts/DayNightCycle.cs" id="25_dbld1"]
+[ext_resource type="PackedScene" uid="uid://c1ltqud1pi1ok" path="res://resources/models/small_props/keypad_2.glb" id="25_t2amj"]
 [ext_resource type="PackedScene" uid="uid://d20bpo4bw8rgc" path="res://resources/models/bookshelf.blend" id="25_tji15"]
 [ext_resource type="PackedScene" uid="uid://fn0n17ai3tj6" path="res://resources/models/small_props/brick.glb" id="26_olo10"]
 [ext_resource type="PackedScene" uid="uid://byfgkwagg72hf" path="res://resources/models/small_props/book_mp_2.glb" id="27_p1xtl"]
@@ -31,8 +32,12 @@
 [ext_resource type="PackedScene" uid="uid://crwoyn2l6l8e5" path="res://resources/models/modular_structures/walls/doorway_3_wide.glb" id="30_8v3jm"]
 [ext_resource type="PackedScene" uid="uid://bi2vj35vqg5kr" path="res://resources/models/car_placeholder.blend" id="31_1ewh1"]
 [ext_resource type="PackedScene" uid="uid://dmji7348fpj6q" path="res://resources/models/modular_structures/stairs_5_wood.glb" id="32_def21"]
+[ext_resource type="PackedScene" uid="uid://cte1r2id63bm" path="res://resources/models/refrigerator.blend" id="32_x6f5f"]
 [ext_resource type="Script" uid="uid://bc586og4uc5h" path="res://scripts/event_system/factory/EventProcesser.cs" id="33_def21"]
 [ext_resource type="ArrayOccluder3D" uid="uid://b5xu6wy1who7u" path="res://resources/department_occluder_map.occ" id="34_x6f5f"]
+[ext_resource type="PackedScene" uid="uid://cig0xj7a85hjt" path="res://resources/models/stretcher.blend" id="34_yfhit"]
+[ext_resource type="PackedScene" uid="uid://du6yysxbqyhk" path="res://resources/models/table_lamp_alt.blend" id="37_oef5p"]
+[ext_resource type="PackedScene" uid="uid://b8axrutfvw0tc" path="res://resources/models/small_props/toy_brick_1.glb" id="38_yfhit"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n4mgf"]
 shader = ExtResource("3_w2k4y")
@@ -134,6 +139,9 @@ adjustment_color_correction = SubResource("GradientTexture1D_qgpyk")
 [sub_resource type="Gradient" id="Gradient_dbld1"]
 offsets = PackedFloat32Array(0, 0.2, 0.35, 0.45, 0.5, 0.75, 0.85, 1)
 colors = PackedColorArray(0.31764957, 0.44437692, 0.87262076, 1, 0.46389598, 0.5836723, 0.9376905, 1, 0.9490196, 0.44313726, 0.12941177, 1, 0.54509807, 0.7764706, 0.9254902, 1, 0.83137256, 0.9137255, 1, 1, 1, 0.61960787, 0.17254902, 1, 0.645505, 0.2215834, 0.6215979, 1, 0.25757664, 0.3364154, 0.41539755, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oef5p"]
+size = Vector3(1, 0.6, 1.5)
 
 [node name="Sandbox" type="Node"]
 
@@ -379,6 +387,9 @@ transform = Transform3D(-0.31541717, 0, -0.94895315, 0, 1, 0, 0.94895315, 0, -0.
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/ChiefRoom/Decorations/Barrel"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_n6hjk")
+
+[node name="keypad_22" parent="World/ChiefRoom/Decorations" instance=ExtResource("25_t2amj")]
+transform = Transform3D(-0.99999994, 0, 5.9604645e-08, 0, 1, 0, -5.9604645e-08, 0, -0.99999994, -3, 1, 5.9)
 
 [node name="Lights" type="Node3D" parent="World/ChiefRoom"]
 
@@ -1446,15 +1457,6 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9.5
 [node name="ForensicsRoom" type="Node3D" parent="World"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 26, -6, 22)
 
-[node name="DancingDude" type="StaticBody3D" parent="World/ForensicsRoom"]
-transform = Transform3D(-0.6853737, 0, -0.7281915, 0, 1, 0, 0.7281915, 0, -0.6853737, -0.0833168, 0, 5.0431004)
-
-[node name="SillyDancing" parent="World/ForensicsRoom/DancingDude" instance=ExtResource("6_jm2hm")]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/ForensicsRoom/DancingDude"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_a0ubh")
-
 [node name="LightSwitch" parent="World/ForensicsRoom" node_paths=PackedStringArray("_meshChanger", "_connectedLight", "_connectedParticles") instance=ExtResource("11_vw0fq")]
 transform = Transform3D(-0.9912154, -0.13225639, -8.742277e-08, -0.13225637, 0.9912155, 0, 8.665481e-08, 1.15622205e-08, -0.9999999, -2.9449997, 1.4725647, 5.94)
 _meshChanger = NodePath("../Lights/Lamp")
@@ -1596,33 +1598,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
 
 [node name="Decorations" type="Node3D" parent="World/ForensicsRoom"]
 
-[node name="cabinet-col" parent="World/ForensicsRoom/Decorations" instance=ExtResource("9_w8s17")]
-transform = Transform3D(0.25881904, 0, -0.96592593, 0, 1, 0, 0.96592593, 0, 0.25881904, 4, 0, -3)
-
-[node name="pc_speaker_1_left2" parent="World/ForensicsRoom/Decorations/cabinet-col" instance=ExtResource("21_ve8sh")]
-transform = Transform3D(1.4901161e-08, 0, -0.9999994, 0, 1, 0, 0.9999994, 0, 1.4901161e-08, -0.025384188, 0.9950221, 0.9587326)
-
-[node name="tv_remote_mp_12" parent="World/ForensicsRoom/Decorations/cabinet-col" instance=ExtResource("22_qgpyk")]
-transform = Transform3D(0.91861826, 0, -0.39514467, 0, 1, 0, 0.39514467, 0, 0.91861826, -0.35022712, 0.9950222, 0.19493866)
-
-[node name="vhs_tape_12" parent="World/ForensicsRoom/Decorations/cabinet-col" instance=ExtResource("23_dbld1")]
-transform = Transform3D(-0.678121, 0, -0.7349499, 0, 1, 0, 0.7349499, 0, -0.678121, -0.14825845, 1.0128492, 0.6833172)
-
-[node name="ashtray_12" parent="World/ForensicsRoom/Decorations/cabinet-col" instance=ExtResource("11_63ay0")]
-transform = Transform3D(1.4901161e-08, 0, -0.9999994, 0, 1, 0, 0.9999994, 0, 1.4901161e-08, -0.58356357, 0.9950222, 1.7021999)
-
-[node name="book_mp_12" parent="World/ForensicsRoom/Decorations/cabinet-col" instance=ExtResource("12_y5c0f")]
-transform = Transform3D(0.49094933, 0, -0.8711879, 0, 1, 0, 0.8711879, 0, 0.49094933, 0.7550235, 0.53514344, -2.3714314)
-
-[node name="cig_12" parent="World/ForensicsRoom/Decorations/cabinet-col" instance=ExtResource("13_l5e33")]
-transform = Transform3D(1.4901161e-08, 0, -0.9999994, 0, 1, 0, 0.9999994, 0, 1.4901161e-08, -0.47141075, 0.9950222, 1.7430439)
-
-[node name="cig_22" parent="World/ForensicsRoom/Decorations/cabinet-col" instance=ExtResource("14_ve8sh")]
-transform = Transform3D(-1.4901161e-08, -1.8626451e-08, -0.9999994, 0.15386544, 0.98809206, 1.974389e-09, 0.9880917, -0.15386541, 1.3411045e-07, -0.5819726, 1.0115087, 1.628952)
-
-[node name="pills_bottle_1_12" parent="World/ForensicsRoom/Decorations/cabinet-col" instance=ExtResource("23_8v3jm")]
-transform = Transform3D(0.25881895, 0, 0.9659256, 0, 1, 0, -0.9659256, 0, 0.25881895, -0.053622007, 1, 1.7455978)
-
 [node name="Bookshelf" type="StaticBody3D" parent="World/ForensicsRoom/Decorations"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7.7, 0, 3.7)
 
@@ -1723,11 +1698,14 @@ transform_align = 1
 process_material = SubResource("ParticleProcessMaterial_w8s17")
 draw_pass_1 = SubResource("QuadMesh_w8s17")
 
-[node name="car_placeholder" parent="World/ForensicsRoom" instance=ExtResource("31_1ewh1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -3)
-
 [node name="Entrance" parent="World" instance=ExtResource("30_8v3jm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, -3, 42)
+
+[node name="refrigerator" parent="World" instance=ExtResource("32_x6f5f")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 31, -6, 16)
+
+[node name="stretcher" parent="World" instance=ExtResource("34_yfhit")]
+transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, 25, -6, 22)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_w2k4y")
@@ -1735,6 +1713,10 @@ environment = SubResource("Environment_w2k4y")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 10, 0)
 shadow_enabled = true
+
+[node name="TestEventProcesser" type="Node" parent="."]
+script = ExtResource("33_def21")
+_startingEvents = "res://resources/events/basic_events.json"
 
 [node name="CycleComponent" type="Node" parent="." node_paths=PackedStringArray("_sun", "_environment", "_lights")]
 script = ExtResource("25_dbld1")
@@ -1759,6 +1741,15 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Test" type="Node" parent="."]
-script = ExtResource("33_def21")
-_startingEvents = "res://resources/events/basic_events.json"
+[node name="table_lamp_alt" parent="." instance=ExtResource("37_oef5p")]
+transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, 31, -6, 20)
+
+[node name="MovableObject" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 1)
+
+[node name="toy_brick_12" parent="MovableObject" instance=ExtResource("38_yfhit")]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MovableObject"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+shape = SubResource("BoxShape3D_oef5p")
