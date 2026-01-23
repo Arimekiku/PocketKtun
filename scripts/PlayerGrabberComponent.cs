@@ -34,11 +34,7 @@ public partial class PlayerGrabberComponent : Node
     {
         if (Input.IsActionJustPressed(Inputs.LeftMouse))
         {
-            if (_grabbedObject == null)
-                TryGrab();
-            else
-                Release();
-
+            _grabbedObject = HandleGrabbing();   
             _lineRenderer.EndNode = _grabbedObject;
         }
 
@@ -50,48 +46,41 @@ public partial class PlayerGrabberComponent : Node
         var yaw = -motion.Relative.X * 0.003f;
         var pitch = -motion.Relative.Y * 0.003f;
         
-        _targetBasis =
-            new Basis(Vector3.Up, yaw) *
-            new Basis(Vector3.Right, pitch) *
-            _targetBasis;
+        _targetBasis = new Basis(Vector3.Up, yaw) *
+                       new Basis(Vector3.Right, pitch) *
+                       _targetBasis;
     }
 
-    private void TryGrab()
+    private RigidBody3D HandleGrabbing()
     {
+        if (_grabbedObject != null)
+            return null;
         if (!_rayCast.IsColliding())
-            return;
+            return null;
         if (_rayCast.GetCollider() is not RigidBody3D body)
-            return;
+            return null;
 
         _grabbedObject = body;
         _grabbedObject.Sleeping = false;
 
         _targetBasis = _grabbedObject.GlobalTransform.Basis;
-    }
 
-    private void Release()
-    {
-        _grabbedObject = null;
+        return body;
     }
 
     private void ApplyPullForce()
     {
-        Vector3 delta = _grabPoint.GlobalPosition - _grabbedObject.GlobalPosition;
-        float distance = delta.Length();
+        var delta = _grabPoint.GlobalPosition - _grabbedObject.GlobalPosition;
+        var distance = delta.Length();
 
         if (distance < 0.05f)
             return;
 
-        float strength = Mathf.Clamp(distance * distance, 0f, 1f);
-
-        Vector3 force =
-            delta.Normalized() * strength * _pullForce
-            - _grabbedObject.LinearVelocity * 0.9f;
+        var strength = Mathf.Clamp(distance * distance, 0f, 1f);
+        var force = delta.Normalized() * strength * _pullForce - _grabbedObject.LinearVelocity * 0.9f;
 
         _grabbedObject.ApplyCentralForce(force);
-
-        _grabbedObject.LinearVelocity =
-            _grabbedObject.LinearVelocity.LimitLength(3.5f);
+        _grabbedObject.LinearVelocity = _grabbedObject.LinearVelocity.LimitLength(3.5f);
     }
 
 
@@ -103,13 +92,12 @@ public partial class PlayerGrabberComponent : Node
         var diff = target * current.Inverse();
         diff = diff.Normalized();
 
-        var axis = diff.GetAxis();
         var angle = diff.GetAngle();
-
-        if (angle > 0.001f)
-        {
-            var torque = (axis * angle * _rotateForce).LimitLength(10f);
-            _grabbedObject.ApplyTorque(torque);
-        }
+        if (angle <= 0.001f)
+            return;
+        
+        var axis = diff.GetAxis();
+        var torque = (axis * angle * _rotateForce).LimitLength(10f);
+        _grabbedObject.ApplyTorque(torque);
     }
 }
