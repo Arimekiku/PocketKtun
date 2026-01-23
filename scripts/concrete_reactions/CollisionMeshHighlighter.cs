@@ -14,12 +14,12 @@ public partial class CollisionMeshHighlighter : BaseInteractReaction
     public override void FocusReaction()
     {
         var mat = _mesh.GetActiveMaterial(0).NextPass as ShaderMaterial;
-        mat?.SetShaderParameter("outline_width", 2.0f);
+        mat?.SetShaderParameter("outline_width", 1.0);
     }
 
     public override void UnfocusReaction()
     {
         var mat = _mesh.GetActiveMaterial(0).NextPass as ShaderMaterial;
-        mat?.SetShaderParameter("outline_width", 0.0f);
+        mat?.SetShaderParameter("outline_width", 0.0);
     }
 }

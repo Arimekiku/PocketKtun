@@ -6,18 +6,18 @@ namespace Scripts.Gameplay;
 public partial class PlayerGrabberRibbon : MeshInstance3D
 {
     [ExportGroup("Nodes")]
-    [Export] public Node3D StartNode;
-    [Export] public Node3D EndNode;
+    [Export] private Node3D _startNode;
+    [Export] private Node3D _endNode;
 
     [ExportGroup("Visuals")]
-    [Export] public float BaseRadius = 0.05f;
-    [Export] public int Segments = 16;
-    [Export] public int RadialSegments = 6;
-    [Export] public Curve WidthCurve; 
+    [Export] private float _baseRadius = 0.05f;
+    [Export] private int _segments = 16;
+    [Export] private int _radialSegments = 6;
+    [Export] private Curve _widthCurve; 
     
     [ExportGroup("Curve Settings")]
-    [Export] public float CurveHeight = 0.5f;
-    [Export] public Vector3 CurveDirection = Vector3.Up;
+    [Export] private float _curveHeight = 0.5f;
+    [Export] private Vector3 _curveDirection = Vector3.Up;
 
     private ImmediateMesh _immMesh;
 
@@ -31,51 +31,51 @@ public partial class PlayerGrabberRibbon : MeshInstance3D
     {
         _immMesh.ClearSurfaces();
         
-        if (EndNode == null || StartNode == null)
+        if (_endNode == null || _startNode == null)
             return;
-        if (!IsInstanceValid(EndNode) || !IsInstanceValid(StartNode))
+        if (!IsInstanceValid(_endNode) || !IsInstanceValid(_startNode))
             return;
         
-        var start = StartNode.GlobalPosition - GlobalPosition;
-        var end = EndNode.GlobalPosition - GlobalPosition;
+        var start = _startNode.GlobalPosition - GlobalPosition;
+        var end = _endNode.GlobalPosition - GlobalPosition;
         var mid = (start + end) * 0.5f;
-        var control = mid + (CurveDirection.Normalized() * CurveHeight);
+        var control = mid + (_curveDirection.Normalized() * _curveHeight);
 
         _immMesh.SurfaceBegin(Mesh.PrimitiveType.Triangles);
 
-        var prevRing = new Vector3[RadialSegments];
-        for (var i = 0; i <= Segments; i++)
+        var prevRing = new Vector3[_radialSegments];
+        for (var i = 0; i <= _segments; i++)
         {
-            var t = (float)i / Segments;
+            var t = (float)i / _segments;
             var center = start.BezierInterpolate(control, control, end, t);
             
-            var radiusFactor = WidthCurve?.Sample(t) ?? 1.0f;
-            var currentRadius = BaseRadius * radiusFactor;
+            var radiusFactor = _widthCurve?.Sample(t) ?? 1.0f;
+            var currentRadius = _baseRadius * radiusFactor;
 
-            var nextT = (i < Segments)
-                ? start.BezierInterpolate(control, control, end, (i + 1f) / Segments)
-                : center + (center - start.BezierInterpolate(control, control, end, (i - 1f) / Segments));
+            var nextT = (i < _segments)
+                ? start.BezierInterpolate(control, control, end, (i + 1f) / _segments)
+                : center + (center - start.BezierInterpolate(control, control, end, (i - 1f) / _segments));
 
             var forward = (nextT - center).Normalized();
             var right = forward.Cross(Mathf.Abs(forward.Y) > 0.9f ? Vector3.Right : Vector3.Up).Normalized();
             var up = right.Cross(forward).Normalized();
 
-            var currRing = new Vector3[RadialSegments];
-            for (var r = 0; r < RadialSegments; r++)
+            var currRing = new Vector3[_radialSegments];
+            for (var r = 0; r < _radialSegments; r++)
             {
-                var angle = (float)r / RadialSegments * Mathf.Pi * 2.0f;
+                var angle = (float)r / _radialSegments * Mathf.Pi * 2.0f;
                 currRing[r] = center + (right * Mathf.Cos(angle) + up * Mathf.Sin(angle)) * currentRadius;
             }
 
             if (i > 0)
             {
-                for (var r = 0; r < RadialSegments; r++)
+                for (var r = 0; r < _radialSegments; r++)
                 {
-                    var nextR = (r + 1) % RadialSegments;
-                    var uPrev = (float)(i - 1) / Segments;
-                    var uCurr = (float)i / Segments;
-                    var v = (float)r / RadialSegments;
-                    var vNext = (float)(r + 1) / RadialSegments;
+                    var nextR = (r + 1) % _radialSegments;
+                    var uPrev = (float)(i - 1) / _segments;
+                    var uCurr = (float)i / _segments;
+                    var v = (float)r / _radialSegments;
+                    var vNext = (float)(r + 1) / _radialSegments;
 
                     _immMesh.SurfaceSetUV(new Vector2(uPrev, v));
                     _immMesh.SurfaceAddVertex(prevRing[r]);
@@ -97,5 +97,10 @@ public partial class PlayerGrabberRibbon : MeshInstance3D
         }
 
         _immMesh.SurfaceEnd();
+    }
+    
+    public void ChangeTarget(Node3D newTarget) 
+    {
+        _endNode = newTarget;
     }
 }

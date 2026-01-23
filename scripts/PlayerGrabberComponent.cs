@@ -1,103 +1,102 @@
 using Godot;
+using System;
 
 namespace Scripts.Gameplay;
 
 public partial class PlayerGrabberComponent : Node
 {
-    [Export] private RayCast3D _rayCast;
-    [Export] private PlayerGrabberRibbon _lineRenderer;
-    [Export] private Node3D _grabPoint;
+    [Export] private RayCast3D _raycast;
+    [Export] private Marker3D _grabPoint;
 
-    [Export] private float _holdDistance = 2.5f;
-    [Export] private float _pullForce = 40f;
-    [Export] private float _rotateForce = 8f;
-    [Export] private float _maxForce = 60f;
+    [ExportGroup("Physics Constants")]
+    [Export] private float _pullPower = 30f;
+    [Export] private float _dampening = 2.5f;
+    [Export] private float _rotatePower = 15f;
+    [Export] private float _maxForce = 200f;
 
-    private RigidBody3D _grabbedObject;
-    private Basis _targetBasis;
-
-    public override void _Ready()
-    {
-        _lineRenderer.EndNode = null;
-    }
+    private RigidBody3D _grabbed;
+    private Vector3 _hitOffset;
+    private Basis _relativeBasisOffset;
+    
+    private float _originalDamping;
+    private float _originalAngularDamping;
 
     public override void _PhysicsProcess(double delta)
     {
-        if (_grabbedObject == null)
-            return;
+        if (_grabbed == null || !IsInstanceValid(_grabbed)) return;
 
-        ApplyPullForce();
-        ApplyRotationForce();
+        ApplySmoothPhysics();
     }
 
     public override void _Input(InputEvent e)
     {
-        if (Input.IsActionJustPressed(Inputs.LeftMouse))
+        // Use your defined Inputs.LeftMouse or "left_mouse" action
+        if (Input.IsActionJustPressed("left_mouse")) 
         {
-            _grabbedObject = HandleGrabbing();   
-            _lineRenderer.EndNode = _grabbedObject;
+            if (_grabbed == null) TryGrab();
+            else Release();
         }
+    }
 
-        if (_grabbedObject == null)
-            return;
-        if (e is not InputEventMouseMotion motion)
-            return;
+    private void TryGrab()
+    {
+        if (!_raycast.IsColliding()) return;
+
+        var collider = _raycast.GetCollider();
+        if (collider is RigidBody3D body)
+        {
+            _grabbed = body;
+
+            Vector3 hitPosition = _raycast.GetCollisionPoint();
+            _hitOffset = hitPosition - _grabbed.GlobalPosition;
+
+            _relativeBasisOffset = _grabPoint.GlobalTransform.Basis.Inverse() * _grabbed.GlobalTransform.Basis;
+
+            _originalDamping = _grabbed.LinearDamp;
+            _originalAngularDamping = _grabbed.AngularDamp;
+            
+            _grabbed.LinearDamp = 5.0f;
+            _grabbed.AngularDamp = 5.0f;
+            _grabbed.Sleeping = false;
+        }
+    }
+
+    private void Release()
+    {
+        if (_grabbed != null)
+        {
+            _grabbed.LinearDamp = _originalDamping;
+            _grabbed.AngularDamp = _originalAngularDamping;
+            _grabbed = null;
+        }
+    }
+
+    private void ApplySmoothPhysics()
+    {
+        Vector3 currentHitPos = _grabbed.GlobalPosition + _hitOffset;
+        Vector3 targetPos = _grabPoint.GlobalPosition;
         
-        var yaw = -motion.Relative.X * 0.003f;
-        var pitch = -motion.Relative.Y * 0.003f;
+        Vector3 velocityAtPoint = _grabbed.LinearVelocity + _grabbed.AngularVelocity.Cross(_hitOffset);
+        Vector3 force = (targetPos - currentHitPos) * _pullPower - (velocityAtPoint * _dampening);
         
-        _targetBasis = new Basis(Vector3.Up, yaw) *
-                       new Basis(Vector3.Right, pitch) *
-                       _targetBasis;
-    }
+        _grabbed.ApplyForce(force.LimitLength(_maxForce), _hitOffset);
 
-    private RigidBody3D HandleGrabbing()
-    {
-        if (_grabbedObject != null)
-            return null;
-        if (!_rayCast.IsColliding())
-            return null;
-        if (_rayCast.GetCollider() is not RigidBody3D body)
-            return null;
-
-        _grabbedObject = body;
-        _grabbedObject.Sleeping = false;
-
-        _targetBasis = _grabbedObject.GlobalTransform.Basis;
-
-        return body;
-    }
-
-    private void ApplyPullForce()
-    {
-        var delta = _grabPoint.GlobalPosition - _grabbedObject.GlobalPosition;
-        var distance = delta.Length();
-
-        if (distance < 0.05f)
-            return;
-
-        var strength = Mathf.Clamp(distance * distance, 0f, 1f);
-        var force = delta.Normalized() * strength * _pullForce - _grabbedObject.LinearVelocity * 0.9f;
-
-        _grabbedObject.ApplyCentralForce(force);
-        _grabbedObject.LinearVelocity = _grabbedObject.LinearVelocity.LimitLength(3.5f);
-    }
-
-
-    private void ApplyRotationForce()
-    {
-        var current = _grabbedObject.GlobalTransform.Basis.GetRotationQuaternion();
-        var target = _targetBasis.GetRotationQuaternion();
-
-        var diff = target * current.Inverse();
-        diff = diff.Normalized();
-
-        var angle = diff.GetAngle();
-        if (angle <= 0.001f)
-            return;
+        Basis targetBasis = _grabPoint.GlobalTransform.Basis * _relativeBasisOffset;
+        
+        Quaternion currentRot = _grabbed.GlobalTransform.Basis.GetRotationQuaternion();
+        Quaternion targetRot = targetBasis.GetRotationQuaternion();
+        
+        Quaternion diff = targetRot * currentRot.Inverse();
         
         var axis = diff.GetAxis();
-        var torque = (axis * angle * _rotateForce).LimitLength(10f);
-        _grabbedObject.ApplyTorque(torque);
+        var angle = diff.GetAngle();
+
+        if (angle > 0.001f)
+        {
+            if (angle > MathF.PI) angle -= 2.0f * MathF.PI;
+
+            Vector3 torque = (axis * angle * _rotatePower) - (_grabbed.AngularVelocity * _dampening);
+            _grabbed.ApplyTorque(torque);
+        }
     }
 }

@@ -24,8 +24,8 @@ shader_parameter/beam_intensity = 2.0
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_qu4a1"]
 
-[sub_resource type="Curve" id="Curve_70d11"]
-_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(0.7606635, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.25512666), -10.0489645, 0.0, 0, 0]
+[sub_resource type="Curve" id="Curve_qu4a1"]
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(0.7630332, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.12967432), -12.751639, 0.0, 0, 0]
 point_count = 3
 
 [node name="Player" type="CharacterBody3D"]
@@ -39,16 +39,14 @@ shape = SubResource("CapsuleShape3D_vn80e")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 mesh = SubResource("CapsuleMesh_vn80e")
 
-[node name="LineInstance" type="MeshInstance3D" parent="." node_paths=PackedStringArray("StartNode", "EndNode")]
+[node name="LineInstance" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 material_override = SubResource("ShaderMaterial_qu4a1")
 mesh = SubResource("ImmediateMesh_qu4a1")
 script = ExtResource("3_mdl7e")
-StartNode = NodePath("../Neck/Camera3D/GrabStartPoint")
-EndNode = NodePath("../Neck/Camera3D/GrabPoint")
-WidthCurve = SubResource("Curve_70d11")
-CurveHeight = 0.4
-CurveDirection = Vector3(1, 1, 0)
+_widthCurve = SubResource("Curve_qu4a1")
+_curveHeight = 0.4
+_curveDirection = Vector3(1, 1, 0)
 
 [node name="Neck" type="Node3D" parent="." node_paths=PackedStringArray("_rayCast")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
@@ -62,17 +60,11 @@ current = true
 target_position = Vector3(0, 0, -2)
 collide_with_areas = true
 
-[node name="GrabPoint" type="Node3D" parent="Neck/Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+[node name="GrabPoint" type="Marker3D" parent="Neck/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5)
 
-[node name="GrabStartPoint" type="Node3D" parent="Neck/Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3754995, -0.3882513, -0.41620493)
-
-[node name="GrabComponent" type="Node" parent="." node_paths=PackedStringArray("_rayCast", "_lineRenderer", "_grabPoint")]
+[node name="GrabComponent" type="Node" parent="." node_paths=PackedStringArray("camera", "raycast", "grabPoint")]
 script = ExtResource("3_3li8b")
-_rayCast = NodePath("../Neck/Camera3D/RayCast3D")
-_lineRenderer = NodePath("../LineInstance")
-_grabPoint = NodePath("../Neck/Camera3D/GrabPoint")
-_pullForce = 20.0
-_rotateForce = 4.0
-_maxForce = 30.0
+camera = NodePath("../Neck/Camera3D")
+raycast = NodePath("../Neck/Camera3D/RayCast3D")
+grabPoint = NodePath("../Neck/Camera3D/GrabPoint")
