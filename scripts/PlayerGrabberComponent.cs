@@ -5,7 +5,7 @@ namespace Scripts.Gameplay;
 
 public partial class PlayerGrabberComponent : Node
 {
-    [Export] private RayCast3D _raycast;
+    [Export] private RayCast3D _rayCast;
     [Export] private Marker3D _grabPoint;
 
     [ExportGroup("Physics Constants")]
@@ -40,14 +40,14 @@ public partial class PlayerGrabberComponent : Node
 
     private void TryGrab()
     {
-        if (!_raycast.IsColliding()) return;
+        if (!_rayCast.IsColliding()) return;
 
-        var collider = _raycast.GetCollider();
+        var collider = _rayCast.GetCollider();
         if (collider is RigidBody3D body)
         {
             _grabbed = body;
 
-            Vector3 hitPosition = _raycast.GetCollisionPoint();
+            Vector3 hitPosition = _rayCast.GetCollisionPoint();
             _hitOffset = hitPosition - _grabbed.GlobalPosition;
 
             _relativeBasisOffset = _grabPoint.GlobalTransform.Basis.Inverse() * _grabbed.GlobalTransform.Basis;

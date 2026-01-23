@@ -63,8 +63,7 @@ collide_with_areas = true
 [node name="GrabPoint" type="Marker3D" parent="Neck/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5)
 
-[node name="GrabComponent" type="Node" parent="." node_paths=PackedStringArray("camera", "raycast", "grabPoint")]
+[node name="GrabComponent" type="Node" parent="." node_paths=PackedStringArray("_rayCast", "_grabPoint")]
 script = ExtResource("3_3li8b")
-camera = NodePath("../Neck/Camera3D")
-raycast = NodePath("../Neck/Camera3D/RayCast3D")
-grabPoint = NodePath("../Neck/Camera3D/GrabPoint")
+_rayCast = NodePath("../Neck/Camera3D/RayCast3D")
+_grabPoint = NodePath("../Neck/Camera3D/GrabPoint")
