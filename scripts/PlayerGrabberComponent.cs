@@ -30,8 +30,7 @@ public partial class PlayerGrabberComponent : Node
 
     public override void _Input(InputEvent e)
     {
-        // Use your defined Inputs.LeftMouse or "left_mouse" action
-        if (Input.IsActionJustPressed("left_mouse")) 
+        if (Input.IsActionJustPressed(Inputs.LeftMouse)) 
         {
             if (_grabbed == null) TryGrab();
             else Release();

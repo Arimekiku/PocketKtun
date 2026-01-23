@@ -6,6 +6,7 @@ public partial class Player : CharacterBody3D
 {
     [Export] public float Speed = 2.0f;
     [Export] public float Sensitivity = 0.003f;
+    [Export] private PingPongTransformAnimator _clockAnimator;
 
     private Node3D _neck;
     private Camera3D _camera;
@@ -35,6 +36,9 @@ public partial class Player : CharacterBody3D
             cameraRot.X = Mathf.Clamp(cameraRot.X, Mathf.DegToRad(-60), Mathf.DegToRad(60));
             _camera.Rotation = cameraRot;
         }
+
+        if (Input.IsActionJustPressed(Inputs.Clock))
+            _clockAnimator.Animate();
     }
 
     public override void _PhysicsProcess(double delta)

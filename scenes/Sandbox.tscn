@@ -1,6 +1,7 @@
-[gd_scene load_steps=58 format=3 uid="uid://d0bdje052hqbl"]
+[gd_scene load_steps=59 format=3 uid="uid://d0bdje052hqbl"]
 
 [ext_resource type="Texture2D" uid="uid://dqh8onjfkhju3" path="res://resources/images/apollo-1x.png" id="2_vn80e"]
+[ext_resource type="Texture2D" uid="uid://boitsi768svt1" path="res://resources/images/glasses.png" id="3_oef5p"]
 [ext_resource type="Shader" uid="uid://ch4nd7axd0c2s" path="res://resources/shaders/Quantizator.gdshader" id="3_w2k4y"]
 [ext_resource type="PackedScene" uid="uid://dnu877iyx6p6f" path="res://scenes/Player.tscn" id="5_jm2hm"]
 [ext_resource type="PackedScene" uid="uid://6jpdo2rllhyl" path="res://scenes/modular_building/FloorCeiling1.tscn" id="6_def21"]
@@ -43,6 +44,8 @@
 shader = ExtResource("3_w2k4y")
 shader_parameter/enabled = true
 shader_parameter/resolution_scale = 1
+shader_parameter/mask_tex = ExtResource("3_oef5p")
+shader_parameter/strength = 1.0
 shader_parameter/dithering = true
 shader_parameter/dithering_size = 4
 shader_parameter/quantizing = true

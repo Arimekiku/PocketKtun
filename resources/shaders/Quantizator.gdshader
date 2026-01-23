@@ -3,6 +3,8 @@ shader_type canvas_item;
 group_uniforms General;
 uniform bool enabled = true;
 uniform int resolution_scale : hint_range(1, 64) = 16;
+uniform sampler2D mask_tex;
+uniform float strength = 1.0;
 
 group_uniforms Dither;
 uniform bool dithering = false;
@@ -86,8 +88,10 @@ void fragment() {
 			
 			final_color = vec4(color.rgb, 1.0);
 			final_color.rgb *= vignette(UV);
-		}
+        }
 	}
-	
-	COLOR = vec4(final_color.rgb, 1.0);
+    
+    vec4 screen = texture(TEXTURE, UV);
+    float mask = texture(mask_tex, UV).r;
+    COLOR = mix(screen, final_color, mask * strength);
 }

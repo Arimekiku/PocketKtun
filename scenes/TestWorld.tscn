@@ -12,6 +12,7 @@
 shader = ExtResource("1_yv73f")
 shader_parameter/enabled = true
 shader_parameter/resolution_scale = 1
+shader_parameter/strength = 1.0
 shader_parameter/dithering = true
 shader_parameter/dithering_size = 4
 shader_parameter/quantizing = true
@@ -77,7 +78,6 @@ shape = SubResource("ConcavePolygonShape3D_1kh8g")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 5, 0)
-shadow_enabled = true
 
 [node name="DraggableBody" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8520305, -6.1855464)
