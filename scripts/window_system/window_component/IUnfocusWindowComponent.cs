@@ -1,4 +1,4 @@
-namespace Scripts.Gameplay.window_system.window_component;
+namespace Scripts.WindowSystem;
 
 public interface IUnfocusWindowComponent
 {

@@ -1,4 +1,4 @@
-namespace Scripts.Gameplay.window_system;
+namespace Scripts.WindowSystem;
 
 public interface ILoadableWindow : IWindow
 {

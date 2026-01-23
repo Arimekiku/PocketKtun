@@ -1,6 +1,16 @@
-namespace Scripts.Gameplay.window_system;
+namespace Scripts.WindowSystem;
 
-public class WindowControl
+public class WindowControl : IWindowControl
 {
     
+    
+    public void OpenWindow(WindowData windowData)
+    {
+        
+    }
+
+    public void CloseWindow(WindowData windowData)
+    {
+        
+    }
 }
