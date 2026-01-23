@@ -33,7 +33,7 @@ project/assembly_name="ktun"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/interface_export/plugin.cfg")
+enabled=PackedStringArray("res://addons/interface_export/plugin.cfg", "res://addons/window_ids/plugin.cfg")
 
 [file_customization]
 
