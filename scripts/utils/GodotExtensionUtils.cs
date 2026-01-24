@@ -18,10 +18,10 @@ public static class GodotExtensionUtils
         return null;
     }
 
-    public static bool HasAncestor<TScript>(this Node targetNode) where TScript : Node => targetNode.FindParent<TScript>() != null;
+    public static bool HasParent<TScript>(this Node targetNode) where TScript : Node => targetNode.FindParent<TScript>() != null;
 
     public static TScript FindChild<TScript>(this Node targetNode) where TScript : Node
     {
-        targetNode.Find
+        throw new NotImplementedException();
     }
 }
