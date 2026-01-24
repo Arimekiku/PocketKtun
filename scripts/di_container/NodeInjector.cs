@@ -14,7 +14,7 @@ internal class NodeInjector : IDisposable
         _diContainer = diContainer;
         _sceneTree = Engine.GetMainLoop() as SceneTree;
         
-        ExceptionsUtils.ThrowExceptionIfNull(_sceneTree);
+        ExceptionsUtils.ThrowIfNull(_sceneTree);
 
         _sceneTree!.NodeAdded += AddedNodeListener;
     }

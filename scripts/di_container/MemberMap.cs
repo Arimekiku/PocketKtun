@@ -42,7 +42,7 @@ internal class MemberMap : IMemberMap
 
     public InjectMember[] GetMembers(Type instanceType, MemberTypes memberType)
     {
-        ExceptionsUtils.ThrowExceptionIfNull(_membersMap, "Member map is not created");
+        ExceptionsUtils.ThrowIfNull(_membersMap, "Member map is not created");
         
         return _membersMap[instanceType][memberType];
     }
