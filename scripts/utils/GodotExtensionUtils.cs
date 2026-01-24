@@ -5,7 +5,7 @@ namespace Scripts.Utils;
 
 public static class GodotExtensionUtils
 {
-    public static TScript FindAncestor<TScript>(this Node targetNode) where TScript : Node
+    public static TScript FindParent<TScript>(this Node targetNode) where TScript : Node
     {
         var current = targetNode.GetParent();
 
@@ -18,5 +18,10 @@ public static class GodotExtensionUtils
         return null;
     }
 
-    public static bool HasAncestor<TScript>(this Node targetNode) where TScript : Node => targetNode.FindAncestor<TScript>() != null;
+    public static bool HasAncestor<TScript>(this Node targetNode) where TScript : Node => targetNode.FindParent<TScript>() != null;
+
+    public static TScript FindChild<TScript>(this Node targetNode) where TScript : Node
+    {
+        targetNode.Find
+    }
 }

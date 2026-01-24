@@ -15,7 +15,7 @@ internal class GodotContextProvider : IContextProvider
         if (injectedObject is not Node node)
             return _globalContext;
 
-        var bindInstallerNode = node.FindAncestor<NodeContextInstallers>();
+        var bindInstallerNode = node.FindParent<NodeContextInstallers>();
         if (bindInstallerNode == null) 
             return _globalContext;
         
