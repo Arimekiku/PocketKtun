@@ -14,7 +14,7 @@ internal class NodeContextRegister : IDisposable
         _contextProvider = contextProvider;
         _sceneTree = Engine.GetMainLoop() as SceneTree;
         
-        ExceptionsUtils.ThrowExceptionIfNull(_sceneTree);
+        ExceptionsUtils.ThrowIfNull(_sceneTree);
 
         _sceneTree!.NodeAdded += AddedNodeListener;
     }

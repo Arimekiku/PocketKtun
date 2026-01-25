@@ -40,7 +40,7 @@ internal class Resolver : IResolver
         
         var bind = context.GetBind(type, injectedInstance?.GetType());
 
-        ExceptionsUtils.ThrowExceptionIfNull(bind, $"Bind not found for {type}. Cant resolve dependence.");
+        ExceptionsUtils.ThrowIfNull(bind, $"Bind not found for {type}. Cant resolve dependence.");
 
         if (bind.BindInstanceCreator.LiveScope == LiveScope.AsSingle)
         {
