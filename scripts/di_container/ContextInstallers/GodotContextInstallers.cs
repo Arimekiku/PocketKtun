@@ -16,7 +16,7 @@ internal abstract partial class GodotContextInstallers : Node, IContextInstaller
 
     public void RegisterBinds(IContextProvider contextProvider)
     {
-        ExceptionsUtils.ThrowExceptionIfNull(_createdBinds);
+        ExceptionsUtils.ThrowIfNull(_createdBinds);
 
         foreach (var bind in _createdBinds)
             contextProvider.RegisterBind(bind, ContextObject);

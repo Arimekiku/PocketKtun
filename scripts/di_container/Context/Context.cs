@@ -10,7 +10,7 @@ internal class Context
     
     public void RegisterBind(Bind newBind)
     {
-        ExceptionsUtils.ThrowExceptionIfNull(newBind);
+        ExceptionsUtils.ThrowIfNull(newBind);
         
         _binds.TryAdd(newBind.ContractType, new BindContainer());
         
