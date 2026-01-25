@@ -1,7 +1,6 @@
 [gd_scene load_steps=59 format=3 uid="uid://d0bdje052hqbl"]
 
 [ext_resource type="Texture2D" uid="uid://dqh8onjfkhju3" path="res://resources/images/apollo-1x.png" id="2_vn80e"]
-[ext_resource type="Texture2D" uid="uid://boitsi768svt1" path="res://resources/images/glasses.png" id="3_oef5p"]
 [ext_resource type="Shader" uid="uid://ch4nd7axd0c2s" path="res://resources/shaders/Quantizator.gdshader" id="3_w2k4y"]
 [ext_resource type="PackedScene" uid="uid://dnu877iyx6p6f" path="res://scenes/Player.tscn" id="5_jm2hm"]
 [ext_resource type="PackedScene" uid="uid://6jpdo2rllhyl" path="res://scenes/modular_building/FloorCeiling1.tscn" id="6_def21"]
@@ -37,6 +36,7 @@
 [ext_resource type="Script" uid="uid://bc586og4uc5h" path="res://scripts/event_system/factory/EventProcesser.cs" id="33_def21"]
 [ext_resource type="ArrayOccluder3D" uid="uid://b5xu6wy1who7u" path="res://resources/department_occluder_map.occ" id="34_x6f5f"]
 [ext_resource type="PackedScene" uid="uid://cig0xj7a85hjt" path="res://resources/models/stretcher.blend" id="34_yfhit"]
+[ext_resource type="PackedScene" uid="uid://csq6nck3dmpht" path="res://scenes/DispatchScene.tscn" id="35_oef5p"]
 [ext_resource type="PackedScene" uid="uid://du6yysxbqyhk" path="res://resources/models/table_lamp_alt.blend" id="37_oef5p"]
 [ext_resource type="PackedScene" uid="uid://b8axrutfvw0tc" path="res://resources/models/small_props/toy_brick_1.glb" id="38_yfhit"]
 
@@ -44,7 +44,6 @@
 shader = ExtResource("3_w2k4y")
 shader_parameter/enabled = true
 shader_parameter/resolution_scale = 1
-shader_parameter/mask_tex = ExtResource("3_oef5p")
 shader_parameter/strength = 1.0
 shader_parameter/dithering = true
 shader_parameter/dithering_size = 4
@@ -166,252 +165,249 @@ handle_input_locally = false
 size = Vector2i(960, 540)
 render_target_update_mode = 4
 
-[node name="Player" parent="SubViewportContainer/SubViewport" instance=ExtResource("5_jm2hm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.890534, 0, 0.2539239)
+[node name="World" type="Node3D" parent="SubViewportContainer/SubViewport"]
 
-[node name="World" type="Node3D" parent="."]
-
-[node name="ChiefRoom" type="Node3D" parent="World"]
+[node name="ChiefRoom" type="Node3D" parent="SubViewportContainer/SubViewport/World"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0)
 
-[node name="DancingDude" type="StaticBody3D" parent="World/ChiefRoom"]
+[node name="DancingDude" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/ChiefRoom"]
 transform = Transform3D(-0.6853737, 0, -0.7281915, 0, 1, 0, 0.7281915, 0, -0.6853737, -0.0833168, 0, 5.0431004)
 
-[node name="SillyDancing" parent="World/ChiefRoom/DancingDude" instance=ExtResource("6_jm2hm")]
+[node name="SillyDancing" parent="SubViewportContainer/SubViewport/World/ChiefRoom/DancingDude" instance=ExtResource("6_jm2hm")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/ChiefRoom/DancingDude"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/ChiefRoom/DancingDude"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_a0ubh")
 
-[node name="LightSwitch" parent="World/ChiefRoom" node_paths=PackedStringArray("_meshChanger", "_connectedLight", "_connectedParticles") instance=ExtResource("11_vw0fq")]
+[node name="LightSwitch" parent="SubViewportContainer/SubViewport/World/ChiefRoom" node_paths=PackedStringArray("_meshChanger", "_connectedLight", "_connectedParticles") instance=ExtResource("11_vw0fq")]
 transform = Transform3D(-0.9912154, -0.13225639, -8.742277e-08, -0.13225637, 0.9912155, 0, 8.665481e-08, 1.15622205e-08, -0.9999999, -2.9449997, 1.4725647, 5.94)
 _meshChanger = NodePath("../Lights/Lamp")
 _connectedLight = NodePath("../Lights/Lamp/OmniLight3D2")
 _connectedParticles = NodePath("../Lights/Lamp/Light2")
 
-[node name="Layout" type="Node3D" parent="World/ChiefRoom"]
+[node name="Layout" type="Node3D" parent="SubViewportContainer/SubViewport/World/ChiefRoom"]
 
-[node name="Floor" type="Node3D" parent="World/ChiefRoom/Layout"]
+[node name="Floor" type="Node3D" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Layout"]
 
-[node name="FloorCeiling1" parent="World/ChiefRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling1" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 4)
 
-[node name="FloorCeiling2" parent="World/ChiefRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling2" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 4)
 
-[node name="FloorCeiling3" parent="World/ChiefRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling3" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
 
-[node name="FloorCeiling4" parent="World/ChiefRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling4" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 4)
 
-[node name="FloorCeiling5" parent="World/ChiefRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling5" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
 
-[node name="FloorCeiling6" parent="World/ChiefRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling6" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 
-[node name="FloorCeiling7" parent="World/ChiefRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling7" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 
-[node name="FloorCeiling8" parent="World/ChiefRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling8" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
 
-[node name="FloorCeiling9" parent="World/ChiefRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling9" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -4)
 
-[node name="FloorCeiling10" parent="World/ChiefRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling10" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -4)
 
-[node name="FloorCeiling11" parent="World/ChiefRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling11" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -4)
 
-[node name="FloorCeiling12" parent="World/ChiefRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling12" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -4)
 
-[node name="Ceiling" type="Node3D" parent="World/ChiefRoom/Layout"]
+[node name="Ceiling" type="Node3D" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Layout"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 
-[node name="FloorCeiling1" parent="World/ChiefRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling1" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 4)
 
-[node name="FloorCeiling2" parent="World/ChiefRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling2" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 4)
 
-[node name="FloorCeiling3" parent="World/ChiefRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling3" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
 
-[node name="FloorCeiling4" parent="World/ChiefRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling4" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 4)
 
-[node name="FloorCeiling5" parent="World/ChiefRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling5" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
 
-[node name="FloorCeiling6" parent="World/ChiefRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling6" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 
-[node name="FloorCeiling7" parent="World/ChiefRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling7" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 
-[node name="FloorCeiling8" parent="World/ChiefRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling8" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
 
-[node name="FloorCeiling9" parent="World/ChiefRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling9" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -4)
 
-[node name="FloorCeiling10" parent="World/ChiefRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling10" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -4)
 
-[node name="FloorCeiling11" parent="World/ChiefRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling11" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -4)
 
-[node name="FloorCeiling12" parent="World/ChiefRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling12" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -4)
 
-[node name="Walls" type="Node3D" parent="World/ChiefRoom/Layout"]
+[node name="Walls" type="Node3D" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Layout"]
 
-[node name="First" type="Node3D" parent="World/ChiefRoom/Layout/Walls"]
+[node name="First" type="Node3D" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Layout/Walls"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 6)
 
-[node name="Wall" parent="World/ChiefRoom/Layout/Walls/First" instance=ExtResource("7_1ewh1")]
+[node name="Wall" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Layout/Walls/First" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 
-[node name="Wall2" parent="World/ChiefRoom/Layout/Walls/First" instance=ExtResource("7_1ewh1")]
+[node name="Wall2" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Layout/Walls/First" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -4.7683716e-07)
 
-[node name="Wall3" parent="World/ChiefRoom/Layout/Walls/First" instance=ExtResource("7_1ewh1")]
+[node name="Wall3" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Layout/Walls/First" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.000002, 0, 4.7683716e-07)
 
-[node name="Doorway" parent="World/ChiefRoom/Layout/Walls/First" instance=ExtResource("30_1ewh1")]
+[node name="Doorway" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Layout/Walls/First" instance=ExtResource("30_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 
-[node name="Second" type="Node3D" parent="World/ChiefRoom/Layout/Walls"]
+[node name="Second" type="Node3D" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Layout/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6)
 
-[node name="Wall" parent="World/ChiefRoom/Layout/Walls/Second" instance=ExtResource("7_1ewh1")]
+[node name="Wall" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Layout/Walls/Second" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
 
-[node name="Wall2" parent="World/ChiefRoom/Layout/Walls/Second" instance=ExtResource("7_1ewh1")]
+[node name="Wall2" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Layout/Walls/Second" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 
-[node name="Wall3" parent="World/ChiefRoom/Layout/Walls/Second" instance=ExtResource("7_1ewh1")]
+[node name="Wall3" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Layout/Walls/Second" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
 
-[node name="WindowDouble" parent="World/ChiefRoom/Layout/Walls/Second" instance=ExtResource("10_x6f5f")]
+[node name="WindowDouble" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Layout/Walls/Second" instance=ExtResource("10_x6f5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 
-[node name="Third" type="Node3D" parent="World/ChiefRoom/Layout/Walls"]
+[node name="Third" type="Node3D" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Layout/Walls"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8, 0, 0)
 
-[node name="Wall" parent="World/ChiefRoom/Layout/Walls/Third" instance=ExtResource("7_1ewh1")]
+[node name="Wall" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Layout/Walls/Third" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
 
-[node name="Wall2" parent="World/ChiefRoom/Layout/Walls/Third" instance=ExtResource("7_1ewh1")]
+[node name="Wall2" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Layout/Walls/Third" instance=ExtResource("7_1ewh1")]
 
-[node name="WindowDouble" parent="World/ChiefRoom/Layout/Walls/Third" instance=ExtResource("10_x6f5f")]
+[node name="WindowDouble" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Layout/Walls/Third" instance=ExtResource("10_x6f5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
 
-[node name="Fourth" type="Node3D" parent="World/ChiefRoom/Layout/Walls"]
+[node name="Fourth" type="Node3D" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Layout/Walls"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, 0)
 
-[node name="WindowDouble" parent="World/ChiefRoom/Layout/Walls/Fourth" instance=ExtResource("10_x6f5f")]
+[node name="WindowDouble" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Layout/Walls/Fourth" instance=ExtResource("10_x6f5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
 
-[node name="Wall" parent="World/ChiefRoom/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
+[node name="Wall" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
 
-[node name="Wall2" parent="World/ChiefRoom/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
+[node name="Wall2" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
 
-[node name="Decorations" type="Node3D" parent="World/ChiefRoom"]
+[node name="Decorations" type="Node3D" parent="SubViewportContainer/SubViewport/World/ChiefRoom"]
 
-[node name="cabinet-col" parent="World/ChiefRoom/Decorations" instance=ExtResource("9_w8s17")]
+[node name="cabinet-col" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Decorations" instance=ExtResource("9_w8s17")]
 transform = Transform3D(0.25881904, 0, -0.96592593, 0, 1, 0, 0.96592593, 0, 0.25881904, 4, 0, -3)
 
-[node name="pc_speaker_1_left2" parent="World/ChiefRoom/Decorations/cabinet-col" instance=ExtResource("21_ve8sh")]
+[node name="pc_speaker_1_left2" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Decorations/cabinet-col" instance=ExtResource("21_ve8sh")]
 transform = Transform3D(1.4901161e-08, 0, -0.9999994, 0, 1, 0, 0.9999994, 0, 1.4901161e-08, -0.025384188, 0.9950221, 0.9587326)
 
-[node name="tv_remote_mp_12" parent="World/ChiefRoom/Decorations/cabinet-col" instance=ExtResource("22_qgpyk")]
+[node name="tv_remote_mp_12" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Decorations/cabinet-col" instance=ExtResource("22_qgpyk")]
 transform = Transform3D(0.91861826, 0, -0.39514467, 0, 1, 0, 0.39514467, 0, 0.91861826, -0.35022712, 0.9950222, 0.19493866)
 
-[node name="vhs_tape_12" parent="World/ChiefRoom/Decorations/cabinet-col" instance=ExtResource("23_dbld1")]
+[node name="vhs_tape_12" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Decorations/cabinet-col" instance=ExtResource("23_dbld1")]
 transform = Transform3D(-0.678121, 0, -0.7349499, 0, 1, 0, 0.7349499, 0, -0.678121, -0.14825845, 1.0128492, 0.6833172)
 
-[node name="ashtray_12" parent="World/ChiefRoom/Decorations/cabinet-col" instance=ExtResource("11_63ay0")]
+[node name="ashtray_12" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Decorations/cabinet-col" instance=ExtResource("11_63ay0")]
 transform = Transform3D(1.4901161e-08, 0, -0.9999994, 0, 1, 0, 0.9999994, 0, 1.4901161e-08, -0.58356357, 0.9950222, 1.7021999)
 
-[node name="book_mp_12" parent="World/ChiefRoom/Decorations/cabinet-col" instance=ExtResource("12_y5c0f")]
+[node name="book_mp_12" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Decorations/cabinet-col" instance=ExtResource("12_y5c0f")]
 transform = Transform3D(0.49094933, 0, -0.8711879, 0, 1, 0, 0.8711879, 0, 0.49094933, 0.7550235, 0.53514344, -2.3714314)
 
-[node name="cig_12" parent="World/ChiefRoom/Decorations/cabinet-col" instance=ExtResource("13_l5e33")]
+[node name="cig_12" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Decorations/cabinet-col" instance=ExtResource("13_l5e33")]
 transform = Transform3D(1.4901161e-08, 0, -0.9999994, 0, 1, 0, 0.9999994, 0, 1.4901161e-08, -0.47141075, 0.9950222, 1.7430439)
 
-[node name="cig_22" parent="World/ChiefRoom/Decorations/cabinet-col" instance=ExtResource("14_ve8sh")]
+[node name="cig_22" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Decorations/cabinet-col" instance=ExtResource("14_ve8sh")]
 transform = Transform3D(-1.4901161e-08, -1.8626451e-08, -0.9999994, 0.15386544, 0.98809206, 1.974389e-09, 0.9880917, -0.15386541, 1.3411045e-07, -0.5819726, 1.0115087, 1.628952)
 
-[node name="pills_bottle_1_12" parent="World/ChiefRoom/Decorations/cabinet-col" instance=ExtResource("23_8v3jm")]
+[node name="pills_bottle_1_12" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Decorations/cabinet-col" instance=ExtResource("23_8v3jm")]
 transform = Transform3D(0.25881895, 0, 0.9659256, 0, 1, 0, -0.9659256, 0, 0.25881895, -0.053622007, 1, 1.7455978)
 
-[node name="Bookshelf" type="StaticBody3D" parent="World/ChiefRoom/Decorations"]
+[node name="Bookshelf" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Decorations"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7.7, 0, 3.7)
 
-[node name="Graphics" type="Node3D" parent="World/ChiefRoom/Decorations/Bookshelf"]
+[node name="Graphics" type="Node3D" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Decorations/Bookshelf"]
 
-[node name="brick2" parent="World/ChiefRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("26_olo10")]
+[node name="brick2" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("26_olo10")]
 transform = Transform3D(-0.8660254, 0, 0.5000001, 0, 1, 0, -0.5000001, 0, -0.8660254, -0.29999924, 0, 0.19999981)
 
-[node name="bookshelf" parent="World/ChiefRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("25_tji15")]
+[node name="bookshelf" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("25_tji15")]
 
-[node name="book_mp_12" parent="World/ChiefRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("12_y5c0f")]
+[node name="book_mp_12" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("12_y5c0f")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.003443718, 0.95328414, -0.010000229)
 
-[node name="book_mp_22" parent="World/ChiefRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("27_p1xtl")]
+[node name="book_mp_22" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("27_p1xtl")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.003, 1.003, -0.01)
 
-[node name="book_mp_13" parent="World/ChiefRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("12_y5c0f")]
+[node name="book_mp_13" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("12_y5c0f")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.003443718, 1.0532842, -0.010000229)
 
-[node name="ashtray_12" parent="World/ChiefRoom/Decorations/Bookshelf/Graphics/book_mp_13" instance=ExtResource("11_63ay0")]
+[node name="ashtray_12" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Decorations/Bookshelf/Graphics/book_mp_13" instance=ExtResource("11_63ay0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.01, 0.05, 0.03)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/ChiefRoom/Decorations/Bookshelf"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Decorations/Bookshelf"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.7, 0)
 shape = SubResource("BoxShape3D_tji15")
 
-[node name="Barrel" type="StaticBody3D" parent="World/ChiefRoom/Decorations"]
+[node name="Barrel" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Decorations"]
 transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, -7.5, 0, 5.3)
 
-[node name="Graphics" type="Node3D" parent="World/ChiefRoom/Decorations/Barrel"]
+[node name="Graphics" type="Node3D" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Decorations/Barrel"]
 
-[node name="metal_barrel_mp_32" parent="World/ChiefRoom/Decorations/Barrel/Graphics" instance=ExtResource("11_n6hjk")]
+[node name="metal_barrel_mp_32" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Decorations/Barrel/Graphics" instance=ExtResource("11_n6hjk")]
 
-[node name="supply_crate_12" parent="World/ChiefRoom/Decorations/Barrel/Graphics" instance=ExtResource("7_n6hjk")]
+[node name="supply_crate_12" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Decorations/Barrel/Graphics" instance=ExtResource("7_n6hjk")]
 transform = Transform3D(-0.31541717, 0, -0.94895315, 0, 1, 0, 0.94895315, 0, -0.31541717, 0.046634674, 1.0824319, 0.033228397)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/ChiefRoom/Decorations/Barrel"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Decorations/Barrel"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_n6hjk")
 
-[node name="keypad_22" parent="World/ChiefRoom/Decorations" instance=ExtResource("25_t2amj")]
+[node name="keypad_22" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Decorations" instance=ExtResource("25_t2amj")]
 transform = Transform3D(-0.99999994, 0, 5.9604645e-08, 0, 1, 0, -5.9604645e-08, 0, -0.99999994, -3, 1, 5.9)
 
-[node name="Lights" type="Node3D" parent="World/ChiefRoom"]
+[node name="Lights" type="Node3D" parent="SubViewportContainer/SubViewport/World/ChiefRoom"]
 
-[node name="CeilingLamp" type="Node3D" parent="World/ChiefRoom/Lights"]
+[node name="CeilingLamp" type="Node3D" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 3, -1)
 
-[node name="Graphics" type="Node3D" parent="World/ChiefRoom/Lights/CeilingLamp"]
+[node name="Graphics" type="Node3D" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Lights/CeilingLamp"]
 
-[node name="ceiling_fan_mp_2_1_light_on2" parent="World/ChiefRoom/Lights/CeilingLamp/Graphics" instance=ExtResource("29_n3q1u")]
+[node name="ceiling_fan_mp_2_1_light_on2" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Lights/CeilingLamp/Graphics" instance=ExtResource("29_n3q1u")]
 script = ExtResource("8_3mprh")
 _degreesPerSecond = 45.0
 
-[node name="OmniLight3D" type="OmniLight3D" parent="World/ChiefRoom/Lights/CeilingLamp"]
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Lights/CeilingLamp"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8468702, 0)
 light_color = Color(1, 0.94509804, 0.75686276, 1)
 light_energy = 1.4
 shadow_enabled = true
 
-[node name="Light" type="GPUParticles3D" parent="World/ChiefRoom/Lights/CeilingLamp"]
+[node name="Light" type="GPUParticles3D" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Lights/CeilingLamp"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1127111, 0)
 amount = 22
 lifetime = 10.0
@@ -420,15 +416,15 @@ transform_align = 1
 process_material = SubResource("ParticleProcessMaterial_w8s17")
 draw_pass_1 = SubResource("QuadMesh_w8s17")
 
-[node name="Lamp" parent="World/ChiefRoom/Lights" instance=ExtResource("20_dbld1")]
+[node name="Lamp" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Lights" instance=ExtResource("20_dbld1")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7.9400005, 2, 4)
 
-[node name="OmniLight3D2" type="OmniLight3D" parent="World/ChiefRoom/Lights/Lamp"]
+[node name="OmniLight3D2" type="OmniLight3D" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Lights/Lamp"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.31912136)
 shadow_enabled = true
 omni_range = 4.0
 
-[node name="Light2" type="GPUParticles3D" parent="World/ChiefRoom/Lights/Lamp"]
+[node name="Light2" type="GPUParticles3D" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Lights/Lamp"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, -0.009779692, 0.4204712)
 amount = 22
 lifetime = 10.0
@@ -437,15 +433,15 @@ transform_align = 1
 process_material = SubResource("ParticleProcessMaterial_w8s17")
 draw_pass_1 = SubResource("QuadMesh_w8s17")
 
-[node name="Lamp2" parent="World/ChiefRoom/Lights" instance=ExtResource("20_dbld1")]
+[node name="Lamp2" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Lights" instance=ExtResource("20_dbld1")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 7.94, 2, -4)
 
-[node name="OmniLight3D2" type="OmniLight3D" parent="World/ChiefRoom/Lights/Lamp2"]
+[node name="OmniLight3D2" type="OmniLight3D" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Lights/Lamp2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.31912136)
 shadow_enabled = true
 omni_range = 4.0
 
-[node name="Light2" type="GPUParticles3D" parent="World/ChiefRoom/Lights/Lamp2"]
+[node name="Light2" type="GPUParticles3D" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Lights/Lamp2"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, -0.009779692, 0.4204712)
 amount = 22
 lifetime = 10.0
@@ -454,238 +450,238 @@ transform_align = 1
 process_material = SubResource("ParticleProcessMaterial_w8s17")
 draw_pass_1 = SubResource("QuadMesh_w8s17")
 
-[node name="car_placeholder" parent="World/ChiefRoom" instance=ExtResource("31_1ewh1")]
+[node name="car_placeholder" parent="SubViewportContainer/SubViewport/World/ChiefRoom" instance=ExtResource("31_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -3)
 
-[node name="DispatchRoom" type="Node3D" parent="World"]
+[node name="DispatchRoom" type="Node3D" parent="SubViewportContainer/SubViewport/World"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 26, 0, 18)
 
-[node name="DancingDude" type="StaticBody3D" parent="World/DispatchRoom"]
+[node name="DancingDude" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/DispatchRoom"]
 transform = Transform3D(-0.6853737, 0, -0.7281915, 0, 1, 0, 0.7281915, 0, -0.6853737, -0.0833168, 0, 5.0431004)
 
-[node name="SillyDancing" parent="World/DispatchRoom/DancingDude" instance=ExtResource("6_jm2hm")]
+[node name="SillyDancing" parent="SubViewportContainer/SubViewport/World/DispatchRoom/DancingDude" instance=ExtResource("6_jm2hm")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/DispatchRoom/DancingDude"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/DispatchRoom/DancingDude"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_a0ubh")
 
-[node name="LightSwitch" parent="World/DispatchRoom" node_paths=PackedStringArray("_meshChanger", "_connectedLight", "_connectedParticles") instance=ExtResource("11_vw0fq")]
+[node name="LightSwitch" parent="SubViewportContainer/SubViewport/World/DispatchRoom" node_paths=PackedStringArray("_meshChanger", "_connectedLight", "_connectedParticles") instance=ExtResource("11_vw0fq")]
 transform = Transform3D(-0.9912154, -0.13225639, -8.742277e-08, -0.13225637, 0.9912155, 0, 8.665481e-08, 1.15622205e-08, -0.9999999, -2.9449997, 1.4725647, 5.94)
 _meshChanger = NodePath("../Lights/Lamp")
 _connectedLight = NodePath("../Lights/Lamp/OmniLight3D2")
 _connectedParticles = NodePath("../Lights/Lamp/Light2")
 
-[node name="Layout" type="Node3D" parent="World/DispatchRoom"]
+[node name="Layout" type="Node3D" parent="SubViewportContainer/SubViewport/World/DispatchRoom"]
 
-[node name="Floor" type="Node3D" parent="World/DispatchRoom/Layout"]
+[node name="Floor" type="Node3D" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Layout"]
 
-[node name="FloorCeiling1" parent="World/DispatchRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling1" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.999997, 0, -4)
 
-[node name="FloorCeiling2" parent="World/DispatchRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling2" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9999962, 0, -4)
 
-[node name="FloorCeiling3" parent="World/DispatchRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling3" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0000038, 0, -4)
 
-[node name="FloorCeiling4" parent="World/DispatchRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling4" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.000004, 0, -4.000002)
 
-[node name="FloorCeiling5" parent="World/DispatchRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling5" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.999996, 0, 0)
 
-[node name="FloorCeiling6" parent="World/DispatchRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling6" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9999962, 0, 0)
 
-[node name="FloorCeiling7" parent="World/DispatchRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling7" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0000038, 0, 0)
 
-[node name="FloorCeiling8" parent="World/DispatchRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling8" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.000004, 0, -3.8146973e-06)
 
-[node name="FloorCeiling9" parent="World/DispatchRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling9" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9999943, 0, 4)
 
-[node name="FloorCeiling10" parent="World/DispatchRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling10" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9999962, 0, 4)
 
-[node name="FloorCeiling11" parent="World/DispatchRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling11" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0000038, 0, 4)
 
-[node name="FloorCeiling12" parent="World/DispatchRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling12" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.000004, 0, 3.9999924)
 
-[node name="Ceiling" type="Node3D" parent="World/DispatchRoom/Layout"]
+[node name="Ceiling" type="Node3D" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Layout"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 
-[node name="FloorCeiling1" parent="World/DispatchRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling1" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.999997, 0, -4)
 
-[node name="FloorCeiling2" parent="World/DispatchRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling2" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9999962, 0, -4)
 
-[node name="FloorCeiling3" parent="World/DispatchRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling3" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0000038, 0, -4)
 
-[node name="FloorCeiling4" parent="World/DispatchRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling4" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.000004, 0, -4.000002)
 
-[node name="FloorCeiling5" parent="World/DispatchRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling5" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.999996, 0, 0)
 
-[node name="FloorCeiling6" parent="World/DispatchRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling6" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9999962, 0, 0)
 
-[node name="FloorCeiling7" parent="World/DispatchRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling7" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0000038, 0, 0)
 
-[node name="FloorCeiling8" parent="World/DispatchRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling8" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.000004, 0, -3.8146973e-06)
 
-[node name="FloorCeiling9" parent="World/DispatchRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling9" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9999943, 0, 4)
 
-[node name="FloorCeiling10" parent="World/DispatchRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling10" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9999962, 0, 4)
 
-[node name="FloorCeiling11" parent="World/DispatchRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling11" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0000038, 0, 4)
 
-[node name="FloorCeiling12" parent="World/DispatchRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling12" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.000004, 0, 3.9999924)
 
-[node name="Walls" type="Node3D" parent="World/DispatchRoom/Layout"]
+[node name="Walls" type="Node3D" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Layout"]
 
-[node name="First" type="Node3D" parent="World/DispatchRoom/Layout/Walls"]
+[node name="First" type="Node3D" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Layout/Walls"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 6)
 
-[node name="Wall" parent="World/DispatchRoom/Layout/Walls/First" instance=ExtResource("7_1ewh1")]
+[node name="Wall" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Layout/Walls/First" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -3.8146973e-06)
 
-[node name="Second" type="Node3D" parent="World/DispatchRoom/Layout/Walls"]
+[node name="Second" type="Node3D" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Layout/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6)
 
-[node name="Wall" parent="World/DispatchRoom/Layout/Walls/Second" instance=ExtResource("7_1ewh1")]
+[node name="Wall" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Layout/Walls/Second" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.999999, 0, 0)
 
-[node name="Wall2" parent="World/DispatchRoom/Layout/Walls/Second" instance=ExtResource("7_1ewh1")]
+[node name="Wall2" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Layout/Walls/Second" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.999999, 0, 0)
 
-[node name="Wall3" parent="World/DispatchRoom/Layout/Walls/Second" instance=ExtResource("7_1ewh1")]
+[node name="Wall3" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Layout/Walls/Second" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
 
-[node name="WindowDouble" parent="World/DispatchRoom/Layout/Walls/Second" instance=ExtResource("10_x6f5f")]
+[node name="WindowDouble" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Layout/Walls/Second" instance=ExtResource("10_x6f5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 
-[node name="Third" type="Node3D" parent="World/DispatchRoom/Layout/Walls"]
+[node name="Third" type="Node3D" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Layout/Walls"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8, 0, 0)
 
-[node name="Wall" parent="World/DispatchRoom/Layout/Walls/Third" instance=ExtResource("7_1ewh1")]
+[node name="Wall" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Layout/Walls/Third" instance=ExtResource("7_1ewh1")]
 
-[node name="Wall2" parent="World/DispatchRoom/Layout/Walls/Third" instance=ExtResource("7_1ewh1")]
+[node name="Wall2" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Layout/Walls/Third" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
 
-[node name="WindowDouble" parent="World/DispatchRoom/Layout/Walls/Third" instance=ExtResource("10_x6f5f")]
+[node name="WindowDouble" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Layout/Walls/Third" instance=ExtResource("10_x6f5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
 
-[node name="Fourth" type="Node3D" parent="World/DispatchRoom/Layout/Walls"]
+[node name="Fourth" type="Node3D" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Layout/Walls"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, 0)
 
-[node name="Wall" parent="World/DispatchRoom/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
+[node name="Wall" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
 
-[node name="Wall2" parent="World/DispatchRoom/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
+[node name="Wall2" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
 
-[node name="WindowDouble" parent="World/DispatchRoom/Layout/Walls/Fourth" instance=ExtResource("10_x6f5f")]
+[node name="WindowDouble" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Layout/Walls/Fourth" instance=ExtResource("10_x6f5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
 
-[node name="Decorations" type="Node3D" parent="World/DispatchRoom"]
+[node name="Decorations" type="Node3D" parent="SubViewportContainer/SubViewport/World/DispatchRoom"]
 
-[node name="cabinet-col" parent="World/DispatchRoom/Decorations" instance=ExtResource("9_w8s17")]
+[node name="cabinet-col" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Decorations" instance=ExtResource("9_w8s17")]
 transform = Transform3D(0.25881904, 0, -0.96592593, 0, 1, 0, 0.96592593, 0, 0.25881904, 4, 0, -3)
 
-[node name="pc_speaker_1_left2" parent="World/DispatchRoom/Decorations/cabinet-col" instance=ExtResource("21_ve8sh")]
+[node name="pc_speaker_1_left2" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Decorations/cabinet-col" instance=ExtResource("21_ve8sh")]
 transform = Transform3D(1.4901161e-08, 0, -0.9999994, 0, 1, 0, 0.9999994, 0, 1.4901161e-08, -0.025384188, 0.9950221, 0.9587326)
 
-[node name="tv_remote_mp_12" parent="World/DispatchRoom/Decorations/cabinet-col" instance=ExtResource("22_qgpyk")]
+[node name="tv_remote_mp_12" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Decorations/cabinet-col" instance=ExtResource("22_qgpyk")]
 transform = Transform3D(0.91861826, 0, -0.39514467, 0, 1, 0, 0.39514467, 0, 0.91861826, -0.35022712, 0.9950222, 0.19493866)
 
-[node name="vhs_tape_12" parent="World/DispatchRoom/Decorations/cabinet-col" instance=ExtResource("23_dbld1")]
+[node name="vhs_tape_12" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Decorations/cabinet-col" instance=ExtResource("23_dbld1")]
 transform = Transform3D(-0.678121, 0, -0.7349499, 0, 1, 0, 0.7349499, 0, -0.678121, -0.14825845, 1.0128492, 0.6833172)
 
-[node name="ashtray_12" parent="World/DispatchRoom/Decorations/cabinet-col" instance=ExtResource("11_63ay0")]
+[node name="ashtray_12" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Decorations/cabinet-col" instance=ExtResource("11_63ay0")]
 transform = Transform3D(1.4901161e-08, 0, -0.9999994, 0, 1, 0, 0.9999994, 0, 1.4901161e-08, -0.58356357, 0.9950222, 1.7021999)
 
-[node name="book_mp_12" parent="World/DispatchRoom/Decorations/cabinet-col" instance=ExtResource("12_y5c0f")]
+[node name="book_mp_12" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Decorations/cabinet-col" instance=ExtResource("12_y5c0f")]
 transform = Transform3D(0.49094933, 0, -0.8711879, 0, 1, 0, 0.8711879, 0, 0.49094933, 0.7550235, 0.53514344, -2.3714314)
 
-[node name="cig_12" parent="World/DispatchRoom/Decorations/cabinet-col" instance=ExtResource("13_l5e33")]
+[node name="cig_12" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Decorations/cabinet-col" instance=ExtResource("13_l5e33")]
 transform = Transform3D(1.4901161e-08, 0, -0.9999994, 0, 1, 0, 0.9999994, 0, 1.4901161e-08, -0.47141075, 0.9950222, 1.7430439)
 
-[node name="cig_22" parent="World/DispatchRoom/Decorations/cabinet-col" instance=ExtResource("14_ve8sh")]
+[node name="cig_22" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Decorations/cabinet-col" instance=ExtResource("14_ve8sh")]
 transform = Transform3D(-1.4901161e-08, -1.8626451e-08, -0.9999994, 0.15386544, 0.98809206, 1.974389e-09, 0.9880917, -0.15386541, 1.3411045e-07, -0.5819726, 1.0115087, 1.628952)
 
-[node name="pills_bottle_1_12" parent="World/DispatchRoom/Decorations/cabinet-col" instance=ExtResource("23_8v3jm")]
+[node name="pills_bottle_1_12" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Decorations/cabinet-col" instance=ExtResource("23_8v3jm")]
 transform = Transform3D(0.25881895, 0, 0.9659256, 0, 1, 0, -0.9659256, 0, 0.25881895, -0.053622007, 1, 1.7455978)
 
-[node name="Bookshelf" type="StaticBody3D" parent="World/DispatchRoom/Decorations"]
+[node name="Bookshelf" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Decorations"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7.7, 0, 3.7)
 
-[node name="Graphics" type="Node3D" parent="World/DispatchRoom/Decorations/Bookshelf"]
+[node name="Graphics" type="Node3D" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Decorations/Bookshelf"]
 
-[node name="brick2" parent="World/DispatchRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("26_olo10")]
+[node name="brick2" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("26_olo10")]
 transform = Transform3D(-0.8660254, 0, 0.5000001, 0, 1, 0, -0.5000001, 0, -0.8660254, -0.29999924, 0, 0.19999981)
 
-[node name="bookshelf" parent="World/DispatchRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("25_tji15")]
+[node name="bookshelf" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("25_tji15")]
 
-[node name="book_mp_12" parent="World/DispatchRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("12_y5c0f")]
+[node name="book_mp_12" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("12_y5c0f")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.003443718, 0.95328414, -0.010000229)
 
-[node name="book_mp_22" parent="World/DispatchRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("27_p1xtl")]
+[node name="book_mp_22" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("27_p1xtl")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.003, 1.003, -0.01)
 
-[node name="book_mp_13" parent="World/DispatchRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("12_y5c0f")]
+[node name="book_mp_13" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("12_y5c0f")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.003443718, 1.0532842, -0.010000229)
 
-[node name="ashtray_12" parent="World/DispatchRoom/Decorations/Bookshelf/Graphics/book_mp_13" instance=ExtResource("11_63ay0")]
+[node name="ashtray_12" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Decorations/Bookshelf/Graphics/book_mp_13" instance=ExtResource("11_63ay0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.01, 0.05, 0.03)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/DispatchRoom/Decorations/Bookshelf"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Decorations/Bookshelf"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.7, 0)
 shape = SubResource("BoxShape3D_tji15")
 
-[node name="Barrel" type="StaticBody3D" parent="World/DispatchRoom/Decorations"]
+[node name="Barrel" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Decorations"]
 transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, -7.5, 0, 5.3)
 
-[node name="Graphics" type="Node3D" parent="World/DispatchRoom/Decorations/Barrel"]
+[node name="Graphics" type="Node3D" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Decorations/Barrel"]
 
-[node name="metal_barrel_mp_32" parent="World/DispatchRoom/Decorations/Barrel/Graphics" instance=ExtResource("11_n6hjk")]
+[node name="metal_barrel_mp_32" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Decorations/Barrel/Graphics" instance=ExtResource("11_n6hjk")]
 
-[node name="supply_crate_12" parent="World/DispatchRoom/Decorations/Barrel/Graphics" instance=ExtResource("7_n6hjk")]
+[node name="supply_crate_12" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Decorations/Barrel/Graphics" instance=ExtResource("7_n6hjk")]
 transform = Transform3D(-0.31541717, 0, -0.94895315, 0, 1, 0, 0.94895315, 0, -0.31541717, 0.046634674, 1.0824319, 0.033228397)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/DispatchRoom/Decorations/Barrel"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Decorations/Barrel"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_n6hjk")
 
-[node name="Lights" type="Node3D" parent="World/DispatchRoom"]
+[node name="Lights" type="Node3D" parent="SubViewportContainer/SubViewport/World/DispatchRoom"]
 
-[node name="CeilingLamp" type="Node3D" parent="World/DispatchRoom/Lights"]
+[node name="CeilingLamp" type="Node3D" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 3, -1)
 
-[node name="Graphics" type="Node3D" parent="World/DispatchRoom/Lights/CeilingLamp"]
+[node name="Graphics" type="Node3D" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Lights/CeilingLamp"]
 
-[node name="ceiling_fan_mp_2_1_light_on2" parent="World/DispatchRoom/Lights/CeilingLamp/Graphics" instance=ExtResource("29_n3q1u")]
+[node name="ceiling_fan_mp_2_1_light_on2" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Lights/CeilingLamp/Graphics" instance=ExtResource("29_n3q1u")]
 script = ExtResource("8_3mprh")
 _degreesPerSecond = 45.0
 
-[node name="OmniLight3D" type="OmniLight3D" parent="World/DispatchRoom/Lights/CeilingLamp"]
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Lights/CeilingLamp"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8468702, 0)
 light_color = Color(1, 0.94509804, 0.75686276, 1)
 light_energy = 1.4
 shadow_enabled = true
 
-[node name="Light" type="GPUParticles3D" parent="World/DispatchRoom/Lights/CeilingLamp"]
+[node name="Light" type="GPUParticles3D" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Lights/CeilingLamp"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1127111, 0)
 amount = 22
 lifetime = 10.0
@@ -694,15 +690,15 @@ transform_align = 1
 process_material = SubResource("ParticleProcessMaterial_w8s17")
 draw_pass_1 = SubResource("QuadMesh_w8s17")
 
-[node name="Lamp" parent="World/DispatchRoom/Lights" instance=ExtResource("20_dbld1")]
+[node name="Lamp" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Lights" instance=ExtResource("20_dbld1")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7.9400005, 2, 4)
 
-[node name="OmniLight3D2" type="OmniLight3D" parent="World/DispatchRoom/Lights/Lamp"]
+[node name="OmniLight3D2" type="OmniLight3D" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Lights/Lamp"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.31912136)
 shadow_enabled = true
 omni_range = 4.0
 
-[node name="Light2" type="GPUParticles3D" parent="World/DispatchRoom/Lights/Lamp"]
+[node name="Light2" type="GPUParticles3D" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Lights/Lamp"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, -0.009779692, 0.4204712)
 amount = 22
 lifetime = 10.0
@@ -711,15 +707,15 @@ transform_align = 1
 process_material = SubResource("ParticleProcessMaterial_w8s17")
 draw_pass_1 = SubResource("QuadMesh_w8s17")
 
-[node name="Lamp2" parent="World/DispatchRoom/Lights" instance=ExtResource("20_dbld1")]
+[node name="Lamp2" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Lights" instance=ExtResource("20_dbld1")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 7.94, 2, -4)
 
-[node name="OmniLight3D2" type="OmniLight3D" parent="World/DispatchRoom/Lights/Lamp2"]
+[node name="OmniLight3D2" type="OmniLight3D" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Lights/Lamp2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.31912136)
 shadow_enabled = true
 omni_range = 4.0
 
-[node name="Light2" type="GPUParticles3D" parent="World/DispatchRoom/Lights/Lamp2"]
+[node name="Light2" type="GPUParticles3D" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Lights/Lamp2"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, -0.009779692, 0.4204712)
 amount = 22
 lifetime = 10.0
@@ -728,444 +724,444 @@ transform_align = 1
 process_material = SubResource("ParticleProcessMaterial_w8s17")
 draw_pass_1 = SubResource("QuadMesh_w8s17")
 
-[node name="car_placeholder" parent="World/DispatchRoom" instance=ExtResource("31_1ewh1")]
+[node name="car_placeholder" parent="SubViewportContainer/SubViewport/World/DispatchRoom" instance=ExtResource("31_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -3)
 
-[node name="ChiefHallway" type="Node3D" parent="World"]
+[node name="ChiefHallway" type="Node3D" parent="SubViewportContainer/SubViewport/World"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 12)
 
-[node name="CeilingLamp4" parent="World/ChiefHallway" instance=ExtResource("29_def21")]
+[node name="CeilingLamp4" parent="SubViewportContainer/SubViewport/World/ChiefHallway" instance=ExtResource("29_def21")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 3, -2)
 
-[node name="CeilingLamp5" parent="World/ChiefHallway" instance=ExtResource("29_def21")]
+[node name="CeilingLamp5" parent="SubViewportContainer/SubViewport/World/ChiefHallway" instance=ExtResource("29_def21")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 3, 6)
 
-[node name="Stairs" type="StaticBody3D" parent="World/ChiefHallway"]
+[node name="Stairs" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/ChiefHallway"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -3, 8)
 
-[node name="stairs_5_wood2" parent="World/ChiefHallway/Stairs" instance=ExtResource("32_def21")]
+[node name="stairs_5_wood2" parent="SubViewportContainer/SubViewport/World/ChiefHallway/Stairs" instance=ExtResource("32_def21")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/ChiefHallway/Stairs"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/ChiefHallway/Stairs"]
 transform = Transform3D(1, 0, 0, 0, 0.79335326, -0.60876137, 0, 0.60876137, 0.79335326, 0, 1.4, 0.1)
 shape = SubResource("BoxShape3D_s350q")
 
-[node name="Layout" type="Node3D" parent="World/ChiefHallway"]
+[node name="Layout" type="Node3D" parent="SubViewportContainer/SubViewport/World/ChiefHallway"]
 
-[node name="Floor" type="Node3D" parent="World/ChiefHallway/Layout"]
+[node name="Floor" type="Node3D" parent="SubViewportContainer/SubViewport/World/ChiefHallway/Layout"]
 
-[node name="FloorCeiling1" parent="World/ChiefHallway/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling1" parent="SubViewportContainer/SubViewport/World/ChiefHallway/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -4)
 
-[node name="FloorCeiling2" parent="World/ChiefHallway/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling2" parent="SubViewportContainer/SubViewport/World/ChiefHallway/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -4)
 
-[node name="FloorCeiling3" parent="World/ChiefHallway/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling3" parent="SubViewportContainer/SubViewport/World/ChiefHallway/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 
-[node name="FloorCeiling4" parent="World/ChiefHallway/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling4" parent="SubViewportContainer/SubViewport/World/ChiefHallway/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 
-[node name="FloorCeiling5" parent="World/ChiefHallway/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling5" parent="SubViewportContainer/SubViewport/World/ChiefHallway/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
 
-[node name="FloorCeiling6" parent="World/ChiefHallway/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling6" parent="SubViewportContainer/SubViewport/World/ChiefHallway/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 4)
 
-[node name="FloorCeiling7" parent="World/ChiefHallway/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling7" parent="SubViewportContainer/SubViewport/World/ChiefHallway/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 8)
 
-[node name="FloorCeiling8" parent="World/ChiefHallway/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling8" parent="SubViewportContainer/SubViewport/World/ChiefHallway/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 8)
 
-[node name="Ceiling" type="Node3D" parent="World/ChiefHallway/Layout"]
+[node name="Ceiling" type="Node3D" parent="SubViewportContainer/SubViewport/World/ChiefHallway/Layout"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 
-[node name="FloorCeiling1" parent="World/ChiefHallway/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling1" parent="SubViewportContainer/SubViewport/World/ChiefHallway/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -4)
 
-[node name="FloorCeiling2" parent="World/ChiefHallway/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling2" parent="SubViewportContainer/SubViewport/World/ChiefHallway/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -4)
 
-[node name="FloorCeiling3" parent="World/ChiefHallway/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling3" parent="SubViewportContainer/SubViewport/World/ChiefHallway/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 
-[node name="FloorCeiling4" parent="World/ChiefHallway/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling4" parent="SubViewportContainer/SubViewport/World/ChiefHallway/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 
-[node name="FloorCeiling5" parent="World/ChiefHallway/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling5" parent="SubViewportContainer/SubViewport/World/ChiefHallway/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
 
-[node name="FloorCeiling6" parent="World/ChiefHallway/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling6" parent="SubViewportContainer/SubViewport/World/ChiefHallway/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 4)
 
-[node name="FloorCeiling7" parent="World/ChiefHallway/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling7" parent="SubViewportContainer/SubViewport/World/ChiefHallway/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 8)
 
-[node name="FloorCeiling8" parent="World/ChiefHallway/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling8" parent="SubViewportContainer/SubViewport/World/ChiefHallway/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 8)
 
-[node name="Walls" type="Node3D" parent="World/ChiefHallway/Layout"]
+[node name="Walls" type="Node3D" parent="SubViewportContainer/SubViewport/World/ChiefHallway/Layout"]
 
-[node name="First" type="Node3D" parent="World/ChiefHallway/Layout/Walls"]
+[node name="First" type="Node3D" parent="SubViewportContainer/SubViewport/World/ChiefHallway/Layout/Walls"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 10)
 
-[node name="Wall" parent="World/ChiefHallway/Layout/Walls/First" instance=ExtResource("7_1ewh1")]
+[node name="Wall" parent="SubViewportContainer/SubViewport/World/ChiefHallway/Layout/Walls/First" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 
-[node name="Wall2" parent="World/ChiefHallway/Layout/Walls/First" instance=ExtResource("7_1ewh1")]
+[node name="Wall2" parent="SubViewportContainer/SubViewport/World/ChiefHallway/Layout/Walls/First" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 
-[node name="Third" type="Node3D" parent="World/ChiefHallway/Layout/Walls"]
+[node name="Third" type="Node3D" parent="SubViewportContainer/SubViewport/World/ChiefHallway/Layout/Walls"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4, 0, 0)
 
-[node name="Wall" parent="World/ChiefHallway/Layout/Walls/Third" instance=ExtResource("7_1ewh1")]
+[node name="Wall" parent="SubViewportContainer/SubViewport/World/ChiefHallway/Layout/Walls/Third" instance=ExtResource("7_1ewh1")]
 
-[node name="Wall2" parent="World/ChiefHallway/Layout/Walls/Third" instance=ExtResource("7_1ewh1")]
+[node name="Wall2" parent="SubViewportContainer/SubViewport/World/ChiefHallway/Layout/Walls/Third" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
 
-[node name="Doorway" parent="World/ChiefHallway/Layout/Walls/Third" instance=ExtResource("30_1ewh1")]
+[node name="Doorway" parent="SubViewportContainer/SubViewport/World/ChiefHallway/Layout/Walls/Third" instance=ExtResource("30_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
 
-[node name="WindowDouble" parent="World/ChiefHallway/Layout/Walls/Third" instance=ExtResource("10_x6f5f")]
+[node name="WindowDouble" parent="SubViewportContainer/SubViewport/World/ChiefHallway/Layout/Walls/Third" instance=ExtResource("10_x6f5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.000001, 0, 0)
 
-[node name="Fourth" type="Node3D" parent="World/ChiefHallway/Layout/Walls"]
+[node name="Fourth" type="Node3D" parent="SubViewportContainer/SubViewport/World/ChiefHallway/Layout/Walls"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 0, 0)
 
-[node name="Wall" parent="World/ChiefHallway/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
+[node name="Wall" parent="SubViewportContainer/SubViewport/World/ChiefHallway/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
 
-[node name="Wall2" parent="World/ChiefHallway/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
+[node name="Wall2" parent="SubViewportContainer/SubViewport/World/ChiefHallway/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.999999, 0, 0)
 
-[node name="Wall3" parent="World/ChiefHallway/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
+[node name="Wall3" parent="SubViewportContainer/SubViewport/World/ChiefHallway/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.999999, 0, 0)
 
-[node name="WindowDouble" parent="World/ChiefHallway/Layout/Walls/Fourth" instance=ExtResource("10_x6f5f")]
+[node name="WindowDouble" parent="SubViewportContainer/SubViewport/World/ChiefHallway/Layout/Walls/Fourth" instance=ExtResource("10_x6f5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 1.9073486e-06)
 
-[node name="FirstFloorHallway" type="Node3D" parent="World"]
+[node name="FirstFloorHallway" type="Node3D" parent="SubViewportContainer/SubViewport/World"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, -3, 16)
 
-[node name="Stairs" type="StaticBody3D" parent="World/FirstFloorHallway"]
+[node name="Stairs" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/FirstFloorHallway"]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -1, -3, 4)
 
-[node name="stairs_5_wood2" parent="World/FirstFloorHallway/Stairs" instance=ExtResource("32_def21")]
+[node name="stairs_5_wood2" parent="SubViewportContainer/SubViewport/World/FirstFloorHallway/Stairs" instance=ExtResource("32_def21")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/FirstFloorHallway/Stairs"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/FirstFloorHallway/Stairs"]
 transform = Transform3D(1, 0, 0, 0, 0.79335326, -0.60876137, 0, 0.60876137, 0.79335326, 0, 1.4, 0.1)
 shape = SubResource("BoxShape3D_s350q")
 
-[node name="Layout" type="Node3D" parent="World/FirstFloorHallway"]
+[node name="Layout" type="Node3D" parent="SubViewportContainer/SubViewport/World/FirstFloorHallway"]
 
-[node name="Floor" type="Node3D" parent="World/FirstFloorHallway/Layout"]
+[node name="Floor" type="Node3D" parent="SubViewportContainer/SubViewport/World/FirstFloorHallway/Layout"]
 
-[node name="FloorCeiling1" parent="World/FirstFloorHallway/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling1" parent="SubViewportContainer/SubViewport/World/FirstFloorHallway/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 8)
 
-[node name="FloorCeiling2" parent="World/FirstFloorHallway/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling2" parent="SubViewportContainer/SubViewport/World/FirstFloorHallway/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 8)
 
-[node name="FloorCeiling3" parent="World/FirstFloorHallway/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling3" parent="SubViewportContainer/SubViewport/World/FirstFloorHallway/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 4)
 
-[node name="FloorCeiling4" parent="World/FirstFloorHallway/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling4" parent="SubViewportContainer/SubViewport/World/FirstFloorHallway/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 4)
 
-[node name="FloorCeiling5" parent="World/FirstFloorHallway/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling5" parent="SubViewportContainer/SubViewport/World/FirstFloorHallway/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 
-[node name="FloorCeiling6" parent="World/FirstFloorHallway/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling6" parent="SubViewportContainer/SubViewport/World/FirstFloorHallway/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 
-[node name="FloorCeiling7" parent="World/FirstFloorHallway/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling7" parent="SubViewportContainer/SubViewport/World/FirstFloorHallway/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -4)
 
-[node name="FloorCeiling8" parent="World/FirstFloorHallway/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling8" parent="SubViewportContainer/SubViewport/World/FirstFloorHallway/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -4)
 
-[node name="Walls" type="Node3D" parent="World/FirstFloorHallway/Layout"]
+[node name="Walls" type="Node3D" parent="SubViewportContainer/SubViewport/World/FirstFloorHallway/Layout"]
 
-[node name="First" type="Node3D" parent="World/FirstFloorHallway/Layout/Walls"]
+[node name="First" type="Node3D" parent="SubViewportContainer/SubViewport/World/FirstFloorHallway/Layout/Walls"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 10)
 
-[node name="Wall" parent="World/FirstFloorHallway/Layout/Walls/First" instance=ExtResource("7_1ewh1")]
+[node name="Wall" parent="SubViewportContainer/SubViewport/World/FirstFloorHallway/Layout/Walls/First" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 
-[node name="Doorway" parent="World/FirstFloorHallway/Layout/Walls/First" instance=ExtResource("30_1ewh1")]
+[node name="Doorway" parent="SubViewportContainer/SubViewport/World/FirstFloorHallway/Layout/Walls/First" instance=ExtResource("30_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 
-[node name="Second" type="Node3D" parent="World/FirstFloorHallway/Layout/Walls"]
+[node name="Second" type="Node3D" parent="SubViewportContainer/SubViewport/World/FirstFloorHallway/Layout/Walls"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -6)
 
-[node name="Wall" parent="World/FirstFloorHallway/Layout/Walls/Second" instance=ExtResource("7_1ewh1")]
+[node name="Wall" parent="SubViewportContainer/SubViewport/World/FirstFloorHallway/Layout/Walls/Second" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.000001, 0, -1.9073486e-06)
 
-[node name="Wall2" parent="World/FirstFloorHallway/Layout/Walls/Second" instance=ExtResource("7_1ewh1")]
+[node name="Wall2" parent="SubViewportContainer/SubViewport/World/FirstFloorHallway/Layout/Walls/Second" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -1.9073486e-06)
 
-[node name="Third" type="Node3D" parent="World/FirstFloorHallway/Layout/Walls"]
+[node name="Third" type="Node3D" parent="SubViewportContainer/SubViewport/World/FirstFloorHallway/Layout/Walls"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4, 0, 0)
 
-[node name="Wall" parent="World/FirstFloorHallway/Layout/Walls/Third" instance=ExtResource("7_1ewh1")]
+[node name="Wall" parent="SubViewportContainer/SubViewport/World/FirstFloorHallway/Layout/Walls/Third" instance=ExtResource("7_1ewh1")]
 
-[node name="Wall2" parent="World/FirstFloorHallway/Layout/Walls/Third" instance=ExtResource("7_1ewh1")]
+[node name="Wall2" parent="SubViewportContainer/SubViewport/World/FirstFloorHallway/Layout/Walls/Third" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.000001, 0, 0)
 
-[node name="Wall3" parent="World/FirstFloorHallway/Layout/Walls/Third" instance=ExtResource("7_1ewh1")]
+[node name="Wall3" parent="SubViewportContainer/SubViewport/World/FirstFloorHallway/Layout/Walls/Third" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
 
-[node name="WindowDouble" parent="World/FirstFloorHallway/Layout/Walls/Third" instance=ExtResource("10_x6f5f")]
+[node name="WindowDouble" parent="SubViewportContainer/SubViewport/World/FirstFloorHallway/Layout/Walls/Third" instance=ExtResource("10_x6f5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.000001, 0, -5.722046e-06)
 
-[node name="Fourth" type="Node3D" parent="World/FirstFloorHallway/Layout/Walls"]
+[node name="Fourth" type="Node3D" parent="SubViewportContainer/SubViewport/World/FirstFloorHallway/Layout/Walls"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 0, 0)
 
-[node name="Wall" parent="World/FirstFloorHallway/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
+[node name="Wall" parent="SubViewportContainer/SubViewport/World/FirstFloorHallway/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
 
-[node name="Wall2" parent="World/FirstFloorHallway/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
+[node name="Wall2" parent="SubViewportContainer/SubViewport/World/FirstFloorHallway/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
 
-[node name="Wall3" parent="World/FirstFloorHallway/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
+[node name="Wall3" parent="SubViewportContainer/SubViewport/World/FirstFloorHallway/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
 
-[node name="WindowDouble" parent="World/FirstFloorHallway/Layout/Walls/Fourth" instance=ExtResource("10_x6f5f")]
+[node name="WindowDouble" parent="SubViewportContainer/SubViewport/World/FirstFloorHallway/Layout/Walls/Fourth" instance=ExtResource("10_x6f5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.999998, 0, 0)
 
-[node name="FloorCeiling1" parent="World/FirstFloorHallway" instance=ExtResource("6_def21")]
+[node name="FloorCeiling1" parent="SubViewportContainer/SubViewport/World/FirstFloorHallway" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3, 8)
 
-[node name="FloorCeiling2" parent="World/FirstFloorHallway" instance=ExtResource("6_def21")]
+[node name="FloorCeiling2" parent="SubViewportContainer/SubViewport/World/FirstFloorHallway" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 3, 8)
 
-[node name="ReceptionRoom" type="Node3D" parent="World"]
+[node name="ReceptionRoom" type="Node3D" parent="SubViewportContainer/SubViewport/World"]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 16, -3, 32)
 
-[node name="DancingDude" type="StaticBody3D" parent="World/ReceptionRoom"]
+[node name="DancingDude" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/ReceptionRoom"]
 transform = Transform3D(-0.6853737, 0, -0.7281915, 0, 1, 0, 0.7281915, 0, -0.6853737, -0.0833168, 0, 5.0431004)
 
-[node name="SillyDancing" parent="World/ReceptionRoom/DancingDude" instance=ExtResource("6_jm2hm")]
+[node name="SillyDancing" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/DancingDude" instance=ExtResource("6_jm2hm")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/ReceptionRoom/DancingDude"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/DancingDude"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_a0ubh")
 
-[node name="LightSwitch" parent="World/ReceptionRoom" node_paths=PackedStringArray("_meshChanger", "_connectedLight", "_connectedParticles") instance=ExtResource("11_vw0fq")]
+[node name="LightSwitch" parent="SubViewportContainer/SubViewport/World/ReceptionRoom" node_paths=PackedStringArray("_meshChanger", "_connectedLight", "_connectedParticles") instance=ExtResource("11_vw0fq")]
 transform = Transform3D(-0.9912154, -0.13225639, -8.742277e-08, -0.13225637, 0.9912155, 0, 8.665481e-08, 1.15622205e-08, -0.9999999, -2.9449997, 1.4725647, 5.94)
 _meshChanger = NodePath("../Lights/Lamp")
 _connectedLight = NodePath("../Lights/Lamp/OmniLight3D2")
 _connectedParticles = NodePath("../Lights/Lamp/Light2")
 
-[node name="Layout" type="Node3D" parent="World/ReceptionRoom"]
+[node name="Layout" type="Node3D" parent="SubViewportContainer/SubViewport/World/ReceptionRoom"]
 
-[node name="Floor" type="Node3D" parent="World/ReceptionRoom/Layout"]
+[node name="Floor" type="Node3D" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Layout"]
 
-[node name="FloorCeiling1" parent="World/ReceptionRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling1" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 4)
 
-[node name="FloorCeiling2" parent="World/ReceptionRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling2" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 4)
 
-[node name="FloorCeiling3" parent="World/ReceptionRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling3" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
 
-[node name="FloorCeiling5" parent="World/ReceptionRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling5" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
 
-[node name="FloorCeiling6" parent="World/ReceptionRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling6" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 
-[node name="FloorCeiling7" parent="World/ReceptionRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling7" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 
-[node name="FloorCeiling8" parent="World/ReceptionRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling8" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
 
-[node name="FloorCeiling9" parent="World/ReceptionRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling9" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -4)
 
-[node name="FloorCeiling10" parent="World/ReceptionRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling10" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -4)
 
-[node name="FloorCeiling11" parent="World/ReceptionRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling11" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -4)
 
-[node name="FloorCeiling12" parent="World/ReceptionRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling12" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -4)
 
-[node name="Ceiling" type="Node3D" parent="World/ReceptionRoom/Layout"]
+[node name="Ceiling" type="Node3D" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Layout"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 
-[node name="FloorCeiling1" parent="World/ReceptionRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling1" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 4)
 
-[node name="FloorCeiling2" parent="World/ReceptionRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling2" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 4)
 
-[node name="FloorCeiling3" parent="World/ReceptionRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling3" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
 
-[node name="FloorCeiling4" parent="World/ReceptionRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling4" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 4)
 
-[node name="FloorCeiling5" parent="World/ReceptionRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling5" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
 
-[node name="FloorCeiling6" parent="World/ReceptionRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling6" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 
-[node name="FloorCeiling7" parent="World/ReceptionRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling7" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 
-[node name="FloorCeiling8" parent="World/ReceptionRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling8" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
 
-[node name="FloorCeiling9" parent="World/ReceptionRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling9" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -4)
 
-[node name="FloorCeiling10" parent="World/ReceptionRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling10" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -4)
 
-[node name="FloorCeiling11" parent="World/ReceptionRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling11" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -4)
 
-[node name="FloorCeiling12" parent="World/ReceptionRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling12" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -4)
 
-[node name="Walls" type="Node3D" parent="World/ReceptionRoom/Layout"]
+[node name="Walls" type="Node3D" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Layout"]
 
-[node name="First" type="Node3D" parent="World/ReceptionRoom/Layout/Walls"]
+[node name="First" type="Node3D" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Layout/Walls"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 6)
 
-[node name="Wall2" parent="World/ReceptionRoom/Layout/Walls/First" instance=ExtResource("7_1ewh1")]
+[node name="Wall2" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Layout/Walls/First" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -4.7683716e-07)
 
-[node name="Wall3" parent="World/ReceptionRoom/Layout/Walls/First" instance=ExtResource("7_1ewh1")]
+[node name="Wall3" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Layout/Walls/First" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.000002, 0, 4.7683716e-07)
 
-[node name="Second" type="Node3D" parent="World/ReceptionRoom/Layout/Walls"]
+[node name="Second" type="Node3D" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Layout/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6)
 
-[node name="Wall" parent="World/ReceptionRoom/Layout/Walls/Second" instance=ExtResource("7_1ewh1")]
+[node name="Wall" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Layout/Walls/Second" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
 
-[node name="Wall2" parent="World/ReceptionRoom/Layout/Walls/Second" instance=ExtResource("7_1ewh1")]
+[node name="Wall2" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Layout/Walls/Second" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 
-[node name="Wall3" parent="World/ReceptionRoom/Layout/Walls/Second" instance=ExtResource("7_1ewh1")]
+[node name="Wall3" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Layout/Walls/Second" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
 
-[node name="WindowDouble" parent="World/ReceptionRoom/Layout/Walls/Second" instance=ExtResource("10_x6f5f")]
+[node name="WindowDouble" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Layout/Walls/Second" instance=ExtResource("10_x6f5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 
-[node name="Third" type="Node3D" parent="World/ReceptionRoom/Layout/Walls"]
+[node name="Third" type="Node3D" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Layout/Walls"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8, 0, 0)
 
-[node name="Wall" parent="World/ReceptionRoom/Layout/Walls/Third" instance=ExtResource("7_1ewh1")]
+[node name="Wall" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Layout/Walls/Third" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
 
-[node name="Wall2" parent="World/ReceptionRoom/Layout/Walls/Third" instance=ExtResource("7_1ewh1")]
+[node name="Wall2" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Layout/Walls/Third" instance=ExtResource("7_1ewh1")]
 
-[node name="WindowDouble" parent="World/ReceptionRoom/Layout/Walls/Third" instance=ExtResource("10_x6f5f")]
+[node name="WindowDouble" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Layout/Walls/Third" instance=ExtResource("10_x6f5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 9.536743e-07)
 
-[node name="Fourth" type="Node3D" parent="World/ReceptionRoom/Layout/Walls"]
+[node name="Fourth" type="Node3D" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Layout/Walls"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, 0)
 
-[node name="WindowDouble" parent="World/ReceptionRoom/Layout/Walls/Fourth" instance=ExtResource("10_x6f5f")]
+[node name="WindowDouble" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Layout/Walls/Fourth" instance=ExtResource("10_x6f5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.000002, 0, 0)
 
-[node name="Wall" parent="World/ReceptionRoom/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
+[node name="Wall" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
 
-[node name="Wall2" parent="World/ReceptionRoom/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
+[node name="Wall2" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
 
-[node name="Decorations" type="Node3D" parent="World/ReceptionRoom"]
+[node name="Decorations" type="Node3D" parent="SubViewportContainer/SubViewport/World/ReceptionRoom"]
 
-[node name="cabinet-col" parent="World/ReceptionRoom/Decorations" instance=ExtResource("9_w8s17")]
+[node name="cabinet-col" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Decorations" instance=ExtResource("9_w8s17")]
 transform = Transform3D(0.25881904, 0, -0.96592593, 0, 1, 0, 0.96592593, 0, 0.25881904, 3.999999, 0, -3.000002)
 
-[node name="pc_speaker_1_left2" parent="World/ReceptionRoom/Decorations/cabinet-col" instance=ExtResource("21_ve8sh")]
+[node name="pc_speaker_1_left2" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Decorations/cabinet-col" instance=ExtResource("21_ve8sh")]
 transform = Transform3D(1.4901161e-08, 0, -0.9999994, 0, 1, 0, 0.9999994, 0, 1.4901161e-08, -0.025384188, 0.9950221, 0.9587326)
 
-[node name="tv_remote_mp_12" parent="World/ReceptionRoom/Decorations/cabinet-col" instance=ExtResource("22_qgpyk")]
+[node name="tv_remote_mp_12" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Decorations/cabinet-col" instance=ExtResource("22_qgpyk")]
 transform = Transform3D(0.91861826, 0, -0.39514467, 0, 1, 0, 0.39514467, 0, 0.91861826, -0.35022712, 0.9950222, 0.19493866)
 
-[node name="vhs_tape_12" parent="World/ReceptionRoom/Decorations/cabinet-col" instance=ExtResource("23_dbld1")]
+[node name="vhs_tape_12" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Decorations/cabinet-col" instance=ExtResource("23_dbld1")]
 transform = Transform3D(-0.678121, 0, -0.7349499, 0, 1, 0, 0.7349499, 0, -0.678121, -0.14825845, 1.0128492, 0.6833172)
 
-[node name="ashtray_12" parent="World/ReceptionRoom/Decorations/cabinet-col" instance=ExtResource("11_63ay0")]
+[node name="ashtray_12" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Decorations/cabinet-col" instance=ExtResource("11_63ay0")]
 transform = Transform3D(1.4901161e-08, 0, -0.9999994, 0, 1, 0, 0.9999994, 0, 1.4901161e-08, -0.58356357, 0.9950222, 1.7021999)
 
-[node name="book_mp_12" parent="World/ReceptionRoom/Decorations/cabinet-col" instance=ExtResource("12_y5c0f")]
+[node name="book_mp_12" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Decorations/cabinet-col" instance=ExtResource("12_y5c0f")]
 transform = Transform3D(0.49094933, 0, -0.8711879, 0, 1, 0, 0.8711879, 0, 0.49094933, 0.7550235, 0.53514344, -2.3714314)
 
-[node name="cig_12" parent="World/ReceptionRoom/Decorations/cabinet-col" instance=ExtResource("13_l5e33")]
+[node name="cig_12" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Decorations/cabinet-col" instance=ExtResource("13_l5e33")]
 transform = Transform3D(1.4901161e-08, 0, -0.9999994, 0, 1, 0, 0.9999994, 0, 1.4901161e-08, -0.47141075, 0.9950222, 1.7430439)
 
-[node name="cig_22" parent="World/ReceptionRoom/Decorations/cabinet-col" instance=ExtResource("14_ve8sh")]
+[node name="cig_22" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Decorations/cabinet-col" instance=ExtResource("14_ve8sh")]
 transform = Transform3D(-1.4901161e-08, -1.8626451e-08, -0.9999994, 0.15386544, 0.98809206, 1.974389e-09, 0.9880917, -0.15386541, 1.3411045e-07, -0.5819726, 1.0115087, 1.628952)
 
-[node name="pills_bottle_1_12" parent="World/ReceptionRoom/Decorations/cabinet-col" instance=ExtResource("23_8v3jm")]
+[node name="pills_bottle_1_12" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Decorations/cabinet-col" instance=ExtResource("23_8v3jm")]
 transform = Transform3D(0.25881895, 0, 0.9659256, 0, 1, 0, -0.9659256, 0, 0.25881895, -0.053622007, 1, 1.7455978)
 
-[node name="Bookshelf" type="StaticBody3D" parent="World/ReceptionRoom/Decorations"]
+[node name="Bookshelf" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Decorations"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7.7, 0, 3.7)
 
-[node name="Graphics" type="Node3D" parent="World/ReceptionRoom/Decorations/Bookshelf"]
+[node name="Graphics" type="Node3D" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Decorations/Bookshelf"]
 
-[node name="brick2" parent="World/ReceptionRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("26_olo10")]
+[node name="brick2" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("26_olo10")]
 transform = Transform3D(-0.8660254, 0, 0.5000001, 0, 1, 0, -0.5000001, 0, -0.8660254, -0.29999924, 0, 0.19999981)
 
-[node name="bookshelf" parent="World/ReceptionRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("25_tji15")]
+[node name="bookshelf" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("25_tji15")]
 
-[node name="book_mp_12" parent="World/ReceptionRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("12_y5c0f")]
+[node name="book_mp_12" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("12_y5c0f")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.003443718, 0.95328414, -0.010000229)
 
-[node name="book_mp_22" parent="World/ReceptionRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("27_p1xtl")]
+[node name="book_mp_22" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("27_p1xtl")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.003, 1.003, -0.01)
 
-[node name="book_mp_13" parent="World/ReceptionRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("12_y5c0f")]
+[node name="book_mp_13" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("12_y5c0f")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.003443718, 1.0532842, -0.010000229)
 
-[node name="ashtray_12" parent="World/ReceptionRoom/Decorations/Bookshelf/Graphics/book_mp_13" instance=ExtResource("11_63ay0")]
+[node name="ashtray_12" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Decorations/Bookshelf/Graphics/book_mp_13" instance=ExtResource("11_63ay0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.01, 0.05, 0.03)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/ReceptionRoom/Decorations/Bookshelf"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Decorations/Bookshelf"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.7, 0)
 shape = SubResource("BoxShape3D_tji15")
 
-[node name="Barrel" type="StaticBody3D" parent="World/ReceptionRoom/Decorations"]
+[node name="Barrel" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Decorations"]
 transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, -7.5, 0, 5.3)
 
-[node name="Graphics" type="Node3D" parent="World/ReceptionRoom/Decorations/Barrel"]
+[node name="Graphics" type="Node3D" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Decorations/Barrel"]
 
-[node name="metal_barrel_mp_32" parent="World/ReceptionRoom/Decorations/Barrel/Graphics" instance=ExtResource("11_n6hjk")]
+[node name="metal_barrel_mp_32" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Decorations/Barrel/Graphics" instance=ExtResource("11_n6hjk")]
 
-[node name="supply_crate_12" parent="World/ReceptionRoom/Decorations/Barrel/Graphics" instance=ExtResource("7_n6hjk")]
+[node name="supply_crate_12" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Decorations/Barrel/Graphics" instance=ExtResource("7_n6hjk")]
 transform = Transform3D(-0.31541717, 0, -0.94895315, 0, 1, 0, 0.94895315, 0, -0.31541717, 0.046634674, 1.0824319, 0.033228397)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/ReceptionRoom/Decorations/Barrel"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Decorations/Barrel"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_n6hjk")
 
-[node name="Lights" type="Node3D" parent="World/ReceptionRoom"]
+[node name="Lights" type="Node3D" parent="SubViewportContainer/SubViewport/World/ReceptionRoom"]
 
-[node name="CeilingLamp" type="Node3D" parent="World/ReceptionRoom/Lights"]
+[node name="CeilingLamp" type="Node3D" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 3, -1)
 
-[node name="Graphics" type="Node3D" parent="World/ReceptionRoom/Lights/CeilingLamp"]
+[node name="Graphics" type="Node3D" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Lights/CeilingLamp"]
 
-[node name="ceiling_fan_mp_2_1_light_on2" parent="World/ReceptionRoom/Lights/CeilingLamp/Graphics" instance=ExtResource("29_n3q1u")]
+[node name="ceiling_fan_mp_2_1_light_on2" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Lights/CeilingLamp/Graphics" instance=ExtResource("29_n3q1u")]
 script = ExtResource("8_3mprh")
 _degreesPerSecond = 45.0
 
-[node name="OmniLight3D" type="OmniLight3D" parent="World/ReceptionRoom/Lights/CeilingLamp"]
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Lights/CeilingLamp"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8468702, 0)
 light_color = Color(1, 0.94509804, 0.75686276, 1)
 light_energy = 1.4
 shadow_enabled = true
 
-[node name="Light" type="GPUParticles3D" parent="World/ReceptionRoom/Lights/CeilingLamp"]
+[node name="Light" type="GPUParticles3D" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Lights/CeilingLamp"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1127111, 0)
 amount = 22
 lifetime = 10.0
@@ -1174,15 +1170,15 @@ transform_align = 1
 process_material = SubResource("ParticleProcessMaterial_w8s17")
 draw_pass_1 = SubResource("QuadMesh_w8s17")
 
-[node name="Lamp" parent="World/ReceptionRoom/Lights" instance=ExtResource("20_dbld1")]
+[node name="Lamp" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Lights" instance=ExtResource("20_dbld1")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7.9400005, 2, 4)
 
-[node name="OmniLight3D2" type="OmniLight3D" parent="World/ReceptionRoom/Lights/Lamp"]
+[node name="OmniLight3D2" type="OmniLight3D" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Lights/Lamp"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.31912136)
 shadow_enabled = true
 omni_range = 4.0
 
-[node name="Light2" type="GPUParticles3D" parent="World/ReceptionRoom/Lights/Lamp"]
+[node name="Light2" type="GPUParticles3D" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Lights/Lamp"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, -0.009779692, 0.4204712)
 amount = 22
 lifetime = 10.0
@@ -1191,15 +1187,15 @@ transform_align = 1
 process_material = SubResource("ParticleProcessMaterial_w8s17")
 draw_pass_1 = SubResource("QuadMesh_w8s17")
 
-[node name="Lamp2" parent="World/ReceptionRoom/Lights" instance=ExtResource("20_dbld1")]
+[node name="Lamp2" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Lights" instance=ExtResource("20_dbld1")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 7.94, 2, -4)
 
-[node name="OmniLight3D2" type="OmniLight3D" parent="World/ReceptionRoom/Lights/Lamp2"]
+[node name="OmniLight3D2" type="OmniLight3D" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Lights/Lamp2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.31912136)
 shadow_enabled = true
 omni_range = 4.0
 
-[node name="Light2" type="GPUParticles3D" parent="World/ReceptionRoom/Lights/Lamp2"]
+[node name="Light2" type="GPUParticles3D" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Lights/Lamp2"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, -0.009779692, 0.4204712)
 amount = 22
 lifetime = 10.0
@@ -1208,457 +1204,457 @@ transform_align = 1
 process_material = SubResource("ParticleProcessMaterial_w8s17")
 draw_pass_1 = SubResource("QuadMesh_w8s17")
 
-[node name="car_placeholder" parent="World/ReceptionRoom" instance=ExtResource("31_1ewh1")]
+[node name="car_placeholder" parent="SubViewportContainer/SubViewport/World/ReceptionRoom" instance=ExtResource("31_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -3)
 
-[node name="CeilingLamp4" parent="World/ReceptionRoom" instance=ExtResource("29_def21")]
+[node name="CeilingLamp4" parent="SubViewportContainer/SubViewport/World/ReceptionRoom" instance=ExtResource("29_def21")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 3, 18)
 
-[node name="CeilingLamp5" parent="World/ReceptionRoom" instance=ExtResource("29_def21")]
+[node name="CeilingLamp5" parent="SubViewportContainer/SubViewport/World/ReceptionRoom" instance=ExtResource("29_def21")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3.8146973e-06, 3, 10)
 
-[node name="BasementHallway" type="Node3D" parent="World"]
+[node name="BasementHallway" type="Node3D" parent="SubViewportContainer/SubViewport/World"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, -6, 16)
 
-[node name="Layout" type="Node3D" parent="World/BasementHallway"]
+[node name="Layout" type="Node3D" parent="SubViewportContainer/SubViewport/World/BasementHallway"]
 
-[node name="Floor" type="Node3D" parent="World/BasementHallway/Layout"]
+[node name="Floor" type="Node3D" parent="SubViewportContainer/SubViewport/World/BasementHallway/Layout"]
 
-[node name="FloorCeiling1" parent="World/BasementHallway/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling1" parent="SubViewportContainer/SubViewport/World/BasementHallway/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 8)
 
-[node name="FloorCeiling2" parent="World/BasementHallway/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling2" parent="SubViewportContainer/SubViewport/World/BasementHallway/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 8)
 
-[node name="FloorCeiling3" parent="World/BasementHallway/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling3" parent="SubViewportContainer/SubViewport/World/BasementHallway/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
 
-[node name="FloorCeiling4" parent="World/BasementHallway/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling4" parent="SubViewportContainer/SubViewport/World/BasementHallway/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 4)
 
-[node name="FloorCeiling5" parent="World/BasementHallway/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling5" parent="SubViewportContainer/SubViewport/World/BasementHallway/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 
-[node name="FloorCeiling6" parent="World/BasementHallway/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling6" parent="SubViewportContainer/SubViewport/World/BasementHallway/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 
-[node name="FloorCeiling7" parent="World/BasementHallway/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling7" parent="SubViewportContainer/SubViewport/World/BasementHallway/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -4)
 
-[node name="FloorCeiling8" parent="World/BasementHallway/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling8" parent="SubViewportContainer/SubViewport/World/BasementHallway/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -4)
 
-[node name="FloorCeiling9" parent="World/BasementHallway/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling9" parent="SubViewportContainer/SubViewport/World/BasementHallway/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -8)
 
-[node name="FloorCeiling10" parent="World/BasementHallway/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling10" parent="SubViewportContainer/SubViewport/World/BasementHallway/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -8)
 
-[node name="FloorCeiling11" parent="World/BasementHallway/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling11" parent="SubViewportContainer/SubViewport/World/BasementHallway/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -12)
 
-[node name="FloorCeiling12" parent="World/BasementHallway/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling12" parent="SubViewportContainer/SubViewport/World/BasementHallway/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -12)
 
-[node name="FloorCeiling13" parent="World/BasementHallway/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling13" parent="SubViewportContainer/SubViewport/World/BasementHallway/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -16)
 
-[node name="FloorCeiling14" parent="World/BasementHallway/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling14" parent="SubViewportContainer/SubViewport/World/BasementHallway/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -16)
 
-[node name="Ceiling" type="Node3D" parent="World/BasementHallway/Layout"]
+[node name="Ceiling" type="Node3D" parent="SubViewportContainer/SubViewport/World/BasementHallway/Layout"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 
-[node name="FloorCeiling9" parent="World/BasementHallway/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling9" parent="SubViewportContainer/SubViewport/World/BasementHallway/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -8)
 
-[node name="FloorCeiling10" parent="World/BasementHallway/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling10" parent="SubViewportContainer/SubViewport/World/BasementHallway/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -8)
 
-[node name="FloorCeiling11" parent="World/BasementHallway/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling11" parent="SubViewportContainer/SubViewport/World/BasementHallway/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -12)
 
-[node name="FloorCeiling12" parent="World/BasementHallway/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling12" parent="SubViewportContainer/SubViewport/World/BasementHallway/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -12)
 
-[node name="FloorCeiling13" parent="World/BasementHallway/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling13" parent="SubViewportContainer/SubViewport/World/BasementHallway/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -16)
 
-[node name="FloorCeiling14" parent="World/BasementHallway/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling14" parent="SubViewportContainer/SubViewport/World/BasementHallway/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -16)
 
-[node name="Walls" type="Node3D" parent="World/BasementHallway/Layout"]
+[node name="Walls" type="Node3D" parent="SubViewportContainer/SubViewport/World/BasementHallway/Layout"]
 
-[node name="First" type="Node3D" parent="World/BasementHallway/Layout/Walls"]
+[node name="First" type="Node3D" parent="SubViewportContainer/SubViewport/World/BasementHallway/Layout/Walls"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 10)
 
-[node name="Wall" parent="World/BasementHallway/Layout/Walls/First" instance=ExtResource("7_1ewh1")]
+[node name="Wall" parent="SubViewportContainer/SubViewport/World/BasementHallway/Layout/Walls/First" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.000001, 0, -1.9073486e-06)
 
-[node name="Wall2" parent="World/BasementHallway/Layout/Walls/First" instance=ExtResource("7_1ewh1")]
+[node name="Wall2" parent="SubViewportContainer/SubViewport/World/BasementHallway/Layout/Walls/First" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -1.9073486e-06)
 
-[node name="Second" type="Node3D" parent="World/BasementHallway/Layout/Walls"]
+[node name="Second" type="Node3D" parent="SubViewportContainer/SubViewport/World/BasementHallway/Layout/Walls"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -18)
 
-[node name="Wall" parent="World/BasementHallway/Layout/Walls/Second" instance=ExtResource("7_1ewh1")]
+[node name="Wall" parent="SubViewportContainer/SubViewport/World/BasementHallway/Layout/Walls/Second" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.000001, 0, -1.9073486e-06)
 
-[node name="Wall2" parent="World/BasementHallway/Layout/Walls/Second" instance=ExtResource("7_1ewh1")]
+[node name="Wall2" parent="SubViewportContainer/SubViewport/World/BasementHallway/Layout/Walls/Second" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -1.9073486e-06)
 
-[node name="Third" type="Node3D" parent="World/BasementHallway/Layout/Walls"]
+[node name="Third" type="Node3D" parent="SubViewportContainer/SubViewport/World/BasementHallway/Layout/Walls"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4, 0, 0)
 
-[node name="Wall" parent="World/BasementHallway/Layout/Walls/Third" instance=ExtResource("7_1ewh1")]
+[node name="Wall" parent="SubViewportContainer/SubViewport/World/BasementHallway/Layout/Walls/Third" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
 
-[node name="Wall2" parent="World/BasementHallway/Layout/Walls/Third" instance=ExtResource("7_1ewh1")]
+[node name="Wall2" parent="SubViewportContainer/SubViewport/World/BasementHallway/Layout/Walls/Third" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 0)
 
-[node name="Fourth" type="Node3D" parent="World/BasementHallway/Layout/Walls"]
+[node name="Fourth" type="Node3D" parent="SubViewportContainer/SubViewport/World/BasementHallway/Layout/Walls"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 0, 0)
 
-[node name="Wall" parent="World/BasementHallway/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
+[node name="Wall" parent="SubViewportContainer/SubViewport/World/BasementHallway/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
 
-[node name="Wall4" parent="World/BasementHallway/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
+[node name="Wall4" parent="SubViewportContainer/SubViewport/World/BasementHallway/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.999999, 0, 9.536743e-07)
 
-[node name="Wall5" parent="World/BasementHallway/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
+[node name="Wall5" parent="SubViewportContainer/SubViewport/World/BasementHallway/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.999998, 0, 1.9073486e-06)
 
-[node name="Wall6" parent="World/BasementHallway/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
+[node name="Wall6" parent="SubViewportContainer/SubViewport/World/BasementHallway/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.999997, 0, 1.9073486e-06)
 
-[node name="Wall2" parent="World/BasementHallway/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
+[node name="Wall2" parent="SubViewportContainer/SubViewport/World/BasementHallway/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
 
-[node name="Wall3" parent="World/BasementHallway/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
+[node name="Wall3" parent="SubViewportContainer/SubViewport/World/BasementHallway/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
 
-[node name="WindowDouble" parent="World/BasementHallway/Layout/Walls/Fourth" instance=ExtResource("10_x6f5f")]
+[node name="WindowDouble" parent="SubViewportContainer/SubViewport/World/BasementHallway/Layout/Walls/Fourth" instance=ExtResource("10_x6f5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.999998, 0, 0)
 
-[node name="CeilingLamp4" parent="World/BasementHallway" instance=ExtResource("29_def21")]
+[node name="CeilingLamp4" parent="SubViewportContainer/SubViewport/World/BasementHallway" instance=ExtResource("29_def21")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 3, -2)
 
-[node name="CeilingLamp5" parent="World/BasementHallway" instance=ExtResource("29_def21")]
+[node name="CeilingLamp5" parent="SubViewportContainer/SubViewport/World/BasementHallway" instance=ExtResource("29_def21")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 3, -10)
 
-[node name="JailRoom" type="Node3D" parent="World"]
+[node name="JailRoom" type="Node3D" parent="SubViewportContainer/SubViewport/World"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 26, -6, 6)
 
-[node name="Layout" type="Node3D" parent="World/JailRoom"]
+[node name="Layout" type="Node3D" parent="SubViewportContainer/SubViewport/World/JailRoom"]
 
-[node name="Floor" type="Node3D" parent="World/JailRoom/Layout"]
+[node name="Floor" type="Node3D" parent="SubViewportContainer/SubViewport/World/JailRoom/Layout"]
 
-[node name="FloorCeiling1" parent="World/JailRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling1" parent="SubViewportContainer/SubViewport/World/JailRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -4)
 
-[node name="FloorCeiling2" parent="World/JailRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling2" parent="SubViewportContainer/SubViewport/World/JailRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -4)
 
-[node name="FloorCeiling3" parent="World/JailRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling3" parent="SubViewportContainer/SubViewport/World/JailRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 
-[node name="FloorCeiling4" parent="World/JailRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling4" parent="SubViewportContainer/SubViewport/World/JailRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 
-[node name="FloorCeiling5" parent="World/JailRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling5" parent="SubViewportContainer/SubViewport/World/JailRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
 
-[node name="FloorCeiling6" parent="World/JailRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling6" parent="SubViewportContainer/SubViewport/World/JailRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9999995, 0, 4)
 
-[node name="FloorCeiling7" parent="World/JailRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling7" parent="SubViewportContainer/SubViewport/World/JailRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.000001, 0, 8)
 
-[node name="FloorCeiling8" parent="World/JailRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling8" parent="SubViewportContainer/SubViewport/World/JailRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.999999, 0, 8)
 
-[node name="Ceiling" type="Node3D" parent="World/JailRoom/Layout"]
+[node name="Ceiling" type="Node3D" parent="SubViewportContainer/SubViewport/World/JailRoom/Layout"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 
-[node name="FloorCeiling1" parent="World/JailRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling1" parent="SubViewportContainer/SubViewport/World/JailRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -4)
 
-[node name="FloorCeiling2" parent="World/JailRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling2" parent="SubViewportContainer/SubViewport/World/JailRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -4)
 
-[node name="FloorCeiling3" parent="World/JailRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling3" parent="SubViewportContainer/SubViewport/World/JailRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 
-[node name="FloorCeiling4" parent="World/JailRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling4" parent="SubViewportContainer/SubViewport/World/JailRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 
-[node name="FloorCeiling5" parent="World/JailRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling5" parent="SubViewportContainer/SubViewport/World/JailRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
 
-[node name="FloorCeiling6" parent="World/JailRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling6" parent="SubViewportContainer/SubViewport/World/JailRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9999995, 0, 4)
 
-[node name="FloorCeiling7" parent="World/JailRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling7" parent="SubViewportContainer/SubViewport/World/JailRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.000001, 0, 8)
 
-[node name="FloorCeiling8" parent="World/JailRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling8" parent="SubViewportContainer/SubViewport/World/JailRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.999999, 0, 8)
 
-[node name="Walls" type="Node3D" parent="World/JailRoom/Layout"]
+[node name="Walls" type="Node3D" parent="SubViewportContainer/SubViewport/World/JailRoom/Layout"]
 
-[node name="First" type="Node3D" parent="World/JailRoom/Layout/Walls"]
+[node name="First" type="Node3D" parent="SubViewportContainer/SubViewport/World/JailRoom/Layout/Walls"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 10)
 
-[node name="Wall" parent="World/JailRoom/Layout/Walls/First" instance=ExtResource("7_1ewh1")]
+[node name="Wall" parent="SubViewportContainer/SubViewport/World/JailRoom/Layout/Walls/First" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9999995, 0, 0)
 
-[node name="Wall2" parent="World/JailRoom/Layout/Walls/First" instance=ExtResource("7_1ewh1")]
+[node name="Wall2" parent="SubViewportContainer/SubViewport/World/JailRoom/Layout/Walls/First" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0000005, 0, 0)
 
-[node name="Second" type="Node3D" parent="World/JailRoom/Layout/Walls"]
+[node name="Second" type="Node3D" parent="SubViewportContainer/SubViewport/World/JailRoom/Layout/Walls"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -6)
 
-[node name="Doorway" parent="World/JailRoom/Layout/Walls/Second" instance=ExtResource("30_1ewh1")]
+[node name="Doorway" parent="SubViewportContainer/SubViewport/World/JailRoom/Layout/Walls/Second" instance=ExtResource("30_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9999995, 0, 1.9073486e-06)
 
-[node name="Wall" parent="World/JailRoom/Layout/Walls/Second" instance=ExtResource("7_1ewh1")]
+[node name="Wall" parent="SubViewportContainer/SubViewport/World/JailRoom/Layout/Walls/Second" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 
-[node name="Third" type="Node3D" parent="World/JailRoom/Layout/Walls"]
+[node name="Third" type="Node3D" parent="SubViewportContainer/SubViewport/World/JailRoom/Layout/Walls"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4, 0, 0)
 
-[node name="Wall" parent="World/JailRoom/Layout/Walls/Third" instance=ExtResource("7_1ewh1")]
+[node name="Wall" parent="SubViewportContainer/SubViewport/World/JailRoom/Layout/Walls/Third" instance=ExtResource("7_1ewh1")]
 
-[node name="Wall2" parent="World/JailRoom/Layout/Walls/Third" instance=ExtResource("7_1ewh1")]
+[node name="Wall2" parent="SubViewportContainer/SubViewport/World/JailRoom/Layout/Walls/Third" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
 
-[node name="Wall3" parent="World/JailRoom/Layout/Walls/Third" instance=ExtResource("7_1ewh1")]
+[node name="Wall3" parent="SubViewportContainer/SubViewport/World/JailRoom/Layout/Walls/Third" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
 
-[node name="WindowDouble" parent="World/JailRoom/Layout/Walls/Third" instance=ExtResource("10_x6f5f")]
+[node name="WindowDouble" parent="SubViewportContainer/SubViewport/World/JailRoom/Layout/Walls/Third" instance=ExtResource("10_x6f5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
 
-[node name="Fourth" type="Node3D" parent="World/JailRoom/Layout/Walls"]
+[node name="Fourth" type="Node3D" parent="SubViewportContainer/SubViewport/World/JailRoom/Layout/Walls"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 0, 0)
 
-[node name="Wall" parent="World/JailRoom/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
+[node name="Wall" parent="SubViewportContainer/SubViewport/World/JailRoom/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
 
-[node name="Wall2" parent="World/JailRoom/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
+[node name="Wall2" parent="SubViewportContainer/SubViewport/World/JailRoom/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -9.536743e-07)
 
-[node name="Wall3" parent="World/JailRoom/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
+[node name="Wall3" parent="SubViewportContainer/SubViewport/World/JailRoom/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -1.9073486e-06)
 
-[node name="WindowDouble" parent="World/JailRoom/Layout/Walls/Fourth" instance=ExtResource("10_x6f5f")]
+[node name="WindowDouble" parent="SubViewportContainer/SubViewport/World/JailRoom/Layout/Walls/Fourth" instance=ExtResource("10_x6f5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
 
-[node name="CeilingLamp4" parent="World/JailRoom" instance=ExtResource("29_def21")]
+[node name="CeilingLamp4" parent="SubViewportContainer/SubViewport/World/JailRoom" instance=ExtResource("29_def21")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 3, -2)
 
-[node name="CeilingLamp5" parent="World/JailRoom" instance=ExtResource("29_def21")]
+[node name="CeilingLamp5" parent="SubViewportContainer/SubViewport/World/JailRoom" instance=ExtResource("29_def21")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9.536743e-07, 3, 6)
 
-[node name="ForensicsRoom" type="Node3D" parent="World"]
+[node name="ForensicsRoom" type="Node3D" parent="SubViewportContainer/SubViewport/World"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 26, -6, 22)
 
-[node name="LightSwitch" parent="World/ForensicsRoom" node_paths=PackedStringArray("_meshChanger", "_connectedLight", "_connectedParticles") instance=ExtResource("11_vw0fq")]
+[node name="LightSwitch" parent="SubViewportContainer/SubViewport/World/ForensicsRoom" node_paths=PackedStringArray("_meshChanger", "_connectedLight", "_connectedParticles") instance=ExtResource("11_vw0fq")]
 transform = Transform3D(-0.9912154, -0.13225639, -8.742277e-08, -0.13225637, 0.9912155, 0, 8.665481e-08, 1.15622205e-08, -0.9999999, -2.9449997, 1.4725647, 5.94)
 _meshChanger = NodePath("../Lights/Lamp")
 _connectedLight = NodePath("../Lights/Lamp/OmniLight3D2")
 _connectedParticles = NodePath("../Lights/Lamp/Light2")
 
-[node name="Layout" type="Node3D" parent="World/ForensicsRoom"]
+[node name="Layout" type="Node3D" parent="SubViewportContainer/SubViewport/World/ForensicsRoom"]
 
-[node name="Floor" type="Node3D" parent="World/ForensicsRoom/Layout"]
+[node name="Floor" type="Node3D" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Layout"]
 
-[node name="FloorCeiling1" parent="World/ForensicsRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling1" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 4)
 
-[node name="FloorCeiling2" parent="World/ForensicsRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling2" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 4)
 
-[node name="FloorCeiling3" parent="World/ForensicsRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling3" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
 
-[node name="FloorCeiling4" parent="World/ForensicsRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling4" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 4)
 
-[node name="FloorCeiling5" parent="World/ForensicsRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling5" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
 
-[node name="FloorCeiling6" parent="World/ForensicsRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling6" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 
-[node name="FloorCeiling7" parent="World/ForensicsRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling7" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 
-[node name="FloorCeiling8" parent="World/ForensicsRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling8" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
 
-[node name="FloorCeiling9" parent="World/ForensicsRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling9" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -4)
 
-[node name="FloorCeiling10" parent="World/ForensicsRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling10" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -4)
 
-[node name="FloorCeiling11" parent="World/ForensicsRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling11" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -4)
 
-[node name="FloorCeiling12" parent="World/ForensicsRoom/Layout/Floor" instance=ExtResource("6_def21")]
+[node name="FloorCeiling12" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Layout/Floor" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -4)
 
-[node name="Ceiling" type="Node3D" parent="World/ForensicsRoom/Layout"]
+[node name="Ceiling" type="Node3D" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Layout"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 
-[node name="FloorCeiling1" parent="World/ForensicsRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling1" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 4)
 
-[node name="FloorCeiling2" parent="World/ForensicsRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling2" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 4)
 
-[node name="FloorCeiling3" parent="World/ForensicsRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling3" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
 
-[node name="FloorCeiling4" parent="World/ForensicsRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling4" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 4)
 
-[node name="FloorCeiling5" parent="World/ForensicsRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling5" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
 
-[node name="FloorCeiling6" parent="World/ForensicsRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling6" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 
-[node name="FloorCeiling7" parent="World/ForensicsRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling7" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 
-[node name="FloorCeiling8" parent="World/ForensicsRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling8" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
 
-[node name="FloorCeiling9" parent="World/ForensicsRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling9" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -4)
 
-[node name="FloorCeiling10" parent="World/ForensicsRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling10" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -4)
 
-[node name="FloorCeiling11" parent="World/ForensicsRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling11" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -4)
 
-[node name="FloorCeiling12" parent="World/ForensicsRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
+[node name="FloorCeiling12" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Layout/Ceiling" instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -4)
 
-[node name="Walls" type="Node3D" parent="World/ForensicsRoom/Layout"]
+[node name="Walls" type="Node3D" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Layout"]
 
-[node name="First" type="Node3D" parent="World/ForensicsRoom/Layout/Walls"]
+[node name="First" type="Node3D" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Layout/Walls"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 6)
 
-[node name="Wall" parent="World/ForensicsRoom/Layout/Walls/First" instance=ExtResource("7_1ewh1")]
+[node name="Wall" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Layout/Walls/First" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 
-[node name="Wall2" parent="World/ForensicsRoom/Layout/Walls/First" instance=ExtResource("7_1ewh1")]
+[node name="Wall2" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Layout/Walls/First" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -4.7683716e-07)
 
-[node name="Wall3" parent="World/ForensicsRoom/Layout/Walls/First" instance=ExtResource("7_1ewh1")]
+[node name="Wall3" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Layout/Walls/First" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.000002, 0, 4.7683716e-07)
 
-[node name="Doorway" parent="World/ForensicsRoom/Layout/Walls/First" instance=ExtResource("30_1ewh1")]
+[node name="Doorway" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Layout/Walls/First" instance=ExtResource("30_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 
-[node name="Second" type="Node3D" parent="World/ForensicsRoom/Layout/Walls"]
+[node name="Second" type="Node3D" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Layout/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6)
 
-[node name="Wall" parent="World/ForensicsRoom/Layout/Walls/Second" instance=ExtResource("7_1ewh1")]
+[node name="Wall" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Layout/Walls/Second" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
 
-[node name="Wall2" parent="World/ForensicsRoom/Layout/Walls/Second" instance=ExtResource("7_1ewh1")]
+[node name="Wall2" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Layout/Walls/Second" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 
-[node name="Wall3" parent="World/ForensicsRoom/Layout/Walls/Second" instance=ExtResource("7_1ewh1")]
+[node name="Wall3" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Layout/Walls/Second" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
 
-[node name="WindowDouble" parent="World/ForensicsRoom/Layout/Walls/Second" instance=ExtResource("10_x6f5f")]
+[node name="WindowDouble" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Layout/Walls/Second" instance=ExtResource("10_x6f5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 
-[node name="Third" type="Node3D" parent="World/ForensicsRoom/Layout/Walls"]
+[node name="Third" type="Node3D" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Layout/Walls"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8, 0, 0)
 
-[node name="Wall" parent="World/ForensicsRoom/Layout/Walls/Third" instance=ExtResource("7_1ewh1")]
+[node name="Wall" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Layout/Walls/Third" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
 
-[node name="Wall2" parent="World/ForensicsRoom/Layout/Walls/Third" instance=ExtResource("7_1ewh1")]
+[node name="Wall2" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Layout/Walls/Third" instance=ExtResource("7_1ewh1")]
 
-[node name="WindowDouble" parent="World/ForensicsRoom/Layout/Walls/Third" instance=ExtResource("10_x6f5f")]
+[node name="WindowDouble" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Layout/Walls/Third" instance=ExtResource("10_x6f5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
 
-[node name="Fourth" type="Node3D" parent="World/ForensicsRoom/Layout/Walls"]
+[node name="Fourth" type="Node3D" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Layout/Walls"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, 0)
 
-[node name="WindowDouble" parent="World/ForensicsRoom/Layout/Walls/Fourth" instance=ExtResource("10_x6f5f")]
+[node name="WindowDouble" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Layout/Walls/Fourth" instance=ExtResource("10_x6f5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
 
-[node name="Wall" parent="World/ForensicsRoom/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
+[node name="Wall" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
 
-[node name="Wall2" parent="World/ForensicsRoom/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
+[node name="Wall2" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Layout/Walls/Fourth" instance=ExtResource("7_1ewh1")]
 
-[node name="Decorations" type="Node3D" parent="World/ForensicsRoom"]
+[node name="Decorations" type="Node3D" parent="SubViewportContainer/SubViewport/World/ForensicsRoom"]
 
-[node name="Bookshelf" type="StaticBody3D" parent="World/ForensicsRoom/Decorations"]
+[node name="Bookshelf" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Decorations"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7.7, 0, 3.7)
 
-[node name="Graphics" type="Node3D" parent="World/ForensicsRoom/Decorations/Bookshelf"]
+[node name="Graphics" type="Node3D" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Decorations/Bookshelf"]
 
-[node name="brick2" parent="World/ForensicsRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("26_olo10")]
+[node name="brick2" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("26_olo10")]
 transform = Transform3D(-0.8660254, 0, 0.5000001, 0, 1, 0, -0.5000001, 0, -0.8660254, -0.29999924, 0, 0.19999981)
 
-[node name="bookshelf" parent="World/ForensicsRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("25_tji15")]
+[node name="bookshelf" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("25_tji15")]
 
-[node name="book_mp_12" parent="World/ForensicsRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("12_y5c0f")]
+[node name="book_mp_12" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("12_y5c0f")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.003443718, 0.95328414, -0.010000229)
 
-[node name="book_mp_22" parent="World/ForensicsRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("27_p1xtl")]
+[node name="book_mp_22" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("27_p1xtl")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.003, 1.003, -0.01)
 
-[node name="book_mp_13" parent="World/ForensicsRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("12_y5c0f")]
+[node name="book_mp_13" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Decorations/Bookshelf/Graphics" instance=ExtResource("12_y5c0f")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.003443718, 1.0532842, -0.010000229)
 
-[node name="ashtray_12" parent="World/ForensicsRoom/Decorations/Bookshelf/Graphics/book_mp_13" instance=ExtResource("11_63ay0")]
+[node name="ashtray_12" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Decorations/Bookshelf/Graphics/book_mp_13" instance=ExtResource("11_63ay0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.01, 0.05, 0.03)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/ForensicsRoom/Decorations/Bookshelf"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Decorations/Bookshelf"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.7, 0)
 shape = SubResource("BoxShape3D_tji15")
 
-[node name="Barrel" type="StaticBody3D" parent="World/ForensicsRoom/Decorations"]
+[node name="Barrel" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Decorations"]
 transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, -7.5, 0, 5.3)
 
-[node name="Graphics" type="Node3D" parent="World/ForensicsRoom/Decorations/Barrel"]
+[node name="Graphics" type="Node3D" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Decorations/Barrel"]
 
-[node name="metal_barrel_mp_32" parent="World/ForensicsRoom/Decorations/Barrel/Graphics" instance=ExtResource("11_n6hjk")]
+[node name="metal_barrel_mp_32" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Decorations/Barrel/Graphics" instance=ExtResource("11_n6hjk")]
 
-[node name="supply_crate_12" parent="World/ForensicsRoom/Decorations/Barrel/Graphics" instance=ExtResource("7_n6hjk")]
+[node name="supply_crate_12" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Decorations/Barrel/Graphics" instance=ExtResource("7_n6hjk")]
 transform = Transform3D(-0.31541717, 0, -0.94895315, 0, 1, 0, 0.94895315, 0, -0.31541717, 0.046634674, 1.0824319, 0.033228397)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/ForensicsRoom/Decorations/Barrel"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Decorations/Barrel"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_n6hjk")
 
-[node name="Lights" type="Node3D" parent="World/ForensicsRoom"]
+[node name="Lights" type="Node3D" parent="SubViewportContainer/SubViewport/World/ForensicsRoom"]
 
-[node name="CeilingLamp" type="Node3D" parent="World/ForensicsRoom/Lights"]
+[node name="CeilingLamp" type="Node3D" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 3, -1)
 
-[node name="Graphics" type="Node3D" parent="World/ForensicsRoom/Lights/CeilingLamp"]
+[node name="Graphics" type="Node3D" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Lights/CeilingLamp"]
 
-[node name="ceiling_fan_mp_2_1_light_on2" parent="World/ForensicsRoom/Lights/CeilingLamp/Graphics" instance=ExtResource("29_n3q1u")]
+[node name="ceiling_fan_mp_2_1_light_on2" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Lights/CeilingLamp/Graphics" instance=ExtResource("29_n3q1u")]
 script = ExtResource("8_3mprh")
 _degreesPerSecond = 45.0
 
-[node name="OmniLight3D" type="OmniLight3D" parent="World/ForensicsRoom/Lights/CeilingLamp"]
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Lights/CeilingLamp"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8468702, 0)
 light_color = Color(1, 0.94509804, 0.75686276, 1)
 light_energy = 1.4
 shadow_enabled = true
 
-[node name="Light" type="GPUParticles3D" parent="World/ForensicsRoom/Lights/CeilingLamp"]
+[node name="Light" type="GPUParticles3D" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Lights/CeilingLamp"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1127111, 0)
 amount = 22
 lifetime = 10.0
@@ -1667,15 +1663,15 @@ transform_align = 1
 process_material = SubResource("ParticleProcessMaterial_w8s17")
 draw_pass_1 = SubResource("QuadMesh_w8s17")
 
-[node name="Lamp" parent="World/ForensicsRoom/Lights" instance=ExtResource("20_dbld1")]
+[node name="Lamp" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Lights" instance=ExtResource("20_dbld1")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7.9400005, 2, 4)
 
-[node name="OmniLight3D2" type="OmniLight3D" parent="World/ForensicsRoom/Lights/Lamp"]
+[node name="OmniLight3D2" type="OmniLight3D" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Lights/Lamp"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.31912136)
 shadow_enabled = true
 omni_range = 4.0
 
-[node name="Light2" type="GPUParticles3D" parent="World/ForensicsRoom/Lights/Lamp"]
+[node name="Light2" type="GPUParticles3D" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Lights/Lamp"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, -0.009779692, 0.4204712)
 amount = 22
 lifetime = 10.0
@@ -1684,15 +1680,15 @@ transform_align = 1
 process_material = SubResource("ParticleProcessMaterial_w8s17")
 draw_pass_1 = SubResource("QuadMesh_w8s17")
 
-[node name="Lamp2" parent="World/ForensicsRoom/Lights" instance=ExtResource("20_dbld1")]
+[node name="Lamp2" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Lights" instance=ExtResource("20_dbld1")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 7.94, 2, -4)
 
-[node name="OmniLight3D2" type="OmniLight3D" parent="World/ForensicsRoom/Lights/Lamp2"]
+[node name="OmniLight3D2" type="OmniLight3D" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Lights/Lamp2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.31912136)
 shadow_enabled = true
 omni_range = 4.0
 
-[node name="Light2" type="GPUParticles3D" parent="World/ForensicsRoom/Lights/Lamp2"]
+[node name="Light2" type="GPUParticles3D" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Lights/Lamp2"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, -0.009779692, 0.4204712)
 amount = 22
 lifetime = 10.0
@@ -1701,14 +1697,20 @@ transform_align = 1
 process_material = SubResource("ParticleProcessMaterial_w8s17")
 draw_pass_1 = SubResource("QuadMesh_w8s17")
 
-[node name="Entrance" parent="World" instance=ExtResource("30_8v3jm")]
+[node name="Entrance" parent="SubViewportContainer/SubViewport/World" instance=ExtResource("30_8v3jm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, -3, 42)
 
-[node name="refrigerator" parent="World" instance=ExtResource("32_x6f5f")]
+[node name="refrigerator" parent="SubViewportContainer/SubViewport/World" instance=ExtResource("32_x6f5f")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 31, -6, 16)
 
-[node name="stretcher" parent="World" instance=ExtResource("34_yfhit")]
+[node name="stretcher" parent="SubViewportContainer/SubViewport/World" instance=ExtResource("34_yfhit")]
 transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, 25, -6, 22)
+
+[node name="DispatchScene" parent="SubViewportContainer/SubViewport/World" instance=ExtResource("35_oef5p")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 12.1, 1.5, 0)
+
+[node name="Player" parent="SubViewportContainer/SubViewport" instance=ExtResource("5_jm2hm")]
+transform = Transform3D(0, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 0, 13.890534, 0, 0.2539239)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_w2k4y")

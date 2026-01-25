@@ -27,4 +27,12 @@ public static class ExtensionUtils
         var results = info.GetCustomAttributes(typeof(TAttribute), false);
         return results.Length == 0 ? null : (TAttribute)results[0];
     }
+    
+    public static TObject PickRandom<TObject>(this TObject[] array)
+    {
+        var random = new Random();
+        var index = random.Next(array.Length);
+        
+        return array[index];
+    }
 }

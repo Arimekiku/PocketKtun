@@ -12,9 +12,16 @@ internal partial class DiInitializer : Node
     private NodeInjector _nodeInjector;
     private NodeContextRegister _nodeContextRegister;
     private DiContainer _diContainer;
-
+    
     public DiContainer DiContainer => _diContainer;
     
+    public static DiInitializer Instance { get; private set; }
+
+    public override void _Ready()
+    {
+        Instance = this;
+    }
+
     public override void _EnterTree()
     {
         _contextProvider = new GodotContextProvider();
