@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=3 uid="uid://qmbcqtc4kdu3"]
+
+[ext_resource type="Script" uid="uid://cpqpwjvk2o3b6" path="res://working/TestWindowSystem.cs" id="1_8ookn"]
+[ext_resource type="Script" uid="uid://c5vtt4rwltuql" path="res://scripts/window_system/window/Window.cs" id="1_pvqdg"]
+[ext_resource type="Script" uid="uid://c1tg2vi75p7kk" path="res://scripts/window_system/z_strategy/ModalZStrategy.cs" id="2_y3xi3"]
+[ext_resource type="Script" uid="uid://dtq8yje6r3x5h" path="res://working/TestCloseComponent.cs" id="2_y72oe"]
+[ext_resource type="Script" uid="uid://dr0hbeof8hg1i" path="res://working/TestOpenComponent.cs" id="3_8ookn"]
+[ext_resource type="Script" uid="uid://crvgxtg581ovo" path="res://working/TestFocusComponent.cs" id="4_cmmpr"]
+[ext_resource type="Script" uid="uid://br73g81c2gxdd" path="res://working/TestUnfocusComponent.cs" id="5_tr1se"]
+
+[node name="TestWindowSystem" type="Node"]
+script = ExtResource("1_8ookn")
+
+[node name="TestWindow1" type="Node" parent="." node_paths=PackedStringArray("_visual")]
+script = ExtResource("1_pvqdg")
+_visual = NodePath("visual")
+
+[node name="visual" type="Node2D" parent="TestWindow1"]
+
+[node name="Components" type="Node" parent="TestWindow1"]
+
+[node name="TestCloseComponent" type="Node" parent="TestWindow1/Components"]
+script = ExtResource("2_y72oe")
+metadata/_custom_type_script = "uid://dtq8yje6r3x5h"
+
+[node name="TestOpenComponent" type="Node" parent="TestWindow1/Components"]
+script = ExtResource("3_8ookn")
+metadata/_custom_type_script = "uid://dr0hbeof8hg1i"
+
+[node name="TestFocusComponent" type="Node" parent="TestWindow1/Components"]
+script = ExtResource("4_cmmpr")
+metadata/_custom_type_script = "uid://crvgxtg581ovo"
+
+[node name="TestUnfocusComponent" type="Node" parent="TestWindow1/Components"]
+script = ExtResource("5_tr1se")
+metadata/_custom_type_script = "uid://br73g81c2gxdd"
+
+[node name="ModalZStrategy" type="Node" parent="TestWindow1"]
+script = ExtResource("2_y3xi3")
+metadata/_custom_type_script = "uid://c1tg2vi75p7kk"
+
+[node name="TestWindow2" type="Node" parent="." node_paths=PackedStringArray("_visual")]
+script = ExtResource("1_pvqdg")
+_windowId = 1
+_visual = NodePath("visual")
+
+[node name="visual" type="Node2D" parent="TestWindow2"]
+
+[node name="Components" type="Node" parent="TestWindow2"]
+
+[node name="TestCloseComponent" type="Node" parent="TestWindow2/Components"]
+script = ExtResource("2_y72oe")
+metadata/_custom_type_script = "uid://dtq8yje6r3x5h"
+
+[node name="TestOpenComponent" type="Node" parent="TestWindow2/Components"]
+script = ExtResource("3_8ookn")
+metadata/_custom_type_script = "uid://dr0hbeof8hg1i"
+
+[node name="TestFocusComponent" type="Node" parent="TestWindow2/Components"]
+script = ExtResource("4_cmmpr")
+metadata/_custom_type_script = "uid://crvgxtg581ovo"
+
+[node name="TestUnfocusComponent" type="Node" parent="TestWindow2/Components"]
+script = ExtResource("5_tr1se")
+metadata/_custom_type_script = "uid://br73g81c2gxdd"
+
+[node name="ModalZStrategy" type="Node" parent="TestWindow2"]
+script = ExtResource("2_y3xi3")
+metadata/_custom_type_script = "uid://c1tg2vi75p7kk"
