@@ -2,5 +2,10 @@ namespace Scripts.WindowSystem;
 
 public class WindowData
 {
-    public string WindowId;
+    public WindowIds WindowId;
+
+    public WindowData(WindowIds windowId)
+    {
+        WindowId = windowId;
+    }
 }
