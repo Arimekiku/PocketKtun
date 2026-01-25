@@ -65,7 +65,7 @@ public partial class Window : BaseStateMachine<Window.WindowStates>, IWindow
     
     private void OpenEnter()
     {
-        VisualZ = _zStrategy.GetZ();
+        VisualZ = _zStrategy?.GetZ() ?? 0;
         _visual.ZIndex = (int)VisualZ;
         _visual.Visible = true;
         
