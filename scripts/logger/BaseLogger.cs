@@ -11,11 +11,11 @@ public class BaseLogger : ILogger
 
     public void LogWarning(string message)
     {
-        GD.PushWarning(message);
+        GD.PrintRich($"[color=yellow]{message}[/color]");
     }
 
     public void LogError(string message)
     {
-        GD.PushError(message);
+        GD.PrintErr(message);
     }
 }
