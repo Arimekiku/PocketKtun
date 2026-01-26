@@ -150,13 +150,13 @@ PatrolPoints = [NodePath("../Marker3D"), NodePath("../Marker3D2"), NodePath("../
 NavAgent = NodePath("NavigationAgent3D")
 CharacterResource = SubResource("Resource_vopgv")
 
-[node name="UnitUIHandle" type="TextureRect" parent="World/DispatchUnit" node_paths=PackedStringArray("TargetUnit", "_dispatchUiHandle", "_dispatchCamera", "_virtualMouse")]
+[node name="UnitUIHandle" type="TextureRect" parent="World/DispatchUnit" node_paths=PackedStringArray("_targetUnit", "_dispatchUiHandle", "_dispatchCamera", "_virtualMouse")]
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("4_oy8yf")
 expand_mode = 1
 script = ExtResource("5_tpx6r")
-TargetUnit = NodePath("..")
+_targetUnit = NodePath("..")
 _dispatchUiHandle = NodePath("../../../UILayer/CharacterUIHandle")
 _dispatchCamera = NodePath("../../Camera3D")
 _virtualMouse = NodePath("../../../UILayer/MousePointer")

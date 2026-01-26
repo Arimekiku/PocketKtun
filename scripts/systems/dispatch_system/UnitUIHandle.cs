@@ -5,7 +5,7 @@ namespace Scripts.Systems.DispatchSystem;
 
 public partial class UnitUIHandle : TextureRect
 {
-    [Export] public DispatchUnit3D TargetUnit;
+    [Export] private DispatchUnit3D _targetUnit;
     [Export] private CharacterUIHandle _dispatchUiHandle;
     [Export] private Camera3D _dispatchCamera;
     [Export] private TextureRect _virtualMouse;
@@ -17,11 +17,11 @@ public partial class UnitUIHandle : TextureRect
 
     public override void _Process(double delta)
     {
-        if (TargetUnit == null || _dispatchCamera == null)
+        if (_targetUnit == null || _dispatchCamera == null)
             return;
         
-        var screenPos = _dispatchCamera.UnprojectPosition(TargetUnit.GlobalPosition);
-        if (_dispatchCamera.IsPositionBehind(TargetUnit.GlobalPosition))
+        var screenPos = _dispatchCamera.UnprojectPosition(_targetUnit.GlobalPosition);
+        if (_dispatchCamera.IsPositionBehind(_targetUnit.GlobalPosition))
         {
             Hide();
             return;
@@ -63,8 +63,10 @@ public partial class UnitUIHandle : TextureRect
         {
             if (_pressPos.DistanceSquaredTo(motion.Position) <= _dragThreshold * _dragThreshold) 
                 return;
+            if (_targetUnit.IsBusy)
+                return;
             
-            ForceDrag(TargetUnit, null);
+            ForceDrag(_targetUnit, null);
             
             _virtualDragPreview?.QueueFree();
             _virtualDragPreview = new VirtualDragPreview
@@ -81,9 +83,9 @@ public partial class UnitUIHandle : TextureRect
 
     private void OnClick()
     {
-        GD.Print($"Clicked unit: {TargetUnit?.Name}");
+        GD.Print($"Clicked unit: {_targetUnit?.Name}");
         
-        _dispatchUiHandle.UpdateDisplay(TargetUnit);
+        _dispatchUiHandle.UpdateDisplay(_targetUnit);
         _dispatchUiHandle.Show();
     }
 }
