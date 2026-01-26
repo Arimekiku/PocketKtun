@@ -8,9 +8,11 @@ public partial class UnitUIHandle : TextureRect
     [Export] public DispatchUnit3D TargetUnit;
     [Export] private CharacterUIHandle _dispatchUiHandle;
     [Export] private Camera3D _dispatchCamera;
+    [Export] private TextureRect _virtualMouse;
     [Export] private float _dragThreshold = 8f;
     
     private Vector2 _pressPos;
+    private VirtualDragPreview _virtualDragPreview;
     private bool _pressed;
 
     public override void _Process(double delta)
@@ -27,6 +29,18 @@ public partial class UnitUIHandle : TextureRect
         
         Show();
         Position = screenPos - (Size / 2);
+        
+        if (_virtualDragPreview != null)
+            _virtualDragPreview.GlobalPosition = _virtualMouse.GlobalPosition - _virtualDragPreview.Size / 2f;
+    }
+
+    public override void _Input(InputEvent @event)
+    {
+        if (@event.IsActionReleased(Inputs.LeftMouse))
+        {
+            _virtualDragPreview?.QueueFree();
+            _virtualDragPreview = null;
+        }
     }
 
     public override void _GuiInput(InputEvent @event)
@@ -41,7 +55,7 @@ public partial class UnitUIHandle : TextureRect
         {
             if (_pressed && GetGlobalRect().HasPoint(_pressPos))
                 OnClick();
-
+            
             _pressed = false;
         }
 
@@ -50,24 +64,19 @@ public partial class UnitUIHandle : TextureRect
             if (_pressPos.DistanceSquaredTo(motion.Position) <= _dragThreshold * _dragThreshold) 
                 return;
             
+            ForceDrag(TargetUnit, null);
+            
+            _virtualDragPreview?.QueueFree();
+            _virtualDragPreview = new VirtualDragPreview
+            {
+                Texture = Texture,
+                ExpandMode = ExpandModeEnum.IgnoreSize,
+                Size = new Vector2(64, 64)
+            };
+            AddChild(_virtualDragPreview);
+            
             AcceptEvent();
         }
-    }
-
-    public override Variant _GetDragData(Vector2 atPosition)
-    {
-        if (TargetUnit.IsBusy)
-            return new Variant();
-        
-        var preview = new TextureRect
-        {
-            Texture = Texture,
-            ExpandMode = ExpandModeEnum.IgnoreSize,
-            Size = new Vector2(64, 64)
-        };
-
-        SetDragPreview(preview);
-        return TargetUnit;
     }
 
     private void OnClick()

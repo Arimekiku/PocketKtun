@@ -1,26 +1,32 @@
 using Godot;
+using Scripts.DIContainer;
+using Scripts.Gameplay.Services;
 
 namespace Scripts.Gameplay;
 
 public partial class Player : CharacterBody3D
 {
+    [ExportGroup("Components")]
+    [Export] private Node3D _neck;
+    [Export] private Camera3D _camera;
+    
+    [ExportGroup("Logic")]
     [Export] public float Speed = 2.0f;
     [Export] public float Sensitivity = 0.003f;
     [Export] private PingPongTransformAnimator _clockAnimator;
-
-    private Node3D _neck;
-    private Camera3D _camera;
+    
+    [Inject] private IPlayerInputReceiverService _inputReceiver;
 
     public override void _Ready()
     {
-        _neck = GetNode<Node3D>("Neck");
-        _camera = GetNode<Camera3D>("Neck/Camera3D");
-        
         Input.MouseMode = Input.MouseModeEnum.Captured;
     }
 
     public override void _UnhandledInput(InputEvent @event)
     {
+        if (!_inputReceiver.InputReceived)
+            return;
+        
         if (@event is InputEventMouseButton)
             Input.MouseMode = Input.MouseModeEnum.Captured;
         else if (@event.IsActionPressed("ui_cancel"))
@@ -43,6 +49,9 @@ public partial class Player : CharacterBody3D
 
     public override void _PhysicsProcess(double delta)
     {
+        if (!_inputReceiver.InputReceived)
+            return;
+        
         var velocity = Velocity;
 
         // Add gravity

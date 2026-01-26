@@ -36,7 +36,7 @@
 [ext_resource type="Script" uid="uid://bc586og4uc5h" path="res://scripts/systems/event_system/factory/EventProcesser.cs" id="33_def21"]
 [ext_resource type="ArrayOccluder3D" uid="uid://b5xu6wy1who7u" path="res://resources/department_occluder_map.occ" id="34_x6f5f"]
 [ext_resource type="PackedScene" uid="uid://cig0xj7a85hjt" path="res://resources/models/stretcher.blend" id="34_yfhit"]
-[ext_resource type="PackedScene" uid="uid://csq6nck3dmpht" path="res://scenes/DispatchScene.tscn" id="35_oef5p"]
+[ext_resource type="PackedScene" uid="uid://csq6nck3dmpht" path="res://scenes/Computer.tscn" id="35_oef5p"]
 [ext_resource type="PackedScene" uid="uid://du6yysxbqyhk" path="res://resources/models/table_lamp_alt.blend" id="37_oef5p"]
 [ext_resource type="PackedScene" uid="uid://b8axrutfvw0tc" path="res://resources/models/small_props/toy_brick_1.glb" id="38_yfhit"]
 
@@ -1707,7 +1707,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 31, 
 transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, 25, -6, 22)
 
 [node name="DispatchScene" parent="SubViewportContainer/SubViewport/World" instance=ExtResource("35_oef5p")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 12.1, 1.5, 0)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 12.1, 1.5, 0)
 
 [node name="Player" parent="SubViewportContainer/SubViewport" instance=ExtResource("5_jm2hm")]
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 13.890534, 0, 0.2539239)
@@ -1728,7 +1728,7 @@ script = ExtResource("25_dbld1")
 _sun = NodePath("../DirectionalLight3D")
 _environment = NodePath("../WorldEnvironment")
 _lights = []
-_dayDurationSeconds = 5.0
+_dayDurationSeconds = 120.0
 _skyColors = SubResource("Gradient_dbld1")
 
 [node name="UI" type="CanvasLayer" parent="."]
