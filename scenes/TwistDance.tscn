@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://qskrbs6lk1cu"]
+
+[ext_resource type="PackedScene" uid="uid://hwinqa7qkuak" path="res://resources/models/Twist Dance.fbx" id="1_ee8ch"]
+[ext_resource type="Script" uid="uid://davev7r4e42qx" path="res://scripts/utility_components/AnimationLooper.cs" id="2_850v3"]
+
+[node name="Twist Dance" instance=ExtResource("1_ee8ch")]
+
+[node name="Skeleton3D" parent="." index="0"]
+bones/0/position = Vector3(0.0071058865, 1.288047, 0.018547844)
+bones/0/rotation = Quaternion(-0.029594118, -0.32463512, 0.119964935, 0.93773377)
+bones/1/rotation = Quaternion(-0.017858943, 0.005779268, -0.020068385, 0.9996224)
+bones/2/rotation = Quaternion(-0.027333684, -0.0004999797, 0.021183634, 0.99940175)
+bones/3/rotation = Quaternion(-0.027438052, -0.0011324803, -0.0018418867, 0.9996213)
+bones/4/rotation = Quaternion(0.16056038, 0.033073742, -0.024070634, 0.98617804)
+bones/5/rotation = Quaternion(0.13683635, 0.3779728, -0.076740064, 0.9124272)
+bones/7/rotation = Quaternion(-0.58053905, -0.44516423, 0.60990685, -0.30465877)
+bones/8/rotation = Quaternion(0.20123075, 0.29318666, 0.061750263, 0.9325957)
+bones/9/rotation = Quaternion(0.0667708, 0.0004012491, 0.4350694, 0.8979176)
+bones/11/rotation = Quaternion(0.6633689, -0.35038638, 0.52237684, 0.40533143)
+bones/12/rotation = Quaternion(0.07904542, -0.3872721, -0.3144045, 0.8630887)
+bones/13/rotation = Quaternion(0.0578985, -0.00044943392, -0.38125265, 0.922656)
+bones/15/rotation = Quaternion(0.096997015, 0.33135185, 0.936677, 0.058599584)
+bones/16/rotation = Quaternion(-0.5314953, -0.08352162, 0.07663254, 0.8394429)
+bones/17/rotation = Quaternion(0.52449566, -0.20189668, -0.06500299, 0.82457066)
+bones/18/rotation = Quaternion(0.4059496, 0.033591952, -0.00733925, 0.9132484)
+bones/20/rotation = Quaternion(-0.01548027, 0.22941, 0.96593475, 0.11875013)
+bones/21/rotation = Quaternion(-0.54133534, 0.08621659, -0.13732566, 0.8250239)
+bones/22/rotation = Quaternion(0.69895047, 0.116451554, 0.0952279, 0.69917023)
+bones/23/rotation = Quaternion(0.3364733, -0.03543432, 0.0094844, 0.9409783)
+
+[node name="AnimationPlayer" parent="." index="1"]
+script = ExtResource("2_850v3")

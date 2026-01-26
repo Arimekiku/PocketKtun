@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://dnu877iyx6p6f"]
+[gd_scene load_steps=14 format=3 uid="uid://dnu877iyx6p6f"]
 
 [ext_resource type="Script" uid="uid://c7g2kn5ig3tkj" path="res://scripts/player/Player.cs" id="1_p0vlq"]
 [ext_resource type="Script" uid="uid://da00ejklbc0y7" path="res://scripts/player/PlayerInteractionUpdater.cs" id="2_v6fml"]
 [ext_resource type="Script" uid="uid://cax66tw6ywo8r" path="res://scripts/player/PlayerGrabberComponent.cs" id="3_3li8b"]
 [ext_resource type="Script" uid="uid://c2nib2qbfgne4" path="res://scripts/player/PlayerGrabberRibbon.cs" id="3_mdl7e"]
 [ext_resource type="Shader" uid="uid://bew4po62ouw77" path="res://resources/shaders/Grabber.gdshader" id="3_qu4a1"]
+[ext_resource type="Script" uid="uid://bjpmu5sklv5h8" path="res://addons/raytraced_audio/raytraced_audio_listener.gd" id="5_khinc"]
 [ext_resource type="PackedScene" uid="uid://bi16ixpffemqt" path="res://scenes/electronics/PocketWatches.tscn" id="6_70d11"]
 [ext_resource type="Script" uid="uid://kqpxll3xxx0o" path="res://scripts/utility_components/PingPongTransformAnimator.cs" id="7_cw2d6"]
 
@@ -60,6 +61,14 @@ _rayCast = NodePath("Camera3D/RayCast3D")
 
 [node name="Camera3D" type="Camera3D" parent="Neck"]
 current = true
+
+[node name="AudioListener3D" type="AudioListener3D" parent="Neck/Camera3D"]
+current = true
+script = ExtResource("5_khinc")
+rays_count = 12
+max_raycast_dist = 200.0
+ray_scatter_model = 1
+metadata/_custom_type_script = "uid://bjpmu5sklv5h8"
 
 [node name="RayCast3D" type="RayCast3D" parent="Neck/Camera3D"]
 target_position = Vector3(0, 0, -2)

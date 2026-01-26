@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://d0bdje052hqbl"]
+[gd_scene load_steps=63 format=3 uid="uid://d0bdje052hqbl"]
 
 [ext_resource type="Texture2D" uid="uid://dqh8onjfkhju3" path="res://resources/images/apollo-1x.png" id="2_vn80e"]
 [ext_resource type="Shader" uid="uid://ch4nd7axd0c2s" path="res://resources/shaders/Quantizator.gdshader" id="3_w2k4y"]
@@ -21,7 +21,6 @@
 [ext_resource type="PackedScene" uid="uid://0a5mafl0cly0" path="res://resources/models/small_props/tv_remote_mp_1.glb" id="22_qgpyk"]
 [ext_resource type="PackedScene" uid="uid://c3npd28chu7bv" path="res://resources/models/items/pills_bottle_1_1.glb" id="23_8v3jm"]
 [ext_resource type="PackedScene" uid="uid://80nyhrmrmd14" path="res://resources/models/small_props/vhs_tape_1.glb" id="23_dbld1"]
-[ext_resource type="Script" uid="uid://dqpnlwdtynkvb" path="res://scripts/utility_components/DayNightCycle.cs" id="25_dbld1"]
 [ext_resource type="PackedScene" uid="uid://c1ltqud1pi1ok" path="res://resources/models/small_props/keypad_2.glb" id="25_t2amj"]
 [ext_resource type="PackedScene" uid="uid://d20bpo4bw8rgc" path="res://resources/models/bookshelf.blend" id="25_tji15"]
 [ext_resource type="PackedScene" uid="uid://fn0n17ai3tj6" path="res://resources/models/small_props/brick.glb" id="26_olo10"]
@@ -29,9 +28,12 @@
 [ext_resource type="PackedScene" uid="uid://sbxidhm0ee21" path="res://scenes/electronics/CeilingLamp.tscn" id="29_def21"]
 [ext_resource type="PackedScene" uid="uid://gaby635so0g0" path="res://resources/models/electronics/ceiling_fan_mp_2_1_light_on.glb" id="29_n3q1u"]
 [ext_resource type="PackedScene" uid="uid://dpu0jls4cf5bc" path="res://scenes/modular_building/Doorway.tscn" id="30_1ewh1"]
+[ext_resource type="Script" uid="uid://dkb8ltjc6067n" path="res://addons/raytraced_audio/raytraced_audio_player_3d.gd" id="30_06kjr"]
 [ext_resource type="PackedScene" uid="uid://crwoyn2l6l8e5" path="res://resources/models/modular_structures/walls/doorway_3_wide.glb" id="30_8v3jm"]
 [ext_resource type="PackedScene" uid="uid://bi2vj35vqg5kr" path="res://resources/models/car_placeholder.blend" id="31_1ewh1"]
+[ext_resource type="PackedScene" uid="uid://1mroopkimand" path="res://scenes/Ball.tscn" id="31_utptk"]
 [ext_resource type="PackedScene" uid="uid://dmji7348fpj6q" path="res://resources/models/modular_structures/stairs_5_wood.glb" id="32_def21"]
+[ext_resource type="AudioStream" uid="uid://drnyc7wiacp5w" path="res://resources/sounds/hihihaha.mp3" id="32_k5jkh"]
 [ext_resource type="PackedScene" uid="uid://cte1r2id63bm" path="res://resources/models/refrigerator.blend" id="32_x6f5f"]
 [ext_resource type="Script" uid="uid://bc586og4uc5h" path="res://scripts/systems/event_system/factory/EventProcesser.cs" id="33_def21"]
 [ext_resource type="ArrayOccluder3D" uid="uid://b5xu6wy1who7u" path="res://resources/department_occluder_map.occ" id="34_x6f5f"]
@@ -39,6 +41,9 @@
 [ext_resource type="PackedScene" uid="uid://csq6nck3dmpht" path="res://scenes/Computer.tscn" id="35_oef5p"]
 [ext_resource type="PackedScene" uid="uid://du6yysxbqyhk" path="res://resources/models/table_lamp_alt.blend" id="37_oef5p"]
 [ext_resource type="PackedScene" uid="uid://b8axrutfvw0tc" path="res://resources/models/small_props/toy_brick_1.glb" id="38_yfhit"]
+[ext_resource type="PackedScene" uid="uid://cpytqduj8rmea" path="res://scenes/DancingTwerk.tscn" id="42_ytd5d"]
+[ext_resource type="PackedScene" uid="uid://qskrbs6lk1cu" path="res://scenes/TwistDance.tscn" id="43_k5jkh"]
+[ext_resource type="PackedScene" uid="uid://c5uy7c0ur2n0d" path="res://scenes/Dancing.tscn" id="44_ova1n"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n4mgf"]
 shader = ExtResource("3_w2k4y")
@@ -138,10 +143,6 @@ adjustment_brightness = 1.1
 adjustment_saturation = 1.1
 adjustment_color_correction = SubResource("GradientTexture1D_qgpyk")
 
-[sub_resource type="Gradient" id="Gradient_dbld1"]
-offsets = PackedFloat32Array(0, 0.2, 0.35, 0.45, 0.5, 0.75, 0.85, 1)
-colors = PackedColorArray(0.31764957, 0.44437692, 0.87262076, 1, 0.46389598, 0.5836723, 0.9376905, 1, 0.9490196, 0.44313726, 0.12941177, 1, 0.54509807, 0.7764706, 0.9254902, 1, 0.83137256, 0.9137255, 1, 1, 1, 0.61960787, 0.17254902, 1, 0.645505, 0.2215834, 0.6215979, 1, 0.25757664, 0.3364154, 0.41539755, 1)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_oef5p"]
 size = Vector3(1, 0.6, 1.5)
 
@@ -162,6 +163,8 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
+audio_listener_enable_2d = true
+audio_listener_enable_3d = true
 size = Vector2i(960, 540)
 render_target_update_mode = 4
 
@@ -726,6 +729,20 @@ draw_pass_1 = SubResource("QuadMesh_w8s17")
 
 [node name="car_placeholder" parent="SubViewportContainer/SubViewport/World/DispatchRoom" instance=ExtResource("31_1ewh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -3)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="SubViewportContainer/SubViewport/World/DispatchRoom"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 2.6, 0)
+radius = 0.01
+height = 1.0
+
+[node name="Sketchfab_Scene2" parent="SubViewportContainer/SubViewport/World/DispatchRoom" instance=ExtResource("31_utptk")]
+transform = Transform3D(-2.6226832e-07, 0, 6, 0, 6, 0, -6, 0, -2.6226832e-07, 0, 2, 0)
+
+[node name="RaytracedAudioPlayer3D" type="AudioStreamPlayer3D" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Sketchfab_Scene2"]
+stream = ExtResource("32_k5jkh")
+autoplay = true
+script = ExtResource("30_06kjr")
+metadata/_custom_type_script = "uid://dkb8ltjc6067n"
 
 [node name="ChiefHallway" type="Node3D" parent="SubViewportContainer/SubViewport/World"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 12)
@@ -1723,13 +1740,7 @@ shadow_enabled = true
 script = ExtResource("33_def21")
 _startingEvents = "res://resources/events/basic_events.json"
 
-[node name="CycleComponent" type="Node" parent="." node_paths=PackedStringArray("_sun", "_environment", "_lights")]
-script = ExtResource("25_dbld1")
-_sun = NodePath("../DirectionalLight3D")
-_environment = NodePath("../WorldEnvironment")
-_lights = []
-_dayDurationSeconds = 120.0
-_skyColors = SubResource("Gradient_dbld1")
+[node name="CycleComponent" type="Node" parent="."]
 
 [node name="UI" type="CanvasLayer" parent="."]
 visible = false
@@ -1760,3 +1771,12 @@ transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 0, 0, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MovableObject"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 shape = SubResource("BoxShape3D_oef5p")
+
+[node name="Dancing Twerk" parent="." instance=ExtResource("42_ytd5d")]
+transform = Transform3D(-0.9659258, 0, 0.25881913, 0, 1, 0, -0.25881913, 0, -0.9659258, 24.732977, 0.024039134, 19.354061)
+
+[node name="Twist Dance" parent="." instance=ExtResource("43_k5jkh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.467169, 0.024039134, 12.485174)
+
+[node name="Dancing" parent="." instance=ExtResource("44_ova1n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 0, 16)

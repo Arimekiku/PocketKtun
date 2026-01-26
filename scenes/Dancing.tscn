@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5uy7c0ur2n0d"]
+
+[ext_resource type="PackedScene" uid="uid://cp2fwjketj0it" path="res://resources/models/Dancing.fbx" id="1_00bj6"]
+[ext_resource type="Script" uid="uid://davev7r4e42qx" path="res://scripts/utility_components/AnimationLooper.cs" id="2_p5o84"]
+
+[node name="Dancing" instance=ExtResource("1_00bj6")]
+
+[node name="Skeleton3D" parent="." index="0"]
+bones/0/position = Vector3(-0.32099885, 1.3326894, -0.014814296)
+bones/0/rotation = Quaternion(0.33389667, 0.050945833, 0.041789837, 0.94030374)
+bones/1/rotation = Quaternion(-0.03747252, 0.012930881, -0.00016405812, 0.999214)
+bones/2/rotation = Quaternion(0.045296974, 0.049844384, 0.031686995, 0.997226)
+bones/3/rotation = Quaternion(0.04531142, 0.04861349, 0.03381306, 0.9972163)
+bones/4/rotation = Quaternion(0.106792554, 0.03914327, 0.03492114, 0.9928966)
+bones/5/rotation = Quaternion(0.14700545, 0.26655337, -0.037935425, 0.9517876)
+bones/7/rotation = Quaternion(-0.5622513, -0.43362772, 0.5486136, -0.4414337)
+bones/8/rotation = Quaternion(0.19846441, -0.024005977, -0.45375133, 0.8684154)
+bones/9/rotation = Quaternion(2.7902144e-07, 0.0004470306, -1.6063859e-07, 0.99999994)
+bones/11/rotation = Quaternion(0.47287416, -0.48196453, 0.60401106, 0.42340392)
+bones/12/rotation = Quaternion(-0.13525057, 0.44853365, -0.5180006, 0.71568173)
+bones/13/rotation = Quaternion(0.06222587, -0.00044320337, -0.409748, 0.9100739)
+bones/15/rotation = Quaternion(0.03157551, 0.535518, 0.8341025, -0.12843938)
+bones/16/rotation = Quaternion(-0.28665075, 0.046197563, -0.007856895, 0.95688844)
+bones/17/rotation = Quaternion(0.48553076, -0.12904231, -0.17965509, 0.8457731)
+bones/18/rotation = Quaternion(0.29262352, 0.03585527, -0.009645083, 0.95550656)
+bones/20/rotation = Quaternion(-0.07031309, 0.5026843, 0.82438207, 0.2505173)
+bones/21/rotation = Quaternion(-0.36155763, -0.00965167, -0.002125045, 0.9322974)
+bones/22/rotation = Quaternion(0.5636602, 0.0862893, 0.14492232, 0.80860305)
+bones/23/rotation = Quaternion(0.29091978, -0.036285352, 0.0103407, 0.95600325)
+
+[node name="AnimationPlayer" parent="." index="1"]
+script = ExtResource("2_p5o84")
