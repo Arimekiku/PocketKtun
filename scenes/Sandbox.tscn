@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://4ishcf45fhvp" path="res://scenes/SillyDancing.tscn" id="6_jm2hm"]
 [ext_resource type="PackedScene" uid="uid://dqi6xgau323et" path="res://scenes/modular_building/Wall.tscn" id="7_1ewh1"]
 [ext_resource type="PackedScene" uid="uid://73vtr20near4" path="res://resources/models/large_props/supply_crate_1.glb" id="7_n6hjk"]
-[ext_resource type="Script" uid="uid://ct0n25uqp0vix" path="res://scripts/NodeRotator.cs" id="8_3mprh"]
+[ext_resource type="Script" uid="uid://ct0n25uqp0vix" path="res://scripts/utility_components/NodeRotator.cs" id="8_3mprh"]
 [ext_resource type="PackedScene" uid="uid://bbkutbe5h183f" path="res://scenes/Cabinet.tscn" id="9_w8s17"]
 [ext_resource type="PackedScene" uid="uid://cswcw782w63l0" path="res://scenes/modular_building/WindowDouble.tscn" id="10_x6f5f"]
 [ext_resource type="PackedScene" uid="uid://dxt53klx4k5tm" path="res://resources/models/small_props/ashtray_1.glb" id="11_63ay0"]
@@ -21,7 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://0a5mafl0cly0" path="res://resources/models/small_props/tv_remote_mp_1.glb" id="22_qgpyk"]
 [ext_resource type="PackedScene" uid="uid://c3npd28chu7bv" path="res://resources/models/items/pills_bottle_1_1.glb" id="23_8v3jm"]
 [ext_resource type="PackedScene" uid="uid://80nyhrmrmd14" path="res://resources/models/small_props/vhs_tape_1.glb" id="23_dbld1"]
-[ext_resource type="Script" uid="uid://dqpnlwdtynkvb" path="res://scripts/DayNightCycle.cs" id="25_dbld1"]
+[ext_resource type="Script" uid="uid://dqpnlwdtynkvb" path="res://scripts/utility_components/DayNightCycle.cs" id="25_dbld1"]
 [ext_resource type="PackedScene" uid="uid://c1ltqud1pi1ok" path="res://resources/models/small_props/keypad_2.glb" id="25_t2amj"]
 [ext_resource type="PackedScene" uid="uid://d20bpo4bw8rgc" path="res://resources/models/bookshelf.blend" id="25_tji15"]
 [ext_resource type="PackedScene" uid="uid://fn0n17ai3tj6" path="res://resources/models/small_props/brick.glb" id="26_olo10"]
@@ -33,7 +33,7 @@
 [ext_resource type="PackedScene" uid="uid://bi2vj35vqg5kr" path="res://resources/models/car_placeholder.blend" id="31_1ewh1"]
 [ext_resource type="PackedScene" uid="uid://dmji7348fpj6q" path="res://resources/models/modular_structures/stairs_5_wood.glb" id="32_def21"]
 [ext_resource type="PackedScene" uid="uid://cte1r2id63bm" path="res://resources/models/refrigerator.blend" id="32_x6f5f"]
-[ext_resource type="Script" uid="uid://bc586og4uc5h" path="res://scripts/event_system/factory/EventProcesser.cs" id="33_def21"]
+[ext_resource type="Script" uid="uid://bc586og4uc5h" path="res://scripts/systems/event_system/factory/EventProcesser.cs" id="33_def21"]
 [ext_resource type="ArrayOccluder3D" uid="uid://b5xu6wy1who7u" path="res://resources/department_occluder_map.occ" id="34_x6f5f"]
 [ext_resource type="PackedScene" uid="uid://cig0xj7a85hjt" path="res://resources/models/stretcher.blend" id="34_yfhit"]
 [ext_resource type="PackedScene" uid="uid://csq6nck3dmpht" path="res://scenes/DispatchScene.tscn" id="35_oef5p"]
@@ -1710,7 +1710,7 @@ transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, 25, -6, 
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 12.1, 1.5, 0)
 
 [node name="Player" parent="SubViewportContainer/SubViewport" instance=ExtResource("5_jm2hm")]
-transform = Transform3D(0, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 0, 13.890534, 0, 0.2539239)
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 13.890534, 0, 0.2539239)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_w2k4y")
@@ -1728,6 +1728,7 @@ script = ExtResource("25_dbld1")
 _sun = NodePath("../DirectionalLight3D")
 _environment = NodePath("../WorldEnvironment")
 _lights = []
+_dayDurationSeconds = 5.0
 _skyColors = SubResource("Gradient_dbld1")
 
 [node name="UI" type="CanvasLayer" parent="."]

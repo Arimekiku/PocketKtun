@@ -1,6 +1,6 @@
 using Godot;
 using Scripts.DIContainer;
-using Scripts.WindowSystem;
+using Scripts.Systems.WindowSystem;
 
 namespace Scripts.Installers;
 

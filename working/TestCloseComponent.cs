@@ -1,6 +1,6 @@
 using Godot;
 using Scripts.Utils;
-using Scripts.WindowSystem;
+using Scripts.Systems.WindowSystem;
 
 namespace ktun.working;
 

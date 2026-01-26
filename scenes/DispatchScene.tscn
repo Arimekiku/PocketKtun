@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://csq6nck3dmpht"]
+[gd_scene load_steps=36 format=3 uid="uid://csq6nck3dmpht"]
 
 [ext_resource type="PackedScene" uid="uid://bi2vj35vqg5kr" path="res://resources/models/car_placeholder.blend" id="1_tikbk"]
 [ext_resource type="Texture2D" uid="uid://bw1kbvj657y41" path="res://resources/Icon.svg" id="2_30sxa"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cg6qopvptcq4w" path="res://resources/images/dev_textures/Prefab_red.png" id="8_qhk26"]
 [ext_resource type="Script" uid="uid://dpqdl8obrho2y" path="res://scripts/dispatch_system/EmergencyResourceDefinition.cs" id="9_x5qk3"]
 [ext_resource type="Script" uid="uid://dtnhjfvujlygg" path="res://scripts/dispatch_system/character/CharacterUIHandle.cs" id="10_gj4rp"]
+[ext_resource type="Script" uid="uid://c3d10mead31su" path="res://scripts/dispatch_system/DispatchStateMachine.cs" id="11_oepr1"]
 [ext_resource type="PackedScene" uid="uid://bgbrpwwsmuj1p" path="res://scenes/ui/StatUIHandle.tscn" id="11_vopgv"]
 [ext_resource type="Script" uid="uid://e666rnoe1wns" path="res://scripts/ui/buttons/ExitWindowButton.cs" id="12_6fqfw"]
 [ext_resource type="Script" uid="uid://dgt3tqil1cyrg" path="res://scripts/ui/FollowProgressBar.cs" id="12_7ayn5"]
@@ -27,29 +28,6 @@ albedo_texture = SubResource("ViewportTexture_x5qk3")
 
 [sub_resource type="QuadMesh" id="QuadMesh_bwoxp"]
 size = Vector2(3.2, 1.8)
-
-[sub_resource type="Resource" id="Resource_oepr1"]
-script = ExtResource("9_x5qk3")
-Name = "Bip-Bip Bop-Bip"
-TimeToResolve = 3.0
-Icon = ExtResource("8_qhk26")
-_stats = Dictionary[int, int]({
-0: 2,
-1: 3,
-2: 4
-})
-metadata/_custom_type_script = "uid://dpqdl8obrho2y"
-
-[sub_resource type="Resource" id="Resource_p48m3"]
-script = ExtResource("9_x5qk3")
-Name = "Bip-Bip Bap-Bap"
-Icon = ExtResource("8_qhk26")
-_stats = Dictionary[int, int]({
-0: 3,
-1: 4,
-2: 5
-})
-metadata/_custom_type_script = "uid://dpqdl8obrho2y"
 
 [sub_resource type="Resource" id="Resource_vopgv"]
 script = ExtResource("3_gj4rp")
@@ -121,6 +99,29 @@ color = Color(0.06469653, 0.064696535, 0.0646965, 1)
 thickness = 4
 vertical = true
 
+[sub_resource type="Resource" id="Resource_oepr1"]
+script = ExtResource("9_x5qk3")
+Name = "Bip-Bip Bop-Bip"
+TimeToResolve = 3.0
+Icon = ExtResource("8_qhk26")
+_stats = Dictionary[int, int]({
+0: 2,
+1: 3,
+2: 4
+})
+metadata/_custom_type_script = "uid://dpqdl8obrho2y"
+
+[sub_resource type="Resource" id="Resource_p48m3"]
+script = ExtResource("9_x5qk3")
+Name = "Bip-Bip Bap-Bap"
+Icon = ExtResource("8_qhk26")
+_stats = Dictionary[int, int]({
+0: 3,
+1: 4,
+2: 5
+})
+metadata/_custom_type_script = "uid://dpqdl8obrho2y"
+
 [node name="DispatchScene" type="Node3D"]
 
 [node name="Instance" type="MeshInstance3D" parent="."]
@@ -132,17 +133,12 @@ mesh = SubResource("QuadMesh_bwoxp")
 size = Vector2i(960, 540)
 render_target_update_mode = 4
 
-[node name="EmergencySpawnerComponent" type="Node" parent="SubViewport" node_paths=PackedStringArray("NavRegion")]
-script = ExtResource("6_p48m3")
-EmergencyTemplate = ExtResource("7_eukqe")
-PossibleEvents = Array[Resource]([SubResource("Resource_oepr1"), SubResource("Resource_p48m3")])
-NavRegion = NodePath("../World/NavigationRegion3D")
-
 [node name="World" type="Node3D" parent="SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, 0)
 
 [node name="Camera3D" type="Camera3D" parent="SubViewport/World"]
 transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 14, 0)
+current = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport/World"]
 transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 10, 0)
@@ -182,6 +178,10 @@ shape = SubResource("BoxShape3D_lt5b8")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="SubViewport/World/DispatchUnit"]
 avoidance_enabled = true
+
+[node name="DispatchUnitStateMachine" type="Node" parent="SubViewport/World/DispatchUnit" node_paths=PackedStringArray("_connectedUnit")]
+script = ExtResource("11_oepr1")
+_connectedUnit = NodePath("..")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="SubViewport/World"]
 navigation_mesh = SubResource("NavigationMesh_txmuk")
@@ -741,3 +741,9 @@ size_flags_horizontal = 4
 text = "Exit"
 script = ExtResource("12_6fqfw")
 _target = NodePath("../../../../..")
+
+[node name="EmergencySpawnerComponent" type="Node" parent="SubViewport" node_paths=PackedStringArray("NavRegion")]
+script = ExtResource("6_p48m3")
+EmergencyTemplate = ExtResource("7_eukqe")
+PossibleEvents = Array[Resource]([SubResource("Resource_oepr1"), SubResource("Resource_p48m3")])
+NavRegion = NodePath("../World/NavigationRegion3D")
