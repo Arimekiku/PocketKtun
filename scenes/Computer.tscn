@@ -74,6 +74,9 @@ resource_name = "Material.007"
 cull_mode = 2
 albedo_texture = SubResource("ViewportTexture_bwoxp")
 roughness = 0.0
+emission_enabled = true
+emission_energy_multiplier = 0.4
+emission_texture = SubResource("ViewportTexture_bwoxp")
 uv1_scale = Vector3(-1, 1, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_bwoxp"]

@@ -56,6 +56,29 @@ size = Vector3(5, 5, 5)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_gj4rp"]
 points = PackedVector3Array(-2.5, -2.4995105, -2.4995105, 2.5, 2.4995105, 2.4995105, 2.5, -2.4995105, 2.4995105, 2.5, 2.4995105, -2.4995105, -2.5, 2.4995105, 2.4995105, 2.5, -2.4995105, -2.4995105, -2.5, -2.4995105, 2.4995105, -2.5, 2.4995105, -2.4995105)
 
+[sub_resource type="Resource" id="Resource_oepr1"]
+script = ExtResource("18_l5kuc")
+Name = "Bip-Bip Bop-Bip"
+TimeToResolve = 3.0
+Icon = ExtResource("17_ycxmi")
+_stats = Dictionary[int, int]({
+0: 2,
+1: 3,
+2: 4
+})
+metadata/_custom_type_script = "uid://dpqdl8obrho2y"
+
+[sub_resource type="Resource" id="Resource_p48m3"]
+script = ExtResource("18_l5kuc")
+Name = "Bip-Bip Bap-Bap"
+Icon = ExtResource("17_ycxmi")
+_stats = Dictionary[int, int]({
+0: 3,
+1: 4,
+2: 5
+})
+metadata/_custom_type_script = "uid://dpqdl8obrho2y"
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x5qk3"]
 content_margin_left = 2.0
 content_margin_top = 2.0
@@ -91,29 +114,6 @@ color = Color(0.06469653, 0.064696535, 0.0646965, 1)
 thickness = 4
 vertical = true
 
-[sub_resource type="Resource" id="Resource_oepr1"]
-script = ExtResource("18_l5kuc")
-Name = "Bip-Bip Bop-Bip"
-TimeToResolve = 3.0
-Icon = ExtResource("17_ycxmi")
-_stats = Dictionary[int, int]({
-0: 2,
-1: 3,
-2: 4
-})
-metadata/_custom_type_script = "uid://dpqdl8obrho2y"
-
-[sub_resource type="Resource" id="Resource_p48m3"]
-script = ExtResource("18_l5kuc")
-Name = "Bip-Bip Bap-Bap"
-Icon = ExtResource("17_ycxmi")
-_stats = Dictionary[int, int]({
-0: 3,
-1: 4,
-2: 5
-})
-metadata/_custom_type_script = "uid://dpqdl8obrho2y"
-
 [node name="DispatchingScene" type="Control" node_paths=PackedStringArray("_mousePointer")]
 layout_mode = 3
 anchors_preset = 15
@@ -122,7 +122,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xcyc8")
-_mousePointer = NodePath("MouseLayer/MousePointer")
+_mousePointer = NodePath("UILayer/MousePointer")
 
 [node name="World" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, 0)
@@ -157,9 +157,9 @@ texture = ExtResource("4_oy8yf")
 expand_mode = 1
 script = ExtResource("5_tpx6r")
 TargetUnit = NodePath("..")
-_dispatchUiHandle = NodePath("../../../CharacterUIHandle")
+_dispatchUiHandle = NodePath("../../../UILayer/CharacterUIHandle")
 _dispatchCamera = NodePath("../../Camera3D")
-_virtualMouse = NodePath("../../../MouseLayer/MousePointer")
+_virtualMouse = NodePath("../../../UILayer/MousePointer")
 
 [node name="car_placeholder" parent="World/DispatchUnit" instance=ExtResource("6_n7pqt")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
@@ -237,9 +237,17 @@ mesh = SubResource("BoxMesh_lt5b8")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 shape = SubResource("ConvexPolygonShape3D_gj4rp")
 
-[node name="CharacterUIHandle" type="Control" parent="." node_paths=PackedStringArray("NameLabel", "PortraitImage", "StatContainer")]
+[node name="EmergencySpawnerComponent" type="Node" parent="." node_paths=PackedStringArray("NavRegion")]
+script = ExtResource("15_khdme")
+EmergencyTemplate = ExtResource("16_856ay")
+PossibleEvents = Array[Resource]([SubResource("Resource_oepr1"), SubResource("Resource_p48m3")])
+NavRegion = NodePath("../World/NavigationRegion3D")
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="CharacterUIHandle" type="Control" parent="UILayer" node_paths=PackedStringArray("NameLabel", "PortraitImage", "StatContainer")]
 visible = false
-layout_mode = 1
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -251,7 +259,7 @@ PortraitImage = NodePath("MarginContainer/Background/VBoxContainer/HBoxContainer
 StatContainer = NodePath("MarginContainer/Background/VBoxContainer/HBoxContainer/MarginContainer/StatContainer")
 StatRowTemplate = ExtResource("10_sw535")
 
-[node name="MarginContainer" type="MarginContainer" parent="CharacterUIHandle"]
+[node name="MarginContainer" type="MarginContainer" parent="UILayer/CharacterUIHandle"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -263,10 +271,10 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 300
 theme_override_constants/margin_bottom = 50
 
-[node name="Background" type="Panel" parent="CharacterUIHandle/MarginContainer"]
+[node name="Background" type="Panel" parent="UILayer/CharacterUIHandle/MarginContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CharacterUIHandle/MarginContainer/Background"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/CharacterUIHandle/MarginContainer/Background"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -274,20 +282,20 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="NameLabel" type="Label" parent="CharacterUIHandle/MarginContainer/Background/VBoxContainer"]
+[node name="NameLabel" type="Label" parent="UILayer/CharacterUIHandle/MarginContainer/Background/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "0"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CharacterUIHandle/MarginContainer/Background/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/CharacterUIHandle/MarginContainer/Background/VBoxContainer"]
 layout_mode = 2
 
-[node name="PortraitImage" type="TextureRect" parent="CharacterUIHandle/MarginContainer/Background/VBoxContainer/HBoxContainer"]
+[node name="PortraitImage" type="TextureRect" parent="UILayer/CharacterUIHandle/MarginContainer/Background/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("2_jp252")
 
-[node name="MarginContainer" type="MarginContainer" parent="CharacterUIHandle/MarginContainer/Background/VBoxContainer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="UILayer/CharacterUIHandle/MarginContainer/Background/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 10
@@ -295,13 +303,13 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="StatContainer" type="VBoxContainer" parent="CharacterUIHandle/MarginContainer/Background/VBoxContainer/HBoxContainer/MarginContainer"]
+[node name="StatContainer" type="VBoxContainer" parent="UILayer/CharacterUIHandle/MarginContainer/Background/VBoxContainer/HBoxContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="StatUIHandle" parent="CharacterUIHandle/MarginContainer/Background/VBoxContainer/HBoxContainer/MarginContainer/StatContainer" instance=ExtResource("10_sw535")]
+[node name="StatUIHandle" parent="UILayer/CharacterUIHandle/MarginContainer/Background/VBoxContainer/HBoxContainer/MarginContainer/StatContainer" instance=ExtResource("10_sw535")]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="CharacterUIHandle/MarginContainer/Background" node_paths=PackedStringArray("_target")]
+[node name="Button" type="Button" parent="UILayer/CharacterUIHandle/MarginContainer/Background" node_paths=PackedStringArray("_target")]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -317,9 +325,9 @@ text = "Exit"
 script = ExtResource("11_wunjx")
 _target = NodePath("../../..")
 
-[node name="EmergencyResolverUIHandle" type="Control" parent="." node_paths=PackedStringArray("_resolution", "_emergencyProgressBars", "_unitProgressBars")]
+[node name="EmergencyResolverUIHandle" type="Control" parent="UILayer" node_paths=PackedStringArray("_resolution", "_emergencyProgressBars", "_unitProgressBars")]
 visible = false
-layout_mode = 1
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -330,7 +338,7 @@ _resolution = NodePath("HBoxContainer/EmergencyReport/Background/VBoxContainer/W
 _emergencyProgressBars = [NodePath("HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer/FollowProgressBar"), NodePath("HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer2/FollowProgressBar"), NodePath("HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer3/FollowProgressBar"), NodePath("HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer4/FollowProgressBar")]
 _unitProgressBars = [NodePath("HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer/FollowProgressBar/FollowProgressBar"), NodePath("HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer2/FollowProgressBar/FollowProgressBar"), NodePath("HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer3/FollowProgressBar/FollowProgressBar"), NodePath("HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer4/FollowProgressBar/FollowProgressBar")]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="EmergencyResolverUIHandle"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/EmergencyResolverUIHandle"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -338,7 +346,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="EmergencyInfoContainer" type="MarginContainer" parent="EmergencyResolverUIHandle/HBoxContainer"]
+[node name="EmergencyInfoContainer" type="MarginContainer" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 theme_override_constants/margin_left = 10
@@ -346,10 +354,10 @@ theme_override_constants/margin_top = 100
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 100
 
-[node name="Background" type="Panel" parent="EmergencyResolverUIHandle/HBoxContainer/EmergencyInfoContainer"]
+[node name="Background" type="Panel" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyInfoContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="EmergencyResolverUIHandle/HBoxContainer/EmergencyInfoContainer/Background"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyInfoContainer/Background"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -357,22 +365,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="InfoLabel" type="Label" parent="EmergencyResolverUIHandle/HBoxContainer/EmergencyInfoContainer/Background/VBoxContainer"]
+[node name="InfoLabel" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyInfoContainer/Background/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Emergency Info"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="EmergencyResolverUIHandle/HBoxContainer/EmergencyInfoContainer/Background/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyInfoContainer/Background/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="EmergencyImage" type="TextureRect" parent="EmergencyResolverUIHandle/HBoxContainer/EmergencyInfoContainer/Background/VBoxContainer/HBoxContainer"]
+[node name="EmergencyImage" type="TextureRect" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyInfoContainer/Background/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("2_jp252")
 stretch_mode = 2
 
-[node name="DescriptionContainer" type="MarginContainer" parent="EmergencyResolverUIHandle/HBoxContainer/EmergencyInfoContainer/Background/VBoxContainer/HBoxContainer"]
+[node name="DescriptionContainer" type="MarginContainer" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyInfoContainer/Background/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 10
@@ -380,14 +388,14 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Description" type="RichTextLabel" parent="EmergencyResolverUIHandle/HBoxContainer/EmergencyInfoContainer/Background/VBoxContainer/HBoxContainer/DescriptionContainer"]
+[node name="Description" type="RichTextLabel" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyInfoContainer/Background/VBoxContainer/HBoxContainer/DescriptionContainer"]
 layout_mode = 2
 text = "The quick brown fox jump over the lazy dog
 The quick brown fox jump over the lazy dog
 The quick brown fox jump over the lazy dog
 The quick brown fox jump over the lazy dog"
 
-[node name="Button" type="Button" parent="EmergencyResolverUIHandle/HBoxContainer/EmergencyInfoContainer/Background/VBoxContainer" node_paths=PackedStringArray("_target")]
+[node name="Button" type="Button" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyInfoContainer/Background/VBoxContainer" node_paths=PackedStringArray("_target")]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -395,7 +403,7 @@ text = "Exit"
 script = ExtResource("11_wunjx")
 _target = NodePath("../../../../..")
 
-[node name="EmergencyReport" type="MarginContainer" parent="EmergencyResolverUIHandle/HBoxContainer"]
+[node name="EmergencyReport" type="MarginContainer" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 10
@@ -403,10 +411,10 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Background" type="Panel" parent="EmergencyResolverUIHandle/HBoxContainer/EmergencyReport"]
+[node name="Background" type="Panel" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -414,13 +422,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="NameLabel" type="Label" parent="EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer"]
+[node name="NameLabel" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Emergency Results"
 horizontal_alignment = 1
 
-[node name="StatContainer" type="MarginContainer" parent="EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer"]
+[node name="StatContainer" type="MarginContainer" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 10
@@ -428,17 +436,17 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="StatContainer" type="VBoxContainer" parent="EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer"]
+[node name="StatContainer" type="VBoxContainer" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer"]
 layout_mode = 2
 text = "Stat"
 
-[node name="FollowProgressBar" type="ProgressBar" parent="EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer" node_paths=PackedStringArray("_label")]
+[node name="FollowProgressBar" type="ProgressBar" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer" node_paths=PackedStringArray("_label")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -450,14 +458,14 @@ script = ExtResource("13_7f2y8")
 _label = NodePath("Percentage")
 metadata/_custom_type_script = "uid://dgt3tqil1cyrg"
 
-[node name="Percentage" type="Label" parent="EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer/FollowProgressBar"]
+[node name="Percentage" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer/FollowProgressBar"]
 layout_mode = 0
 offset_left = 320.69998
 offset_right = 330.69998
 offset_bottom = 23.0
 text = "7"
 
-[node name="FollowProgressBar" type="ProgressBar" parent="EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer/FollowProgressBar" node_paths=PackedStringArray("_label")]
+[node name="FollowProgressBar" type="ProgressBar" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer/FollowProgressBar" node_paths=PackedStringArray("_label")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -476,21 +484,21 @@ script = ExtResource("13_7f2y8")
 _label = NodePath("Percentage")
 metadata/_custom_type_script = "uid://dgt3tqil1cyrg"
 
-[node name="Percentage" type="Label" parent="EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer/FollowProgressBar/FollowProgressBar"]
+[node name="Percentage" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer/FollowProgressBar/FollowProgressBar"]
 layout_mode = 0
 offset_left = 224.5
 offset_right = 234.5
 offset_bottom = 23.0
 text = "5"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer2"]
 layout_mode = 2
 text = "Stat"
 
-[node name="FollowProgressBar" type="ProgressBar" parent="EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer2" node_paths=PackedStringArray("_label")]
+[node name="FollowProgressBar" type="ProgressBar" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer2" node_paths=PackedStringArray("_label")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -502,14 +510,14 @@ script = ExtResource("13_7f2y8")
 _label = NodePath("Percentage")
 metadata/_custom_type_script = "uid://dgt3tqil1cyrg"
 
-[node name="Percentage" type="Label" parent="EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer2/FollowProgressBar"]
+[node name="Percentage" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer2/FollowProgressBar"]
 layout_mode = 0
 offset_left = 320.69998
 offset_right = 330.69998
 offset_bottom = 23.0
 text = "7"
 
-[node name="FollowProgressBar" type="ProgressBar" parent="EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer2/FollowProgressBar" node_paths=PackedStringArray("_label")]
+[node name="FollowProgressBar" type="ProgressBar" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer2/FollowProgressBar" node_paths=PackedStringArray("_label")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -528,21 +536,21 @@ script = ExtResource("13_7f2y8")
 _label = NodePath("Percentage")
 metadata/_custom_type_script = "uid://dgt3tqil1cyrg"
 
-[node name="Percentage" type="Label" parent="EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer2/FollowProgressBar/FollowProgressBar"]
+[node name="Percentage" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer2/FollowProgressBar/FollowProgressBar"]
 layout_mode = 0
 offset_left = 224.5
 offset_right = 234.5
 offset_bottom = 23.0
 text = "5"
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer3"]
+[node name="Label" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer3"]
 layout_mode = 2
 text = "Stat"
 
-[node name="FollowProgressBar" type="ProgressBar" parent="EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer3" node_paths=PackedStringArray("_label")]
+[node name="FollowProgressBar" type="ProgressBar" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer3" node_paths=PackedStringArray("_label")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -554,14 +562,14 @@ script = ExtResource("13_7f2y8")
 _label = NodePath("Percentage")
 metadata/_custom_type_script = "uid://dgt3tqil1cyrg"
 
-[node name="Percentage" type="Label" parent="EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer3/FollowProgressBar"]
+[node name="Percentage" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer3/FollowProgressBar"]
 layout_mode = 0
 offset_left = 320.69998
 offset_right = 330.69998
 offset_bottom = 23.0
 text = "7"
 
-[node name="FollowProgressBar" type="ProgressBar" parent="EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer3/FollowProgressBar" node_paths=PackedStringArray("_label")]
+[node name="FollowProgressBar" type="ProgressBar" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer3/FollowProgressBar" node_paths=PackedStringArray("_label")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -580,21 +588,21 @@ script = ExtResource("13_7f2y8")
 _label = NodePath("Percentage")
 metadata/_custom_type_script = "uid://dgt3tqil1cyrg"
 
-[node name="Percentage" type="Label" parent="EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer3/FollowProgressBar/FollowProgressBar"]
+[node name="Percentage" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer3/FollowProgressBar/FollowProgressBar"]
 layout_mode = 0
 offset_left = 224.5
 offset_right = 234.5
 offset_bottom = 23.0
 text = "5"
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer"]
+[node name="HBoxContainer4" type="HBoxContainer" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer4"]
+[node name="Label" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer4"]
 layout_mode = 2
 text = "Stat"
 
-[node name="FollowProgressBar" type="ProgressBar" parent="EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer4" node_paths=PackedStringArray("_label")]
+[node name="FollowProgressBar" type="ProgressBar" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer4" node_paths=PackedStringArray("_label")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -606,14 +614,14 @@ script = ExtResource("13_7f2y8")
 _label = NodePath("Percentage")
 metadata/_custom_type_script = "uid://dgt3tqil1cyrg"
 
-[node name="Percentage" type="Label" parent="EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer4/FollowProgressBar"]
+[node name="Percentage" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer4/FollowProgressBar"]
 layout_mode = 0
 offset_left = 320.69998
 offset_right = 330.69998
 offset_bottom = 23.0
 text = "7"
 
-[node name="FollowProgressBar" type="ProgressBar" parent="EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer4/FollowProgressBar" node_paths=PackedStringArray("_label")]
+[node name="FollowProgressBar" type="ProgressBar" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer4/FollowProgressBar" node_paths=PackedStringArray("_label")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -632,18 +640,18 @@ script = ExtResource("13_7f2y8")
 _label = NodePath("Percentage")
 metadata/_custom_type_script = "uid://dgt3tqil1cyrg"
 
-[node name="Percentage" type="Label" parent="EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer4/FollowProgressBar/FollowProgressBar"]
+[node name="Percentage" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer4/FollowProgressBar/FollowProgressBar"]
 layout_mode = 0
 offset_left = 224.5
 offset_right = 234.5
 offset_bottom = 23.0
 text = "5"
 
-[node name="HSeparator" type="HSeparator" parent="EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="WinningContainer" type="MarginContainer" parent="EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer"]
+[node name="WinningContainer" type="MarginContainer" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -652,16 +660,16 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="WinningResolution" type="VBoxContainer" parent="EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/WinningContainer"]
+[node name="WinningResolution" type="VBoxContainer" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/WinningContainer"]
 layout_mode = 2
 
-[node name="NameLabel" type="Label" parent="EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/WinningContainer/WinningResolution"]
+[node name="NameLabel" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/WinningContainer/WinningResolution"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Winning chances"
 horizontal_alignment = 1
 
-[node name="EmergencyResolution" type="Control" parent="EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/WinningContainer/WinningResolution" node_paths=PackedStringArray("SuccessBar", "_winrateLabel", "Pointer", "ResultLabel")]
+[node name="EmergencyResolution" type="Control" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/WinningContainer/WinningResolution" node_paths=PackedStringArray("SuccessBar", "_winrateLabel", "Pointer", "ResultLabel")]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 script = ExtResource("14_lem2v")
@@ -670,7 +678,7 @@ _winrateLabel = NodePath("WinningChance/WinrateLabel")
 Pointer = NodePath("Pointer")
 ResultLabel = NodePath("../WinLabel")
 
-[node name="Background" type="ColorRect" parent="EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/WinningContainer/WinningResolution/EmergencyResolution"]
+[node name="Background" type="ColorRect" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/WinningContainer/WinningResolution/EmergencyResolution"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -679,7 +687,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 1, 1, 0.39215687)
 
-[node name="WinningChance" type="ColorRect" parent="EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/WinningContainer/WinningResolution/EmergencyResolution"]
+[node name="WinningChance" type="ColorRect" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/WinningContainer/WinningResolution/EmergencyResolution"]
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
@@ -691,7 +699,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.23529412, 0.77254903, 0.4509804, 1)
 
-[node name="WinrateLabel" type="Label" parent="EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/WinningContainer/WinningResolution/EmergencyResolution/WinningChance"]
+[node name="WinrateLabel" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/WinningContainer/WinningResolution/EmergencyResolution/WinningChance"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -708,7 +716,7 @@ theme_override_font_sizes/font_size = 32
 text = "55%"
 horizontal_alignment = 1
 
-[node name="Pointer" type="VSeparator" parent="EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/WinningContainer/WinningResolution/EmergencyResolution"]
+[node name="Pointer" type="VSeparator" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/WinningContainer/WinningResolution/EmergencyResolution"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -720,13 +728,13 @@ grow_horizontal = 2
 theme_override_constants/separation = 0
 theme_override_styles/separator = SubResource("StyleBoxLine_r1uu7")
 
-[node name="WinLabel" type="Label" parent="EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/WinningContainer/WinningResolution"]
+[node name="WinLabel" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/WinningContainer/WinningResolution"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "RESULT PRINTER"
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer" node_paths=PackedStringArray("_target")]
+[node name="Button" type="Button" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer" node_paths=PackedStringArray("_target")]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -734,15 +742,7 @@ text = "Exit"
 script = ExtResource("11_wunjx")
 _target = NodePath("../../../../..")
 
-[node name="EmergencySpawnerComponent" type="Node" parent="." node_paths=PackedStringArray("NavRegion")]
-script = ExtResource("15_khdme")
-EmergencyTemplate = ExtResource("16_856ay")
-PossibleEvents = Array[Resource]([SubResource("Resource_oepr1"), SubResource("Resource_p48m3")])
-NavRegion = NodePath("../World/NavigationRegion3D")
-
-[node name="MouseLayer" type="CanvasLayer" parent="."]
-
-[node name="MousePointer" type="TextureRect" parent="MouseLayer"]
+[node name="MousePointer" type="TextureRect" parent="UILayer"]
 offset_right = 32.0
 offset_bottom = 32.0
 mouse_filter = 2
