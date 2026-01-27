@@ -1,4 +1,5 @@
 using System;
+using Godot;
 using Scripts.DIContainer;
 using Scripts.Gameplay.Services;
 using Scripts.Systems.InteractSystem;
@@ -7,6 +8,8 @@ namespace Scripts.Gameplay.Triggers;
 
 public partial class RaycastCheckTrigger : BaseFocusTrigger
 {
+    [Export] private CollisionObject3D _targetBody;
+    
     [Inject] private IPlayerInteractorService _playerInteractor;
     
     public override event Action<IFocusTrigger> OnFocusEvent;
@@ -29,9 +32,9 @@ public partial class RaycastCheckTrigger : BaseFocusTrigger
     public override void FocusProcess()
     { }
 
-    private void CheckFocused(BaseFocusTrigger target)
+    private void CheckFocused(CollisionObject3D target)
     {
-        if (target != this)
+        if (_targetBody != target)
         {
             if (_isFocused)
                 OnUnfocusEvent!.Invoke(this);

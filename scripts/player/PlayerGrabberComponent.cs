@@ -40,7 +40,7 @@ public partial class PlayerGrabberComponent : Node
     private void TryGrab()
     {
         if (!_rayCast.IsColliding()) return;
-
+        
         var collider = _rayCast.GetCollider();
         if (collider is RigidBody3D body)
         {

@@ -11,7 +11,7 @@ public partial class PlayerInteractionUpdater : Node3D
     
     [Inject] private IPlayerInteractorService _playerInteractor;
 
-    private RaycastCheckTrigger _lastTarget;
+    private CollisionObject3D _lastTarget;
     
     public override void _Process(double delta)
     {
@@ -24,14 +24,11 @@ public partial class PlayerInteractionUpdater : Node3D
             return;
         }
         
-        var collider = _rayCast.GetCollider();
-        if (collider is not RaycastCheckTrigger target)
+        var collider = _rayCast.GetCollider() as CollisionObject3D;
+        if (_lastTarget == collider)
             return;
         
-        if (_lastTarget == target)
-            return;
-        
-        _lastTarget = target;
-        _playerInteractor.RaiseWithRaycast(target);
+        _lastTarget = collider;
+        _playerInteractor.RaiseWithRaycast(collider);
     }
 }
