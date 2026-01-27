@@ -409,6 +409,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8468702, 0)
 light_color = Color(1, 0.94509804, 0.75686276, 1)
 light_energy = 1.4
 shadow_enabled = true
+omni_range = 8.0
 
 [node name="Light" type="GPUParticles3D" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Lights/CeilingLamp" unique_id=1499422199]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1127111, 0)
@@ -425,7 +426,7 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7.9
 [node name="OmniLight3D2" type="OmniLight3D" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Lights/Lamp" unique_id=968643741]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.31912136)
 shadow_enabled = true
-omni_range = 4.0
+omni_range = 8.0
 
 [node name="Light2" type="GPUParticles3D" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Lights/Lamp" unique_id=153124175]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, -0.009779692, 0.4204712)
@@ -442,7 +443,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 7.94
 [node name="OmniLight3D2" type="OmniLight3D" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Lights/Lamp2" unique_id=1625307812]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.31912136)
 shadow_enabled = true
-omni_range = 4.0
+omni_range = 8.0
 
 [node name="Light2" type="GPUParticles3D" parent="SubViewportContainer/SubViewport/World/ChiefRoom/Lights/Lamp2" unique_id=1950245921]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, -0.009779692, 0.4204712)
@@ -694,6 +695,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8468702, 0)
 light_color = Color(1, 0.94509804, 0.75686276, 1)
 light_energy = 1.4
 shadow_enabled = true
+omni_range = 8.0
 
 [node name="Light" type="GPUParticles3D" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Lights/CeilingLamp" unique_id=535066875]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1127111, 0)
@@ -710,7 +712,7 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7.9
 [node name="OmniLight3D2" type="OmniLight3D" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Lights/Lamp" unique_id=1606269412]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.31912136)
 shadow_enabled = true
-omni_range = 4.0
+omni_range = 8.0
 
 [node name="Light2" type="GPUParticles3D" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Lights/Lamp" unique_id=594638633]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, -0.009779692, 0.4204712)
@@ -727,7 +729,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 7.94
 [node name="OmniLight3D2" type="OmniLight3D" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Lights/Lamp2" unique_id=1738766926]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.31912136)
 shadow_enabled = true
-omni_range = 4.0
+omni_range = 8.0
 
 [node name="Light2" type="GPUParticles3D" parent="SubViewportContainer/SubViewport/World/DispatchRoom/Lights/Lamp2" unique_id=1196561298]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, -0.009779692, 0.4204712)
@@ -1007,6 +1009,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 4)
 [node name="FloorCeiling3" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Layout/Floor" unique_id=1678621957 instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
 
+[node name="FloorCeiling4" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Layout/Floor" unique_id=1325338496 instance=ExtResource("6_def21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 4)
+
 [node name="FloorCeiling5" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Layout/Floor" unique_id=1754137839 instance=ExtResource("6_def21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
 
@@ -1203,6 +1208,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8468702, 0)
 light_color = Color(1, 0.94509804, 0.75686276, 1)
 light_energy = 1.4
 shadow_enabled = true
+omni_range = 8.0
 
 [node name="Light" type="GPUParticles3D" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Lights/CeilingLamp" unique_id=1494581262]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1127111, 0)
@@ -1219,7 +1225,7 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7.9
 [node name="OmniLight3D2" type="OmniLight3D" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Lights/Lamp" unique_id=1919163388]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.31912136)
 shadow_enabled = true
-omni_range = 4.0
+omni_range = 8.0
 
 [node name="Light2" type="GPUParticles3D" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Lights/Lamp" unique_id=141637957]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, -0.009779692, 0.4204712)
@@ -1236,7 +1242,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 7.94
 [node name="OmniLight3D2" type="OmniLight3D" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Lights/Lamp2" unique_id=853977592]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.31912136)
 shadow_enabled = true
-omni_range = 4.0
+omni_range = 8.0
 
 [node name="Light2" type="GPUParticles3D" parent="SubViewportContainer/SubViewport/World/ReceptionRoom/Lights/Lamp2" unique_id=339948975]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, -0.009779692, 0.4204712)
@@ -1714,6 +1720,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8468702, 0)
 light_color = Color(1, 0.94509804, 0.75686276, 1)
 light_energy = 1.4
 shadow_enabled = true
+omni_range = 8.0
 
 [node name="Light" type="GPUParticles3D" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Lights/CeilingLamp" unique_id=882743083]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1127111, 0)
@@ -1730,7 +1737,7 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7.9
 [node name="OmniLight3D2" type="OmniLight3D" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Lights/Lamp" unique_id=2143873219]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.31912136)
 shadow_enabled = true
-omni_range = 4.0
+omni_range = 8.0
 
 [node name="Light2" type="GPUParticles3D" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Lights/Lamp" unique_id=2094328184]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, -0.009779692, 0.4204712)
@@ -1747,7 +1754,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 7.94
 [node name="OmniLight3D2" type="OmniLight3D" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Lights/Lamp2" unique_id=99402103]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.31912136)
 shadow_enabled = true
-omni_range = 4.0
+omni_range = 8.0
 
 [node name="Light2" type="GPUParticles3D" parent="SubViewportContainer/SubViewport/World/ForensicsRoom/Lights/Lamp2" unique_id=1973637463]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, -0.009779692, 0.4204712)
@@ -1991,6 +1998,44 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 
 
 [node name="Wall20" parent="SubViewportContainer/SubViewport/World/Stairway/Walls" unique_id=811114365 instance=ExtResource("7_1ewh1")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 12, 2)
+
+[node name="Lighting" type="Node3D" parent="SubViewportContainer/SubViewport/World/Stairway" unique_id=339082496]
+
+[node name="Lamp" parent="SubViewportContainer/SubViewport/World/Stairway/Lighting" unique_id=1705304590 instance=ExtResource("20_dbld1")]
+transform = Transform3D(-1, 0, -2.9802322e-08, 0, 1, 0, 2.9802322e-08, 0, -1, -2, 5, 3.9450512)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/World/Stairway/Lighting/Lamp" unique_id=679687812]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5999985)
+light_color = Color(1, 0.9764706, 0.8901961, 1)
+light_energy = 1.4
+omni_range = 8.0
+
+[node name="Lamp2" parent="SubViewportContainer/SubViewport/World/Stairway/Lighting" unique_id=2064226576 instance=ExtResource("20_dbld1")]
+transform = Transform3D(1, 0, -1.1920929e-07, 0, 1, 0, 1.1920929e-07, 0, 1, -2, 5, -3.9405499)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/World/Stairway/Lighting/Lamp2" unique_id=474140631]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5999985)
+light_color = Color(1, 0.9764706, 0.8901961, 1)
+light_energy = 1.4
+omni_range = 8.0
+
+[node name="Lamp3" parent="SubViewportContainer/SubViewport/World/Stairway/Lighting" unique_id=1362255541 instance=ExtResource("20_dbld1")]
+transform = Transform3D(-1, 0, -2.9802322e-08, 0, 1, 0, 2.9802322e-08, 0, -1, -2, 11, 3.9450512)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/World/Stairway/Lighting/Lamp3" unique_id=669916426]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5999985)
+light_color = Color(1, 0.9764706, 0.8901961, 1)
+light_energy = 1.4
+omni_range = 8.0
+
+[node name="Lamp4" parent="SubViewportContainer/SubViewport/World/Stairway/Lighting" unique_id=107709616 instance=ExtResource("20_dbld1")]
+transform = Transform3D(1, 0, -1.1920929e-07, 0, 1, 0, 1.1920929e-07, 0, 1, -2, 11, -3.9405499)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/World/Stairway/Lighting/Lamp4" unique_id=1379093401]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5999985)
+light_color = Color(1, 0.9764706, 0.8901961, 1)
+light_energy = 1.4
+omni_range = 8.0
 
 [node name="Player" parent="SubViewportContainer/SubViewport" unique_id=2026513524 instance=ExtResource("5_jm2hm")]
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 13.890534, 6, 0.2539239)
