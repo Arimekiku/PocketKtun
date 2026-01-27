@@ -1,34 +1,35 @@
-[gd_scene load_steps=2 format=3 uid="uid://bpvkgltp64ryn"]
+[gd_scene format=3 uid="uid://bpvkgltp64ryn"]
 
-[ext_resource type="Script" path="res://addons/interface_export/inspector/node_interface/SceneTreeDialog.cs" id="1_lx6ni"]
+[ext_resource type="Script" uid="uid://cd3uwwn0ib1i7" path="res://addons/interface_export/inspector/node_interface/SceneTreeDialog.cs" id="1_lx6ni"]
 
-[node name="InterfaceSceneTreeDialog" type="ConfirmationDialog"]
+[node name="InterfaceSceneTreeDialog" type="ConfirmationDialog" unique_id=534257820]
+oversampling_override = 1.0
 title = "Select a Node"
 position = Vector2i(0, 36)
 size = Vector2i(200, 153)
 visible = true
 script = ExtResource("1_lx6ni")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=19481570]
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 192.0
 offset_bottom = 104.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=695594216]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=211173814]
 layout_mode = 2
 text = "Allowed:"
 
-[node name="InterfaceTypeLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
+[node name="InterfaceTypeLabel" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=1420013374]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Test"
 
-[node name="NodeTree" type="Tree" parent="VBoxContainer"]
+[node name="NodeTree" type="Tree" parent="VBoxContainer" unique_id=1169695270]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3

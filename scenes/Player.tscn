@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dnu877iyx6p6f"]
+[gd_scene format=3 uid="uid://dnu877iyx6p6f"]
 
 [ext_resource type="Script" uid="uid://c7g2kn5ig3tkj" path="res://scripts/player/Player.cs" id="1_p0vlq"]
 [ext_resource type="Script" uid="uid://da00ejklbc0y7" path="res://scripts/player/PlayerInteractionUpdater.cs" id="2_v6fml"]
@@ -25,44 +25,44 @@ shader_parameter/pulse_speed = 3.0
 shader_parameter/noise_density = 20.0
 shader_parameter/beam_intensity = 2.0
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_cw2d6"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_khinc"]
 
 [sub_resource type="Curve" id="Curve_qu4a1"]
 _data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(0.7630332, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.12967432), -12.751639, 0.0, 0, 0]
 point_count = 3
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("_neck", "_camera", "_clockAnimator")]
+[node name="Player" type="CharacterBody3D" unique_id=1103626322 node_paths=PackedStringArray("_neck", "_camera", "_clockAnimator")]
 script = ExtResource("1_p0vlq")
 _neck = NodePath("Neck")
 _camera = NodePath("Neck/Camera3D")
 _clockAnimator = NodePath("ClockAnimatorComponent")
 
-[node name="Collider" type="CollisionShape3D" parent="."]
+[node name="Collider" type="CollisionShape3D" parent="." unique_id=514880992]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 shape = SubResource("CapsuleShape3D_vn80e")
 
-[node name="Mesh" type="MeshInstance3D" parent="."]
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=2141034129]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 mesh = SubResource("CapsuleMesh_vn80e")
 
-[node name="LineInstance" type="MeshInstance3D" parent="."]
+[node name="LineInstance" type="MeshInstance3D" parent="." unique_id=602673308]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 material_override = SubResource("ShaderMaterial_qu4a1")
-mesh = SubResource("ImmediateMesh_cw2d6")
+mesh = SubResource("ImmediateMesh_khinc")
 script = ExtResource("3_mdl7e")
 _widthCurve = SubResource("Curve_qu4a1")
 _curveHeight = 0.4
 _curveDirection = Vector3(1, 1, 0)
 
-[node name="Neck" type="Node3D" parent="." node_paths=PackedStringArray("_rayCast")]
+[node name="Neck" type="Node3D" parent="." unique_id=1583000491 node_paths=PackedStringArray("_rayCast")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 script = ExtResource("2_v6fml")
 _rayCast = NodePath("Camera3D/RayCast3D")
 
-[node name="Camera3D" type="Camera3D" parent="Neck"]
+[node name="Camera3D" type="Camera3D" parent="Neck" unique_id=1439774373]
 current = true
 
-[node name="AudioListener3D" type="AudioListener3D" parent="Neck/Camera3D"]
+[node name="AudioListener3D" type="AudioListener3D" parent="Neck/Camera3D" unique_id=675079294]
 current = true
 script = ExtResource("5_khinc")
 rays_count = 12
@@ -70,24 +70,24 @@ max_raycast_dist = 200.0
 ray_scatter_model = 1
 metadata/_custom_type_script = "uid://bjpmu5sklv5h8"
 
-[node name="RayCast3D" type="RayCast3D" parent="Neck/Camera3D"]
+[node name="RayCast3D" type="RayCast3D" parent="Neck/Camera3D" unique_id=737261576]
 target_position = Vector3(0, 0, -2)
 collide_with_areas = true
 
-[node name="GrabPoint" type="Marker3D" parent="Neck/Camera3D"]
+[node name="GrabPoint" type="Marker3D" parent="Neck/Camera3D" unique_id=1511120457]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5)
 
-[node name="PocketWatch" parent="Neck/Camera3D" instance=ExtResource("6_70d11")]
+[node name="PocketWatch" parent="Neck/Camera3D" unique_id=1378384805 instance=ExtResource("6_70d11")]
 transform = Transform3D(1.5320889, -1.2855752, 5.6194274e-08, 0, -8.742278e-08, -2, 1.2855752, 1.5320889, -6.696973e-08, 0.3, -0.8, -0.3)
 _minuteCorrection = 0.0
 _hourCorrection = 0.0
 
-[node name="GrabComponent" type="Node" parent="." node_paths=PackedStringArray("_rayCast", "_grabPoint")]
+[node name="GrabComponent" type="Node" parent="." unique_id=2067561632 node_paths=PackedStringArray("_rayCast", "_grabPoint")]
 script = ExtResource("3_3li8b")
 _rayCast = NodePath("../Neck/Camera3D/RayCast3D")
 _grabPoint = NodePath("../Neck/Camera3D/GrabPoint")
 
-[node name="ClockAnimatorComponent" type="Node" parent="." node_paths=PackedStringArray("_target")]
+[node name="ClockAnimatorComponent" type="Node" parent="." unique_id=1617266668 node_paths=PackedStringArray("_target")]
 script = ExtResource("7_cw2d6")
 _target = NodePath("../Neck/Camera3D/PocketWatch")
 _targetPosition = Vector3(0.22, -0.085, -0.24)

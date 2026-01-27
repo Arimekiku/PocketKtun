@@ -8,10 +8,6 @@
 
 config_version=5
 
-[animation]
-
-compatibility/default_parent_skeleton_in_mesh_instance_3d=true
-
 [application]
 
 config/name="ktun"
@@ -21,6 +17,7 @@ config/icon="res://resources/Icon.svg"
 
 [audio]
 
+buses/default_bus_layout="uid://ca4vuh3ch3yrf"
 general/3d_panning_strength=1.0
 
 [autoload]

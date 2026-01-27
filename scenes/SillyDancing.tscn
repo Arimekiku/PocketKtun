@@ -1,11 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://4ishcf45fhvp"]
+[gd_scene format=3 uid="uid://4ishcf45fhvp"]
 
 [ext_resource type="PackedScene" uid="uid://d3x2jjyimbsbe" path="res://resources/models/Silly Dancing.fbx" id="1_ysas5"]
-[ext_resource type="Script" uid="uid://davev7r4e42qx" path="res://scripts/AnimationLooper.cs" id="2_5uvrw"]
+[ext_resource type="Script" uid="uid://davev7r4e42qx" path="res://scripts/utility_components/AnimationLooper.cs" id="2_5uvrw"]
 
-[node name="SillyDancing" instance=ExtResource("1_ysas5")]
+[node name="SillyDancing" unique_id=405975041 instance=ExtResource("1_ysas5")]
 
-[node name="Skeleton3D" parent="." index="0"]
+[node name="Skeleton3D" parent="." index="0" unique_id=1535704460]
 bones/0/position = Vector3(-0.009233446, 1.3002951, 0.010492594)
 bones/0/rotation = Quaternion(-0.054784104, -0.034515146, -0.021530066, 0.9976693)
 bones/1/rotation = Quaternion(0.108644284, 0.04106833, 0.030382346, 0.9927672)
@@ -28,5 +28,5 @@ bones/21/rotation = Quaternion(-0.48839065, -0.07733318, -0.03965191, 0.8682867)
 bones/22/rotation = Quaternion(0.6609792, 0.047926474, 0.07035882, 0.7455597)
 bones/23/rotation = Quaternion(0.27804783, -0.036508646, 0.010576147, 0.95981497)
 
-[node name="AnimationPlayer" parent="." index="1"]
+[node name="AnimationPlayer" parent="." index="1" unique_id=1867967797]
 script = ExtResource("2_5uvrw")

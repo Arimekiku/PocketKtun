@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bbkutbe5h183f"]
+[gd_scene format=3 uid="uid://bbkutbe5h183f"]
 
 [ext_resource type="PackedScene" uid="uid://b60bohyvdyll6" path="res://resources/models/cabinet-col.blend" id="1_17a54"]
 [ext_resource type="Shader" uid="uid://dew3kcxwvaetu" path="res://resources/shaders/SelectionOutline.gdshader" id="3_8h13c"]
@@ -25,51 +25,51 @@ size = Vector3(1, 1, 0.6533203)
 [sub_resource type="BoxShape3D" id="BoxShape3D_lifdc"]
 size = Vector3(0.5761719, 1, 0.5917969)
 
-[node name="cabinet-col" instance=ExtResource("1_17a54")]
+[node name="cabinet-col" unique_id=1777205897 instance=ExtResource("1_17a54")]
 
-[node name="Plane" parent="." index="0"]
+[node name="Plane" parent="." index="0" unique_id=1395233613]
 visible = false
 
-[node name="Plane_002" parent="." index="1"]
+[node name="Plane_002" parent="." index="1" unique_id=1222219726]
 visible = false
 
-[node name="StaticBody3D" type="StaticBody3D" parent="table" index="0"]
+[node name="StaticBody3D" type="StaticBody3D" parent="table" parent_id_path=PackedInt32Array(1177739741) index="0" unique_id=2100378859]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="table/StaticBody3D" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="table/StaticBody3D" index="0" unique_id=978181445]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49502218, 0)
 shape = SubResource("BoxShape3D_8h13c")
 
-[node name="Cube" parent="." index="6"]
+[node name="Cube" parent="." index="6" unique_id=1355481183]
 transform = Transform3D(0.8815152, 0.08748284, -0.46398032, -0.09875631, 0.99511164, 1.8626451e-09, 0.46171224, 0.04582098, 0.8858455, -0.097821325, 1.0047638, 1.3372923)
 material_override = SubResource("StandardMaterial3D_uug6w")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Plane_001" index="0"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Plane_001" parent_id_path=PackedInt32Array(979193356) index="0" unique_id=1164736619]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Plane_001/StaticBody3D" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Plane_001/StaticBody3D" index="0" unique_id=914815368]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0045292675, 0)
 shape = SubResource("BoxShape3D_8vmhm")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Cube_004" index="0"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube_004" parent_id_path=PackedInt32Array(1422781608) index="0" unique_id=2035606911]
 transform = Transform3D(0.002740217, 0, -0.99999624, 0, 1, 0, 0.99999624, 0, 0.002740217, 0, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_004/StaticBody3D" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_004/StaticBody3D" index="0" unique_id=870520079]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49502218, 0)
 shape = SubResource("BoxShape3D_8h13c")
 
-[node name="Cube_007" parent="." index="18"]
+[node name="Cube_007" parent="." index="18" unique_id=961029354]
 visible = false
 
-[node name="Cube_008" parent="." index="19"]
+[node name="Cube_008" parent="." index="19" unique_id=1569992941]
 visible = false
 
-[node name="Cube_009" parent="." index="20"]
+[node name="Cube_009" parent="." index="20" unique_id=1108473420]
 visible = false
 
-[node name="Plane_004" parent="." index="21"]
+[node name="Plane_004" parent="." index="21" unique_id=1502635258]
 visible = false
 
-[node name="StaticBody3D" type="StaticBody3D" parent="basket" index="0"]
+[node name="StaticBody3D" type="StaticBody3D" parent="basket" parent_id_path=PackedInt32Array(964068649) index="0" unique_id=1498509596]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="basket/StaticBody3D" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="basket/StaticBody3D" index="0" unique_id=250688721]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49502218, 0)
 shape = SubResource("BoxShape3D_lifdc")

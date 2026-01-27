@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bi16ixpffemqt"]
+[gd_scene format=3 uid="uid://bi16ixpffemqt"]
 
 [ext_resource type="PackedScene" uid="uid://88fuuc5a20eb" path="res://resources/models/pocket_watch.blend" id="1_it7a0"]
-[ext_resource type="Script" uid="uid://2umkc2srgyhm" path="res://scripts/Clock.cs" id="2_t2ptx"]
+[ext_resource type="Script" uid="uid://2umkc2srgyhm" path="res://scripts/utility_components/Clock.cs" id="2_t2ptx"]
 
-[node name="PocketWatch" node_paths=PackedStringArray("_secondHand", "_minuteHand", "_hourHand") instance=ExtResource("1_it7a0")]
+[node name="PocketWatch" unique_id=712370815 node_paths=PackedStringArray("_secondHand", "_minuteHand", "_hourHand") instance=ExtResource("1_it7a0")]
 script = ExtResource("2_t2ptx")
 _secondHand = NodePath("BézierCircle_001")
 _secondCorrection = 0.0

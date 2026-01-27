@@ -1,13 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://dqi6xgau323et"]
+[gd_scene format=3 uid="uid://dqi6xgau323et"]
 
 [ext_resource type="PackedScene" uid="uid://by5xq0ijcab6j" path="res://resources/models/modular_structures/walls/wall_1.glb" id="1_qamvq"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_s8vn4"]
 points = PackedVector3Array(-2.07746, -0.032460213, -0.122460306, 2.07746, 3.0188093, 0.07227615, 2.07746, 0.16257489, 0.1372222, -2.07746, 0.16257489, 0.1372222, -2.012387, 3.0188093, -0.122460306, 2.07746, -0.032460213, -0.122460306, 2.012387, 3.0188093, -0.122460306, -2.07746, 3.0188093, 0.07227615, 2.07746, -0.032460213, 0.1372222, -2.07746, -0.032460213, 0.1372222, 2.07746, 0.16257489, -0.122460306, -2.07746, 0.16257489, -0.122460306)
 
-[node name="Wall" instance=ExtResource("1_qamvq")]
+[node name="Wall" unique_id=1306996546 instance=ExtResource("1_qamvq")]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." index="0"]
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="0" unique_id=967982889]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=863362284]
 shape = SubResource("ConvexPolygonShape3D_s8vn4")

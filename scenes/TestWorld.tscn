@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://doyycliluhxox" path="res://resources/images/dev_textures/Prefab_green.png" id="5_a2f0d"]
 [ext_resource type="Shader" uid="uid://dew3kcxwvaetu" path="res://resources/shaders/SelectionOutline.gdshader" id="6_2puco"]
 [ext_resource type="PackedScene" uid="uid://dpu0jls4cf5bc" path="res://scenes/modular_building/Doorway.tscn" id="6_o15s1"]
+[ext_resource type="Script" uid="uid://cod4xubfdo3pa" path="res://scripts/MeshHighlighter.cs" id="8_mxtr1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2puco"]
 shader = ExtResource("1_yv73f")
@@ -46,6 +47,12 @@ uv1_scale = Vector3(3, 2, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_ge7yi"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xdopa"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a2f0d"]
+render_priority = 0
+shader = ExtResource("6_2puco")
+shader_parameter/outline_color = Color(0.9, 0.9, 0.9, 1)
+shader_parameter/outline_width = 10.0
 
 [node name="TestWorld" type="Node3D" unique_id=623221148]
 
@@ -101,3 +108,9 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5, 
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Doorway" unique_id=62295688]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.3711395e-08, 2.58459, 1)
+
+[node name="CollisionMeshHighlighter" type="MeshInstance3D" parent="." unique_id=1863147280]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+material_override = SubResource("ShaderMaterial_a2f0d")
+skeleton = NodePath("../Neck/Camera3D/RayCast3D")
+script = ExtResource("8_mxtr1")

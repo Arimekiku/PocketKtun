@@ -1,11 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://c5uy7c0ur2n0d"]
+[gd_scene format=3 uid="uid://c5uy7c0ur2n0d"]
 
 [ext_resource type="PackedScene" uid="uid://cp2fwjketj0it" path="res://resources/models/Dancing.fbx" id="1_00bj6"]
 [ext_resource type="Script" uid="uid://davev7r4e42qx" path="res://scripts/utility_components/AnimationLooper.cs" id="2_p5o84"]
 
-[node name="Dancing" instance=ExtResource("1_00bj6")]
+[node name="Dancing" unique_id=2061574130 instance=ExtResource("1_00bj6")]
 
-[node name="Skeleton3D" parent="." index="0"]
+[node name="Skeleton3D" parent="." index="0" unique_id=1523209564]
 bones/0/position = Vector3(-0.32099885, 1.3326894, -0.014814296)
 bones/0/rotation = Quaternion(0.33389667, 0.050945833, 0.041789837, 0.94030374)
 bones/1/rotation = Quaternion(-0.03747252, 0.012930881, -0.00016405812, 0.999214)
@@ -28,5 +28,5 @@ bones/21/rotation = Quaternion(-0.36155763, -0.00965167, -0.002125045, 0.9322974
 bones/22/rotation = Quaternion(0.5636602, 0.0862893, 0.14492232, 0.80860305)
 bones/23/rotation = Quaternion(0.29091978, -0.036285352, 0.0103407, 0.95600325)
 
-[node name="AnimationPlayer" parent="." index="1"]
+[node name="AnimationPlayer" parent="." index="1" unique_id=2132183372]
 script = ExtResource("2_p5o84")

@@ -1,18 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://bgbrpwwsmuj1p"]
+[gd_scene format=3 uid="uid://bgbrpwwsmuj1p"]
 
-[ext_resource type="Script" uid="uid://bes822h206yjc" path="res://scripts/dispatch_system/character/StatUIHandle.cs" id="1_e2xyl"]
+[ext_resource type="Script" uid="uid://bes822h206yjc" path="res://scripts/systems/dispatch_system/character/StatUIHandle.cs" id="1_e2xyl"]
 [ext_resource type="Script" uid="uid://dgt3tqil1cyrg" path="res://scripts/ui/FollowProgressBar.cs" id="2_7pv4x"]
 
-[node name="StatUIHandle" type="HBoxContainer" node_paths=PackedStringArray("_nameLabel", "_progressBar")]
+[node name="StatUIHandle" type="HBoxContainer" unique_id=1561432834 node_paths=PackedStringArray("_nameLabel", "_progressBar")]
 script = ExtResource("1_e2xyl")
 _nameLabel = NodePath("Name")
 _progressBar = NodePath("ProgressBar")
 
-[node name="Name" type="Label" parent="."]
+[node name="Name" type="Label" parent="." unique_id=41060437]
 layout_mode = 2
 text = "Strength"
 
-[node name="ProgressBar" type="ProgressBar" parent="." node_paths=PackedStringArray("_label")]
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1952020138 node_paths=PackedStringArray("_label")]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -26,7 +26,7 @@ script = ExtResource("2_7pv4x")
 _label = NodePath("Label")
 _padding = 2.0
 
-[node name="Label" type="Label" parent="ProgressBar"]
+[node name="Label" type="Label" parent="ProgressBar" unique_id=1828264385]
 layout_mode = 1
 offset_left = 38.0
 offset_right = 48.0

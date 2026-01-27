@@ -1,23 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://xqcuu7kvsmxh"]
+[gd_scene format=3 uid="uid://xqcuu7kvsmxh"]
 
 [ext_resource type="Script" uid="uid://cdfbxnomvtkur" path="res://scripts/di_container/DiInitializer.cs" id="1_8rjxi"]
 [ext_resource type="Script" uid="uid://bnpb22tv8ae7t" path="res://scripts/di_container/ContextInstallers/GlobalContextInstallers.cs" id="2_85ro4"]
 [ext_resource type="Script" uid="uid://bx4851e8nt0ju" path="res://scripts/installers/InitInstaller.cs" id="3_0ah4a"]
 [ext_resource type="Script" uid="uid://7mj0x1tcqfd5" path="res://scripts/installers/WindowSystemInstaller.cs" id="4_psaoc"]
 
-[node name="DiInitializer" type="Node"]
+[node name="DiInitializer" type="Node" unique_id=822614415]
 script = ExtResource("1_8rjxi")
 metadata/_custom_type_script = "uid://cdfbxnomvtkur"
 
-[node name="GlobalContextInstallers" type="Node" parent="." node_paths=PackedStringArray("_contextInstallers")]
+[node name="GlobalContextInstallers" type="Node" parent="." unique_id=1317589036 node_paths=PackedStringArray("_contextInstallers")]
 script = ExtResource("2_85ro4")
 _contextInstallers = [NodePath("InitInstaller"), NodePath("WindowSystemInstaller")]
 metadata/_custom_type_script = "uid://bnpb22tv8ae7t"
 
-[node name="InitInstaller" type="Node" parent="GlobalContextInstallers"]
+[node name="InitInstaller" type="Node" parent="GlobalContextInstallers" unique_id=31297077]
 script = ExtResource("3_0ah4a")
 metadata/_custom_type_script = "uid://bx4851e8nt0ju"
 
-[node name="WindowSystemInstaller" type="Node" parent="GlobalContextInstallers"]
+[node name="WindowSystemInstaller" type="Node" parent="GlobalContextInstallers" unique_id=240607038]
 script = ExtResource("4_psaoc")
 metadata/_custom_type_script = "uid://7mj0x1tcqfd5"

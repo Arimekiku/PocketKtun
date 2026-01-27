@@ -1,313 +1,313 @@
-[gd_scene load_steps=3 format=3 uid="uid://1mroopkimand"]
+[gd_scene format=3 uid="uid://1mroopkimand"]
 
 [ext_resource type="PackedScene" uid="uid://my28dd8u1b0h" path="res://resources/models/free_mini_disco_ball.glb" id="1_d73vv"]
 [ext_resource type="Script" uid="uid://davev7r4e42qx" path="res://scripts/utility_components/AnimationLooper.cs" id="2_ja1hk"]
 
-[node name="Sketchfab_Scene" instance=ExtResource("1_d73vv")]
+[node name="Sketchfab_Scene" unique_id=740647835 instance=ExtResource("1_d73vv")]
 
-[node name="DISCOBALL_01" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode" index="0"]
+[node name="DISCOBALL_01" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode" parent_id_path=PackedInt32Array(100630557) index="0" unique_id=1961589357]
 transform = Transform3D(1, 0, 5.450702e-10, 0, 1, 0, -5.450702e-10, 0, 1, 0, 0, 0)
 
-[node name="LightRow" type="Node3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0" index="0"]
+[node name="LightRow" type="Node3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0" parent_id_path=PackedInt32Array(1261802229) index="0" unique_id=379293872]
 transform = Transform3D(1, -2.5849394e-23, -5.4507016e-10, 0, 1, 0, 5.4507016e-10, 0, 1, 0, 0, 0)
 
-[node name="SpotLight3D" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow" index="0"]
+[node name="SpotLight3D" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow" index="0" unique_id=1752326366]
 light_color = Color(1, 0.4117647, 0.7058824, 1)
 light_energy = 20.0
 spot_range = 10.0
 spot_angle = 5.0
 
-[node name="SpotLight3D2" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow" index="1"]
+[node name="SpotLight3D2" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow" index="1" unique_id=1405283262]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 light_color = Color(0.7490196, 0, 1, 1)
 light_energy = 20.0
 spot_range = 10.0
 spot_angle = 5.0
 
-[node name="SpotLight3D3" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow" index="2"]
+[node name="SpotLight3D3" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow" index="2" unique_id=558450924]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 light_color = Color(0, 1, 1, 1)
 light_energy = 20.0
 spot_range = 10.0
 spot_angle = 5.0
 
-[node name="SpotLight3D4" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow" index="3"]
+[node name="SpotLight3D4" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow" index="3" unique_id=2027231106]
 transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, 0, 0, 0)
 light_color = Color(1, 0.84313726, 0, 1)
 light_energy = 20.0
 spot_range = 10.0
 spot_angle = 5.0
 
-[node name="LightRow2" type="Node3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0" index="1"]
+[node name="LightRow2" type="Node3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0" parent_id_path=PackedInt32Array(1261802229) index="1" unique_id=1771651697]
 transform = Transform3D(5.450701e-10, 0.49999994, 0.86602515, -2.9976022e-15, 0.8660253, -0.49999985, -0.9999999, 2.3555598e-08, 4.7204457e-10, 0, 0, 0)
 
-[node name="SpotLight3D" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow2" index="0"]
+[node name="SpotLight3D" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow2" index="0" unique_id=695802682]
 light_color = Color(1, 0.4117647, 0.7058824, 1)
 light_energy = 20.0
 spot_range = 10.0
 spot_angle = 5.0
 
-[node name="SpotLight3D2" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow2" index="1"]
+[node name="SpotLight3D2" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow2" index="1" unique_id=886723597]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 light_color = Color(0.7490196, 0, 1, 1)
 light_energy = 20.0
 spot_range = 10.0
 spot_angle = 5.0
 
-[node name="SpotLight3D3" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow2" index="2"]
+[node name="SpotLight3D3" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow2" index="2" unique_id=1767211947]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 light_color = Color(0, 1, 1, 1)
 light_energy = 20.0
 spot_range = 10.0
 spot_angle = 5.0
 
-[node name="SpotLight3D4" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow2" index="3"]
+[node name="SpotLight3D4" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow2" index="3" unique_id=687725294]
 transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, 0, 0, 0)
 light_color = Color(1, 0.84313726, 0, 1)
 light_energy = 20.0
 spot_range = 10.0
 spot_angle = 5.0
 
-[node name="LightRow3" type="Node3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0" index="2"]
+[node name="LightRow3" type="Node3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0" parent_id_path=PackedInt32Array(1261802229) index="2" unique_id=1145807280]
 transform = Transform3D(-1, 2.3010529e-08, 9.36043e-08, 1.6463618e-08, 0.8660254, 0.49999994, 9.2587186e-08, 0.4999998, -0.86602515, 0, 0, 0)
 
-[node name="SpotLight3D" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow3" index="0"]
+[node name="SpotLight3D" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow3" index="0" unique_id=956125678]
 light_color = Color(1, 0.4117647, 0.7058824, 1)
 light_energy = 20.0
 spot_range = 10.0
 spot_angle = 5.0
 
-[node name="SpotLight3D2" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow3" index="1"]
+[node name="SpotLight3D2" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow3" index="1" unique_id=1662201966]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 light_color = Color(0.7490196, 0, 1, 1)
 light_energy = 20.0
 spot_range = 10.0
 spot_angle = 5.0
 
-[node name="SpotLight3D3" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow3" index="2"]
+[node name="SpotLight3D3" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow3" index="2" unique_id=1463522153]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 light_color = Color(0, 1, 1, 1)
 light_energy = 20.0
 spot_range = 10.0
 spot_angle = 5.0
 
-[node name="SpotLight3D4" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow3" index="3"]
+[node name="SpotLight3D4" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow3" index="3" unique_id=624302544]
 transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, 0, 0, 0)
 light_color = Color(1, 0.84313726, 0, 1)
 light_energy = 20.0
 spot_range = 10.0
 spot_angle = 5.0
 
-[node name="LightRow4" type="Node3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0" index="3"]
+[node name="LightRow4" type="Node3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0" parent_id_path=PackedInt32Array(1261802229) index="3" unique_id=1387385507]
 transform = Transform3D(0.8660253, -0.50000006, 9.2587186e-08, 0.50000006, 0.8660254, -1.646361e-08, 1.4017043e-07, 4.6293593e-08, 1, 0, 0, 0)
 
-[node name="SpotLight3D" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow4" index="0"]
+[node name="SpotLight3D" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow4" index="0" unique_id=967126854]
 light_color = Color(1, 0.4117647, 0.7058824, 1)
 light_energy = 20.0
 spot_range = 10.0
 spot_angle = 5.0
 
-[node name="SpotLight3D2" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow4" index="1"]
+[node name="SpotLight3D2" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow4" index="1" unique_id=1683011336]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 light_color = Color(0.7490196, 0, 1, 1)
 light_energy = 20.0
 spot_range = 10.0
 spot_angle = 5.0
 
-[node name="SpotLight3D3" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow4" index="2"]
+[node name="SpotLight3D3" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow4" index="2" unique_id=695726792]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 light_color = Color(0, 1, 1, 1)
 light_energy = 20.0
 spot_range = 10.0
 spot_angle = 5.0
 
-[node name="SpotLight3D4" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow4" index="3"]
+[node name="SpotLight3D4" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow4" index="3" unique_id=1801939308]
 transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, 0, 0, 0)
 light_color = Color(1, 0.84313726, 0, 1)
 light_energy = 20.0
 spot_range = 10.0
 spot_angle = 5.0
 
-[node name="LightRow5" type="Node3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0" index="4"]
+[node name="LightRow5" type="Node3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0" parent_id_path=PackedInt32Array(1261802229) index="4" unique_id=529741487]
 transform = Transform3D(1.4017043e-07, -4.6293593e-08, 1, -0.50000006, 0.8660254, 1.646361e-08, -0.8660253, -0.50000006, -9.2587186e-08, 0, 0, 0)
 
-[node name="SpotLight3D" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow5" index="0"]
+[node name="SpotLight3D" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow5" index="0" unique_id=56997974]
 light_color = Color(1, 0.4117647, 0.7058824, 1)
 light_energy = 20.0
 spot_range = 10.0
 spot_angle = 5.0
 
-[node name="SpotLight3D2" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow5" index="1"]
+[node name="SpotLight3D2" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow5" index="1" unique_id=1858086871]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 light_color = Color(0.7490196, 0, 1, 1)
 light_energy = 20.0
 spot_range = 10.0
 spot_angle = 5.0
 
-[node name="SpotLight3D3" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow5" index="2"]
+[node name="SpotLight3D3" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow5" index="2" unique_id=616475892]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 light_color = Color(0, 1, 1, 1)
 light_energy = 20.0
 spot_range = 10.0
 spot_angle = 5.0
 
-[node name="SpotLight3D4" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow5" index="3"]
+[node name="SpotLight3D4" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow5" index="3" unique_id=330682910]
 transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, 0, 0, 0)
 light_color = Color(1, 0.84313726, 0, 1)
 light_energy = 20.0
 spot_range = 10.0
 spot_angle = 5.0
 
-[node name="LightRow6" type="Node3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0" index="5"]
+[node name="LightRow6" type="Node3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0" parent_id_path=PackedInt32Array(1261802229) index="5" unique_id=560379257]
 transform = Transform3D(-0.7071068, 1.5700928e-16, 0.70710677, -1.5700924e-16, 1, -3.7905386e-16, -0.70710677, -3.7905386e-16, -0.7071068, 0, 0, 0)
 
-[node name="SpotLight3D" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow6" index="0"]
+[node name="SpotLight3D" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow6" index="0" unique_id=812891484]
 light_color = Color(1, 0.4117647, 0.7058824, 1)
 light_energy = 20.0
 spot_range = 10.0
 spot_angle = 5.0
 
-[node name="SpotLight3D2" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow6" index="1"]
+[node name="SpotLight3D2" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow6" index="1" unique_id=1811554865]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 light_color = Color(0.7490196, 0, 1, 1)
 light_energy = 20.0
 spot_range = 10.0
 spot_angle = 5.0
 
-[node name="SpotLight3D3" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow6" index="2"]
+[node name="SpotLight3D3" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow6" index="2" unique_id=1039398311]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 light_color = Color(0, 1, 1, 1)
 light_energy = 20.0
 spot_range = 10.0
 spot_angle = 5.0
 
-[node name="SpotLight3D4" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow6" index="3"]
+[node name="SpotLight3D4" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow6" index="3" unique_id=2103490393]
 transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, 0, 0, 0)
 light_color = Color(1, 0.84313726, 0, 1)
 light_energy = 20.0
 spot_range = 10.0
 spot_angle = 5.0
 
-[node name="LightRow7" type="Node3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0" index="6"]
+[node name="LightRow7" type="Node3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0" parent_id_path=PackedInt32Array(1261802229) index="6" unique_id=242529184]
 transform = Transform3D(-0.7071066, -0.35355327, -0.6123723, -1.6463614e-08, 0.8660253, -0.49999988, 0.7071068, -0.35355338, -0.6123723, 0, 0, 0)
 
-[node name="SpotLight3D" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow7" index="0"]
+[node name="SpotLight3D" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow7" index="0" unique_id=1167715310]
 light_color = Color(1, 0.4117647, 0.7058824, 1)
 light_energy = 20.0
 spot_range = 10.0
 spot_angle = 5.0
 
-[node name="SpotLight3D2" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow7" index="1"]
+[node name="SpotLight3D2" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow7" index="1" unique_id=38736849]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 light_color = Color(0.7490196, 0, 1, 1)
 light_energy = 20.0
 spot_range = 10.0
 spot_angle = 5.0
 
-[node name="SpotLight3D3" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow7" index="2"]
+[node name="SpotLight3D3" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow7" index="2" unique_id=2132915531]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 light_color = Color(0, 1, 1, 1)
 light_energy = 20.0
 spot_range = 10.0
 spot_angle = 5.0
 
-[node name="SpotLight3D4" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow7" index="3"]
+[node name="SpotLight3D4" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow7" index="3" unique_id=1923776617]
 transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, 0, 0, 0)
 light_color = Color(1, 0.84313726, 0, 1)
 light_energy = 20.0
 spot_range = 10.0
 spot_angle = 5.0
 
-[node name="LightRow8" type="Node3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0" index="7"]
+[node name="LightRow8" type="Node3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0" parent_id_path=PackedInt32Array(1261802229) index="7" unique_id=943888999]
 transform = Transform3D(0.70710695, 0.3535533, -0.61237234, 8.522198e-09, 0.8660254, 0.50000006, 0.7071067, -0.35355327, 0.61237216, 0, 0, 0)
 
-[node name="SpotLight3D" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow8" index="0"]
+[node name="SpotLight3D" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow8" index="0" unique_id=1904348908]
 light_color = Color(1, 0.4117647, 0.7058824, 1)
 light_energy = 20.0
 spot_range = 10.0
 spot_angle = 5.0
 
-[node name="SpotLight3D2" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow8" index="1"]
+[node name="SpotLight3D2" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow8" index="1" unique_id=1830386518]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 light_color = Color(0.7490196, 0, 1, 1)
 light_energy = 20.0
 spot_range = 10.0
 spot_angle = 5.0
 
-[node name="SpotLight3D3" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow8" index="2"]
+[node name="SpotLight3D3" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow8" index="2" unique_id=1312687787]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 light_color = Color(0, 1, 1, 1)
 light_energy = 20.0
 spot_range = 10.0
 spot_angle = 5.0
 
-[node name="SpotLight3D4" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow8" index="3"]
+[node name="SpotLight3D4" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow8" index="3" unique_id=1084025550]
 transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, 0, 0, 0)
 light_color = Color(1, 0.84313726, 0, 1)
 light_energy = 20.0
 spot_range = 10.0
 spot_angle = 5.0
 
-[node name="LightRow9" type="Node3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0" index="8"]
+[node name="LightRow9" type="Node3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0" parent_id_path=PackedInt32Array(1261802229) index="8" unique_id=2004327394]
 transform = Transform3D(-0.61237234, 0.35355332, 0.7071067, 0.5, 0.8660254, -4.257135e-08, -0.61237246, 0.35355344, -0.70710677, 0, 0, 0)
 
-[node name="SpotLight3D" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow9" index="0"]
+[node name="SpotLight3D" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow9" index="0" unique_id=1260815461]
 light_color = Color(1, 0.4117647, 0.7058824, 1)
 light_energy = 20.0
 spot_range = 10.0
 spot_angle = 5.0
 
-[node name="SpotLight3D2" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow9" index="1"]
+[node name="SpotLight3D2" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow9" index="1" unique_id=1628754650]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 light_color = Color(0.7490196, 0, 1, 1)
 light_energy = 20.0
 spot_range = 10.0
 spot_angle = 5.0
 
-[node name="SpotLight3D3" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow9" index="2"]
+[node name="SpotLight3D3" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow9" index="2" unique_id=678819945]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 light_color = Color(0, 1, 1, 1)
 light_energy = 20.0
 spot_range = 10.0
 spot_angle = 5.0
 
-[node name="SpotLight3D4" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow9" index="3"]
+[node name="SpotLight3D4" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow9" index="3" unique_id=254559452]
 transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, 0, 0, 0)
 light_color = Color(1, 0.84313726, 0, 1)
 light_energy = 20.0
 spot_range = 10.0
 spot_angle = 5.0
 
-[node name="LightRow10" type="Node3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0" index="9"]
+[node name="LightRow10" type="Node3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0" parent_id_path=PackedInt32Array(1261802229) index="9" unique_id=1974062734]
 transform = Transform3D(-0.61237246, -0.35355338, -0.7071069, -0.50000006, 0.8660254, 3.2927204e-08, 0.6123724, 0.35355338, -0.70710665, 0, 0, 0)
 
-[node name="SpotLight3D" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow10" index="0"]
+[node name="SpotLight3D" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow10" index="0" unique_id=1132965614]
 light_color = Color(1, 0.4117647, 0.7058824, 1)
 light_energy = 20.0
 spot_range = 10.0
 spot_angle = 5.0
 
-[node name="SpotLight3D2" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow10" index="1"]
+[node name="SpotLight3D2" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow10" index="1" unique_id=252055884]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 light_color = Color(0.7490196, 0, 1, 1)
 light_energy = 20.0
 spot_range = 10.0
 spot_angle = 5.0
 
-[node name="SpotLight3D3" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow10" index="2"]
+[node name="SpotLight3D3" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow10" index="2" unique_id=399127175]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 light_color = Color(0, 1, 1, 1)
 light_energy = 20.0
 spot_range = 10.0
 spot_angle = 5.0
 
-[node name="SpotLight3D4" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow10" index="3"]
+[node name="SpotLight3D4" type="SpotLight3D" parent="Sketchfab_model/312ac31a674344ea92e10c31391d2aa5_fbx/Object_2/RootNode/DISCOBALL_01/DISCOBALL_01_DISCOBALL_0/LightRow10" index="3" unique_id=1115882686]
 transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, 0, 0, 0)
 light_color = Color(1, 0.84313726, 0, 1)
 light_energy = 20.0
 spot_range = 10.0
 spot_angle = 5.0
 
-[node name="AnimationPlayer" parent="." index="1"]
+[node name="AnimationPlayer" parent="." index="1" unique_id=1435858829]
 script = ExtResource("2_ja1hk")
 _animationName = "Take 001"

@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://tdhbpbaf6522" path="res://resources/models/modular_structures/walls/doorway_1_1_wall_3.png" id="1_oewcx"]
 [ext_resource type="Texture2D" uid="uid://bsvo4s7argdyd" path="res://resources/models/modular_structures/walls/doorway_1_1_door_3.png" id="2_irjjt"]
 [ext_resource type="Texture2D" uid="uid://caykmelpoqkwt" path="res://resources/models/modular_structures/walls/doorway_1_1_door_frame_wood_1.png" id="2_vvbvs"]
-[ext_resource type="Shader" uid="uid://dew3kcxwvaetu" path="res://resources/shaders/SelectionOutline.gdshader" id="3_2ctbg"]
 [ext_resource type="Script" uid="uid://gy8lpjipr38l" path="res://scripts/events/concrete_triggers/RaycastCheckTrigger.cs" id="3_irjjt"]
 [ext_resource type="Texture2D" uid="uid://cfsjvs2dr5k02" path="res://resources/models/modular_structures/walls/doorway_1_1_door_handle_1.png" id="6_auque"]
 [ext_resource type="Script" uid="uid://cg2pgimx7oigl" path="res://scripts/systems/interact_system/Interactable.cs" id="7_2ctbg"]
@@ -96,20 +95,6 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_26e85")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_oewcx"]
-resource_local_to_scene = true
-render_priority = 0
-shader = ExtResource("3_2ctbg")
-shader_parameter/outline_color = Color(0.9, 0.9, 0.9, 1)
-shader_parameter/outline_width = 0.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vvbvs"]
-resource_name = "door_3"
-next_pass = SubResource("ShaderMaterial_oewcx")
-cull_mode = 2
-albedo_texture = ExtResource("2_irjjt")
-texture_filter = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l66ea"]
 resource_name = "door_3"
@@ -221,21 +206,17 @@ data = PackedVector3Array(2, 3, 0.06, 2.03, 0, 0.03, 2, 0, 0.06, 2, 3, 0.06, 2.0
 
 [node name="doorway_1_1" type="MeshInstance3D" parent="." unique_id=2541163]
 mesh = SubResource("ArrayMesh_b0lp5")
-skeleton = NodePath("")
 
 [node name="RigidBody3D" type="RigidBody3D" parent="doorway_1_1" unique_id=1050859970]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="door_3" type="MeshInstance3D" parent="doorway_1_1/RigidBody3D" unique_id=1016808343]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -1, 0)
-material_override = SubResource("StandardMaterial3D_vvbvs")
 mesh = SubResource("ArrayMesh_pkp72")
-skeleton = NodePath("")
 
 [node name="door_handle_3" type="MeshInstance3D" parent="doorway_1_1/RigidBody3D/door_3" unique_id=409512309]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.94000244, 1.047, 0.07700012)
 mesh = SubResource("ArrayMesh_vspoj")
-skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="doorway_1_1/RigidBody3D" unique_id=11218691]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -1, 0)

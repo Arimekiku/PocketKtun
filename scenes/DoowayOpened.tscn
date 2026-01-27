@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://e5km65kuyfue"]
+[gd_scene format=3 uid="uid://e5km65kuyfue"]
 
 [ext_resource type="PackedScene" uid="uid://dig8i58wefgcn" path="res://resources/models/modular_structures/walls/doorway_1.glb" id="1_nepi3"]
 
-[node name="Doorway" instance=ExtResource("1_nepi3")]
+[node name="Doorway" unique_id=1786624063 instance=ExtResource("1_nepi3")]
 
-[node name="door_4" parent="doorway_1" index="0"]
+[node name="door_4" parent="doorway_1" parent_id_path=PackedInt32Array(2093582825) index="0" unique_id=1179525076]
 transform = Transform3D(-0.8660253, 0, -0.50000006, 0, 1, 0, 0.50000006, 0, -0.8660253, 0.5, 0, -0.03)

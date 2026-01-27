@@ -10,16 +10,14 @@ public partial class CollisionMeshHighlighter : BaseInteractReaction
     [Inject] private IPlayerInteractorService _playerInteractor;
     
     [Export] private MeshInstance3D _mesh;
-
+    
     public override void FocusReaction()
     {
-        var mat = _mesh.GetActiveMaterial(0).NextPass as ShaderMaterial;
-        mat?.SetShaderParameter("outline_width", 1.0);
+        _playerInteractor.RaiseWithMesh(_mesh);
     }
 
     public override void UnfocusReaction()
     {
-        var mat = _mesh.GetActiveMaterial(0).NextPass as ShaderMaterial;
-        mat?.SetShaderParameter("outline_width", 0.0);
+        _playerInteractor.RaiseWithMesh(null);
     }
 }

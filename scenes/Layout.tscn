@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c7acxo4yyuq8r"]
+[gd_scene format=3 uid="uid://c7acxo4yyuq8r"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_tsb0y"]
 size = Vector3(0.6, 1.8, 0.6)
@@ -39,87 +39,87 @@ size = Vector3(5, 5, 5)
 [sub_resource type="BoxMesh" id="BoxMesh_5y75r"]
 size = Vector3(10, 5, 20)
 
-[node name="Layout" type="Node3D"]
+[node name="Layout" type="Node3D" unique_id=948758771]
 
-[node name="Player" type="MeshInstance3D" parent="."]
+[node name="Player" type="MeshInstance3D" parent="." unique_id=1282278456]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 mesh = SubResource("BoxMesh_tsb0y")
 
-[node name="Stairs" type="MeshInstance3D" parent="."]
+[node name="Stairs" type="MeshInstance3D" parent="." unique_id=1729929851]
 transform = Transform3D(0.8660254, -0.5, 0, 0.5, 0.8660254, 0, 0, 0, 1, 31.332996, 6.499426, -10.594936)
 mesh = SubResource("BoxMesh_3tmtg")
 
-[node name="Stairs2" type="MeshInstance3D" parent="."]
+[node name="Stairs2" type="MeshInstance3D" parent="." unique_id=496237104]
 transform = Transform3D(0.8660254, -0.5, 0, 0.5, 0.8660254, 0, 0, 0, 1, 31.332996, -1.466434, -10.594936)
 mesh = SubResource("BoxMesh_3tmtg")
 
-[node name="FirstFloor" type="Node" parent="."]
+[node name="FirstFloor" type="Node" parent="." unique_id=1711586622]
 
-[node name="Entrance" type="MeshInstance3D" parent="FirstFloor"]
+[node name="Entrance" type="MeshInstance3D" parent="FirstFloor" unique_id=247446180]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.712691, 2.5, 0)
 mesh = SubResource("BoxMesh_ukikx")
 skeleton = NodePath("../..")
 
-[node name="Reception" type="MeshInstance3D" parent="FirstFloor"]
+[node name="Reception" type="MeshInstance3D" parent="FirstFloor" unique_id=608022078]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.331, 6.25, 0)
 mesh = SubResource("BoxMesh_igaon")
 skeleton = NodePath("../..")
 
-[node name="Hallway" type="MeshInstance3D" parent="FirstFloor"]
+[node name="Hallway" type="MeshInstance3D" parent="FirstFloor" unique_id=1566462773]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.08143, 2.5, -4.9113197)
 mesh = SubResource("BoxMesh_7cy8c")
 skeleton = NodePath("../..")
 
-[node name="Hub" type="MeshInstance3D" parent="FirstFloor"]
+[node name="Hub" type="MeshInstance3D" parent="FirstFloor" unique_id=884609774]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.08143, 2.5, 11.206537)
 mesh = SubResource("BoxMesh_uofiv")
 skeleton = NodePath("../..")
 
-[node name="ServiceRoom 1" type="MeshInstance3D" parent="FirstFloor"]
+[node name="ServiceRoom 1" type="MeshInstance3D" parent="FirstFloor" unique_id=1492937591]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54.350853, 2.5, 5.0873976)
 mesh = SubResource("BoxMesh_tn8vx")
 skeleton = NodePath("../..")
 
-[node name="ServiceRoom 2" type="MeshInstance3D" parent="FirstFloor"]
+[node name="ServiceRoom 2" type="MeshInstance3D" parent="FirstFloor" unique_id=207280087]
 transform = Transform3D(-0.0137352655, 0, 0.99990577, 0, 1, 0, -0.99990577, 0, -0.0137352655, 49.586384, 2.5, -13.137493)
 mesh = SubResource("BoxMesh_voq2m")
 skeleton = NodePath("../..")
 
-[node name="SecondFloor" type="Node" parent="."]
+[node name="SecondFloor" type="Node" parent="." unique_id=477877133]
 
-[node name="Hallway" type="MeshInstance3D" parent="SecondFloor"]
+[node name="Hallway" type="MeshInstance3D" parent="SecondFloor" unique_id=1631848536]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.08143, 10.092744, -4.9113197)
 mesh = SubResource("BoxMesh_7cy8c")
 skeleton = NodePath("../..")
 
-[node name="DispatchRoom" type="MeshInstance3D" parent="SecondFloor"]
+[node name="DispatchRoom" type="MeshInstance3D" parent="SecondFloor" unique_id=2107308994]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.709076, 10.040357, 10.798297)
 mesh = SubResource("BoxMesh_iph4c")
 skeleton = NodePath("../..")
 
-[node name="ChiefRoom" type="MeshInstance3D" parent="SecondFloor"]
+[node name="ChiefRoom" type="MeshInstance3D" parent="SecondFloor" unique_id=755281769]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56.80308, 10.040357, -9.928988)
 mesh = SubResource("BoxMesh_6fit7")
 skeleton = NodePath("../..")
 
-[node name="ThirdFloor" type="Node" parent="."]
+[node name="ThirdFloor" type="Node" parent="." unique_id=1610666017]
 
-[node name="Hallway" type="MeshInstance3D" parent="ThirdFloor"]
+[node name="Hallway" type="MeshInstance3D" parent="ThirdFloor" unique_id=609455877]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.08143, -5.5390005, -4.9113197)
 mesh = SubResource("BoxMesh_7cy8c")
 skeleton = NodePath("../..")
 
-[node name="Morgue" type="MeshInstance3D" parent="ThirdFloor"]
+[node name="Morgue" type="MeshInstance3D" parent="ThirdFloor" unique_id=398701654]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.66516, -5.5390005, 10.708597)
 mesh = SubResource("BoxMesh_wrjhk")
 skeleton = NodePath("../..")
 
-[node name="ProtectionRoom" type="MeshInstance3D" parent="ThirdFloor"]
+[node name="ProtectionRoom" type="MeshInstance3D" parent="ThirdFloor" unique_id=1760346901]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.778168, -5.5390005, -4.9113197)
 mesh = SubResource("BoxMesh_561h0")
 skeleton = NodePath("../..")
 
-[node name="Kutuzka" type="MeshInstance3D" parent="ThirdFloor"]
+[node name="Kutuzka" type="MeshInstance3D" parent="ThirdFloor" unique_id=1340383990]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.778168, -5.5390005, 8.43635)
 mesh = SubResource("BoxMesh_5y75r")
 skeleton = NodePath("../..")

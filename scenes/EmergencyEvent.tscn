@@ -1,15 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://clgrawub2u628"]
+[gd_scene format=3 uid="uid://clgrawub2u628"]
 
-[ext_resource type="Script" uid="uid://bcerf5wyxg3r3" path="res://scripts/dispatch_system/EmergencyNode3D.cs" id="1_ksxup"]
+[ext_resource type="Script" uid="uid://bcerf5wyxg3r3" path="res://scripts/systems/dispatch_system/emergency/EmergencyNode3D.cs" id="1_ksxup"]
 [ext_resource type="Texture2D" uid="uid://boitsi768svt1" path="res://resources/images/glasses.png" id="2_p0vqw"]
-[ext_resource type="Script" uid="uid://bt01cu5fa7f47" path="res://scripts/dispatch_system/EventUIHandle.cs" id="3_bbrjf"]
+[ext_resource type="Script" uid="uid://bt01cu5fa7f47" path="res://scripts/systems/dispatch_system/EventUIHandle.cs" id="3_bbrjf"]
 
-[node name="EmergencyEvent" type="Marker3D" node_paths=PackedStringArray("_eventUIHandle", "_resolveButton")]
+[node name="EmergencyEvent" type="Marker3D" unique_id=160681131 node_paths=PackedStringArray("_eventUIHandle", "_resolveButton")]
 script = ExtResource("1_ksxup")
 _eventUIHandle = NodePath("EvenUIHandle")
 _resolveButton = NodePath("EvenUIHandle/ResolveButton")
 
-[node name="EvenUIHandle" type="TextureRect" parent="." node_paths=PackedStringArray("_positionMarker")]
+[node name="EvenUIHandle" type="TextureRect" parent="." unique_id=1837239365 node_paths=PackedStringArray("_positionMarker")]
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("2_p0vqw")
@@ -17,7 +17,7 @@ expand_mode = 1
 script = ExtResource("3_bbrjf")
 _positionMarker = NodePath("..")
 
-[node name="ResolveButton" type="Button" parent="EvenUIHandle"]
+[node name="ResolveButton" type="Button" parent="EvenUIHandle" unique_id=1504196950]
 visible = false
 layout_mode = 1
 anchors_preset = 7

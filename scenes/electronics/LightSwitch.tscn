@@ -4,37 +4,21 @@
 [ext_resource type="Script" uid="uid://dff2bpg28vde2" path="res://scripts/events/concrete_reactions/LightSwitcher.cs" id="2_eybjf"]
 [ext_resource type="Script" uid="uid://tfo74s22i4nd" path="res://scripts/events/concrete_reactions/CollisionMeshHighlighter.cs" id="3_2l2t6"]
 [ext_resource type="Script" uid="uid://gy8lpjipr38l" path="res://scripts/events/concrete_triggers/RaycastCheckTrigger.cs" id="3_3rqgq"]
-[ext_resource type="Texture2D" uid="uid://yt7rptrlk8c5" path="res://resources/models/electronics/light_switch_1_light_switch_1.png" id="5_3rqgq"]
 [ext_resource type="Script" uid="uid://wyxnbp7c03l7" path="res://scripts/events/concrete_processes/InteractPressProcess.cs" id="5_7f6bs"]
 [ext_resource type="Script" uid="uid://cg2pgimx7oigl" path="res://scripts/systems/interact_system/Interactable.cs" id="5_cbu41"]
-[ext_resource type="Shader" uid="uid://dew3kcxwvaetu" path="res://resources/shaders/SelectionOutline.gdshader" id="6_cbu41"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2l2t6"]
 size = Vector3(0.15, 0.15, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7f6bs"]
-resource_local_to_scene = true
-render_priority = 0
-shader = ExtResource("6_cbu41")
-shader_parameter/outline_color = Color(1, 1, 1, 1)
-shader_parameter/outline_width = 0.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ed58o"]
-resource_name = "light_switch_1"
-next_pass = SubResource("ShaderMaterial_7f6bs")
-cull_mode = 2
-albedo_texture = ExtResource("5_3rqgq")
-texture_filter = 2
-
 [node name="LightSwitch" unique_id=528120275 instance=ExtResource("1_srpql")]
 script = ExtResource("2_eybjf")
 
-[node name="InteractableComponent" type="Area3D" parent="." index="0" unique_id=2070712031]
+[node name="InteractableComponent" type="Area3D" parent="." index="1" unique_id=2070712031]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractableComponent" index="0" unique_id=1026095546]
 shape = SubResource("BoxShape3D_2l2t6")
 
-[node name="LightSwitchInteraction" type="Node" parent="." index="1" unique_id=471338925 node_paths=PackedStringArray("_interactProcesses", "_reactions", "_triggers")]
+[node name="LightSwitchInteraction" type="Node" parent="." index="2" unique_id=471338925 node_paths=PackedStringArray("_interactProcesses", "_reactions", "_triggers")]
 script = ExtResource("5_cbu41")
 _interactProcesses = [NodePath("InteractProcessComponent")]
 _reactions = [NodePath("MeshHighlighterComponent"), NodePath("..")]
@@ -50,6 +34,3 @@ script = ExtResource("5_7f6bs")
 [node name="RaycastTriggerComponent" type="Node" parent="LightSwitchInteraction" index="2" unique_id=1782479565 node_paths=PackedStringArray("_targetBody")]
 script = ExtResource("3_3rqgq")
 _targetBody = NodePath("../../InteractableComponent")
-
-[node name="light_switch_1" parent="." index="2"]
-material_override = SubResource("StandardMaterial3D_ed58o")

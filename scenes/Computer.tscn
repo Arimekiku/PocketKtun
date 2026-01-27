@@ -1,6 +1,5 @@
-[gd_scene load_steps=21 format=4 uid="uid://csq6nck3dmpht"]
+[gd_scene format=4 uid="uid://csq6nck3dmpht"]
 
-[ext_resource type="Shader" uid="uid://dew3kcxwvaetu" path="res://resources/shaders/SelectionOutline.gdshader" id="1_bwoxp"]
 [ext_resource type="Script" uid="uid://d3xqor1ihn1ns" path="res://scripts/Computer.cs" id="1_c1chd"]
 [ext_resource type="Script" uid="uid://gy8lpjipr38l" path="res://scripts/events/concrete_triggers/RaycastCheckTrigger.cs" id="1_gkwlq"]
 [ext_resource type="PackedScene" uid="uid://dwb0v77ghc6gp" path="res://scenes/DispatchingScene.tscn" id="2_qfqg8"]
@@ -11,19 +10,6 @@
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ipp67"]
 points = PackedVector3Array(0.038102645, 0.41985056, 0.16054273, -0.19214562, -0.026704758, -0.25630477, -0.19214562, -0.026704758, 0.25630477, 0.2083, 0.013400093, 0.23226993, 0.20028028, 0.013400093, -0.24827643, -0.17814085, 0.43022695, -0.20131788, 0.13750201, 0.35869604, -0.14527479, -0.17769767, 0.42190397, 0.2084992, -0.21620476, -0.026704758, 0.23226993, 0.1529902, 0.32821605, 0.1454344, 0.17622113, 0.021402553, 0.25630477, 0.0075371424, 0.420283, -0.18382043, -0.21620476, -0.026704758, -0.23226993, -0.16271839, 0.41481054, -0.21685277, -0.18475093, 0.421108, 0.19234, 0.16001923, 0.3049188, -0.14490624, -0.13844378, 0.43630418, 0.19981605, 0.17622113, 0.021402553, -0.25630477, -0.16271842, 0.41481057, 0.21685281, -0.00012950176, 0.40524796, 0.19186543, 0.007606116, 0.42925033, -0.16183862, 0.1296626, 0.3584497, 0.16029406, 0.2083, 0.013400093, -0.23226993, -0.18475093, 0.421108, -0.19234, 0.10692049, 0.38927948, -0.14528883, -0.1703387, 0.43788618, -0.19345275, 0.121980585, 0.35073557, -0.16789868, -0.085013196, 0.43730998, 0.17753704, 0.10692049, 0.38927948, 0.14528883, 0.06151858, 0.41371912, -0.15406424, -0.1703387, 0.43788618, 0.19345275, 0.16001923, 0.3049188, 0.14490624)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ly5nw"]
-render_priority = 0
-shader = ExtResource("1_bwoxp")
-shader_parameter/outline_color = Color(1, 1, 1, 1)
-shader_parameter/outline_width = 0.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r1uu7"]
-resource_name = "Material.006"
-next_pass = SubResource("ShaderMaterial_ly5nw")
-cull_mode = 2
-albedo_color = Color(0.6910782, 0.69421047, 0.78480065, 1)
-roughness = 0.123076916
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vjsrn"]
 resource_name = "Material.006"
@@ -120,61 +106,60 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_84okm")
 
-[node name="ComputerScene" type="Node3D" node_paths=PackedStringArray("_viewport", "_control", "_camera")]
+[node name="ComputerScene" type="Node3D" unique_id=1051240340 node_paths=PackedStringArray("_viewport", "_control", "_camera")]
 script = ExtResource("1_c1chd")
 _viewport = NodePath("SubViewport")
 _control = NodePath("SubViewport/DispatchingScene")
 _camera = NodePath("Camera3D")
 
-[node name="RaycastTrigger" type="Area3D" parent="."]
-script = ExtResource("1_gkwlq")
+[node name="RaycastTrigger" type="Area3D" parent="." unique_id=1095396338]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RaycastTrigger"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RaycastTrigger" unique_id=337023279]
 transform = Transform3D(1, -3.7252903e-09, 0, 0, 1, 0, -2.980232e-08, -3.72529e-09, 0.99999994, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_ipp67")
 
-[node name="ComputerModel" type="Node3D" parent="."]
+[node name="ComputerModel" type="Node3D" parent="." unique_id=1176495644]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
 
-[node name="Cube" type="MeshInstance3D" parent="ComputerModel"]
+[node name="Cube" type="MeshInstance3D" parent="ComputerModel" unique_id=2089093131]
 transform = Transform3D(1, -3.7252903e-09, 0, 0, 1, 0, -2.9802322e-08, -3.7252903e-09, 0.99999994, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_r1uu7")
 mesh = SubResource("ArrayMesh_jjblp")
-skeleton = NodePath("")
 
-[node name="Cube_001" type="MeshInstance3D" parent="ComputerModel"]
+[node name="Cube_001" type="MeshInstance3D" parent="ComputerModel" unique_id=1717286385]
 transform = Transform3D(-4.371139e-08, 0, 0.99999994, 0, 1, 0, -1, 0, -4.3711385e-08, -0.18263331, 0.22497171, 0.00078751903)
 material_override = SubResource("StandardMaterial3D_mckar")
 mesh = SubResource("QuadMesh_bwoxp")
-skeleton = NodePath("")
 
-[node name="Cube_002" type="MeshInstance3D" parent="ComputerModel"]
+[node name="Cube_002" type="MeshInstance3D" parent="ComputerModel" unique_id=196523644]
 transform = Transform3D(1, -3.7252903e-09, 0, 0, 1, 0, -2.9802322e-08, -3.7252903e-09, 0.99999994, 0.00047048926, -0.004740596, 0)
 mesh = SubResource("ArrayMesh_cxm2e")
-skeleton = NodePath("")
 
-[node name="SubViewport" type="SubViewport" parent="."]
+[node name="SubViewport" type="SubViewport" parent="." unique_id=516433391]
 size = Vector2i(960, 540)
 render_target_update_mode = 4
 
-[node name="DispatchingScene" parent="SubViewport" instance=ExtResource("2_qfqg8")]
+[node name="DispatchingScene" parent="SubViewport" unique_id=576815416 instance=ExtResource("2_qfqg8")]
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=414834166]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.4376855, 0.20017827, 0)
 
-[node name="InteractableComponent" type="Node" parent="." node_paths=PackedStringArray("_interactProcesses", "_reactions", "_triggers")]
+[node name="InteractableComponent" type="Node" parent="." unique_id=320425894 node_paths=PackedStringArray("_interactProcesses", "_reactions", "_triggers")]
 script = ExtResource("4_aqdi6")
 _interactProcesses = [NodePath("InteractPressProcess")]
 _reactions = [NodePath("CollisionMeshHighlighter"), NodePath("InputPasser")]
-_triggers = [NodePath("../RaycastTrigger")]
+_triggers = [NodePath("RaycastTrigger")]
 
-[node name="InteractPressProcess" type="Node" parent="InteractableComponent"]
+[node name="InteractPressProcess" type="Node" parent="InteractableComponent" unique_id=2137788787]
 script = ExtResource("5_c1chd")
 
-[node name="CollisionMeshHighlighter" type="Node" parent="InteractableComponent" node_paths=PackedStringArray("_mesh")]
+[node name="CollisionMeshHighlighter" type="Node" parent="InteractableComponent" unique_id=1080176033 node_paths=PackedStringArray("_mesh")]
 script = ExtResource("6_2xgbv")
 _mesh = NodePath("../../ComputerModel/Cube")
 
-[node name="InputPasser" type="Node" parent="InteractableComponent" node_paths=PackedStringArray("InputReceiver")]
+[node name="InputPasser" type="Node" parent="InteractableComponent" unique_id=326610974 node_paths=PackedStringArray("InputReceiver")]
 script = ExtResource("8_2xgbv")
 InputReceiver = NodePath("../..")
+
+[node name="RaycastTrigger" type="Node" parent="InteractableComponent" unique_id=58158736 node_paths=PackedStringArray("_targetBody")]
+script = ExtResource("1_gkwlq")
+_targetBody = NodePath("../../RaycastTrigger")

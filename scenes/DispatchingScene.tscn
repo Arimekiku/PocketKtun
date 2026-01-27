@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://dwb0v77ghc6gp"]
+[gd_scene format=3 uid="uid://dwb0v77ghc6gp"]
 
 [ext_resource type="Script" uid="uid://cq53ccbupyi8h" path="res://scripts/systems/dispatch_system/DispatchUnit3D.cs" id="1_5oxth"]
 [ext_resource type="Script" uid="uid://yjrx4lx083v8" path="res://scripts/ComputerControl.cs" id="1_xcyc8"]
@@ -114,7 +114,7 @@ color = Color(0.06469653, 0.064696535, 0.0646965, 1)
 thickness = 4
 vertical = true
 
-[node name="DispatchingScene" type="Control" node_paths=PackedStringArray("_mousePointer")]
+[node name="DispatchingScene" type="Control" unique_id=1931873794 node_paths=PackedStringArray("_mousePointer")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -124,33 +124,33 @@ grow_vertical = 2
 script = ExtResource("1_xcyc8")
 _mousePointer = NodePath("UILayer/MousePointer")
 
-[node name="World" type="Node3D" parent="."]
+[node name="World" type="Node3D" parent="." unique_id=1983323700]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, 0)
 
-[node name="Camera3D" type="Camera3D" parent="World"]
+[node name="Camera3D" type="Camera3D" parent="World" unique_id=1847633426]
 transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 14, 0)
 current = true
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World" unique_id=250644755]
 transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 10, 0)
 shadow_enabled = true
 
-[node name="Marker3D" type="Marker3D" parent="World"]
+[node name="Marker3D" type="Marker3D" parent="World" unique_id=1525256225]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.167917, 0, -4.5979757)
 
-[node name="Marker3D2" type="Marker3D" parent="World"]
+[node name="Marker3D2" type="Marker3D" parent="World" unique_id=545136075]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9054413, 0, -3.1589465)
 
-[node name="Marker3D3" type="Marker3D" parent="World"]
+[node name="Marker3D3" type="Marker3D" parent="World" unique_id=1526020144]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.77208614, -9.536743e-07, -22.870686)
 
-[node name="DispatchUnit" type="CharacterBody3D" parent="World" node_paths=PackedStringArray("PatrolPoints", "NavAgent")]
+[node name="DispatchUnit" type="CharacterBody3D" parent="World" unique_id=551346266 node_paths=PackedStringArray("PatrolPoints", "NavAgent")]
 script = ExtResource("1_5oxth")
 PatrolPoints = [NodePath("../Marker3D"), NodePath("../Marker3D2"), NodePath("../Marker3D3")]
 NavAgent = NodePath("NavigationAgent3D")
 CharacterResource = SubResource("Resource_vopgv")
 
-[node name="UnitUIHandle" type="TextureRect" parent="World/DispatchUnit" node_paths=PackedStringArray("_targetUnit", "_dispatchUiHandle", "_dispatchCamera", "_virtualMouse")]
+[node name="UnitUIHandle" type="TextureRect" parent="World/DispatchUnit" unique_id=1086553677 node_paths=PackedStringArray("_targetUnit", "_dispatchUiHandle", "_dispatchCamera", "_virtualMouse")]
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("4_oy8yf")
@@ -161,91 +161,91 @@ _dispatchUiHandle = NodePath("../../../UILayer/CharacterUIHandle")
 _dispatchCamera = NodePath("../../Camera3D")
 _virtualMouse = NodePath("../../../UILayer/MousePointer")
 
-[node name="car_placeholder" parent="World/DispatchUnit" instance=ExtResource("6_n7pqt")]
+[node name="car_placeholder" parent="World/DispatchUnit" unique_id=1742319288 instance=ExtResource("6_n7pqt")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/DispatchUnit"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/DispatchUnit" unique_id=923301820]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_lt5b8")
 
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="World/DispatchUnit"]
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="World/DispatchUnit" unique_id=1960376615]
 avoidance_enabled = true
 
-[node name="DispatchUnitStateMachine" type="Node" parent="World/DispatchUnit" node_paths=PackedStringArray("_connectedUnit")]
+[node name="DispatchUnitStateMachine" type="Node" parent="World/DispatchUnit" unique_id=1141324463 node_paths=PackedStringArray("_connectedUnit")]
 script = ExtResource("7_t8uou")
 _connectedUnit = NodePath("..")
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="World"]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="World" unique_id=637321437]
 navigation_mesh = SubResource("NavigationMesh_txmuk")
 
-[node name="Floor" type="StaticBody3D" parent="World/NavigationRegion3D"]
+[node name="Floor" type="StaticBody3D" parent="World/NavigationRegion3D" unique_id=1779027820]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="World/NavigationRegion3D/Floor"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/NavigationRegion3D/Floor" unique_id=2045942208]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 mesh = SubResource("BoxMesh_txmuk")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/NavigationRegion3D/Floor"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/NavigationRegion3D/Floor" unique_id=809480520]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("ConvexPolygonShape3D_he11p")
 
-[node name="Cube" type="StaticBody3D" parent="World/NavigationRegion3D"]
+[node name="Cube" type="StaticBody3D" parent="World/NavigationRegion3D" unique_id=202202696]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.067888, 0, -8.784979)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="World/NavigationRegion3D/Cube"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/NavigationRegion3D/Cube" unique_id=652268473]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 material_override = SubResource("StandardMaterial3D_30sxa")
 mesh = SubResource("BoxMesh_lt5b8")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/NavigationRegion3D/Cube"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/NavigationRegion3D/Cube" unique_id=233153457]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 shape = SubResource("ConvexPolygonShape3D_gj4rp")
 
-[node name="Cube2" type="StaticBody3D" parent="World/NavigationRegion3D"]
+[node name="Cube2" type="StaticBody3D" parent="World/NavigationRegion3D" unique_id=1682232003]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.495348, 0, -7.355527)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="World/NavigationRegion3D/Cube2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/NavigationRegion3D/Cube2" unique_id=1322622879]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 material_override = SubResource("StandardMaterial3D_30sxa")
 mesh = SubResource("BoxMesh_lt5b8")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/NavigationRegion3D/Cube2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/NavigationRegion3D/Cube2" unique_id=119247260]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 shape = SubResource("ConvexPolygonShape3D_gj4rp")
 
-[node name="Cube3" type="StaticBody3D" parent="World/NavigationRegion3D"]
+[node name="Cube3" type="StaticBody3D" parent="World/NavigationRegion3D" unique_id=1874497136]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.145869, 0, -21.171127)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="World/NavigationRegion3D/Cube3"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/NavigationRegion3D/Cube3" unique_id=1067371610]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 material_override = SubResource("StandardMaterial3D_30sxa")
 mesh = SubResource("BoxMesh_lt5b8")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/NavigationRegion3D/Cube3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/NavigationRegion3D/Cube3" unique_id=401262761]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 shape = SubResource("ConvexPolygonShape3D_gj4rp")
 
-[node name="Cube4" type="StaticBody3D" parent="World/NavigationRegion3D"]
+[node name="Cube4" type="StaticBody3D" parent="World/NavigationRegion3D" unique_id=1799659271]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.78658485, 1.9073486e-06, -15.202826)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="World/NavigationRegion3D/Cube4"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/NavigationRegion3D/Cube4" unique_id=1690179492]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 material_override = SubResource("StandardMaterial3D_30sxa")
 mesh = SubResource("BoxMesh_lt5b8")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/NavigationRegion3D/Cube4"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/NavigationRegion3D/Cube4" unique_id=590565068]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 shape = SubResource("ConvexPolygonShape3D_gj4rp")
 
-[node name="EmergencySpawnerComponent" type="Node" parent="." node_paths=PackedStringArray("NavRegion")]
+[node name="EmergencySpawnerComponent" type="Node" parent="." unique_id=460734252 node_paths=PackedStringArray("NavRegion")]
 script = ExtResource("15_khdme")
 EmergencyTemplate = ExtResource("16_856ay")
 PossibleEvents = Array[Resource]([SubResource("Resource_oepr1"), SubResource("Resource_p48m3")])
 NavRegion = NodePath("../World/NavigationRegion3D")
 
-[node name="UILayer" type="CanvasLayer" parent="."]
+[node name="UILayer" type="CanvasLayer" parent="." unique_id=725648569]
 
-[node name="CharacterUIHandle" type="Control" parent="UILayer" node_paths=PackedStringArray("NameLabel", "PortraitImage", "StatContainer")]
+[node name="CharacterUIHandle" type="Control" parent="UILayer" unique_id=560653145 node_paths=PackedStringArray("NameLabel", "PortraitImage", "StatContainer")]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -259,7 +259,7 @@ PortraitImage = NodePath("MarginContainer/Background/VBoxContainer/HBoxContainer
 StatContainer = NodePath("MarginContainer/Background/VBoxContainer/HBoxContainer/MarginContainer/StatContainer")
 StatRowTemplate = ExtResource("10_sw535")
 
-[node name="MarginContainer" type="MarginContainer" parent="UILayer/CharacterUIHandle"]
+[node name="MarginContainer" type="MarginContainer" parent="UILayer/CharacterUIHandle" unique_id=984450453]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -271,10 +271,10 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 300
 theme_override_constants/margin_bottom = 50
 
-[node name="Background" type="Panel" parent="UILayer/CharacterUIHandle/MarginContainer"]
+[node name="Background" type="Panel" parent="UILayer/CharacterUIHandle/MarginContainer" unique_id=1338735128]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/CharacterUIHandle/MarginContainer/Background"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/CharacterUIHandle/MarginContainer/Background" unique_id=1254829379]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -282,20 +282,20 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="NameLabel" type="Label" parent="UILayer/CharacterUIHandle/MarginContainer/Background/VBoxContainer"]
+[node name="NameLabel" type="Label" parent="UILayer/CharacterUIHandle/MarginContainer/Background/VBoxContainer" unique_id=571651297]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "0"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/CharacterUIHandle/MarginContainer/Background/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/CharacterUIHandle/MarginContainer/Background/VBoxContainer" unique_id=1071498188]
 layout_mode = 2
 
-[node name="PortraitImage" type="TextureRect" parent="UILayer/CharacterUIHandle/MarginContainer/Background/VBoxContainer/HBoxContainer"]
+[node name="PortraitImage" type="TextureRect" parent="UILayer/CharacterUIHandle/MarginContainer/Background/VBoxContainer/HBoxContainer" unique_id=2017544368]
 layout_mode = 2
 texture = ExtResource("2_jp252")
 
-[node name="MarginContainer" type="MarginContainer" parent="UILayer/CharacterUIHandle/MarginContainer/Background/VBoxContainer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="UILayer/CharacterUIHandle/MarginContainer/Background/VBoxContainer/HBoxContainer" unique_id=1915131457]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 10
@@ -303,13 +303,13 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="StatContainer" type="VBoxContainer" parent="UILayer/CharacterUIHandle/MarginContainer/Background/VBoxContainer/HBoxContainer/MarginContainer"]
+[node name="StatContainer" type="VBoxContainer" parent="UILayer/CharacterUIHandle/MarginContainer/Background/VBoxContainer/HBoxContainer/MarginContainer" unique_id=2073060187]
 layout_mode = 2
 
-[node name="StatUIHandle" parent="UILayer/CharacterUIHandle/MarginContainer/Background/VBoxContainer/HBoxContainer/MarginContainer/StatContainer" instance=ExtResource("10_sw535")]
+[node name="StatUIHandle" parent="UILayer/CharacterUIHandle/MarginContainer/Background/VBoxContainer/HBoxContainer/MarginContainer/StatContainer" unique_id=1028283174 instance=ExtResource("10_sw535")]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="UILayer/CharacterUIHandle/MarginContainer/Background" node_paths=PackedStringArray("_target")]
+[node name="Button" type="Button" parent="UILayer/CharacterUIHandle/MarginContainer/Background" unique_id=1165198803 node_paths=PackedStringArray("_target")]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -325,7 +325,7 @@ text = "Exit"
 script = ExtResource("11_wunjx")
 _target = NodePath("../../..")
 
-[node name="EmergencyResolverUIHandle" type="Control" parent="UILayer" node_paths=PackedStringArray("_resolution", "_emergencyProgressBars", "_unitProgressBars")]
+[node name="EmergencyResolverUIHandle" type="Control" parent="UILayer" unique_id=378883834 node_paths=PackedStringArray("_resolution", "_emergencyProgressBars", "_unitProgressBars")]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -338,7 +338,7 @@ _resolution = NodePath("HBoxContainer/EmergencyReport/Background/VBoxContainer/W
 _emergencyProgressBars = [NodePath("HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer/FollowProgressBar"), NodePath("HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer2/FollowProgressBar"), NodePath("HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer3/FollowProgressBar"), NodePath("HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer4/FollowProgressBar")]
 _unitProgressBars = [NodePath("HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer/FollowProgressBar/FollowProgressBar"), NodePath("HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer2/FollowProgressBar/FollowProgressBar"), NodePath("HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer3/FollowProgressBar/FollowProgressBar"), NodePath("HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer4/FollowProgressBar/FollowProgressBar")]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/EmergencyResolverUIHandle"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/EmergencyResolverUIHandle" unique_id=987430450]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -346,7 +346,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="EmergencyInfoContainer" type="MarginContainer" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer"]
+[node name="EmergencyInfoContainer" type="MarginContainer" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer" unique_id=816678610]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 theme_override_constants/margin_left = 10
@@ -354,10 +354,10 @@ theme_override_constants/margin_top = 100
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 100
 
-[node name="Background" type="Panel" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyInfoContainer"]
+[node name="Background" type="Panel" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyInfoContainer" unique_id=259523437]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyInfoContainer/Background"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyInfoContainer/Background" unique_id=789996768]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -365,22 +365,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="InfoLabel" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyInfoContainer/Background/VBoxContainer"]
+[node name="InfoLabel" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyInfoContainer/Background/VBoxContainer" unique_id=1437540922]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Emergency Info"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyInfoContainer/Background/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyInfoContainer/Background/VBoxContainer" unique_id=679082811]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="EmergencyImage" type="TextureRect" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyInfoContainer/Background/VBoxContainer/HBoxContainer"]
+[node name="EmergencyImage" type="TextureRect" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyInfoContainer/Background/VBoxContainer/HBoxContainer" unique_id=2055911545]
 layout_mode = 2
 texture = ExtResource("2_jp252")
 stretch_mode = 2
 
-[node name="DescriptionContainer" type="MarginContainer" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyInfoContainer/Background/VBoxContainer/HBoxContainer"]
+[node name="DescriptionContainer" type="MarginContainer" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyInfoContainer/Background/VBoxContainer/HBoxContainer" unique_id=1365053556]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 10
@@ -388,14 +388,14 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Description" type="RichTextLabel" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyInfoContainer/Background/VBoxContainer/HBoxContainer/DescriptionContainer"]
+[node name="Description" type="RichTextLabel" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyInfoContainer/Background/VBoxContainer/HBoxContainer/DescriptionContainer" unique_id=1417638255]
 layout_mode = 2
 text = "The quick brown fox jump over the lazy dog
 The quick brown fox jump over the lazy dog
 The quick brown fox jump over the lazy dog
 The quick brown fox jump over the lazy dog"
 
-[node name="Button" type="Button" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyInfoContainer/Background/VBoxContainer" node_paths=PackedStringArray("_target")]
+[node name="Button" type="Button" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyInfoContainer/Background/VBoxContainer" unique_id=118163304 node_paths=PackedStringArray("_target")]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -403,7 +403,7 @@ text = "Exit"
 script = ExtResource("11_wunjx")
 _target = NodePath("../../../../..")
 
-[node name="EmergencyReport" type="MarginContainer" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer"]
+[node name="EmergencyReport" type="MarginContainer" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer" unique_id=1973838367]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 10
@@ -411,10 +411,10 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Background" type="Panel" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport"]
+[node name="Background" type="Panel" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport" unique_id=458975991]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background" unique_id=969482]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -422,13 +422,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="NameLabel" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer"]
+[node name="NameLabel" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer" unique_id=427859128]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Emergency Results"
 horizontal_alignment = 1
 
-[node name="StatContainer" type="MarginContainer" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer"]
+[node name="StatContainer" type="MarginContainer" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer" unique_id=819652234]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 10
@@ -436,17 +436,17 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="StatContainer" type="VBoxContainer" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer"]
+[node name="StatContainer" type="VBoxContainer" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer" unique_id=58436634]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer" unique_id=651078659]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer" unique_id=1732913784]
 layout_mode = 2
 text = "Stat"
 
-[node name="FollowProgressBar" type="ProgressBar" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer" node_paths=PackedStringArray("_label")]
+[node name="FollowProgressBar" type="ProgressBar" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer" unique_id=485094600 node_paths=PackedStringArray("_label")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -458,14 +458,14 @@ script = ExtResource("13_7f2y8")
 _label = NodePath("Percentage")
 metadata/_custom_type_script = "uid://dgt3tqil1cyrg"
 
-[node name="Percentage" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer/FollowProgressBar"]
+[node name="Percentage" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer/FollowProgressBar" unique_id=1708703063]
 layout_mode = 0
 offset_left = 320.69998
 offset_right = 330.69998
 offset_bottom = 23.0
 text = "7"
 
-[node name="FollowProgressBar" type="ProgressBar" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer/FollowProgressBar" node_paths=PackedStringArray("_label")]
+[node name="FollowProgressBar" type="ProgressBar" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer/FollowProgressBar" unique_id=1281824146 node_paths=PackedStringArray("_label")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -484,21 +484,21 @@ script = ExtResource("13_7f2y8")
 _label = NodePath("Percentage")
 metadata/_custom_type_script = "uid://dgt3tqil1cyrg"
 
-[node name="Percentage" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer/FollowProgressBar/FollowProgressBar"]
+[node name="Percentage" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer/FollowProgressBar/FollowProgressBar" unique_id=955335197]
 layout_mode = 0
 offset_left = 224.5
 offset_right = 234.5
 offset_bottom = 23.0
 text = "5"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer" unique_id=1440374491]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer2" unique_id=991358978]
 layout_mode = 2
 text = "Stat"
 
-[node name="FollowProgressBar" type="ProgressBar" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer2" node_paths=PackedStringArray("_label")]
+[node name="FollowProgressBar" type="ProgressBar" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer2" unique_id=1830445713 node_paths=PackedStringArray("_label")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -510,14 +510,14 @@ script = ExtResource("13_7f2y8")
 _label = NodePath("Percentage")
 metadata/_custom_type_script = "uid://dgt3tqil1cyrg"
 
-[node name="Percentage" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer2/FollowProgressBar"]
+[node name="Percentage" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer2/FollowProgressBar" unique_id=563609314]
 layout_mode = 0
 offset_left = 320.69998
 offset_right = 330.69998
 offset_bottom = 23.0
 text = "7"
 
-[node name="FollowProgressBar" type="ProgressBar" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer2/FollowProgressBar" node_paths=PackedStringArray("_label")]
+[node name="FollowProgressBar" type="ProgressBar" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer2/FollowProgressBar" unique_id=555497468 node_paths=PackedStringArray("_label")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -536,21 +536,21 @@ script = ExtResource("13_7f2y8")
 _label = NodePath("Percentage")
 metadata/_custom_type_script = "uid://dgt3tqil1cyrg"
 
-[node name="Percentage" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer2/FollowProgressBar/FollowProgressBar"]
+[node name="Percentage" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer2/FollowProgressBar/FollowProgressBar" unique_id=550613119]
 layout_mode = 0
 offset_left = 224.5
 offset_right = 234.5
 offset_bottom = 23.0
 text = "5"
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer" unique_id=765026143]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer3"]
+[node name="Label" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer3" unique_id=496088193]
 layout_mode = 2
 text = "Stat"
 
-[node name="FollowProgressBar" type="ProgressBar" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer3" node_paths=PackedStringArray("_label")]
+[node name="FollowProgressBar" type="ProgressBar" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer3" unique_id=1540089484 node_paths=PackedStringArray("_label")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -562,14 +562,14 @@ script = ExtResource("13_7f2y8")
 _label = NodePath("Percentage")
 metadata/_custom_type_script = "uid://dgt3tqil1cyrg"
 
-[node name="Percentage" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer3/FollowProgressBar"]
+[node name="Percentage" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer3/FollowProgressBar" unique_id=423493084]
 layout_mode = 0
 offset_left = 320.69998
 offset_right = 330.69998
 offset_bottom = 23.0
 text = "7"
 
-[node name="FollowProgressBar" type="ProgressBar" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer3/FollowProgressBar" node_paths=PackedStringArray("_label")]
+[node name="FollowProgressBar" type="ProgressBar" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer3/FollowProgressBar" unique_id=466291251 node_paths=PackedStringArray("_label")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -588,21 +588,21 @@ script = ExtResource("13_7f2y8")
 _label = NodePath("Percentage")
 metadata/_custom_type_script = "uid://dgt3tqil1cyrg"
 
-[node name="Percentage" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer3/FollowProgressBar/FollowProgressBar"]
+[node name="Percentage" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer3/FollowProgressBar/FollowProgressBar" unique_id=484985535]
 layout_mode = 0
 offset_left = 224.5
 offset_right = 234.5
 offset_bottom = 23.0
 text = "5"
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer"]
+[node name="HBoxContainer4" type="HBoxContainer" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer" unique_id=943578708]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer4"]
+[node name="Label" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer4" unique_id=1174397106]
 layout_mode = 2
 text = "Stat"
 
-[node name="FollowProgressBar" type="ProgressBar" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer4" node_paths=PackedStringArray("_label")]
+[node name="FollowProgressBar" type="ProgressBar" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer4" unique_id=435281288 node_paths=PackedStringArray("_label")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -614,14 +614,14 @@ script = ExtResource("13_7f2y8")
 _label = NodePath("Percentage")
 metadata/_custom_type_script = "uid://dgt3tqil1cyrg"
 
-[node name="Percentage" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer4/FollowProgressBar"]
+[node name="Percentage" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer4/FollowProgressBar" unique_id=1043671122]
 layout_mode = 0
 offset_left = 320.69998
 offset_right = 330.69998
 offset_bottom = 23.0
 text = "7"
 
-[node name="FollowProgressBar" type="ProgressBar" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer4/FollowProgressBar" node_paths=PackedStringArray("_label")]
+[node name="FollowProgressBar" type="ProgressBar" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer4/FollowProgressBar" unique_id=886427811 node_paths=PackedStringArray("_label")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -640,18 +640,18 @@ script = ExtResource("13_7f2y8")
 _label = NodePath("Percentage")
 metadata/_custom_type_script = "uid://dgt3tqil1cyrg"
 
-[node name="Percentage" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer4/FollowProgressBar/FollowProgressBar"]
+[node name="Percentage" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/StatContainer/StatContainer/HBoxContainer4/FollowProgressBar/FollowProgressBar" unique_id=1734812973]
 layout_mode = 0
 offset_left = 224.5
 offset_right = 234.5
 offset_bottom = 23.0
 text = "5"
 
-[node name="HSeparator" type="HSeparator" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer" unique_id=869912635]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="WinningContainer" type="MarginContainer" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer"]
+[node name="WinningContainer" type="MarginContainer" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer" unique_id=1988804234]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -660,16 +660,16 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="WinningResolution" type="VBoxContainer" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/WinningContainer"]
+[node name="WinningResolution" type="VBoxContainer" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/WinningContainer" unique_id=2065019593]
 layout_mode = 2
 
-[node name="NameLabel" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/WinningContainer/WinningResolution"]
+[node name="NameLabel" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/WinningContainer/WinningResolution" unique_id=1970420660]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Winning chances"
 horizontal_alignment = 1
 
-[node name="EmergencyResolution" type="Control" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/WinningContainer/WinningResolution" node_paths=PackedStringArray("SuccessBar", "_winrateLabel", "Pointer", "ResultLabel")]
+[node name="EmergencyResolution" type="Control" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/WinningContainer/WinningResolution" unique_id=2054097187 node_paths=PackedStringArray("SuccessBar", "_winrateLabel", "Pointer", "ResultLabel")]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 script = ExtResource("14_lem2v")
@@ -678,7 +678,7 @@ _winrateLabel = NodePath("WinningChance/WinrateLabel")
 Pointer = NodePath("Pointer")
 ResultLabel = NodePath("../WinLabel")
 
-[node name="Background" type="ColorRect" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/WinningContainer/WinningResolution/EmergencyResolution"]
+[node name="Background" type="ColorRect" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/WinningContainer/WinningResolution/EmergencyResolution" unique_id=1130363623]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -687,7 +687,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 1, 1, 0.39215687)
 
-[node name="WinningChance" type="ColorRect" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/WinningContainer/WinningResolution/EmergencyResolution"]
+[node name="WinningChance" type="ColorRect" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/WinningContainer/WinningResolution/EmergencyResolution" unique_id=516325682]
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
@@ -699,7 +699,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.23529412, 0.77254903, 0.4509804, 1)
 
-[node name="WinrateLabel" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/WinningContainer/WinningResolution/EmergencyResolution/WinningChance"]
+[node name="WinrateLabel" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/WinningContainer/WinningResolution/EmergencyResolution/WinningChance" unique_id=430302763]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -716,7 +716,7 @@ theme_override_font_sizes/font_size = 32
 text = "55%"
 horizontal_alignment = 1
 
-[node name="Pointer" type="VSeparator" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/WinningContainer/WinningResolution/EmergencyResolution"]
+[node name="Pointer" type="VSeparator" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/WinningContainer/WinningResolution/EmergencyResolution" unique_id=1095943548]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -728,13 +728,13 @@ grow_horizontal = 2
 theme_override_constants/separation = 0
 theme_override_styles/separator = SubResource("StyleBoxLine_r1uu7")
 
-[node name="WinLabel" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/WinningContainer/WinningResolution"]
+[node name="WinLabel" type="Label" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer/WinningContainer/WinningResolution" unique_id=1800984208]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "RESULT PRINTER"
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer" node_paths=PackedStringArray("_target")]
+[node name="Button" type="Button" parent="UILayer/EmergencyResolverUIHandle/HBoxContainer/EmergencyReport/Background/VBoxContainer" unique_id=1662501193 node_paths=PackedStringArray("_target")]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -742,7 +742,7 @@ text = "Exit"
 script = ExtResource("11_wunjx")
 _target = NodePath("../../../../..")
 
-[node name="MousePointer" type="TextureRect" parent="UILayer"]
+[node name="MousePointer" type="TextureRect" parent="UILayer" unique_id=1524365616]
 offset_right = 32.0
 offset_bottom = 32.0
 mouse_filter = 2

@@ -1,11 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://qskrbs6lk1cu"]
+[gd_scene format=3 uid="uid://qskrbs6lk1cu"]
 
 [ext_resource type="PackedScene" uid="uid://hwinqa7qkuak" path="res://resources/models/Twist Dance.fbx" id="1_ee8ch"]
 [ext_resource type="Script" uid="uid://davev7r4e42qx" path="res://scripts/utility_components/AnimationLooper.cs" id="2_850v3"]
 
-[node name="Twist Dance" instance=ExtResource("1_ee8ch")]
+[node name="Twist Dance" unique_id=816244621 instance=ExtResource("1_ee8ch")]
 
-[node name="Skeleton3D" parent="." index="0"]
+[node name="Skeleton3D" parent="." index="0" unique_id=794352888]
 bones/0/position = Vector3(0.0071058865, 1.288047, 0.018547844)
 bones/0/rotation = Quaternion(-0.029594118, -0.32463512, 0.119964935, 0.93773377)
 bones/1/rotation = Quaternion(-0.017858943, 0.005779268, -0.020068385, 0.9996224)
@@ -28,5 +28,5 @@ bones/21/rotation = Quaternion(-0.54133534, 0.08621659, -0.13732566, 0.8250239)
 bones/22/rotation = Quaternion(0.69895047, 0.116451554, 0.0952279, 0.69917023)
 bones/23/rotation = Quaternion(0.3364733, -0.03543432, 0.0094844, 0.9409783)
 
-[node name="AnimationPlayer" parent="." index="1"]
+[node name="AnimationPlayer" parent="." index="1" unique_id=1188197960]
 script = ExtResource("2_850v3")
