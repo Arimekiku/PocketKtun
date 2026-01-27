@@ -146,7 +146,7 @@ adjustment_color_correction = SubResource("GradientTexture1D_qgpyk")
 [sub_resource type="BoxShape3D" id="BoxShape3D_oef5p"]
 size = Vector3(1, 0.6, 1.5)
 
-[node name="Sandbox" type="Node"]
+[node name="Sandbox" type="Node3D"]
 
 [node name="OccluderInstance3D" type="OccluderInstance3D" parent="."]
 occluder = ExtResource("34_x6f5f")
