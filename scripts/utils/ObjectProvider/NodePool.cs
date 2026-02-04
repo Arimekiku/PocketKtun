@@ -56,6 +56,7 @@ internal class NodePool
     private Node AddNodeInPool()
     {
         var duplicateNode = _refNode.Duplicate();
+        duplicateNode.Name = $"{_refNode.Name}_{_pool.Count}";
         _container.AddChild(duplicateNode);
         _pool.Add(duplicateNode, true);
         
