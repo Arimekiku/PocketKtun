@@ -4,6 +4,6 @@ namespace Scripts.DIContainer;
 
 internal interface IInstaller
 {
-    internal IReadOnlyList<BindContext> CreatedBinds { get; }
+    internal IReadOnlyList<BindContext> Binds { get; }
     public void ProcessCreateBinds();
 }

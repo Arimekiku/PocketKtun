@@ -29,7 +29,7 @@ internal abstract partial class GodotContextInstallers : Node, IContextInstaller
         foreach (var installer in GetInstallers())
         {
             installer.ProcessCreateBinds();
-            _createdBinds.AddRange(installer.CreatedBinds.Select(bindContext => bindContext.Bind));
+            _createdBinds.AddRange(installer.Binds.Select(bindContext => bindContext.Bind));
         }
     }
 

@@ -8,9 +8,9 @@ namespace Scripts.DIContainer;
 [GlobalClass]
 public abstract partial class Installer: Node, IInstaller
 {
-    private readonly List<BindContext> _createdBindsContexts = new List<BindContext>();
+    private readonly List<BindContext> _bindsContexts = new List<BindContext>();
 
-    public IReadOnlyList<BindContext> CreatedBinds => _createdBindsContexts;
+    public IReadOnlyList<BindContext> Binds => _bindsContexts;
 
     public abstract void ProcessCreateBinds();
 
@@ -18,7 +18,7 @@ public abstract partial class Installer: Node, IInstaller
         where TRealization : TContract
     {
         var bindContext = new GenericBindContext<TContract, TRealization>();
-        _createdBindsContexts.Add(bindContext);
+        _bindsContexts.Add(bindContext);
         return bindContext;
     }
 }
