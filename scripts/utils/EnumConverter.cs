@@ -1,7 +1,7 @@
 using System;
 using System.Linq.Expressions;
 
-namespace Scripts;
+namespace Scripts.Utils;
 
 public static class EnumConverter<TEnum> where TEnum : Enum
 {
