@@ -3,6 +3,7 @@ using Scripts.DIContainer;
 using Scripts.Gameplay.Services;
 using Scripts.MessageManager;
 using Scripts.Services;
+using Scripts.Utils;
 
 namespace Scripts.Installers;
 
@@ -14,5 +15,6 @@ public partial class InitInstaller : Installer
         CreateBind<ILogger, BaseLogger>().AsSingle();
         CreateBind<IPlayerInteractorService, PlayerInteractorService>().AsSingle();
         CreateBind<IMessageManager, MessageManager.MessageManager>().AsSingle();
+        CreateBind<IObjectProviderRegistry, ObjectProviderRegistry>().AsSingle();
     }
 }
