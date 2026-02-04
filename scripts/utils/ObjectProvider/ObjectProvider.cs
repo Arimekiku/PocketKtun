@@ -60,10 +60,11 @@ public partial class ObjectProvider : Node, IObjectProvider
 
     public Node GetObject(string objectName)
     {
-        if (!_pools.ContainsKey(objectName))
-            _logger.LogWarning($"Object {objectName} not found in object provider {ProviderName}");
-
-        return _pools[objectName].GetNode();
+        if (_pools.TryGetValue(objectName, out NodePool value)) 
+            return value.GetNode();
+        
+        _logger.LogWarning($"Object {objectName} not found in object provider {ProviderName}");
+        return null;
     }
 
     public void ReturnObject(Node node)
