@@ -6,6 +6,8 @@ public class NodePool3D : BaseNodePool<Node3D>
 {
     public NodePool3D(Node3D refNode, Node container, int poolSize = 0) : base(refNode, container, poolSize)
     {
+        refNode.Visible = false;
+        
         if (poolSize != 0)
             FillPool(poolSize);
     }

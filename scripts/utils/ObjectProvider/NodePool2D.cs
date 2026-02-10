@@ -9,6 +9,8 @@ public class NodePool2D : BaseNodePool<CanvasItem>
 {
     public NodePool2D(CanvasItem refNode, Node container, int poolSize = 0) : base(refNode, container, poolSize)
     {
+        refNode.Visible = false;
+        
         if (poolSize != 0)
             FillPool(poolSize);
     }
