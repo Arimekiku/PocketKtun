@@ -32,7 +32,9 @@ public class WindowControl : IWindowControl
         var window = _windowRegistry.RegisteredWindows[windowData.WindowId];
         
         _windowRegistry.RegisterOpenWindow(window);
-        window.OpenWindow();
+        window.OpenWindow(windowData);
+        
+        _logger.Log($"Window {windowData.WindowId} opened");
     }
 
     public void CloseWindow(WindowData windowData)
@@ -53,6 +55,8 @@ public class WindowControl : IWindowControl
         
         _windowRegistry.RegisterCloseWindow(window);
         window.CloseWindow();
+        
+        _logger.Log($"Window {windowData.WindowId} closed");
     }
 
     public void CloseWindow(WindowIds windowId) => CloseWindow(new WindowData(windowId));

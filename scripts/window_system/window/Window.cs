@@ -20,6 +20,7 @@ public partial class Window : BaseStateMachine<Window.WindowStates>, IWindow
     [Export] private WindowIds _windowId;
     [Export] private CanvasItem _visual;
     
+    private WindowData _currentData;
     private BaseZStrategy _zStrategy;
     private List<IOpenWindowComponent>  _openWindowComponents;
     private List<ICloseWindowComponent> _closeWindowComponents;
@@ -55,10 +56,16 @@ public partial class Window : BaseStateMachine<Window.WindowStates>, IWindow
         SetState(WindowStates.Init);
     }
     
-    public void OpenWindow() => SetState(WindowStates.Open);
-    
-    public void CloseWindow() => SetState(WindowStates.Close);
-    
+    public void OpenWindow(WindowData windowData)
+    {
+        _currentData = windowData;
+        SetState(WindowStates.Open);
+    }
+    public void CloseWindow()
+    {
+        _currentData = null;
+        SetState(WindowStates.Close);
+    }
     public void FocusWindow() => SetState(WindowStates.Focus);
     
     public void UnfocusWindow() => SetState(WindowStates.Unfocus);
@@ -73,7 +80,7 @@ public partial class Window : BaseStateMachine<Window.WindowStates>, IWindow
             return;
         
         foreach (var component in _openWindowComponents)
-            component.Open();
+            component.Open(_currentData);
     }
     
     private void CloseEnter()

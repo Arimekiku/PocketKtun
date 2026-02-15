@@ -8,7 +8,7 @@ public interface IWindow : IDisposable
     public float VisualZ { get; }
 
     public void Initialize();
-    public void OpenWindow();
+    public void OpenWindow(WindowData windowData);
     public void CloseWindow();
     public void FocusWindow();
     public void UnfocusWindow();

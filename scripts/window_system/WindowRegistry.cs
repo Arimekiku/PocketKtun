@@ -49,7 +49,7 @@ public class WindowRegistry : IWindowRegistry, IDisposable
         _registeredWindows.Remove(window.Id);
         window.Dispose();
         
-        _logger.Log($"Window {window.Id} registered");
+        _logger.Log($"Window {window.Id} unregistered");
     }
 
     public void RegisterOpenWindow(IWindow window)

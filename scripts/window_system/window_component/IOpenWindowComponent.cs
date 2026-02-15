@@ -2,5 +2,5 @@ namespace Scripts.WindowSystem;
 
 public interface IOpenWindowComponent
 {
-    public void Open();
+    public void Open(WindowData windowData);
 }
