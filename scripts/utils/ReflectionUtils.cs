@@ -54,10 +54,7 @@ public static class ReflectionUtils
         foreach (var type in types)
         {
             if (type.IsAbstract)
-            {
-                //Logger.LogWarning($"Type {type.Name} is abstract, skip this type");
                 continue;
-            }
 
             var obj = Activator.CreateInstance(type, constructParams);
 
@@ -82,10 +79,7 @@ public static class ReflectionUtils
                 throw new ArgumentException($"Type {type.Name} must inherit from {createdType.Name}");
 
             if (type.IsAbstract)
-            {
-                //Logger.LogWarning($"Type {type.Name} is abstract, skip this type");
                 continue;
-            }
 
             var obj = Activator.CreateInstance(type, constructParams);
 
