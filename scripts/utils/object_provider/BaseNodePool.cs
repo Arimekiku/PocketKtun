@@ -30,7 +30,7 @@ public abstract class BaseNodePool<TNode> where TNode : Node
     public virtual TNode GetNode()
     {
         var firstFreeNode = _pool.FirstOrDefault(pair => pair.Value).Key ?? AddNodeInPool();
-        _pool[firstFreeNode] = true;
+        _pool[firstFreeNode] = false;
 
         return firstFreeNode;
     }
