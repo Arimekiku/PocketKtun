@@ -1,23 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://xqcuu7kvsmxh"]
+[gd_scene format=3 uid="uid://xqcuu7kvsmxh"]
 
 [ext_resource type="Script" uid="uid://cdfbxnomvtkur" path="res://scripts/di_container/DiInitializer.cs" id="1_8rjxi"]
-[ext_resource type="Script" uid="uid://bnpb22tv8ae7t" path="res://scripts/di_container/ContextInstallers/GlobalContextInstallers.cs" id="2_85ro4"]
+[ext_resource type="Script" uid="uid://bnpb22tv8ae7t" path="res://scripts/di_container/ContextInstallers/GlobalContext.cs" id="2_psaoc"]
 [ext_resource type="Script" uid="uid://bx4851e8nt0ju" path="res://scripts/installers/InitInstaller.cs" id="3_0ah4a"]
 [ext_resource type="Script" uid="uid://7mj0x1tcqfd5" path="res://scripts/installers/WindowSystemInstaller.cs" id="4_psaoc"]
+[ext_resource type="Script" uid="uid://cgiuuak72kqkd" path="res://scripts/installers/DialogSystemInstaller.cs" id="5_per3p"]
 
-[node name="DiInitializer" type="Node"]
+[node name="DiInitializer" type="Node" unique_id=518345536]
 script = ExtResource("1_8rjxi")
 metadata/_custom_type_script = "uid://cdfbxnomvtkur"
 
-[node name="GlobalContextInstallers" type="Node" parent="." node_paths=PackedStringArray("_contextInstallers")]
-script = ExtResource("2_85ro4")
-_contextInstallers = [NodePath("InitInstaller"), NodePath("WindowSystemInstaller")]
+[node name="GlobalContext" type="Node" parent="." unique_id=1534221065 node_paths=PackedStringArray("_contextInstallers")]
+script = ExtResource("2_psaoc")
+_contextInstallers = [NodePath("InitInstaller"), NodePath("WindowSystemInstaller"), NodePath("DialogSystemInstaller")]
 metadata/_custom_type_script = "uid://bnpb22tv8ae7t"
 
-[node name="InitInstaller" type="Node" parent="GlobalContextInstallers"]
+[node name="InitInstaller" type="Node" parent="GlobalContext" unique_id=1895222096]
 script = ExtResource("3_0ah4a")
 metadata/_custom_type_script = "uid://bx4851e8nt0ju"
 
-[node name="WindowSystemInstaller" type="Node" parent="GlobalContextInstallers"]
+[node name="WindowSystemInstaller" type="Node" parent="GlobalContext" unique_id=789724608]
 script = ExtResource("4_psaoc")
 metadata/_custom_type_script = "uid://7mj0x1tcqfd5"
+
+[node name="DialogSystemInstaller" type="Node" parent="GlobalContext" unique_id=160794561]
+script = ExtResource("5_per3p")
+metadata/_custom_type_script = "uid://cgiuuak72kqkd"
