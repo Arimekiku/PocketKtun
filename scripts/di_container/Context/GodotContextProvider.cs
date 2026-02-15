@@ -10,18 +10,23 @@ internal class GodotContextProvider : IContextProvider
     private readonly Context _globalContext = new Context();
     private readonly Dictionary<Node, Context> _sceneContexts = new Dictionary<Node, Context>();
     
-    public Context GetContext(object injectedObject)
+    public Context GlobalContext => _globalContext;
+    
+    public Context GetContext(object injectedObject, Type contractType)
     {
         if (injectedObject is not Node node)
             return _globalContext;
 
-        var bindInstallerNode = node.FindParent<NodeContextInstallers>();
+        var bindInstallerNode = node.FindParent<NodeContext>();
         if (bindInstallerNode == null) 
             return _globalContext;
         
         var context = _sceneContexts.GetValueOrDefault(bindInstallerNode, null);
         ExceptionsUtils.ThrowIfNull(context, $"Context is not found for {bindInstallerNode.Name} bind installer");
-            
+
+        if (context.GetBind(contractType) == null)
+            return _globalContext;
+        
         return context;
     }
 
@@ -36,7 +41,7 @@ internal class GodotContextProvider : IContextProvider
         if (contextObject is not Node contextNode)
             throw new ArgumentException("Context in godot must be a node.", nameof(contextObject));
         
-        if (contextNode is not NodeContextInstallers)
+        if (contextNode is not NodeContext)
             throw new ArgumentException($"Context node {contextNode.Name} is not a SceneBindInstaller.");
 
         _sceneContexts.TryAdd(contextNode, new Context());

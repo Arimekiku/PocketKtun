@@ -36,7 +36,7 @@ internal class Resolver : IResolver
     
     private object Resolve(Type type, object injectedInstance = null)
     {
-        var context = _contextProvider.GetContext(injectedInstance);
+        var context = _contextProvider.GetContext(injectedInstance, type);
         
         var bind = context.GetBind(type, injectedInstance?.GetType());
 

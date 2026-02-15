@@ -19,7 +19,8 @@ internal class Context
     
     public Bind GetBind(Type contractType, Type injectionObjectType = null)
     {
-        var bindContainer = _binds[contractType];
+        if (!_binds.TryGetValue(contractType, out var bindContainer))
+            return null;
 
         foreach (var bind in bindContainer.ConditionBinds)
         {
