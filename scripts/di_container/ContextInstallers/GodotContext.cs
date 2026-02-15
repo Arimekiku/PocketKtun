@@ -6,7 +6,7 @@ using System.Linq;
 namespace Scripts.DIContainer;
 
 [GlobalClass]
-internal abstract partial class GodotContextInstallers : Node, IContextInstallers
+internal abstract partial class GodotContext : Node, IContextInstallers
 {
     [Export] private Installer[] _contextInstallers;
 
