@@ -15,6 +15,5 @@ public partial class InitInstaller : Installer
         CreateBind<ILogger, BaseLogger>().AsSingle();
         CreateBind<IPlayerInteractorService, PlayerInteractorService>().AsSingle();
         CreateBind<IMessageManager, MessageManager.MessageManager>().AsSingle();
-        CreateBind<IObjectProviderRegistry, ObjectProviderRegistry>().AsSingle();
     }
 }
