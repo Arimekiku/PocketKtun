@@ -27,14 +27,14 @@ internal class NodeContextRegister : IDisposable
     
     private void AddedNodeListener(Node node)
     {
-        if (node is NodeContextInstallers nodeContextInstallers)
+        if (node is NodeContext nodeContextInstallers)
         {
             nodeContextInstallers.InstallBinds();
             nodeContextInstallers.RegisterBinds(_contextProvider);
             return;
         }
 
-        if (node is not GlobalContextInstallers globalContextInstallers) 
+        if (node is not GlobalContext globalContextInstallers) 
             return;
         
         globalContextInstallers.InstallBinds();
