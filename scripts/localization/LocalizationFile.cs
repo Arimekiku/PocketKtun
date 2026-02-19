@@ -1,24 +1,26 @@
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Scripts.Localization
 {
     public class LocalizationFile
     {
-        private readonly Dictionary<string, string> _localizationValue;
+        [JsonInclude] private readonly Dictionary<string, string> _localizationValues;
         
-        public LocalizationFile(Dictionary<string, string> localizationValue)
+        [JsonConstructor]
+        public LocalizationFile(Dictionary<string, string> localizationValues)
         {
-            _localizationValue = localizationValue;
+            _localizationValues = localizationValues;
         }
         
         public LocalizationFile(List<string> idsList, List<string> textList)
         {
-            _localizationValue = new Dictionary<string, string>();
+            _localizationValues = new Dictionary<string, string>();
             
             for (var i = 0; i < idsList.Count; ++i)
-                _localizationValue.Add(idsList[i], textList[i]);
+                _localizationValues.Add(idsList[i], textList[i]);
         }
         
-        public string GetText(string locId) => _localizationValue.GetValueOrDefault(locId);
+        public string GetText(string locId) => _localizationValues.GetValueOrDefault(locId);
     }
 }

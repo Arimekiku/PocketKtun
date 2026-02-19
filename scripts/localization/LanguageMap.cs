@@ -2,22 +2,31 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 
 namespace Scripts.Localization;
 
 public class LanguageMap
 {
-    private readonly int _defaultLanguageId;
-    private readonly Dictionary<int, string> _languageMap;
-    private readonly Dictionary<string, int> _languageCodeMap;
+    [JsonInclude] private readonly int _defaultLanguageId;
+    [JsonInclude] private readonly Dictionary<int, string> _languageMap;
+    [JsonInclude] private readonly Dictionary<string, int> _languageCodeMap;
 
-    public int DefaultLanguageId => _defaultLanguageId;
-    public string DefaultLanguageCode => _languageMap[DefaultLanguageId];
-    private Dictionary<string, int> LanguageCodeMap => _languageCodeMap;
+    [JsonIgnore] public int DefaultLanguageId => _defaultLanguageId;
+    [JsonIgnore] public string DefaultLanguageCode => _languageMap[DefaultLanguageId];
+    [JsonIgnore] private Dictionary<string, int> LanguageCodeMap => _languageCodeMap;
 
-    public IReadOnlyList<int> LangIds => _languageMap.Keys.ToList();
-    public IReadOnlyList<string> LangCodes => _languageMap.Values.ToList();
+    [JsonIgnore] public IReadOnlyList<int> LangIds => _languageMap.Keys.ToList();
+    [JsonIgnore] public IReadOnlyList<string> LangCodes => _languageMap.Values.ToList();
 
+    [JsonConstructor]
+    public LanguageMap(Dictionary<int, string> languageMap, Dictionary<string, int> languageCodeMap, int defaultLanguageId)
+    {
+        _languageMap = languageMap;
+        _languageCodeMap = languageCodeMap;
+        _defaultLanguageId = defaultLanguageId;
+    }
+    
     public LanguageMap(IReadOnlyList<int> languageIds, IReadOnlyList<string> languageCodes, int defaultLanguageId)
     {
         if (languageCodes.Count != languageIds.Count)
