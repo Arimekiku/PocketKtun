@@ -1,7 +1,7 @@
 using Google.Apis.Sheets.v4.Data;
 using System.Collections.Generic;
 
-namespace Scripts.Utils;
+namespace Scripts.Utils.SheetParser;
 
 public class ParsedData
 {

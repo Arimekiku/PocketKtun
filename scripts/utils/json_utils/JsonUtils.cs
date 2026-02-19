@@ -31,7 +31,9 @@ public static class JsonUtils
         var fullPath = Path.Combine(filePath, fileName);
         Directory.CreateDirectory(filePath);
         
-        File.WriteAllText(fullPath, Serialize(value));
+        var json = Serialize(value);
+        
+        File.WriteAllText(fullPath, json);
     }
     
     public static TType LoadCompressedFile<TType>(string path, string fileName)
@@ -77,6 +79,4 @@ public static class JsonUtils
             
         return jsonOption;
     }
-    
-    
 }

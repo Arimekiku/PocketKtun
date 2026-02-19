@@ -67,7 +67,7 @@ public static class ReflectionUtils
         return createdObjects.ToArray();
     }
 
-    public static T[] CreateObjectsByTypes<T>(IEnumerable<Type> types, params object[] constructParams)
+    public static List<T> CreateObjectsByTypes<T>(IEnumerable<Type> types, params object[] constructParams)
         where T : class
     {
         var createdObjects = new List<T>();
@@ -90,6 +90,6 @@ public static class ReflectionUtils
             createdObjects.Add(tObj);
         }
 
-        return createdObjects.ToArray();
+        return createdObjects;
     }
 }

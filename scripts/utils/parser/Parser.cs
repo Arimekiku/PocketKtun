@@ -2,15 +2,16 @@ using Godot;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Services;
 using Google.Apis.Sheets.v4;
+using Scripts.Utils;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Scripts.Utils;
+namespace Scripts.Utils.SheetParser;
 
 public abstract class Parser
 {
-    private readonly ISerializeRule _serializeRule;
-    private readonly IParserSettingsProvider _parserSettingsProvider;
+    private readonly ParseSaver _saver;
+    private ICredentialProvider _credentialProvider;
     
     private List<ParsingContext> _parsingContexts;
     private SheetsService _sheetsService;
@@ -18,17 +19,16 @@ public abstract class Parser
     private string _spreadSheet;
     private bool _isInitialized;
     
-    protected abstract ParserType ParserType { get; }
-    
-    public Parser(ISerializeRule serializeRule, IParserSettingsProvider parserSettingsProvider)
+    public Parser(ParseSaver saver, ICredentialProvider credentialProvider)
     {
-        _parserSettingsProvider = parserSettingsProvider;
-        _serializeRule = serializeRule;
+        _saver = saver;
+        _saver.Initialize();
+        _credentialProvider = credentialProvider;
     }
     
     public void Initialize()
     {
-        if (!_parserSettingsProvider.TryGetSpreadSheet(ParserType, out var spreadSheet))
+        if (!TryGetSpreadSheet(out var spreadSheet))
             return;
         _spreadSheet = spreadSheet;
         _sheetsService = GetSheetService();
@@ -47,14 +47,15 @@ public abstract class Parser
         GetDataFromGoogleSheets();
         SetParsedDataInContexts();
         ParsedFromReceivedData();
-        SerializeParsedData();
+        SaveParsedData();
     }
+    
+    protected abstract bool TryGetSpreadSheet(out string spreadSheet);
     
     private List<ParsingContext> CreateParsingContexts()
     {
-        var parsingTypesContext = ReflectionUtils.GetAllNotAbstractTypesInheritFrom<ParsingContext>();
-        return ReflectionUtils.CreateObjectsByTypes<ParsingContext>(parsingTypesContext)
-                              .Where(context => context.ContextType == ParserType).ToList();
+        var parsingContextTypes = ReflectionUtils.GetAllNotAbstractTypesInheritFrom<ParsingContext>();
+        return ReflectionUtils.CreateObjectsByTypes<ParsingContext>(parsingContextTypes, _saver);
     }
     
     private SheetsService GetSheetService() =>
@@ -66,8 +67,8 @@ public abstract class Parser
 
     private GoogleCredential GetGoogleCredential()
     {
-        var json = _spreadSheet;
-        var credential = CredentialFactory.FromJson<GoogleCredential>(json);
+        var json = _credentialProvider.GetCredentialJson();
+        var credential = GoogleCredential.FromJson(json);
 
         return credential;
     }
@@ -93,12 +94,12 @@ public abstract class Parser
 
     private void ParsedFromReceivedData()
     {
-        foreach (var parsingContext in _parsingContexts)
+        foreach (var parsingContext in _parsingContexts.Where(context => context.IsInitialized))
             parsingContext.ParseTarget();
     }
 
-    private void SerializeParsedData()
+    private void SaveParsedData()
     {
-        _serializeRule?.SerializeObjects(_parsingContexts.Select(c => c.TargetObject).ToArray());
+        _saver?.Save();
     }
 }

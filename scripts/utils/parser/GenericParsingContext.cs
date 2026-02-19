@@ -1,20 +1,12 @@
 using System;
 
-namespace Scripts.Utils;
+namespace Scripts.Utils.SheetParser;
 
-public abstract class GenericParsingContext<T> : ParsingContext
+public abstract class GenericParsingContext<TSaver> : ParsingContext where TSaver : ParseSaver
 {
-    private T _target;
+    protected TSaver Saver => _parseSaver as TSaver;
     
-    public override Type TargetType => typeof(T);
-    
-    public T Target
+    protected GenericParsingContext(ParseSaver saver) : base(saver)
     {
-        get => _target;
-        protected set
-        {
-            _target = value;
-            TargetObject = value;
-        }
     }
 }
